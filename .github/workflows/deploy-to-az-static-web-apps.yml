@@ -7,11 +7,11 @@ name: deploy-to-az-static-web-apps.yml
 on:
   push:
     branches:
-      - '**'
+      - 'main'
   pull_request:
     types: [opened, synchronize, reopened, closed]
     branches:
-      - main
+      - live
 permissions:
   contents: write
   pull-requests: write # this permission is required in order to allow PR comment with staging URL
