@@ -2,7 +2,7 @@
 
 In this module, we'll be using a Figma template to facilitate a design thinking session focused on identifying customer needs and pain points, and explore how AI-driven solutions can address them effectively. This will also ensure that the workshop is more relevant as we get more hands-on in the coming hours and days.
 
-![overview](assets/images/01-design-thinking/dt-1.png)
+![overview](../../assets/images/01-design-thinking/dt-1.png)
 
 ## Overview
 
@@ -71,4 +71,4 @@ Semantic Kernel is a framework that helps developers build AI-driven application
 
 By completing this module, you will have a deeper understanding of your users' needs and pain points and a solid foundation for incorporating AI-driven solutions into your application using Semantic Kernel.
 
-![overview](assets/images/01-design-thinking/dt-2.png)
+![overview](../../assets/images/01-design-thinking/dt-2.png)

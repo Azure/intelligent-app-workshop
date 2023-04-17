@@ -2,7 +2,7 @@
 
 Polyglot, AI-Infused Microservices Architecture with Event-Driven Backend
 
-![architecture](assets/images/wip-azure.png)
+![architecture](../../assets/images/wip-azure.png)
 
 ## Overview
 
