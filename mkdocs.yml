@@ -5,10 +5,9 @@ nav:
   - Home: index.md
   - Intro:
     - wksp/00-intro/index.md
-    - Intelligent App overview: wksp/00-intro/intelligent-app-overview.md
+    - Sample Walkthroughs for inspiration: wksp/00-intro/samples-walk-through.md
+    - Miyagi Architecture Overview: wksp/00-intro/architecture-overview.md
     - Semantic Kernel overview: wksp/00-intro/semantic-kernel-overview.md
-    - Miyagi Walk-through: wksp/00-intro/miyagi-walk-through.md
-    - Architecture Overview: wksp/00-intro/architecture-overview.md
     - Pre-requisites: wksp/00-intro/pre-reqs.md
   - Module 1 - Design thinking session: wksp/01-design-thinking/index.md
   - Post-workshop:
@@ -16,7 +15,7 @@ nav:
   
 theme:
   name: material
-  custom_dir: docs/ancillary/overrides
+  custom_dir: docs/assets/overrides
   font:
     text: Source Sans Pro
   palette:
@@ -43,8 +42,8 @@ theme:
     - content.tabs.link
   icon:
     repo: fontawesome/brands/github
-  logo: ancillary/images/favicon.png
-  favicon: ancillary/images/favicon.ico
+  logo: assets/images/favicon.png
+  favicon: assets/images/favicon.ico
 
 markdown_extensions:
   - pymdownx.emoji:
@@ -95,7 +94,7 @@ extra:
       link: https://github.com/Azure-samples/intelligent-app-workshop
 
 extra_css:
-  - ancillary/stylesheets/extra.css
+  - assets/stylesheets/extra.css
 
 repo_url: https://github.com/Azure-samples/intelligent-app-workshop
 edit_uri: edit/main/docs

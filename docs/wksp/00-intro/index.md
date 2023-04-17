@@ -23,7 +23,6 @@ This workshop is designed for:
       3. [Reddog](https://reddog-solutions.com/)
    2. Comprehensive Architecture Overview
    3. Essential Pre-requisites
-
 2. Unearthing Customer Needs and Pain Points (Design Thinking with Semantic Kernel)
 3. Crafting AI-Driven Design and User Experience
 4. Seamlessly Integrating AI into Azure backing services and data processing
