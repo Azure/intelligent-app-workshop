@@ -1,57 +1,20 @@
-# Project Name
+# Miyagi Workshop
 
-(short, 1-3 sentenced, description of the project)
+[![Open in Visual Studio Code](https://img.shields.io/static/v1?logo=visualstudiocode&label=&message=Open%20in%20VS%20Code&labelColor=2c2c32&color=007acc&logoColor=007acc)](https://github.dev/Azure-Samples/intelligent-app-workshop)
+[![License: CC BY-SA 4.0](https://img.shields.io/badge/License-CC%20BY--SA-222.svg)](https://creativecommons.org/licenses/by-sa/4.0/)
 
-## Features
+This is an envisioning workshop to rethink user experience, architecture, and app development by leveraging the intelligence of foundation models. This comprehensive workshop utilizes the [Miyagi](https://github.com/Azure-Samples/miyagi) codebase and Semantic Kernel (SK), along with SK's Design thinking material, to guide you through the entire lifecycle of app development – from identifying user needs to deploying a fully functional, production-grade app on Azure.
 
-This project framework provides the following features:
+Key takeaways:
 
-* Feature 1
-* Feature 2
-* ...
+1. Uncover innovative ways to transform user experience and app design by integrating foundation models into interactions.
+2. Learn how to effectively harness Large Language Models (LLMs) with the Miyagi codebase for streamlined development.
+3. Rethink how to serve your end-user needs with Semantic Kernel's Design Thinking workshop.
+4. Gain valuable insights into the production and deployment of apps powered by Large Language Models (LLMs).
 
-## Getting Started
+## [2-day Intelligent App Development Workshop Agenda](docs/ancillary/workshop.pdf)
 
-### Prerequisites
+![wip-azure](docs/ancillary/images/wip-azure.png)
 
-(ideally very short, if any)
+![ui](docs/ancillary/images/wip-ui.png)
 
-- OS
-- Library version
-- ...
-
-### Installation
-
-(ideally very short)
-
-- npm install [package name]
-- mvn install
-- ...
-
-### Quickstart
-(Add steps to get up and running quickly)
-
-1. git clone [repository clone url]
-2. cd [repository name]
-3. ...
-
-
-## Demo
-
-A demo app is included to show how to use the project.
-
-To run the demo, follow these steps:
-
-(Add steps to start up the demo)
-
-1.
-2.
-3.
-
-## Resources
-
-(Any additional resources or related projects)
-
-- Link to supporting information
-- Link to similar sample
-- ...

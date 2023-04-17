@@ -1,0 +1,102 @@
+site_name: Intelligent App Workshop with Project Miyagi and Semantic Kernel
+site_description: Complimentary workshop to Project Miyagi to demonstrate the potential of integrating SoTA foundation models in user experiences and backend workflows. Orchestrated by Semantic Kernel and built on Azure primitives.
+site_author: Azure App Innovation GBB, Microsoft
+nav:
+  - Home: index.md
+  - Intro:
+    - wksp/00-intro/index.md
+    - Intelligent App overview: wksp/00-intro/intelligent-app-overview.md
+    - Semantic Kernel overview: wksp/00-intro/semantic-kernel-overview.md
+    - Miyagi Walk-through: wksp/00-intro/miyagi-walk-through.md
+    - Architecture Overview: wksp/00-intro/architecture-overview.md
+    - Pre-requisites: wksp/00-intro/pre-reqs.md
+  - Module 1 - Design thinking session: wksp/01-design-thinking/index.md
+  - Post-workshop:
+    - Feedback: wksp/other/feedback.md
+  
+theme:
+  name: material
+  custom_dir: docs/ancillary/overrides
+  font:
+    text: Source Sans Pro
+  palette:
+    - scheme: slate
+      primary: deep purple
+      accent: teal
+      toggle:
+        icon: material/toggle-switch-off-outline
+        name: Switch to light mode
+    - scheme: default
+      primary: deep purple
+      accent: teal
+      toggle:
+        icon: material/toggle-switch
+        name: Switch to dark mode
+  features:
+    - header.autohide
+    - navigation.instant
+    - navigation.indexes
+    - navigation.top
+    - navigation.footer
+    - content.code.copy
+    - content.code.annotate
+    - content.tabs.link
+  icon:
+    repo: fontawesome/brands/github
+  logo: ancillary/images/favicon.png
+  favicon: ancillary/images/favicon.ico
+
+markdown_extensions:
+  - pymdownx.emoji:
+      emoji_index: !!python/name:materialx.emoji.twemoji
+      emoji_generator: !!python/name:materialx.emoji.to_svg
+  - def_list
+  - pymdownx.tasklist:
+      custom_checkbox: true
+  - admonition
+  - pymdownx.keys
+  - pymdownx.inlinehilite
+  - pymdownx.highlight:
+      anchor_linenums: true
+      line_spans: __span
+      pygments_lang_class: true
+  - pymdownx.tabbed:
+      alternate_style: true
+  - pymdownx.details
+  - pymdownx.snippets:
+      base_path: '.'
+      check_paths: true
+      url_download: true
+  - pymdownx.superfences:
+      custom_fences:
+        - name: mermaid
+          class: mermaid
+          format: !!python/name:pymdownx.superfences.fence_code_format
+  - meta
+  - toc:
+      permalink: true
+      toc_depth: 4
+  - attr_list
+  - md_in_html
+
+copyright: Copyright &copy; 2023 Azure App Innovation GBB, Microsoft
+
+plugins:
+  - git-revision-date
+  - search
+  - macros
+  - glightbox
+
+extra:
+  dapr:
+    version: 1.9.0
+  social:
+    - icon: fontawesome/brands/github
+      link: https://github.com/Azure-samples/intelligent-app-workshop
+
+extra_css:
+  - ancillary/stylesheets/extra.css
+
+repo_url: https://github.com/Azure-samples/intelligent-app-workshop
+edit_uri: edit/main/docs
+
