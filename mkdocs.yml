@@ -5,8 +5,8 @@ nav:
   - Home: index.md
   - Intro:
     - wksp/00-intro/index.md
-    - Sample Walkthroughs for inspiration: wksp/00-intro/samples-walk-through.md
     - Miyagi Architecture Overview: wksp/00-intro/architecture-overview.md
+    - Sample Walkthroughs for inspiration: wksp/00-intro/samples-walk-through.md
     - Semantic Kernel overview: wksp/00-intro/semantic-kernel-overview.md
     - Pre-requisites: wksp/00-intro/pre-reqs.md
   - Module 1 - Design thinking session: wksp/01-design-thinking/index.md

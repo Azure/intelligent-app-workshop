@@ -18,9 +18,9 @@ This workshop is designed for:
 
 1. Introduction to Intelligent App Development
    1. Unveiling the Art of the Possible: Inspiring Walkthroughs
-      1. [Miyagi](https://github.com/Azure-Samples/miyagi)
-      2. [Semantic Kernel Samples](https://github.com/microsoft/semantic-kernel#sample-apps-)
-      3. [Reddog](https://reddog-solutions.com/)
+      - [Miyagi](https://github.com/Azure-Samples/miyagi)
+      - [Semantic Kernel Samples](https://github.com/microsoft/semantic-kernel#sample-apps-)
+      - [Reddog](https://reddog-solutions.com/)
    2. Comprehensive Architecture Overview
    3. Essential Pre-requisites
 2. Unearthing Customer Needs and Pain Points (Design Thinking with Semantic Kernel)

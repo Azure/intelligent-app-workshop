@@ -6,6 +6,10 @@ SK supports prompt templating, function chaining, vectorized memory, and intelli
 
 *[Source](https://github.com/microsoft/semantic-kernel#semantic-kernel)
 
+![sk](../../assets/images/00-intro/sk.png)
+
 ## [Skills](https://github.com/microsoft/semantic-kernel/tree/main/samples/skills)
 
-TODO: Sample skills notebook
+![sk](../../assets/images/00-intro/sk-skills.png)
+
+TODO: Sample skills notebooks video walkthrough
