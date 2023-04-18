@@ -14,7 +14,7 @@ setup(
     description="A package that uses mkdocs-material and related plugins",
     long_description=long_description,
     long_description_content_type="text/markdown",
-    url="https://github.com/Azure-samples/intelligent-app-workshop",
+    url="https://github.com/Azure/intelligent-app-workshop",
     packages=find_packages(),
     classifiers=[
         "Development Status :: 3 - Alpha",

@@ -91,11 +91,11 @@ extra:
     version: 1.9.0
   social:
     - icon: fontawesome/brands/github
-      link: https://github.com/Azure-samples/intelligent-app-workshop
+      link: https://github.com/Azure/intelligent-app-workshop
 
 extra_css:
   - assets/stylesheets/extra.css
 
-repo_url: https://github.com/Azure-samples/intelligent-app-workshop
+repo_url: https://github.com/Azure/intelligent-app-workshop
 edit_uri: edit/main/docs
 
