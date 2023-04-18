@@ -9,7 +9,9 @@ By leveraging design thinking, [Semantic Kernel (SK)](https://github.com/microso
 ![sk](assets/images/00-intro/sk.png)
 1. Exploring the Art of the Possible with SK and Miyagi Demos: Engage in interactive demonstrations to envision the potential applications of SK and Miyagi.
 1. Design Thinking Session: A collaborative brainstorming activity to identify existing use cases, focusing on addressing user needs and alleviating pain points.
-1. End-to-End Application Lifecycle Workshop featuring Miyagi: Gain hands-on experience in incorporating SK into the entire application lifecycle, including leveraging SK skills to orchestrate complex flows with Azure OpenAI models.
+1. End-to-End Application Lifecycle Workshop featuring Miyagi: Gain hands-on experience in incorporating SK into the entire application lifecycle, including leveraging SK skills to orchestrate complex flows with Azure OpenAI models. <p align="center"><img src="assets/images/basic-arch.png" width=50% /></p>
 1. Architecture Design Session: Dive into the intricacies of designing a robust and effective system architecture to support intelligent app development.
 ![miyagi-ui](assets/images/wip-ui.png)
+
+
 ![miyagi-arch](assets/images/wip-azure.png)

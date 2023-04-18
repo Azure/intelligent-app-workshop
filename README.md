@@ -14,7 +14,8 @@ Key takeaways:
 
 ## [2-day Intelligent App Development Workshop Agenda](docs/assets/workshop.pdf)
 
+<p align="center"><img src="docs/assets/images/basic-arch.png" width=50% /></p>
+
 ![wip-azure](docs/assets/images/wip-azure.png)
 
 ![ui](docs/assets/images/wip-ui.png)
-
