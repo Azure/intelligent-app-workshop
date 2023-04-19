@@ -12,7 +12,7 @@ Miyagi's architecture is designed with a focus on customer-centricity, leveragin
 
 The event-driven backbone of Miyagi's architecture ensures enterprise-grade quality attributes such as availability, scalability, and maintainability. The architecture is designed to evolve with the rapid advancements in foundation models, allowing for incremental implementation of various use cases and experimentation.
 
-Miyagi's frontend moves beyond simple chat interactions, offering a more engaging and dynamic user experience. The generative image use case architecture with Dreambooth showcases the creative potential of AI in modern applications.
+Miyagi's frontend moves beyond simple chat interactions, offering a more engaging and dynamic user experience. The generative image use case architecture with Dreambooth showcases the creative potential of AI in modern applications. In addition, it also showcases how you can build your own chatbot using [DeepSpeed Chat](https://github.com/microsoft/DeepSpeedExamples/tree/master/applications/DeepSpeed-Chat) with your own biases and personality (RLHF - Reinforcement Learning from Human Feedback)
 
 By incorporating cutting-edge technologies and frameworks such as Azure OpenAI, LangChain, Jarvis, Qdrant, Chroma, and ControlNet, Miyagi demonstrates how developers can harness the power of AI to build the next generation of intelligent applications. By leveraging these tools and technologies, Miyagi serves as a blueprint for creating applications that adapt and grow alongside their users, providing highly personalized and contextually relevant experiences.
 
@@ -36,9 +36,8 @@ In summary, Project Miyagi's architecture presents a forward-looking approach to
 - [LangChain](https://github.com/hwchase17/langchain#readme)
 - [Foundation Models from CogServices](https://azure.microsoft.com/en-us/blog/announcing-a-renaissance-in-computer-vision-ai-with-microsofts-florence-foundation-model/)
 - [Qdrant](https://qdrant.tech/solutions/)
-- [Chroma](https://www.trychroma.com/)
 - [ControlNet](https://github.com/lllyasviel/ControlNet)
-- [Microsoft Clarity](https://clarity.microsoft.com/)
+- [Microsoft DeepSpeed Chat](https://github.com/microsoft/DeepSpeedExamples/tree/master/applications/DeepSpeed-Chat)
 - [Azure Web PubSub](https://azure.microsoft.com/en-us/products/web-pubsub)
 - [Azure Functions](https://azure.microsoft.com/en-ca/products/functions/)
 - [AKS](https://azure.microsoft.com/en-us/products/kubernetes-service) / [ACA](https://azure.microsoft.com/en-us/products/container-apps)
