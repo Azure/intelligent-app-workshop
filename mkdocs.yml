@@ -85,6 +85,7 @@ plugins:
   - search
   - macros
   - glightbox
+  - open-in-new-tab
 
 extra:
   dapr:

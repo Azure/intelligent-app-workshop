@@ -6,3 +6,4 @@ mkdocs-git-revision-date-plugin
 mkdocs-macros-plugin
 mkdocs-with-pdf
 mkdocs-glightbox
+mkdocs-open-in-new-tab
