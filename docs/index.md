@@ -3,7 +3,7 @@
 We are undoubtedly experiencing one of the most significant technological transformations in the history of humanity. The adage is that AI won’t replace you but people using AI will. This also extends to software systems – Systems with AI will replace systems without. Our workshop is designed to help you envision and create these cutting-edge, intelligent systems that integrate AI throughout the entire lifecycle of your application, from user experience to design, development, and deployment.
 By leveraging design thinking, [Project Miyagi](https://github.com/Azure-Samples/miyagi), and art-of-the-possible examples (with samples and skills from [Semantic Kernel (SK)](https://github.com/microsoft/semantic-kernel) and [Miyagi](https://github.com/Azure-Samples/miyagi)), this workshop offers a comprehensive, hands-on exploration of foundation models based on the transformers architecture, such as GPT. You will acquire skills to effectively curate and create value-driven workflows to serve your use cases with AI-first UX and architectures. We will also have an Architecture Design Session (ADS) to unlock and operationalize the full potential of AI-infused applications for your organization.
 
-[Sign-up to get on waitlist](https://forms.office.com/r/rLds2s8RH1){ :target="_blank" .md-button .md-button--primary }
+[Sign up for the waitlist](https://forms.office.com/r/rLds2s8RH1){ :target="_blank" .md-button .md-button--primary }
 
 ## Topics for the 2-day workshop
 
