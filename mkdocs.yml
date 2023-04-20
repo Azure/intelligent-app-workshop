@@ -3,13 +3,14 @@ site_description: Complimentary workshop to Project Miyagi to demonstrate the po
 site_author: Azure App Innovation GBB, Microsoft
 nav:
   - Home: index.md
-  - Intro:
-    - wksp/00-intro/index.md
-    - Miyagi Architecture Overview: wksp/00-intro/architecture-overview.md
-    - Sample Walkthroughs for inspiration: wksp/00-intro/samples-walk-through.md
-    - Semantic Kernel overview: wksp/00-intro/semantic-kernel-overview.md
-    - Pre-requisites: wksp/00-intro/pre-reqs.md
+  - Intro: wksp/00-intro/index.md
+  - Agenda & Outcomes: wksp/00-intro/agenda-and-outcomes.md
+  - Miyagi Architecture Overview: wksp/00-intro/architecture-overview.md
+  - Sample Walkthroughs for inspiration: wksp/00-intro/samples-walk-through.md
+  - Semantic Kernel overview: wksp/00-intro/semantic-kernel-overview.md
+  - Pre-requisites: wksp/00-intro/pre-reqs.md
   - Module 1 - Design thinking session: wksp/01-design-thinking/index.md
+  - Module 2 - Fork and Get Hands-on: wksp/02-fork-and-get-hands-on/index.md
   - Post-workshop:
     - Feedback: wksp/other/feedback.md
   
