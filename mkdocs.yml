@@ -18,20 +18,20 @@ theme:
   name: material
   custom_dir: docs/assets/overrides
   font:
-    text: Source Sans Pro
+    text: Inter
   palette:
-    - scheme: default
-      primary: deep purple
-      accent: teal
-      toggle:
-        icon: material/toggle-switch-off-outline
-        name: Switch to dark mode
     - scheme: slate
       primary: deep purple
       accent: teal
       toggle:
-        icon: material/toggle-switch
+        icon: material/toggle-switch-off-outline
         name: Switch to light mode
+    - scheme: default
+      primary: deep purple
+      accent: teal
+      toggle:
+        icon: material/toggle-switch
+        name: Switch to dark mode
   features:
     - header.autohide
     - navigation.instant
