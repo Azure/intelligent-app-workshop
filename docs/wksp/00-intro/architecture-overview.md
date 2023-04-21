@@ -3,6 +3,8 @@
 Polyglot, AI-Infused Microservices Architecture with Event-Driven Backend
 
 [Sign up for the waitlist](https://forms.office.com/r/rLds2s8RH1){ :target="_blank" .md-button .md-button--primary }
+
+
 ![architecture](../../assets/images/wip-azure.png)
 
 ## Overview
@@ -24,6 +26,8 @@ Data storage and retrieval are handled by a combination of Cosmos DB, Azure DB f
 The entire development and deployment pipeline is streamlined using GitHub Actions, ensuring a smooth and efficient development process, from code updates to production releases.
 
 In summary, Project Miyagi's architecture presents a forward-looking approach to building intelligent applications, leveraging advanced AI techniques and robust Azure services to create highly engaging, personalized user experiences. By incorporating cutting-edge technologies and embracing event-driven, scalable microservices, Miyagi offers developers a glimpse into the future of application design and development.
+
+![embeddings](../../assets/images/embeddings.png)
 
 ## Tech Stack
 
