@@ -7,4 +7,4 @@
 
 Coming Soon
 
-[Sign up for the waitlist](https://forms.office.com/r/rLds2s8RH1){ :target="_blank" .md-button .md-button--primary }
+[Sign up for updates](https://forms.office.com/r/rLds2s8RH1){ :target="_blank" .md-button .md-button--primary }
