@@ -4,7 +4,7 @@ In this module, we'll be using a Figma template to facilitate a design thinking 
 
 ## Overview
 
-1. Introduction to Design Thinking
+1. Introduction to Design Thinking & HEART Framework
 2. Understanding Semantic Kernel
 3. Setting up the Figma Template
 4. Design Thinking Activities
@@ -16,9 +16,18 @@ In this module, we'll be using a Figma template to facilitate a design thinking 
 5. Integrating AI and Semantic Kernel Skills
 6. Conclusion and Next Steps
 
-### Introduction to Design Thinking
+### Introduction to Design Thinking & HEART Framework
 
 Design Thinking is a human-centered, iterative approach to problem-solving that focuses on deeply understanding users' needs and developing innovative solutions to address them. It consists of five stages: Empathize, Define, Ideate, Prototype, and Test.
+
+
+The HEART framework is a methodology to improve the user experience (UX) of software. The framework helps a company evaluate any aspect of its user experience according to five user-centered metrics. These metrics, which form the acronym HEART, are:
+
+1. Happiness
+1. Engagement
+1. Adoption
+1. Retention
+1. Task success
 
 ### Understanding Semantic Kernel
 
@@ -61,6 +70,7 @@ Semantic Kernel is a framework that helps developers build AI-driven application
 
 - Identify areas in your design where AI can add value, such as personalization, automation, or enhanced user experiences.
 - Explore how Semantic Kernel skills can be integrated into your solution to enable AI-driven features and capabilities.
+
 
 ### Conclusion and Next Steps
 

@@ -1,4 +1,4 @@
-# Intro & Agenda
+# Introduction
 
 Welcome to the Intelligent App Development Workshop! In this hands-on workshop, we will explore how to incorporate AI, particularily Large Language Models (LLMs) and state-of-the-art (SoTA) multi-modal foundation models such as Dall-E and Stable Diffusion, into every aspect of your app, transforming traditional processes and simplifying the overall architecture.
 

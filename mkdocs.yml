@@ -9,7 +9,10 @@ nav:
   - Sample Walkthroughs for inspiration: wksp/00-intro/samples-walk-through.md
   - Semantic Kernel overview: wksp/00-intro/semantic-kernel-overview.md
   - Pre-requisites: wksp/00-intro/pre-reqs.md
-  - Module 1 - Design thinking session: wksp/01-design-thinking/index.md
+  - Module 1 - Design thinking session: 
+    - wksp/01-design-thinking/index.md
+    - HEART Framework: wksp/01-design-thinking/heart-framework.md
+    - Design Thinking Canvas: wksp/01-design-thinking/design-thinking-canvas.md
   - Module 2 - Fork and Get Hands-on: wksp/02-fork-and-get-hands-on/index.md
   - Post-workshop:
     - Feedback: wksp/other/feedback.md

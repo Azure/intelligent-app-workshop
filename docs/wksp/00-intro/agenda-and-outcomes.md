@@ -1,6 +1,6 @@
 # Agenda & Outcomes
 
-[Sign up for the waitlist](https://forms.office.com/r/rLds2s8RH1){ :target="_blank" .md-button .md-button--primary }
+[Sign up for updates](https://forms.office.com/r/rLds2s8RH1){ :target="_blank" .md-button .md-button--primary }
 
 ## Agenda
 
@@ -8,7 +8,7 @@
    1. Unveiling the Art of the Possible: Inspiring Walkthroughs
       - [Miyagi](https://github.com/Azure-Samples/miyagi)
       - [Semantic Kernel Samples](https://github.com/microsoft/semantic-kernel#sample-apps-)
-      - [Reddog](https://reddog-solutions.com/)
+      - [Reddog](https://github.com/Azure/reddog-solutions)
    1. Comprehensive Architecture Overview
    1. Essential Pre-requisites
 1. Unearthing Customer Needs and Pain Points (Design Thinking with Semantic Kernel)
