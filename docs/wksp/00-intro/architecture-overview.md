@@ -23,9 +23,9 @@ Miyagi's architecture is designed with a focus on customer-centricity, leveragin
 
 The event-driven backbone of Miyagi's architecture ensures enterprise-grade quality attributes such as availability, scalability, and maintainability. The architecture is designed to evolve with the rapid advancements in foundation models, allowing for incremental implementation of various use cases and experimentation.
 
-Miyagi's frontend moves beyond simple chat interactions, offering a more engaging and dynamic user experience. The generative image use case architecture with Dreambooth showcases the creative potential of AI in modern applications. In addition, it also showcases how you can build your own chatbot using [DeepSpeed Chat](https://github.com/microsoft/DeepSpeedExamples/tree/master/applications/DeepSpeed-Chat) with your own biases and personality (RLHF - Reinforcement Learning from Human Feedback)
+Miyagi's frontend moves beyond simple chat interactions, offering a more engaging and dynamic user experience. The generative image use case architecture with [Dreambooth](https://huggingface.co/thegovind/reddogpillmodel512) showcases the creative potential of AI in modern applications. In addition, it also showcases how you can build your own chatbot using [DeepSpeed Chat](https://github.com/microsoft/DeepSpeedExamples/tree/master/applications/DeepSpeed-Chat) with your own biases and personality (RLHF - Reinforcement Learning from Human Feedback)
 
-By incorporating cutting-edge technologies and frameworks such as Azure OpenAI, LangChain, Jarvis, Qdrant, Chroma, and ControlNet, Miyagi demonstrates how developers can harness the power of AI to build the next generation of intelligent applications. By leveraging these tools and technologies, Miyagi serves as a blueprint for creating applications that adapt and grow alongside their users, providing highly personalized and contextually relevant experiences.
+By incorporating cutting-edge technologies and frameworks such as Azure OpenAI, LangChain, Jarvis, Qdrant, Dreambooth, and ControlNet, Miyagi demonstrates how developers can harness the power of AI to build the next generation of intelligent applications. By leveraging these tools and technologies, Miyagi serves as a blueprint for creating applications that adapt and grow alongside their users, providing highly personalized and contextually relevant experiences.
 
 To ensure seamless integration and communication between the various components of Miyagi's architecture, a combination of Azure Functions, AKS/ACA, and Apache Kafka on Azure Event Hubs is used. These technologies facilitate efficient management of microservices, data storage, and real-time processing of events, allowing the system to scale according to the needs of the application.
 
@@ -47,9 +47,9 @@ In summary, Project Miyagi's architecture presents a forward-looking approach to
 - [LangChain](https://github.com/hwchase17/langchain#readme)
 - [Foundation Models from CogServices](https://azure.microsoft.com/en-us/blog/announcing-a-renaissance-in-computer-vision-ai-with-microsofts-florence-foundation-model/)
 - [Qdrant](https://qdrant.tech/solutions/)
-- [ControlNet](https://github.com/lllyasviel/ControlNet)
 - [Microsoft DeepSpeed Chat](https://github.com/microsoft/DeepSpeedExamples/tree/master/applications/DeepSpeed-Chat)
 - [Azure Web PubSub](https://azure.microsoft.com/en-us/products/web-pubsub)
+- [Azure Communication Services (ACS)](https://learn.microsoft.com/en-us/azure/communication-services/overview#common-scenarios)
 - [Azure Functions](https://azure.microsoft.com/en-ca/products/functions/)
 - [AKS](https://azure.microsoft.com/en-us/products/kubernetes-service) / [ACA](https://azure.microsoft.com/en-us/products/container-apps)
 - [Azure Monitor](https://learn.microsoft.com/en-us/azure/azure-monitor/)
