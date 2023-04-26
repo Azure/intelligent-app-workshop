@@ -40,6 +40,7 @@ theme:
     - navigation.instant
     - navigation.indexes
     - navigation.top
+    - toc.follow
     - navigation.footer
     - content.code.copy
     - content.code.annotate
@@ -92,8 +93,24 @@ plugins:
   - open-in-new-tab
 
 extra:
-  dapr:
-    version: 1.9.0
+  analytics:
+    provider: google
+    property: G-W6SKQMVB9X
+  generator: false
+  feedback:
+    title: Was this page helpful?
+    ratings:
+      - icon: material/emoticon-happy-outline
+        name: This page was helpful
+        data: 1
+        note: >-
+          Thanks for your feedback! - App Innovation GBB
+      - icon: material/emoticon-sad-outline
+        name: This page could be improved
+        data: 0
+        note: >- 
+          Thanks for your feedback! Help App Innovation GBB team improve this page by
+          using our <a href="..." target="_blank" rel="noopener">feedback form</a>.
   social:
     - icon: fontawesome/brands/github
       link: https://github.com/Azure/intelligent-app-workshop
