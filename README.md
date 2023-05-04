@@ -12,8 +12,6 @@ Key takeaways:
 3. Rethink how to serve your end-user needs with Semantic Kernel's Design Thinking workshop.
 4. Gain valuable insights into the production and deployment of apps powered by Large Language Models (LLMs).
 
-## [2-day Intelligent App Development Workshop Agenda](docs/assets/workshop.pdf)
-
 <p align="center"><img src="docs/assets/images/basic-arch.png" width=50% /></p>
 
 ![wip-azure](docs/assets/images/wip-azure.png)

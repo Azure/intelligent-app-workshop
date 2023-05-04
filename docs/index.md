@@ -10,7 +10,7 @@ By leveraging design thinking, [Project Miyagi](https://github.com/Azure-Samples
 ![miyagi-arch](assets/images/wip-azure.png)
 
 
-## Topics for the 2-day workshop
+## Topics for the workshop
 
 1. Exploring the Art of the Possible with [Miyagi](https://github.com/Azure-Samples/miyagi) and [Semantic Kernel (SK)](https://github.com/microsoft/semantic-kernel) demos: Engage in interactive demonstrations to envision the potential applications of SK and [Miyagi](https://github.com/Azure-Samples/miyagi).
 1. Design Thinking Session: A collaborative brainstorming activity to identify existing use cases, focusing on addressing user needs and alleviating pain points, while fostering positive-sum solutions.
