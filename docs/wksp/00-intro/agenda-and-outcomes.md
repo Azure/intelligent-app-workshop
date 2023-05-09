@@ -11,14 +11,15 @@
       - [Reddog](https://github.com/Azure/reddog-solutions)
    1. Comprehensive Architecture Overview
    1. Essential Pre-requisites
-1. Unearthing Customer Needs and Pain Points (Design Thinking with Semantic Kernel)
-1. Crafting AI-Driven Design and User Experience
-1. Seamlessly Integrating AI into Azure backing services and data processing
-1. Empowering Frontend Development with AI Capabilities, including leveraging Github CoPilot X
+1. Unearthing Customer Needs and Pain Points (Design Thinking session to personalize the workshop for your organization needs and use cases)
+    1. Crafting AI-Driven Design and User Experience
+1. First steps to integrate AI into cloud-native and Azure backing services and data processing
+1. Empowering Development with AI Capabilities (inner-loop), including leveraging Github CoPilot X
 1. Learn Semantic Kernel Skills and Prompt Engineering
-1. Exploring Agentic LLMs: Jarvis and AutoGPT
+1. Deep-dive into SK primitives through Miyagi
+1. Exploring Agentic LLMs: SK Planner and Jarvis
 1. Streamlined Deployment and Monitoring of AI-Infused Apps
-1. First Principles of Large Language Models for application developers
+1. (Optional) First Principles of Large Language Models for application developers
     1. High Level Overview of AI and ML
     1. Overview and History of NLP, NLU, and NLG
     1. Autoregressive Models
