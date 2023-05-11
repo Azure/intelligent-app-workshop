@@ -16,6 +16,18 @@ nav:
   - Module 2 - Fork and Get Hands-on: wksp/02-fork-and-get-hands-on/index.md
   - Module 3 - Inner-loop: wksp/03-inner-loop/index.md
   - Module 4 - Basics of Semantic Kernel: wksp/04-Semantic-Kernel-Basics/index.md
+  - Module 5 - Use cases deep-dive with Miyagi and Reddog: 
+    - wksp/05-use-cases/index.md
+    - Synthesis: wksp/05-use-cases/synthesis.md
+    - Generation (Text, Images): wksp/05-use-cases/generation.md
+    - Conversation: wksp/05-use-cases/index.md
+    - Summarization: wksp/05-use-cases/index.md
+    - Classification: wksp/05-use-cases/index.md
+    - Translation: wksp/05-use-cases/index.md
+    - Speech-to-text: wksp/05-use-cases/index.md
+    - Semantic Search: wksp/05-use-cases/index.md
+    - Anomaly Detection: wksp/05-use-cases/index.md
+    - Plugins: wksp/05-use-cases/index.md
   - Post-workshop:
     - Feedback: wksp/other/feedback.md
   
