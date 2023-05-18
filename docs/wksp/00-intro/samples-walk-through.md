@@ -6,7 +6,9 @@
 
 ![plugin](../../assets/images/plugin.png)
 
-TODO: Video recording
+![aml](../../assets/images/aml-miyagi-dolly.png)
+
+Coming Soon: Video recording
 
 ## [Semantic Kernel Samples](https://github.com/microsoft/semantic-kernel#sample-apps-)
 

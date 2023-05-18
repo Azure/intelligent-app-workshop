@@ -12,4 +12,4 @@ SK supports prompt templating, function chaining, vectorized memory, and intelli
 
 ![sk](../../assets/images/00-intro/sk-skills.png)
 
-TODO: Sample skills notebooks video walkthrough
+Coming Soon: Sample skills notebooks video walkthrough
