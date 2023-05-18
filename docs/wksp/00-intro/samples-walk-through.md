@@ -4,6 +4,8 @@
 
 ![ui](../../assets/images/wip-ui.png)
 
+![plugin](../../assets/images/plugin.png)
+
 TODO: Video recording
 
 ## [Semantic Kernel Samples](https://github.com/microsoft/semantic-kernel#sample-apps-)
