@@ -19,7 +19,12 @@ nav:
   - Module 5 - Use cases deep-dive with Miyagi and Reddog: 
     - wksp/05-use-cases/index.md
     - Synthesis: wksp/05-use-cases/synthesis.md
-    - Generation (Text, Images): wksp/05-use-cases/generation.md
+    - Generation:
+      - Overview: wksp/05-use-cases/generation.md
+      - Text: wksp/05-use-cases/generation.md
+      - Images: wksp/05-use-cases/generation.md
+      - Code: wksp/05-use-cases/generation.md
+      - Video: wksp/05-use-cases/generation.md
     - Conversation: wksp/05-use-cases/synthesis.md
     - Summarization: wksp/05-use-cases/synthesis.md
     - Classification: wksp/05-use-cases/synthesis.md
@@ -27,6 +32,7 @@ nav:
     - Speech-to-text: wksp/05-use-cases/synthesis.md
     - Semantic Search: wksp/05-use-cases/synthesis.md
     - Anomaly Detection: wksp/05-use-cases/synthesis.md
+    - QA on Domain Knowledge: wksp/05-use-cases/synthesis.md
     - Plugins: wksp/05-use-cases/synthesis.md
   - Post-workshop:
     - Feedback: wksp/other/feedback.md
