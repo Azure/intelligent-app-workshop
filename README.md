@@ -17,3 +17,5 @@ Key takeaways:
 ![wip-azure](docs/assets/images/wip-azure.png)
 
 ![ui](docs/assets/images/ui-annotations.png)
+
+![plugins](docs/assets/images/plugin.png)

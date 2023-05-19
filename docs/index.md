@@ -20,5 +20,8 @@ By leveraging design thinking, [Project Miyagi](https://github.com/Azure-Samples
 
 ![miyagi-ui](assets/images/ui-annotations.png)
 
+<p align="left"><img src="assets/images/plugin.png" width=50% /></p>
+
+
 
 [See full-agenda](wksp/00-intro/agenda-and-outcomes.md){ .md-button }
