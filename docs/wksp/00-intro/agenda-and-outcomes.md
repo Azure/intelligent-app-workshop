@@ -8,7 +8,7 @@
    1. Unveiling the Art of the Possible: Inspiring Walkthroughs
       - [Miyagi](https://github.com/Azure-Samples/miyagi)
       - [Semantic Kernel Samples](https://github.com/microsoft/semantic-kernel#sample-apps-)
-      - [Reddog](https://github.com/Azure/reddog-solutions) with Langchain
+      - [Reddog](https://github.com/Azure/reddog-solutions) with Langchain and Prompt Flow
    1. Comprehensive Architecture Overview
    1. Essential Pre-requisites
 1. Unearthing Customer Needs and Pain Points (Design Thinking session to personalize the workshop for your organization needs and use cases)
@@ -16,16 +16,18 @@
 1. First steps to integrate AI into cloud-native and Azure backing services and data processing
 1. Empowering Development with AI Capabilities (inner-loop), including leveraging Github CoPilot X
 1. Learn Semantic Kernel Skills and Prompt Engineering
-    1. In-context learning
+    1. In-context learning (ICL)
     1. Chain-of-thought prompting
     1. Chat Markup Language (ChatML)
     1. Retrieval augmented generation (RaG)
     1. Embeddings with vector database (CosmosDB PostgreSQL pg_vector extension)
     1. Completions API and Chat Completions API configurations
+    1. Prompt Flow
 1. Deep-dive into SK primitives through Miyagi
 1. Exploring Agentic LLMs: SK Planner, Langchain and Jarvis
-1. Tradeoffs with AI orchestrators (Langchain, SK, Jina)
-1. Prompt flow and metaprompts
+1. Tradeoffs with AI orchestrators (Langchain, SK, Guidance, Guardrails)
+1. Prompt Flow Studio and metaprompts
+1. AI Content Safety Studio
 1. Streamlined Deployment and Monitoring of AI-Infused Apps
 1. (Optional) First Principles of Large Language Models for application developers
     1. High Level Overview of AI and ML
