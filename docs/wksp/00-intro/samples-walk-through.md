@@ -13,6 +13,8 @@
 
 ### Fine-tuned Model
 
+![fine-tune](../../assets/images/aml-finetune.png)
+
 ![aml](../../assets/images/aml-miyagi-dolly.png)
 
 Coming Soon: Video recording

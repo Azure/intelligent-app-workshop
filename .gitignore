@@ -68,3 +68,4 @@ ENV/
 
 # MkDocs documentation
 site*/
+.vscode/
