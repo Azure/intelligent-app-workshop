@@ -11,6 +11,9 @@
 
 ![plugin](../../assets/images/plugin.png)
 
+### AzureML Prompt flow example
+![pf](../../assets/images/prompt-flow-basic.png)
+
 ### Fine-tuned Model
 
 ![fine-tune](../../assets/images/aml-finetune.png)
