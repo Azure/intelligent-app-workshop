@@ -14,7 +14,7 @@ By leveraging design thinking, [Project Miyagi](https://github.com/Azure-Samples
 
 ???+ info "Pre-requisite"
 
-    Please signup for [Azure OpenAI (AOAI)](https://customervoice.microsoft.com/Pages/ResponsePage.aspx?id=v4j5cvGGr0GRqy180BHbR7en2Ais5pxKtso_Pz4b1_xUOFA5Qk1UWDRBMjg0WFhPMkIzTzhKQ1dWNyQlQCN0PWcu) and complete [Getting started with AOAI module](https://learn.microsoft.com/en-us/training/modules/get-started-openai/) to benefit from this workshop
+    Please signup for [Azure OpenAI (AOAI)](https://aka.ms/oai/access) and complete [Getting started with AOAI module](https://learn.microsoft.com/en-us/training/modules/get-started-openai/) to benefit from this workshop
 
 1. Exploring the Art of the Possible with [Miyagi](https://github.com/Azure-Samples/miyagi) and [Semantic Kernel (SK)](https://github.com/microsoft/semantic-kernel) demos: Engage in interactive demonstrations to envision the potential applications of SK and [Miyagi](https://github.com/Azure-Samples/miyagi).
 1. Design Thinking Session: A collaborative brainstorming activity to identify your idiosyncratic use cases, focusing on addressing user needs and alleviating pain points, so that the workshop will be relevant for you.
