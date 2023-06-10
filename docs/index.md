@@ -1,16 +1,20 @@
 # Home
 
-We are undoubtedly experiencing one of the most significant technological transformations in the history of humanity. The adage is that AI won't replace you, but people using AI will. This also extends to software systems: systems with AI will replace those without. Our workshop is designed to help you envision and create these cutting-edge, intelligent systems that integrate AI throughout the entire lifecycle of your application, from user experience to design, development, and deployment, while promoting positive-sum outcomes for all stakeholders.
+We are undoubtedly experiencing one of the most significant technological transformations in the history of humanity. The adage is that AI won't replace you, but people using AI will. This also extends to software systems: systems with AI will replace those without. Our workshop, using [Microsoft's Copilot stack](https://news.microsoft.com/source/features/ai/microsoft-outlines-framework-for-building-ai-apps-and-copilots-expands-ai-plugin-ecosystem/), is designed to help you envision and create these cutting-edge, intelligent systems that integrate foundation models throughout the entire lifecycle of your application, from user experience to design, development, and deployment, while promoting positive-sum outcomes for all stakeholders.
 
 [Sign up for updates](https://forms.office.com/r/rLds2s8RH1){ :target="_blank" .md-button .md-button--primary }
 
 
-By leveraging design thinking, [Project Miyagi](https://github.com/Azure-Samples/miyagi), and art-of-the-possible examples (with samples and skills from [Semantic Kernel (SK)](https://github.com/microsoft/semantic-kernel) and [Miyagi](https://github.com/Azure-Samples/miyagi)), this workshop offers a comprehensive, hands-on exploration of how large, pre-trained foundation models can augment your applications with intelligence. You will acquire skills to effectively curate and create value-driven workflows to serve your use cases with AI-first UX and architectures. We will also have an Architecture Design Session (ADS) to unlock and operationalize the full potential of AI-infused applications for your organization.
+By leveraging design thinking, [Project Miyagi](https://github.com/Azure-Samples/miyagi), and art-of-the-possible examples (with samples and skills from [Semantic Kernel (SK)](https://github.com/microsoft/semantic-kernel), [Miyagi](https://github.com/Azure-Samples/miyagi), and [Reddog](https://github.com/Azure/reddog-solutions)), this workshop offers a comprehensive, hands-on exploration of how large, pre-trained foundation models can augment your applications with intelligence. You will acquire skills to effectively curate and create value-driven workflows to serve your use cases with AI-first product experiences and architectures. We will also have an Architecture Design Session (ADS) to unlock and operationalize the full potential of AI-infused applications for your organization.
 
 ![miyagi-arch](assets/images/wip-azure.png)
 
 
 ## Topics for the workshop
+
+???+ info "Pre-requisite"
+
+    Please signup for [Azure OpenAI (AOAI)](https://customervoice.microsoft.com/Pages/ResponsePage.aspx?id=v4j5cvGGr0GRqy180BHbR7en2Ais5pxKtso_Pz4b1_xUOFA5Qk1UWDRBMjg0WFhPMkIzTzhKQ1dWNyQlQCN0PWcu) and complete [Getting started with AOAI module](https://learn.microsoft.com/en-us/training/modules/get-started-openai/) to benefit from this workshop
 
 1. Exploring the Art of the Possible with [Miyagi](https://github.com/Azure-Samples/miyagi) and [Semantic Kernel (SK)](https://github.com/microsoft/semantic-kernel) demos: Engage in interactive demonstrations to envision the potential applications of SK and [Miyagi](https://github.com/Azure-Samples/miyagi).
 1. Design Thinking Session: A collaborative brainstorming activity to identify your idiosyncratic use cases, focusing on addressing user needs and alleviating pain points, so that the workshop will be relevant for you.

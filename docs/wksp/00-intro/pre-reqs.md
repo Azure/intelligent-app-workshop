@@ -1,5 +1,9 @@
 # Prerequisites
 
+!!! note "Mandatory pre-requisite"
+
+    Please signup for [Azure OpenAI (AOAI)](https://customervoice.microsoft.com/Pages/ResponsePage.aspx?id=v4j5cvGGr0GRqy180BHbR7en2Ais5pxKtso_Pz4b1_xUOFA5Qk1UWDRBMjg0WFhPMkIzTzhKQ1dWNyQlQCN0PWcu) and complete [Getting started with AOAI module](https://learn.microsoft.com/en-us/training/modules/get-started-openai/)
+
 Before attending the Intelligent App Development Workshop, please ensure you have the following prerequisites in place:
 
 1. **Basic programming knowledge**: Familiarity with at least one programming language (e.g., Python, JavaScript, Java, or C#) and basic understanding of software development concepts.
