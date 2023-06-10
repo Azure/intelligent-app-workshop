@@ -3,12 +3,14 @@
 [![Open in Visual Studio Code](https://img.shields.io/static/v1?logo=visualstudiocode&label=&message=Open%20in%20VS%20Code&labelColor=2c2c32&color=007acc&logoColor=007acc)](https://github.dev/Azure/intelligent-app-workshop)
 [![License: CC BY-SA 4.0](https://img.shields.io/badge/License-CC%20BY--SA-222.svg)](https://creativecommons.org/licenses/by-sa/4.0/)
 
-This is an envisioning workshop to rethink user experience, architecture, and app development by leveraging the intelligence of foundation models. This comprehensive workshop utilizes the [Miyagi](https://github.com/Azure-Samples/miyagi) codebase and Semantic Kernel (SK), along with SK's Design thinking material, to guide you through the entire lifecycle of app development – from identifying user needs to deploying a fully functional, production-grade app on Azure.
+This is an envisioning workshop, based on [Microsoft's Copilot stack](https://news.microsoft.com/source/features/ai/microsoft-outlines-framework-for-building-ai-apps-and-copilots-expands-ai-plugin-ecosystem/), to rethink user experience, architecture, and app development by leveraging the intelligence of foundation models. This comprehensive workshop utilizes the [Miyagi](https://github.com/Azure-Samples/miyagi) codebase and Semantic Kernel (SK), along with SK's Design thinking material, to guide you through the entire lifecycle of app development – from identifying user needs to deploying a fully functional, production-grade app on Azure.
+
+> *Work in Progress*. Meanwhile, signup at [intelligentapp.dev](https://intelligentapp.dev) for updates and checkout our related repo that showcases Generative AI capabilities for cloud-native, event-driven microservices: [Azure/reddog-solutions](https://github.com/Azure/reddog-solutions#readme). As a mandatory pre-requisite, please signup for [Azure OpenAI (AOAI)](https://customervoice.microsoft.com/Pages/ResponsePage.aspx?id=v4j5cvGGr0GRqy180BHbR7en2Ais5pxKtso_Pz4b1_xUOFA5Qk1UWDRBMjg0WFhPMkIzTzhKQ1dWNyQlQCN0PWcu) and complete [Getting started with AOAI module](https://learn.microsoft.com/en-us/training/modules/get-started-openai/) to benefit from this workshop
 
 Key takeaways:
 
 1. Uncover innovative ways to transform user experience and app design by integrating foundation models into interactions.
-2. Learn how to effectively harness Large Language Models (LLMs) with the Miyagi codebase for streamlined development.
+2. Learn how to effectively harness Large Language Models (LLMs) with the [Miyagi](https://github.com/Azure-Samples/miyagi) codebase for streamlined development.
 3. Rethink how to serve your end-user needs with Semantic Kernel's Design Thinking workshop.
 4. Gain valuable insights into the production and deployment of apps powered by Large Language Models (LLMs).
 
