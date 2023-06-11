@@ -103,6 +103,9 @@ markdown_extensions:
       toc_depth: 4
   - attr_list
   - md_in_html
+  - pymdownx.emoji:
+      emoji_index: !!python/name:materialx.emoji.twemoji
+      emoji_generator: !!python/name:materialx.emoji.to_svg
 
 copyright: Copyright &copy; 2023 Azure App Innovation GBB, Microsoft
 
@@ -112,6 +115,7 @@ plugins:
   - macros
   - glightbox
   - open-in-new-tab
+  - mkdocs-video
 
 extra:
   analytics:

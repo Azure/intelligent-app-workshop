@@ -4,6 +4,12 @@ We are undoubtedly experiencing one of the most significant technological transf
 
 [Sign up for updates](https://forms.office.com/r/rLds2s8RH1){ :target="_blank" .md-button .md-button--primary }
 
+!!! note ""
+
+    To preview our sample, catch the [recording on :simple-youtube: CosmosDB TV Show](https://www.youtube.com/watch?v=V8dlEvXdGEM&t=108s)
+    <p align="left"><a href="http://www.youtube.com/watch?feature=player_embedded&v=V8dlEvXdGEM&t=108s" target="_blank"><img src="assets/images/video_recording.png" alt="Miyagi walkthrough" width="40%" height="40%" border="10" /></a></p> 
+
+
 
 By leveraging design thinking, [Project Miyagi](https://github.com/Azure-Samples/miyagi), and art-of-the-possible examples (with samples and skills from [Semantic Kernel (SK)](https://github.com/microsoft/semantic-kernel), [Miyagi](https://github.com/Azure-Samples/miyagi), and [Reddog](https://github.com/Azure/reddog-solutions)), this workshop offers a comprehensive, hands-on exploration of how large, pre-trained foundation models can augment your applications with intelligence. You will acquire skills to effectively curate and create value-driven workflows to serve your use cases with AI-first product experiences and architectures. We will also have an Architecture Design Session (ADS) to unlock and operationalize the full potential of AI-infused applications for your organization.
 

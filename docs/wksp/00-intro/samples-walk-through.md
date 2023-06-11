@@ -20,7 +20,7 @@
 
 ![aml](../../assets/images/aml-miyagi-dolly.png)
 
-Coming Soon: Video recording
+To preview our sample, catch the [recording on :simple-youtube: CosmosDB TV Show](https://www.youtube.com/watch?v=V8dlEvXdGEM&t=108s)
 
 ## [Semantic Kernel Samples](https://github.com/microsoft/semantic-kernel#sample-apps-)
 

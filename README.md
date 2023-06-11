@@ -5,7 +5,13 @@
 
 This is an envisioning workshop, based on [Microsoft's Copilot stack](https://news.microsoft.com/source/features/ai/microsoft-outlines-framework-for-building-ai-apps-and-copilots-expands-ai-plugin-ecosystem/), to rethink user experience, architecture, and app development by leveraging the intelligence of foundation models. This comprehensive workshop utilizes the [Miyagi](https://github.com/Azure-Samples/miyagi) codebase and Semantic Kernel (SK), along with SK's Design thinking material, to guide you through the entire lifecycle of app development – from identifying user needs to deploying a fully functional, production-grade app on Azure.
 
+> **Note**  
 > *Work in Progress*. Meanwhile, signup at [intelligentapp.dev](https://intelligentapp.dev) for updates and checkout our related repo that showcases Generative AI capabilities for cloud-native, event-driven microservices: [Azure/reddog-solutions](https://github.com/Azure/reddog-solutions#readme). As a mandatory pre-requisite, please signup for [Azure OpenAI (AOAI)](https://customervoice.microsoft.com/Pages/ResponsePage.aspx?id=v4j5cvGGr0GRqy180BHbR7en2Ais5pxKtso_Pz4b1_xUOFA5Qk1UWDRBMjg0WFhPMkIzTzhKQ1dWNyQlQCN0PWcu) and complete [Getting started with AOAI module](https://learn.microsoft.com/en-us/training/modules/get-started-openai/) to benefit from this workshop
+>
+> To preview our sample, catch the [recording on CosmosDB TV Show](https://www.youtube.com/watch?v=V8dlEvXdGEM&t=108s)
+>
+> <p align="left"><a href="http://www.youtube.com/watch?feature=player_embedded&v=V8dlEvXdGEM&t=108s" target="_blank"><img src="docs/assets/images/video_recording.png" alt="Miyagi walkthrough" width="40%" height="40%" border="10" /></a></p> 
+
 
 Key takeaways:
 
