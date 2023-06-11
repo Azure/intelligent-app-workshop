@@ -7,3 +7,4 @@ mkdocs-macros-plugin
 mkdocs-with-pdf
 mkdocs-glightbox
 mkdocs-open-in-new-tab
+mkdocs-video
