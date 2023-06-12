@@ -6,8 +6,8 @@ We are undoubtedly experiencing one of the most significant technological transf
 
 !!! note ""
 
-    To preview our sample, catch the [recording on :simple-youtube: CosmosDB TV Show](https://www.youtube.com/watch?v=V8dlEvXdGEM&t=108s)
-    <p align="left"><a href="http://www.youtube.com/watch?feature=player_embedded&v=V8dlEvXdGEM&t=108s" target="_blank"><img src="assets/images/video_recording.png" alt="Miyagi walkthrough" width="40%" height="40%" border="10" /></a></p> 
+    For a preview, catch the [recording on :simple-youtube: Cosmos DB Live TV](https://www.youtube.com/watch?v=V8dlEvXdGEM&t=144s)
+    <p align="left"><a href="http://www.youtube.com/watch?feature=player_embedded&v=V8dlEvXdGEM&t=144s" target="_blank"><img src="assets/images/video_recording.png" alt="Miyagi walkthrough" width="40%" height="40%" border="10" /></a></p> 
 
 
 
