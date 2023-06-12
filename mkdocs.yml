@@ -9,10 +9,12 @@ nav:
   - Sample Walkthroughs for inspiration: wksp/00-intro/samples-walk-through.md
   - Semantic Kernel overview: wksp/00-intro/semantic-kernel-overview.md
   - Pre-requisites: wksp/00-intro/pre-reqs.md
-  - Module 1 - Design thinking session: 
+  - Module 1 - Discovery and Ideation: 
     - wksp/01-design-thinking/index.md
-    - HEART Framework: wksp/01-design-thinking/heart-framework.md
     - Design Thinking Canvas: wksp/01-design-thinking/design-thinking-canvas.md
+    - Optional discovery sessions:
+      - JTBD Worksheet: wksp/01-design-thinking/jobs-to-be-done.md
+      - HEART Framework: wksp/01-design-thinking/heart-framework.md
   - Module 2 - Fork and Get Hands-on: wksp/02-fork-and-get-hands-on/index.md
   - Module 3 - Inner-loop: wksp/03-inner-loop/index.md
   - Module 4 - Basics of Semantic Kernel: wksp/04-Semantic-Kernel-Basics/index.md

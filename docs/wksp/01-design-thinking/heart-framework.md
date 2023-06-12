@@ -1,4 +1,4 @@
-# HEART Framework
+# HEART Framework (Optional)
 
 In this module, we will leverage the HEART Framework to identify customer needs and pain points, and explore how AI-driven solutions can address them effectively. This will also ensure that the workshop is more relevant as we get more hands-on in the coming hours and days.
 
