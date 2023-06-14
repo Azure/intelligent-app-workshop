@@ -4,7 +4,7 @@
 
 ## Agenda
 
-1. Introduction to Intelligent App Development
+1. Introduction to Intelligent App Development with Copilot stack
    1. Unveiling the Art of the Possible: Inspiring Walkthroughs
       - [Miyagi](https://github.com/Azure-Samples/miyagi)
       - [Semantic Kernel Samples](https://github.com/microsoft/semantic-kernel#sample-apps-)
@@ -15,7 +15,7 @@
     1. Crafting AI-Driven Design and User Experience
 1. First steps to integrate AI into cloud-native and Azure backing services and data processing
 1. Empowering Development with AI Capabilities (inner-loop), including leveraging Github CoPilot X
-1. Learn Semantic Kernel Skills and Prompt Engineering
+1. Learn LLM capabilities and Prompt Engineering
     1. In-context learning (ICL)
     1. Chain-of-thought prompting
     1. Chat Markup Language (ChatML)
@@ -23,7 +23,7 @@
     1. Embeddings with vector database (CosmosDB PostgreSQL pg_vector extension)
     1. Completions API and Chat Completions API configurations
     1. Prompt Flow
-1. Deep-dive into SK primitives through Miyagi
+1. Deep-dive into AI orchestration primitives through use cases with Miyagi and Reddog
 1. Exploring Agentic LLMs: SK Planner, Langchain and Jarvis
 1. Tradeoffs with AI orchestrators (Langchain, SK, Guidance, Guardrails)
 1. Prompt Flow Studio and metaprompts
