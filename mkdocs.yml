@@ -39,6 +39,8 @@ nav:
     - Plugins: wksp/05-use-cases/synthesis.md
   - Post-workshop:
     - Feedback: wksp/other/feedback.md
+  - Appendix:
+    - Samples: wksp/appendix/samples.md
   
 theme:
   name: material
@@ -114,6 +116,7 @@ copyright: Copyright &copy; 2023 Azure App Innovation GBB, Microsoft
 plugins:
   - git-revision-date
   - search
+  - table-reader
   - macros
   - glightbox
   - open-in-new-tab

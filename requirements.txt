@@ -8,3 +8,4 @@ mkdocs-with-pdf
 mkdocs-glightbox
 mkdocs-open-in-new-tab
 mkdocs-video
+mkdocs-table-reader-plugin
