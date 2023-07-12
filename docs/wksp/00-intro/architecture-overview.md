@@ -40,7 +40,10 @@ In summary, Project Miyagi's architecture presents a forward-looking approach to
 ![sk-round-trip](../../assets/images/sk-round-trip.png)
 
 ## Tech Stack
+### Copilot Stack
+![copilot-stack](../../assets/images/copilot-stack.png)
 
+### Services and Features
 - [Azure OpenAI](https://learn.microsoft.com/en-us/azure/cognitive-services/openai/concepts/models)
   - gpt-4
   - gpt-35-turbo

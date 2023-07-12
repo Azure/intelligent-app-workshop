@@ -2,6 +2,8 @@
 
 In this module, we will undertake a comprehensive exploration of [Project Miyagi](https://github.com/Azure-Samples/miyagi) and the [Reddog](https://github.com/Azure/reddog-solutions) codebase. This deep dive will highlight a range of use-cases that can be adopted into your own applications, thereby enabling you to infuse AI technologies to address the diverse needs of your end users.
 
+![use-cases-slide](../../assets/images/use-cases-slide.png)
+
 ## Use Cases
 
 1. [Synthesis](./synthesis.md): Learn how information is synthesized in Miyagi to generate insights, orchestrated by Semantic Kernel.
@@ -14,5 +16,5 @@ In this module, we will undertake a comprehensive exploration of [Project Miyagi
 1. [Speech-to-Text](./generation.md): Leverage Whisper to perform SoTA speech-to-text, which is used in Miyagi chatbot.
 1. [Semantic/Neural Search](./generation.md): Learn how to improve search results with AI's understanding of context.
 1. [Anomaly Detection](./generation.md): Discover how AI can identify unusual patterns that could indicate potential issues.
-11. [Plugins](./generation.md): Understand how to extend and enhance your applications with ChatGPT and BingChat plugins.
-11. [Agency and Planning](./generation.md): Learn how Miyagi uses SK's planner and Jarvis for agentic planning to rebalace portfolio based on user's preferences.
+1. [Plugins](./generation.md): Understand how to extend and enhance your applications with ChatGPT and BingChat plugins.
+1. [Agency and Planning](./generation.md): Learn how Miyagi uses SK's planner and Jarvis for agentic planning to rebalace portfolio based on user's preferences.
