@@ -1,3 +1,3 @@
-# Design patterns
+# Security
 
-{{ read_csv('./patterns.csv') }}
+{{ read_csv('./security.csv') }}
