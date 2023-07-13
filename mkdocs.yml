@@ -9,39 +9,41 @@ nav:
   - Sample Walkthroughs for inspiration: wksp/00-intro/samples-walk-through.md
   - Semantic Kernel overview: wksp/00-intro/semantic-kernel-overview.md
   - Pre-requisites: wksp/00-intro/pre-reqs.md
-  - Module 1 - Discovery and Ideation: 
-    - wksp/01-design-thinking/index.md
-    - Design Thinking Canvas: wksp/01-design-thinking/design-thinking-canvas.md
-    - Optional discovery sessions:
-      - JTBD Worksheet: wksp/01-design-thinking/jobs-to-be-done.md
-      - HEART Framework: wksp/01-design-thinking/heart-framework.md
+  - Module 1 - Discovery and Ideation:
+      - wksp/01-design-thinking/index.md
+      - Design Thinking Canvas: wksp/01-design-thinking/design-thinking-canvas.md
+      - Optional discovery sessions:
+          - JTBD Worksheet: wksp/01-design-thinking/jobs-to-be-done.md
+          - HEART Framework: wksp/01-design-thinking/heart-framework.md
   - Module 2 - Fork and Get Hands-on: wksp/02-fork-and-get-hands-on/index.md
   - Module 3 - Inner-loop: wksp/03-inner-loop/index.md
   - Module 4 - Basics of Semantic Kernel: wksp/04-Semantic-Kernel-Basics/index.md
-  - Module 5 - Use cases deep-dive with Miyagi and Reddog: 
-    - wksp/05-use-cases/index.md
-    - Synthesis: wksp/05-use-cases/synthesis.md
-    - Generation:
-      - Overview: wksp/05-use-cases/generation.md
-      - Text: wksp/05-use-cases/generation.md
-      - Images: wksp/05-use-cases/generation.md
-      - Code: wksp/05-use-cases/generation.md
-      - Video: wksp/05-use-cases/generation.md
-    - Conversation: wksp/05-use-cases/synthesis.md
-    - Summarization: wksp/05-use-cases/synthesis.md
-    - Classification: wksp/05-use-cases/synthesis.md
-    - Translation: wksp/05-use-cases/synthesis.md
-    - Speech-to-text: wksp/05-use-cases/synthesis.md
-    - Semantic Search: wksp/05-use-cases/synthesis.md
-    - Anomaly Detection: wksp/05-use-cases/synthesis.md
-    - Agency and Planning: wksp/05-use-cases/synthesis.md
-    - QA on Domain Knowledge: wksp/05-use-cases/synthesis.md
-    - Plugins: wksp/05-use-cases/synthesis.md
+  - Module 5 - Use cases deep-dive with Miyagi and Reddog:
+      - wksp/05-use-cases/index.md
+      - Synthesis: wksp/05-use-cases/synthesis.md
+      - Generation:
+          - Overview: wksp/05-use-cases/generation.md
+          - Text: wksp/05-use-cases/generation.md
+          - Images: wksp/05-use-cases/generation.md
+          - Code: wksp/05-use-cases/generation.md
+          - Video: wksp/05-use-cases/generation.md
+      - Conversation: wksp/05-use-cases/synthesis.md
+      - Summarization: wksp/05-use-cases/synthesis.md
+      - Classification: wksp/05-use-cases/synthesis.md
+      - Translation: wksp/05-use-cases/synthesis.md
+      - Speech-to-text: wksp/05-use-cases/synthesis.md
+      - Semantic Search: wksp/05-use-cases/synthesis.md
+      - Anomaly Detection: wksp/05-use-cases/synthesis.md
+      - Agency and Planning: wksp/05-use-cases/synthesis.md
+      - QA on Domain Knowledge: wksp/05-use-cases/synthesis.md
+      - Plugins: wksp/05-use-cases/synthesis.md
   - Post-workshop:
-    - Feedback: wksp/other/feedback.md
+      - Feedback: wksp/other/feedback.md
   - Appendix:
-    - Samples: wksp/appendix/samples.md
-  
+      - Samples: wksp/appendix/samples.md
+      - Design Patterns: wksp/appendix/design-patterns.md
+      - Security: wksp/appendix/security.md
+
 theme:
   name: material
   custom_dir: docs/assets/overrides
@@ -93,7 +95,7 @@ markdown_extensions:
       alternate_style: true
   - pymdownx.details
   - pymdownx.snippets:
-      base_path: '.'
+      base_path: "."
       check_paths: true
       url_download: true
   - pymdownx.superfences:
@@ -138,7 +140,7 @@ extra:
       - icon: material/emoticon-sad-outline
         name: This page could be improved
         data: 0
-        note: >- 
+        note: >-
           Thanks for your feedback! Help App Innovation GBB team improve this page by
           using our <a href="..." target="_blank" rel="noopener">feedback form</a>.
   social:
@@ -150,4 +152,3 @@ extra_css:
 
 repo_url: https://github.com/Azure/intelligent-app-workshop
 edit_uri: edit/main/docs
-
