@@ -1,8 +1,11 @@
-# Synthesizing private data and integrating Insights in your Applications
+# Synthesizing and Summarizing private data to generate recommendations and insights in your Applications
 
 In this section, we delve into the process of synthesizing portfolio recommendations as actionable insights using Project Miyagi. The workflow for this is orchestrated by the Semantic Kernel, as illustrated below:
 
 ![sk-orchestration](../../assets/images/sk-memory-orchestration.png)
+
+??? tip
+    For advanced deep learning-based recommender systems, checout [microsoft/recommenders](https://github.com/microsoft/recommenders#algorithms) for complex DLRMs. 
 
 ## Initializing the Kernel
 
