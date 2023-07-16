@@ -57,7 +57,7 @@ For the purposes of this workshop, we are envisioning a use case where you selec
 
 === "C#"
 
-    ```csharp hl_lines="5 12" linenums="1"
+    ```csharp hl_lines="5 9 12 18 27" linenums="1"
     // ========= Import Advisor skill from local filesystem =========
 
         // ========= Import semantic functions as plugins =========
@@ -98,11 +98,14 @@ For the purposes of this workshop, we are envisioning a use case where you selec
     --8<-- "docs/assets/Skills/AdvisorSkill/InvestmentAdvise/config.json"
     +++++
     ```
-??? tip "This is how you prompt engineer in your code"
-    The snippets above highlight some of the primitives of SK that allow you to easily integrate `prompt engineering` in your existing workflows.
 
 
-### Native functions
+
+### Native functions with RunAsync
+
+!!! Tip "Use planner whenever possible"
+    With 4 types of planners, you can easily chain and orchestrate your skills. However, if there are times when planner might not suit your needs, you could revert to using `RunAsync` to call a native function. 
+
 
 === "C# Skill usage"
 
@@ -135,7 +138,6 @@ For the purposes of this workshop, we are envisioning a use case where you selec
         ///     Usage: kernel.ImportSkill("UserProfilePlugin", new UserProfilePlugin());
         ///     Examples:
         ///     SKContext["userId"] = "000"
-        ///     {{UserProfilePlugin.GetUserAge $userId }} => {userProfile}
         /// </example>
         public class UserProfilePlugin
         {
@@ -209,7 +211,9 @@ For the purposes of this workshop, we are envisioning a use case where you selec
             }
         }
     ```
-
+??? tip "This is how you prompt engineer in your code"
+    The snippets above highlight some of the primitives of SK that allow you to easily integrate `prompt engineering` in your existing workflows.
+    
 More coming soon...
 
 [Sign up for updates](https://forms.office.com/r/rLds2s8RH1){ :target="_blank" .md-button .md-button--primary }
