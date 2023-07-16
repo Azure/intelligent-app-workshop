@@ -4,6 +4,9 @@ In this module, we will undertake a comprehensive exploration of [Project Miyagi
 
 ![use-cases-slide](../../assets/images/use-cases-slide.png)
 
+??? tip
+    For detailed implementation of the use-cases, see [miyagi/services](https://github.com/Azure-Samples/miyagi/tree/main/services)
+
 ## Use Cases
 
 1. [Synthesis](./synthesis.md): Learn how information is synthesized in Miyagi to generate insights, orchestrated by Semantic Kernel.

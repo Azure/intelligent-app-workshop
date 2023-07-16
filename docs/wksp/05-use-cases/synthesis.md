@@ -13,23 +13,12 @@ Firstly, we initialize the Kernel following the method [outlined in Project Miya
 
 === "C#"
 
-    ```csharp hl_lines="1-1 4 9 16" linenums="1"
-    var kernel = Kernel.Builder
-        .WithLogger(ConsoleLogger.Log)
-        .Configure(c =>
-        {
-            c.AddAzureTextCompletionService(
-                Env.Var("AZURE_OPENAI_SERVICE_ID"),
-                Env.Var("AZURE_OPENAI_DEPLOYMENT_NAME"),
-                Env.Var("AZURE_OPENAI_ENDPOINT"),
-                Env.Var("AZURE_OPENAI_KEY"));
-            c.AddAzureTextEmbeddingGenerationService(
-                Env.Var("AZURE_OPENAI_EMBEDDINGS_SERVICE_ID"),
-                Env.Var("AZURE_OPENAI_EMBEDDINGS_DEPLOYMENT_NAME"),
-                Env.Var("AZURE_OPENAI_EMBEDDINGS_ENDPOINT"),
-                Env.Var("AZURE_OPENAI_EMBEDDINGS_KEY"));
-        })
-        .WithMemoryStorage(new VolatileMemoryStore())
+    ```csharp hl_lines="1-1 3 5 11" linenums="1"
+    var kernel = new KernelBuilder()
+        .WithLogger(NullLogger.Instance)
+        .WithCompletionService(kernelSettings)
+        .WithEmbeddingGenerationService(kernelSettings)
+        .WithMemoryStorage(memoryStore)
         .Configure(c => c.SetDefaultHttpRetryConfig(new HttpRetryConfig
         {
             MaxRetryCount = 2,
@@ -46,8 +35,8 @@ Firstly, we initialize the Kernel following the method [outlined in Project Miya
     kernel = sk.Kernel()
 
     api_key, org_id = sk.openai_settings_from_dot_env()
-    kernel.config.add_text_completion_service("dv",
-                    OpenAITextCompletion("text-davinci-003",
+    kernel.config.add_chat_completion_service("dv",
+                    OpenAIChatCompletion("gpt-35-turbo",
                                             api_key,
                                             org_id))
     kernel.config.add_text_embedding_generation_service("ada",
@@ -71,16 +60,31 @@ For the purposes of this workshop, we are envisioning a use case where you selec
     ```csharp hl_lines="5 12" linenums="1"
     // ========= Import Advisor skill from local filesystem =========
 
-        // You can also import this from Azure Blob Storage
-        var skillsDirectory = Path.Combine(Directory.GetCurrentDirectory(), "Skills");
-        var advisorSkill = _kernel.ImportSemanticSkillFromDirectory(skillsDirectory, "AdvisorSkill");
+        // ========= Import semantic functions as plugins =========
+        var pluginsDirectory = Path.Combine(Directory.GetCurrentDirectory(), "plugins");
+        var advisorPlugin = _kernel.ImportSemanticSkillFromDirectory(pluginsDirectory, "AdvisorPlugin");
         
         // This will explained in full later in this section:
-        var result = await _kernel.RunAsync(
-            context,
-            userProfileSkill["GetUserAge"],
-            userProfileSkill["GetAnnualHouseholdIncome"],
-            advisorSkill["InvestmentAdvise"]);
+         // ========= Import native function  =========
+        var userProfilePlugin = _kernel.ImportSkill(new UserProfilePlugin(), "UserProfilePlugin");
+
+        // ========= Set context variables to populate the prompt  =========
+        var context = _kernel.CreateNewContext();
+        context.Variables.Set("userId", miyagiContext.UserInfo.UserId);
+        context.Variables.Set("portfolio", JsonSerializer.Serialize(miyagiContext.Portfolio));
+        context.Variables.Set("risk", miyagiContext.UserInfo.RiskLevel ?? DefaultRiskLevel);
+
+        // ========= Chain and orchestrate with LLM =========
+        var plan = new Plan("Execute userProfilePlugin and then advisorPlugin");
+        plan.AddSteps(userProfilePlugin["GetUserAge"],
+            userProfilePlugin["GetAnnualHouseholdIncome"],
+            advisorPlugin["PortfolioAllocation"]);
+
+        // Execute plan
+        var ask = "Using the userId, get user age and household income, and then get the recommended asset allocation";
+        context.Variables.Update(ask);
+        log?.LogDebug("Planner steps: {N}", plan.Steps.Count);
+        var result = await plan.InvokeAsync(context);
     ```
 === "Investment advise skill"
 
@@ -116,72 +120,94 @@ For the purposes of this workshop, we are envisioning a use case where you selec
 === "C# Skill implementation"
 
     ```csharp linenums="1"
-        public class UserProfileSkill
+        // Copyright (c) Microsoft. All rights reserved.
+
+        using System.ComponentModel;
+        using Microsoft.SemanticKernel.Orchestration;
+        using Microsoft.SemanticKernel.SkillDefinition;
+
+        namespace GBB.Miyagi.RecommendationService.plugins;
+
+        /// <summary>
+        ///     UserProfilePlugin shows a native skill example to look user info given userId.
+        /// </summary>
+        /// <example>
+        ///     Usage: kernel.ImportSkill("UserProfilePlugin", new UserProfilePlugin());
+        ///     Examples:
+        ///     SKContext["userId"] = "000"
+        ///     {{UserProfilePlugin.GetUserAge $userId }} => {userProfile}
+        /// </example>
+        public class UserProfilePlugin
         {
             /// <summary>
             ///     Name of the context variable used for UserId.
             /// </summary>
             public const string UserId = "UserId";
-        
-            private const string DefaultUserId = "50";
+
+            private const string DefaultUserId = "40";
             private const int DefaultAnnualHouseholdIncome = 150000;
-        
+            private const int Normalize = 81;
+
             /// <summary>
             ///     Lookup User's age for a given UserId.
             /// </summary>
             /// <example>
-            ///     SKContext[UserProfileSkill.UserId] = "000"
+            ///     SKContext[UserProfilePlugin.UserId] = "000"
             /// </example>
             /// <param name="context">Contains the context variables.</param>
-            [SKFunction("Given a userId, find user age")]
-            [SKFunctionName("GetUserAge")]
-            [SKFunctionContextParameter(Name = UserId, Description = "UserId", DefaultValue = DefaultUserId)]
-            public string GetUserAge(SKContext context)
+            [SKFunction]
+            [SKName("GetUserAge")]
+            [Description("Given a userId, get user age")]
+            public string GetUserAge(
+                [Description("Unique identifier of a user")]
+                string userId,
+                SKContext context)
             {
-                var userId = context.Variables.ContainsKey(UserId) ? context[UserId] : DefaultUserId;
+                // userId = context.Variables.ContainsKey(UserId) ? context[UserId] : DefaultUserId;
+                userId = string.IsNullOrEmpty(userId) ? DefaultUserId : userId;
                 context.Log.LogDebug("Returning hard coded age for {0}", userId);
-        
-                int parsedUserId;
+
                 int age;
-        
-                if (int.TryParse(userId, out parsedUserId))
-                {
-                    age = parsedUserId > 100 ? 20 + (parsedUserId % 81) : parsedUserId;
-                }
+
+                if (int.TryParse(userId, out var parsedUserId))
+                    age = parsedUserId > 100 ? parsedUserId % Normalize : parsedUserId;
                 else
-                {
                     age = int.Parse(DefaultUserId);
-                }
-        
+
                 // invoke a service to get the age of the user, given the userId
                 return age.ToString();
             }
-            
+
             /// <summary>
             ///     Lookup User's annual income given UserId.
             /// </summary>
             /// <example>
-            ///     SKContext[UserProfileSkill.UserId] = "000"
+            ///     SKContext[UserProfilePlugin.UserId] = "000"
             /// </example>
             /// <param name="context">Contains the context variables.</param>
-            [SKFunction("Given a userId, find user age")]
-            [SKFunctionName("GetAnnualHouseholdIncome")]
-            [SKFunctionContextParameter(Name = UserId, Description = "UserId", DefaultValue = DefaultUserId)]
-            public string GetAnnualHouseholdIncome(SKContext context)
+            [SKFunction]
+            [SKName("GetAnnualHouseholdIncome")]
+            [Description("Given a userId, get user annual household income")]
+            public string GetAnnualHouseholdIncome(
+                [Description("Unique identifier of a user")]
+                string userId,
+                SKContext context)
             {
-                var userId = context.Variables.ContainsKey(UserId) ? context[UserId] : DefaultUserId;
+                // userId = context.Variables.ContainsKey(UserId) ? context[UserId] : DefaultUserId;
+                userId = string.IsNullOrEmpty(userId) ? DefaultUserId : userId;
                 context.Log.LogDebug("Returning userId * randomMultiplier for {0}", userId);
-        
+
                 var random = new Random();
                 var randomMultiplier = random.Next(1000, 8000);
-        
+
                 // invoke a service to get the annual household income of the user, given the userId
                 var annualHouseholdIncome = int.TryParse(userId, out var parsedUserId)
                     ? parsedUserId * randomMultiplier
                     : DefaultAnnualHouseholdIncome;
-        
+
                 return annualHouseholdIncome.ToString();
             }
+        }
     ```
 
 More coming soon...

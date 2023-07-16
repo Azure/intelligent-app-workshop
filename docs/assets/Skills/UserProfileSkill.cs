@@ -1,73 +1,78 @@
 ﻿// Copyright (c) Microsoft. All rights reserved.
 
+using System.ComponentModel;
 using Microsoft.SemanticKernel.Orchestration;
 using Microsoft.SemanticKernel.SkillDefinition;
 
-namespace GBB.Miyagi.RecommendationService.Skills;
+namespace GBB.Miyagi.RecommendationService.plugins;
 
 /// <summary>
-///     UserProfileSkill shows a native skill example to look user info given userId.
+///     UserProfilePlugin shows a native skill example to look user info given userId.
 /// </summary>
 /// <example>
-///     Usage: kernel.ImportSkill("UserProfileSkill", new UserProfileSkill());
+///     Usage: kernel.ImportSkill("UserProfilePlugin", new UserProfilePlugin());
 ///     Examples:
 ///     SKContext["userId"] = "000"
-///     {{UserProfileSkill.GetUserAge $userId }} => {userProfile}
+///     {{UserProfilePlugin.GetUserAge $userId }} => {userProfile}
 /// </example>
-public class UserProfileSkill
+public class UserProfilePlugin
 {
     /// <summary>
     ///     Name of the context variable used for UserId.
     /// </summary>
     public const string UserId = "UserId";
 
-    private const string DefaultUserId = "50";
+    private const string DefaultUserId = "40";
     private const int DefaultAnnualHouseholdIncome = 150000;
+    private const int Normalize = 81;
 
     /// <summary>
     ///     Lookup User's age for a given UserId.
     /// </summary>
     /// <example>
-    ///     SKContext[UserProfileSkill.UserId] = "000"
+    ///     SKContext[UserProfilePlugin.UserId] = "000"
     /// </example>
     /// <param name="context">Contains the context variables.</param>
-    [SKFunction("Given a userId, find user age")]
-    [SKFunctionName("GetUserAge")]
-    [SKFunctionContextParameter(Name = UserId, Description = "UserId", DefaultValue = DefaultUserId)]
-    public string GetUserAge(SKContext context)
+    [SKFunction]
+    [SKName("GetUserAge")]
+    [Description("Given a userId, get user age")]
+    public string GetUserAge(
+        [Description("Unique identifier of a user")]
+        string userId,
+        SKContext context)
     {
-        var userId = context.Variables.ContainsKey(UserId) ? context[UserId] : DefaultUserId;
+        // userId = context.Variables.ContainsKey(UserId) ? context[UserId] : DefaultUserId;
+        userId = string.IsNullOrEmpty(userId) ? DefaultUserId : userId;
         context.Log.LogDebug("Returning hard coded age for {0}", userId);
 
-        int parsedUserId;
         int age;
 
-        if (int.TryParse(userId, out parsedUserId))
-        {
-            age = parsedUserId > 100 ? 20 + (parsedUserId % 81) : parsedUserId;
-        }
+        if (int.TryParse(userId, out var parsedUserId))
+            age = parsedUserId > 100 ? parsedUserId % Normalize : parsedUserId;
         else
-        {
             age = int.Parse(DefaultUserId);
-        }
 
         // invoke a service to get the age of the user, given the userId
         return age.ToString();
     }
-    
+
     /// <summary>
     ///     Lookup User's annual income given UserId.
     /// </summary>
     /// <example>
-    ///     SKContext[UserProfileSkill.UserId] = "000"
+    ///     SKContext[UserProfilePlugin.UserId] = "000"
     /// </example>
     /// <param name="context">Contains the context variables.</param>
-    [SKFunction("Given a userId, find user age")]
-    [SKFunctionName("GetAnnualHouseholdIncome")]
-    [SKFunctionContextParameter(Name = UserId, Description = "UserId", DefaultValue = DefaultUserId)]
-    public string GetAnnualHouseholdIncome(SKContext context)
+    [SKFunction]
+    [SKName("GetAnnualHouseholdIncome")]
+    [Description("Given a userId, get user annual household income")]
+    public string GetAnnualHouseholdIncome(
+        [Description("Unique identifier of a user")]
+        string userId,
+        SKContext context)
     {
-        var userId = context.Variables.ContainsKey(UserId) ? context[UserId] : DefaultUserId;
+        // userId = context.Variables.ContainsKey(UserId) ? context[UserId] : DefaultUserId;
+        userId = string.IsNullOrEmpty(userId) ? DefaultUserId : userId;
         context.Log.LogDebug("Returning userId * randomMultiplier for {0}", userId);
 
         var random = new Random();
