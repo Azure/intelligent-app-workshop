@@ -1,7 +1,9 @@
 Repo,Description,Services
+"<a href=""https://github.com/Azure-Samples/miyagi/"">Azure-Samples/miyagi</a>",Miyagi - Envisiong sample for intelligent apps,"Azure OpenAI (AOAI), AKS, Cosmos DB, APIM, Copilot Stack"
+"<a href=""https://github.com/Azure/reddog-solutions"">Azure/reddog-solutions</a>",Reddog - Cloud-native transformation with AOAI,"AOAI, AKS, Cosmos DB, Azure HuggingFace"
 "<a href=""https://github.com/microsoft/semantic-kernel/tree/main/samples/apps"">microsoft/semantic-kernel/apps</a>",Semantic Kernel (SK) samples apps,"Cosmos DB, App Service, AOAI"
 "<a href=""https://github.com/azure-samples/semantic-kernel-rag-chat"">azure-samples/semantic-kernel-rag-chat</a>","Tutorial for ChatGPT + Enterprise Data with Semantic Kernel, OpenAI, and Azure Cognitive Search","Azure Cognitive Search, AOAI"
-"<a href=""https://github.com/Azure-Samples/azure-search-openai-demo"">Azure-Samples/azure-search-openai-demo</a>","A sample app for the Retrieval-Augmented Generation pattern running in Azure, using Azure Cognitive Search for retrieval and Azure OpenAI large language models to power ChatGPT-style and Q&A experiences.",Azure Cognitive Search
+"<a href=""https://github.com/Azure-Samples/azure-search-openai-demo"">Azure-Samples/azure-search-openai-demo</a>","Retrieval-Augmented Generation pattern using Azure Cognitive Search for retrieval and Azure OpenAI",Azure Cognitive Search
 "<a href=""https://github.com/Azure-Samples/openai"">Azure-Samples/openai</a>",The repository for all Azure OpenAI Samples complementing the OpenAI cookbook.,Azure OpenAI (AOAI)
 "<a href=""https://github.com/microsoft/azure-openai-in-a-day-workshop"">microsoft/azure-openai-in-a-day-workshop</a>",Technical workshop on Azure OpenAI capabilities,AOAI
 "<a href=""https://github.com/microsoft/OpenAIWorkshop"">microsoft/OpenAIWorkshop</a>",workshop materials to build intelligent solutions on Open AI,"AOAI, Power, SQL"
