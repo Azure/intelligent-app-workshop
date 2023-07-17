@@ -8,6 +8,7 @@ Repo,Description,Services
 "<a href=""https://github.com/microsoft/azure-openai-in-a-day-workshop"">microsoft/azure-openai-in-a-day-workshop</a>",Technical workshop on Azure OpenAI capabilities,AOAI
 "<a href=""https://github.com/microsoft/OpenAIWorkshop"">microsoft/OpenAIWorkshop</a>",workshop materials to build intelligent solutions on Open AI,"AOAI, Power, SQL"
 "<a href=""https://github.com/microsoft/Customer-Service-Conversational-Insights-with-Azure-OpenAI-Services"">microsoft/Customer-Service-Conversational-Insights-with-Azure-OpenAI-Services</a>",solution accelerator to extract insights from customer conversations,"Cognitive Search, Bot Framework, Speech"
+"<a href=""https://github.com/dbarkol/openai-plugins-apim"">dbarkol/openai-plugins-apim</a>",ChatGPT plugin with Azure API Management integration,"AOAI, APIM"
 "<a href=""https://github.com/ahmedbham/azure-openai-api-levelup"">ahmedbham/azure-openai-api-levelup</a>",Tutorials on using Azure OpenAI API in building intelligent applications,"AOAI, Functions, Event Grid, SK"
 "<a href=""https://github.com/Azure-Samples/openai-python-enterprise-logging"">Azure-Samples/openai-python-enterprise-logging</a>",Enterprise Azure OpenAI reference architecture,"AOAI, APIM, Monitor, AAD"
 "<a href=""https://github.com/Azure/azure-openai-samples"">Azure/azure-openai-samples</a>",collection of code samples illustrating how to use Azure Open AI in creating AI solution for various use cases across industries,"AOAI, Cognitive Services, Power"
