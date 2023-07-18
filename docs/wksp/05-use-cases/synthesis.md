@@ -2,7 +2,7 @@
 
 In this section, we delve into the process of synthesizing portfolio recommendations as actionable insights using Project Miyagi. The workflow for this is orchestrated by the Semantic Kernel, as illustrated below:
 
-![sk-orchestration](../../assets/images/sk-memory-orchestration.png)
+![sk-orchestration-1](../../assets/images/sk-round-trip.png)
 
 ??? tip
     For advanced deep learning-based recommender systems, checout [microsoft/recommenders](https://github.com/microsoft/recommenders#algorithms) for complex DLRMs. 
@@ -213,7 +213,10 @@ For the purposes of this workshop, we are envisioning a use case where you selec
     ```
 ??? tip "This is how you prompt engineer in your code"
     The snippets above highlight some of the primitives of SK that allow you to easily integrate `prompt engineering` in your existing workflows.
-    
+
+
+![sk-orchestration](../../assets/images/sk-memory-orchestration.png)
+
 More coming soon...
 
 [Sign up for updates](https://forms.office.com/r/rLds2s8RH1){ :target="_blank" .md-button .md-button--primary }
