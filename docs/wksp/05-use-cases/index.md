@@ -4,7 +4,7 @@ In this module, we will undertake a comprehensive exploration of [Project Miyagi
 
 ![use-cases-slide](../../assets/images/use-cases-slide.png)
 
-??? tip
+!!! note ""
     For detailed implementation of the use-cases, see [miyagi/services](https://github.com/Azure-Samples/miyagi/tree/main/services)
 
 ## Use Cases
