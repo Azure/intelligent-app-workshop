@@ -6,7 +6,7 @@ Inspired by Github Copilot's impact on developer productivity, this experiential
 
 !!! note ""
 
-    For a preview, catch the [recording on :simple-youtube: Cosmos DB Live TV](https://www.youtube.com/watch?v=V8dlEvXdGEM&t=144s). For an overview on mental models, see [this video from :simple-youtube: Semantic Kernel's Product Lead]([https://www.youtube.com/watch?v=V8dlEvXdGEM&t=144s](https://www.youtube.com/watch?v=EueJTTuluVQ&t=750s)).
+    For a preview, catch the [recording on :simple-youtube: Cosmos DB Live TV](https://www.youtube.com/watch?v=V8dlEvXdGEM&t=144s). For an overview on mental models, see [this video from :simple-youtube: Semantic Kernel's Channel](https://www.youtube.com/watch?v=EueJTTuluVQ&t=750s).
     <p align="left"><a href="http://www.youtube.com/watch?feature=player_embedded&v=V8dlEvXdGEM&t=144s" target="_blank"><img src="assets/images/video_recording.png" alt="Miyagi walkthrough" width="40%" height="40%" border="10" /></a></p> 
 
 
