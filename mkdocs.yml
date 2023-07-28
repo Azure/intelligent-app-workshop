@@ -1,6 +1,6 @@
-site_name: Intelligent App Workshop with Project Miyagi and Semantic Kernel
+site_name: Intelligent App Workshop for Microsoft Copilot Stack
 site_description: Complimentary workshop to Project Miyagi to demonstrate the potential of integrating SoTA foundation models in user experiences and backend workflows. Orchestrated by Semantic Kernel and built on Azure primitives.
-site_author: Azure App Innovation GBB, Microsoft
+site_author: Govind Kamtamneni, Principal AI Engineer, Azure Global Black Belt, Microsoft
 nav:
   - Home: index.md
   - Intro: wksp/00-intro/index.md
