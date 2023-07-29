@@ -1,6 +1,6 @@
 # Home
 
-Inspired by Github Copilot's impact on developer productivity, this experiential workshop is designed to demonstrate how you can infuse similar intelligence and product experience into traditional software systems. Using [Microsoft's Copilot stack](https://news.microsoft.com/source/features/ai/microsoft-outlines-framework-for-building-ai-apps-and-copilots-expands-ai-plugin-ecosystem/) and practical [use cases](https://iappwksp.com/wksp/05-use-cases/#use-cases), this workshop will guide you in envisioning and creating intelligent systems that integrate foundation models throughout all stages of application development - from design and user experience to deployment.
+Inspired by Github Copilot's impact on developer productivity, this experiential workshop is designed to demonstrate how you can infuse similar intelligence and product experience into traditional software systems. Using [Microsoft's Copilot stack](https://learn.microsoft.com/en-us/semantic-kernel/overview/#semantic-kernel-is-at-the-center-of-the-copilot-stack) and practical [use cases](https://iappwksp.com/wksp/05-use-cases/#use-cases), this workshop will guide you in envisioning and creating intelligent systems that integrate foundation models throughout all stages of application development - from design and user experience to deployment.
 
 [Sign up for updates](https://forms.office.com/r/rLds2s8RH1){ :target="_blank" .md-button .md-button--primary }
 
@@ -10,7 +10,7 @@ Inspired by Github Copilot's impact on developer productivity, this experiential
 
 
 
-By leveraging design thinking, [Project Miyagi](https://github.com/Azure-Samples/miyagi), and art-of-the-possible examples (with samples and skills from [Semantic Kernel (SK)](https://github.com/microsoft/semantic-kernel), [Miyagi](https://github.com/Azure-Samples/miyagi), and [Reddog](https://github.com/Azure/reddog-solutions)), this workshop offers a comprehensive, hands-on exploration of how large, pre-trained foundation models can augment your applications with intelligence to create hyper-personalized product experiences and boost productivity. You will acquire skills to effectively curate and create value-driven workflows to serve your use cases with the capabilities of foundation models. We will also have an Architecture Design Session (ADS) to unlock and operationalize the full potential of AI-infused applications for your organization.
+By leveraging design thinking, [Project Miyagi](https://github.com/Azure-Samples/miyagi), and art-of-the-possible examples (with samples and skills from [Semantic Kernel (SK)](https://github.com/microsoft/semantic-kernel), [Miyagi](https://github.com/Azure-Samples/miyagi), and [Reddog](https://github.com/Azure/reddog-solutions)), this workshop offers a comprehensive, hands-on exploration of how foundation models can augment your applications with intelligence to create hyper-personalized product experiences and improve productivity. We will also have an Architecture Design Session (ADS) to unlock and operationalize the full potential of AI-infused applications for your organization.
 
 ![miyagi-arch](assets/images/wip-azure.png)
 

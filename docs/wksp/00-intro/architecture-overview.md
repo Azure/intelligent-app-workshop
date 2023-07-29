@@ -7,7 +7,8 @@ Polyglot, AI-Infused Microservices Architecture with Event-Driven Backend
 
 ![architecture](../../assets/images/wip-azure.png)
 
-
+### Copilot Stack
+![copilot-stack](../../assets/images/copilot-stack.png)
 
 ## Overview
 
@@ -17,9 +18,9 @@ Miyagi's architecture is designed with a focus on customer-centricity, leveragin
 
 The event-driven backbone of Miyagi's architecture ensures enterprise-grade quality attributes such as availability, scalability, and maintainability. The architecture is designed to evolve with the rapid advancements in foundation models, allowing for incremental implementation of various use cases and experimentation.
 
-Miyagi's frontend moves beyond simple chat interactions, offering a more engaging and dynamic user experience. The generative image use case architecture with [Dreambooth](https://huggingface.co/thegovind/reddogpillmodel512) showcases the creative potential of AI in modern applications. In addition, it also showcases how you can build your own chatbot using [DeepSpeed Chat](https://github.com/microsoft/DeepSpeedExamples/tree/master/applications/DeepSpeed-Chat) with your own biases and personality (RLHF - Reinforcement Learning from Human Feedback)
+Miyagi's frontend moves beyond simple chat interactions, offering a more engaging and personalized user experience. This is similar to how Microsoft Copilots deliver product experiences. In addition, with Reddog sample, we will explore how generative image use case with [Dreambooth](https://huggingface.co/thegovind/reddogpillmodel512) could be adopted for personalized image generation (personalized medicine, in this example).
 
-By incorporating cutting-edge technologies and frameworks such as Azure OpenAI, LangChain, Jarvis, Qdrant, Dreambooth, and ControlNet, Miyagi demonstrates how developers can harness the power of AI to build the next generation of intelligent applications. By leveraging these tools and technologies, Miyagi serves as a blueprint for creating applications that adapt and grow alongside their users, providing highly personalized and contextually relevant experiences.
+By incorporating cutting-edge technologies and frameworks such as Semantic Kernel, Prompt Flow, TypeChat, Guidance, Miyagi demonstrates how developers can harness the power of AI to build the next generation of intelligent applications. By leveraging these tools and technologies, Miyagi serves as a blueprint for creating applications that adapt and grow alongside their users, providing highly personalized and contextually relevant experiences.
 
 To ensure seamless integration and communication between the various components of Miyagi's architecture, a combination of Azure Functions, AKS/ACA, and Apache Kafka on Azure Event Hubs is used. These technologies facilitate efficient management of microservices, data storage, and real-time processing of events, allowing the system to scale according to the needs of the application.
 
@@ -40,8 +41,7 @@ In summary, Project Miyagi's architecture presents a forward-looking approach to
 ![sk-round-trip](../../assets/images/sk-round-trip.png)
 
 ## Tech Stack
-### Copilot Stack
-![copilot-stack](../../assets/images/copilot-stack.png)
+
 
 ### Services and Features
 - [Azure OpenAI](https://learn.microsoft.com/en-us/azure/cognitive-services/openai/concepts/models)
