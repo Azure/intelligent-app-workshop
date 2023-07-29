@@ -56,7 +56,7 @@ In summary, Project Miyagi's architecture presents a forward-looking approach to
 - [APIM](https://learn.microsoft.com/en-us/azure/api-management/)
 - [Service Bus](https://learn.microsoft.com/en-us/azure/service-bus-messaging/service-bus-messaging-overview)
 - [Event Grid](https://learn.microsoft.com/en-us/azure/event-grid/overview)
-- [Logic Apps](https://learn.microsoft.com/en-us/azure/logic-apps/overview)
+- [Logic Apps](https://learn.microsoft.com/en-us/azure/logic-apps/logic-apps-overview)
 - [AKS](https://azure.microsoft.com/en-us/products/kubernetes-service) / [ACA](https://azure.microsoft.com/en-us/products/container-apps)
 - [Cosmos DB](https://azure.microsoft.com/en-us/products/cosmos-db/)
 - [Github Actions](https://docs.github.com/en/actions)
