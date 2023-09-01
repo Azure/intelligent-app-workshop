@@ -1,6 +1,6 @@
 # Deep-Dive into AI Use-Cases 
 
-In this module, we will undertake a comprehensive exploration of [Project Miyagi](https://github.com/Azure-Samples/miyagi) and the [Reddog](https://github.com/Azure/reddog-solutions) codebase. This deep dive will highlight a range of use-cases that can be adopted into your own applications, thereby enabling you to infuse AI technologies to address the diverse needs of your end users.
+In this module, we will undertake a comprehensive exploration of [Project Miyagi](https://github.com/Azure-Samples/miyagi) and the [Reddog](https://github.com/Azure/reddog-solutions) codebase. This deep dive will highlight a range of use-cases that can be adopted into your own applications, thereby enabling you to infuse AI to address the diverse needs of your end users.
 
 ![use-cases-slide](../../assets/images/use-cases-slide.png)
 
