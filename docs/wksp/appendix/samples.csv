@@ -1,8 +1,8 @@
 Repo,Description,Services
 "<a href=""https://github.com/Azure-Samples/miyagi/"">Azure-Samples/miyagi</a>",Miyagi - Envisiong sample for intelligent apps,"Azure OpenAI (AOAI), AKS, Cosmos DB, APIM, Copilot Stack"
 "<a href=""https://github.com/Azure/reddog-solutions"">Azure/reddog-solutions</a>",Reddog - Cloud-native transformation with AOAI,"AOAI, AKS, Cosmos DB, Azure HuggingFace"
-"<a href=""https://github.com/microsoft/semantic-memory/tree/main/examples"">microsoft/semantic-memory/examples</a>",Index and query any data using LLM and natural language, tracking sources and showing citations,"Azure Cognitive Search, Azure Blobs, Azure Queues"
-"<a href=""https://github.com/microsoft/semantic-kernel/tree/main/samples/apps"">microsoft/semantic-kernel/apps</a>",Semantic Kernel (SK) samples apps,"Cosmos DB, App Service, AOAI"
+"<a href=""https://github.com/microsoft/semantic-memory/tree/main/examples"">microsoft/semantic-memory/examples</a>","Index and query any data using LLM and natural language, tracking sources and showing citations","Azure Cognitive Search, Azure Blobs, Azure Queues"
+"<a href=""https://github.com/microsoft/semantic-kernel/tree/main/samples/apps"">microsoft/semantic-kernel/apps</a>","Semantic Kernel (SK) samples apps","Cosmos DB, App Service, AOAI"
 "<a href=""https://github.com/microsoft/semantic-kernel-starters"">microsoft/semantic-kernel-starters</a>","Starter Projects for Semantic Kernel","AOAI, Semantic Kernel"
 "<a href=""https://github.com/azure-samples/semantic-kernel-rag-chat"">azure-samples/semantic-kernel-rag-chat</a>","Tutorial for ChatGPT + Enterprise Data with Semantic Kernel, OpenAI, and Azure Cognitive Search","Azure Cognitive Search, AOAI"
 "<a href=""https://github.com/Azure-Samples/azure-search-openai-demo"">Azure-Samples/azure-search-openai-demo</a>","Retrieval-Augmented Generation pattern using Azure Cognitive Search for retrieval and Azure OpenAI",Azure Cognitive Search
