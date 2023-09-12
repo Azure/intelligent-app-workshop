@@ -7,8 +7,8 @@
 1. Introduction to Intelligent App Development with Copilot stack
    1. Unveiling the Art of the Possible: Inspiring Walkthroughs
       - [Miyagi](https://github.com/Azure-Samples/miyagi)
-      - [Semantic Kernel Samples](https://github.com/microsoft/semantic-kernel#sample-apps-)
-      - [Reddog](https://github.com/Azure/reddog-solutions) with Langchain and Prompt Flow
+      - [Semantic Kernel Samples](https://github.com/microsoft/semantic-kernel#check-out-our-other-repos)
+      - [Reddog](https://github.com/Azure/reddog-solutions)
    1. Comprehensive Architecture Overview
    1. Essential Pre-requisites
 1. Unearthing Customer Needs and Pain Points (Design Thinking session to personalize the workshop for your organization needs and use cases)
@@ -24,10 +24,11 @@
     1. Completions API and Chat Completions API configurations
     1. Prompt Flow
 1. Deep-dive into AI orchestration primitives through use cases with Miyagi and Reddog
-1. Exploring Agentic LLMs: SK Planner, Langchain and Jarvis
-1. Tradeoffs with AI orchestrators (Langchain, SK, Guidance, Guardrails)
+1. Exploring Agents and Agent-like Orchestration
+1. Tradeoffs with AI orchestrators (Semantic Kernel, Langchain, TypeChat etc.)
 1. Prompt Flow Studio and metaprompts
 1. AI Content Safety Studio
+1. Fine-tuning Llama2 model with proprietary training data to improve task specific accuracy and latency
 1. Streamlined Deployment and Monitoring of AI-Infused Apps
 1. (Optional) First Principles of Large Language Models for application developers
     1. High Level Overview of AI and ML
