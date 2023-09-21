@@ -1,6 +1,6 @@
 # Home
 
-Inspired by Github Copilot's impact on developer productivity, this experiential workshop is designed to demonstrate how you can infuse similar intelligence and product experience into traditional software systems. Using [Microsoft's Copilot stack](https://learn.microsoft.com/en-us/semantic-kernel/overview/#semantic-kernel-is-at-the-center-of-the-copilot-stack) and practical [use cases](https://iappwksp.com/wksp/05-use-cases/#use-cases), this workshop will guide you in envisioning and creating intelligent systems that integrate foundation models throughout all stages of application development - from design and user experience to deployment.
+Inspired by Github Copilot's impact on developer productivity, this experiential workshop is designed to demonstrate how you can infuse similar intelligence and product experience into traditional software systems. Using [Microsoft's Copilot stack](https://learn.microsoft.com/en-us/semantic-kernel/overview/#semantic-kernel-is-at-the-center-of-the-copilot-stack) and practical [use cases](https://iappwksp.com/wksp/05-use-cases/#use-cases), this workshop will guide you in envisioning and creating intelligent systems that integrate foundation models throughout all stages of application development - from design and user experience to deployment, resulting in improved prodcutvity and hyper-personalized product experiences. 
 
 [Sign up for updates](https://forms.office.com/r/rLds2s8RH1){ :target="_blank" .md-button .md-button--primary }
 
@@ -34,3 +34,12 @@ By leveraging design thinking, [Project Miyagi](https://github.com/Azure-Samples
 
 
 [See full-agenda](wksp/00-intro/agenda-and-outcomes.md){ .md-button }
+
+
+### Disclaimer
+
+This software is provided for demonstration purposes only. It is not intended to be relied upon for any purpose. The creators of this software make no representations or warranties of any kind, express or implied, about the completeness, accuracy, reliability, suitability or availability with respect to the software or the information, products, services, or related graphics contained in the software for any purpose. Any reliance you place on such information is therefore strictly at your own risk.
+
+### License
+
+This software is provided for demonstration purposes only. It is not intended to be relied upon for any purpose. The software is provided “as is” and without any warranties, express or implied. The software is not intended to be used for any commercial purpose. The software is provided solely for demonstration purposes and should not be used for any other purpose. The software is provided without any warranty of any kind, either express or implied, including, but not limited to, the implied warranties of merchantability, fitness for a particular purpose, or non-infringement. The software is provided “as is” and without any warranty of any kind. The user assumes all risk and responsibility for the use of the software.
