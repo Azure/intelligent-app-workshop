@@ -1,6 +1,6 @@
 # Home
 
-Inspired by Github Copilot's impact on developer productivity, this experiential workshop is designed to demonstrate how you can infuse similar intelligence and product experience into traditional software systems. Using [Microsoft's Copilot stack](https://learn.microsoft.com/en-us/semantic-kernel/overview/#semantic-kernel-is-at-the-center-of-the-copilot-stack) and practical [use cases](https://iappwksp.com/wksp/05-use-cases/#use-cases), this workshop will guide you in envisioning and creating intelligent systems that integrate foundation models throughout all stages of application development - from design and user experience to deployment, resulting in improved productivity and hyper-personalized product experiences. 
+Inspired by Github Copilot's impact on developer productivity, this experiential workshop is designed to demonstrate how you can infuse similar intelligence and product experience into traditional software systems. Using [Microsoft's Copilot stack](https://learn.microsoft.com/en-us/semantic-kernel/overview/#semantic-kernel-is-at-the-center-of-the-copilot-stack) and practical [use cases](https://iappwksp.com/wksp/05-use-cases/#use-cases), this workshop will guide you in envisioning and creating intelligent systems and agents that integrate foundation models throughout all stages of application development - from design and user experience to deployment, resulting in improved productivity and hyper-personalized product experiences. 
 
 [Sign up for updates](https://forms.office.com/r/rLds2s8RH1){ :target="_blank" .md-button .md-button--primary }
 
@@ -23,7 +23,7 @@ By leveraging design thinking, [Project Miyagi](https://github.com/Azure-Samples
 
 1. Exploring the Art of the Possible with [Miyagi](https://github.com/Azure-Samples/miyagi) and [Semantic Kernel (SK)](https://github.com/microsoft/semantic-kernel) demos: Engage in interactive demonstrations to envision the potential applications of SK and [Miyagi](https://github.com/Azure-Samples/miyagi).
 1. Design Thinking Session: A collaborative brainstorming activity to identify your idiosyncratic use cases, focusing on addressing user needs and alleviating pain points, so that the workshop will be relevant for you.
-1. Introduction to Semantic Kernel (SK): A comprehensive presentation to familiarize participants with the fundamentals of SK and goals-first AI.
+1. Introduction to Assistants API and Semantic Kernel (SK): A comprehensive presentation to familiarize participants with the fundamentals of SK, agent-like orchestration, and goals-first AI.
 1. End-to-End Application Lifecycle Workshop featuring [Miyagi](https://github.com/Azure-Samples/miyagi): Gain hands-on experience in incorporating SK primitives into the entire application lifecycle, including leveraging SK skills and prompt engineering to orchestrate complex flows with Azure OpenAI models. <p align="center"><img src="assets/images/basic-arch.png" width=50% /></p>
 1. Architecture Design Session: Dive into the intricacies of designing a robust and effective system architecture to support intelligent app development.
 

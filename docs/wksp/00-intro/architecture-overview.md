@@ -2,12 +2,12 @@
 
 Polyglot, AI-Infused Microservices Architecture with Event-Driven Backend
 
-[Sign up for updates](https://forms.office.com/r/rLds2s8RH1){ :target="_blank" .md-button .md-button--primary }
-
+[Sign up for updates](https://forms.office.com/r/rLds2s8RH1){ :target="\_blank" .md-button .md-button--primary }
 
 ![architecture](../../assets/images/wip-azure.png)
 
 ### Copilot Stack
+
 ![copilot-stack](../../assets/images/copilot-stack.png)
 
 ## Overview
@@ -31,8 +31,8 @@ The entire development and deployment pipeline is streamlined using GitHub Actio
 In summary, Project Miyagi's architecture presents a forward-looking approach to building intelligent applications, leveraging advanced AI techniques and robust Azure services to create highly engaging, personalized user experiences. By incorporating cutting-edge technologies and embracing event-driven, scalable microservices, Miyagi offers developers a glimpse into the future of application design and development.
 
 ### Orchestration flow
-![sk-orchestration](../../assets/images/sk-memory-orchestration.png)
 
+![sk-orchestration](../../assets/images/sk-memory-orchestration.png)
 
 ![embeddings](../../assets/images/embeddings.png)
 
@@ -42,16 +42,18 @@ In summary, Project Miyagi's architecture presents a forward-looking approach to
 
 ## Tech Stack
 
-
 ### Services and Features
+
 - [Azure OpenAI](https://learn.microsoft.com/en-us/azure/cognitive-services/openai/concepts/models)
-  - gpt-4
-  - gpt-35-turbo
-  - text-embedding-ada-002
 - [Semantic Kernel](https://github.com/microsoft/semantic-kernel)
-- [Use your own data with Azure OpenAI](https://learn.microsoft.com/en-us/azure/ai-services/openai/use-your-data-quickstart?tabs=command-line&pivots=rest-api#example-curl-commands)
+- [AI Studio](https://azure.microsoft.com/en-us/products/ai-studio)
+- [AI Search](https://azure.microsoft.com/en-us/products/ai-services/ai-search)
+- [AI Speech](https://azure.microsoft.com/en-us/products/ai-services/ai-speech)
 - [AzureML PromptFlow](https://learn.microsoft.com/en-us/azure/machine-learning/prompt-flow/overview-what-is-prompt-flow?view=azureml-api-2)
 - [TypeChat](https://microsoft.github.io/TypeChat)
+- [Kernel-memory](https://github.com/microsoft/kernel-memory)
+- [AutoGen](https://github.com/microsoft/autogen)
+- [TaskWeaver](https://github.com/microsoft/TaskWeaver)
 - [Azure Functions](https://azure.microsoft.com/en-ca/products/functions/)
 - [APIM](https://learn.microsoft.com/en-us/azure/api-management/)
 - [Service Bus](https://learn.microsoft.com/en-us/azure/service-bus-messaging/service-bus-messaging-overview)
@@ -64,11 +66,5 @@ In summary, Project Miyagi's architecture presents a forward-looking approach to
 - [Azure DB for PostgreSQL](https://azure.microsoft.com/en-us/products/postgresql)
 - [Azure Redis Cache](https://azure.microsoft.com/en-us/products/cache)
 - [Azure Storage](https://learn.microsoft.com/en-us/azure/storage/common/storage-introduction)
-- [Apache Kafka on Azure Event Hubs](https://learn.microsoft.com/en-us/azure/event-hubs/azure-event-hubs-kafka-overview)
-- [Azure HuggingFace Inference Endpoints](https://azure.microsoft.com/en-us/solutions/hugging-face-on-azure)
 - [LangChain](https://github.com/hwchase17/langchain#readme)
-- [Foundation Models from CogServices](https://azure.microsoft.com/en-us/blog/announcing-a-renaissance-in-computer-vision-ai-with-microsofts-florence-foundation-model/)
-- [Qdrant](https://qdrant.tech/solutions/)
-- [Microsoft DeepSpeed Chat](https://github.com/microsoft/DeepSpeedExamples/tree/master/applications/DeepSpeed-Chat)
-- [Azure Web PubSub](https://azure.microsoft.com/en-us/products/web-pubsub)
-- [Azure Communication Services (ACS)](https://learn.microsoft.com/en-us/azure/communication-services/overview#common-scenarios)
+- [LlamaIndex](https://github.com/run-llama/llama_index)
