@@ -24,7 +24,7 @@
     1. Agents with Semantic Kernel, Autogen, and TaskWeaver
 1. Deep-dive into AI orchestration primitives through use cases with Miyagi and Reddog
 1. Exploring Agents and Agent-like Orchestration
-1. Tradeoffs with AI orchestrators (Semantic Kernel, Langchain, TypeChat, PromptFlow etc.)
+1. Tradeoffs with AI orchestrators (Semantic Kernel, Langchain, Guidance, TypeChat, PromptFlow etc.)
 1. Copilot Studio and Power Platform
 1. AI Studio and Prompt Flow
 1. AI Content Safety Studio

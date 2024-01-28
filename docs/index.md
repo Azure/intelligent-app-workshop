@@ -6,7 +6,7 @@ Inspired by Github Copilot's impact on developer productivity, this experiential
 
 !!! note ""
 
-    For a preview, catch the [recording on :simple-youtube: Cosmos DB Live TV](https://www.youtube.com/watch?v=V8dlEvXdGEM&t=144s). For an overview on mental models, see [this video from :simple-youtube: Semantic Kernel's Channel](https://www.youtube.com/watch?v=EueJTTuluVQ&t=750s).
+   :tv: For a preview, catch the [recording on :simple-youtube: Cosmos DB Live TV](https://www.youtube.com/watch?v=V8dlEvXdGEM&t=144s). For an overview on mental models, see [this video from Semantic Kernel's Channel](https://www.youtube.com/watch?v=EueJTTuluVQ&t=750s).
 
 
 

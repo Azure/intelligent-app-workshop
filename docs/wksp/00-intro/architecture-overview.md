@@ -46,6 +46,9 @@ In summary, Project Miyagi's architecture presents a forward-looking approach to
 
 - [Azure OpenAI](https://learn.microsoft.com/en-us/azure/cognitive-services/openai/concepts/models)
 - [Semantic Kernel](https://github.com/microsoft/semantic-kernel)
+- [LangChain](https://python.langchain.com/docs/get_started/introduction)
+- [LlamaIndex](https://docs.llamaindex.ai/en/stable/)
+- [GitHub Copilot Agent](https://gh.io/copilot-partner-program)
 - [AI Studio](https://azure.microsoft.com/en-us/products/ai-studio)
 - [AI Search](https://azure.microsoft.com/en-us/products/ai-services/ai-search)
 - [AI Speech](https://azure.microsoft.com/en-us/products/ai-services/ai-speech)
@@ -66,5 +69,3 @@ In summary, Project Miyagi's architecture presents a forward-looking approach to
 - [Azure DB for PostgreSQL](https://azure.microsoft.com/en-us/products/postgresql)
 - [Azure Redis Cache](https://azure.microsoft.com/en-us/products/cache)
 - [Azure Storage](https://learn.microsoft.com/en-us/azure/storage/common/storage-introduction)
-- [LangChain](https://github.com/hwchase17/langchain#readme)
-- [LlamaIndex](https://github.com/run-llama/llama_index)
