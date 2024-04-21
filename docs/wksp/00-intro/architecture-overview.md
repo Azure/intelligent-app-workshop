@@ -10,6 +10,10 @@ Polyglot, AI-Infused Microservices Architecture with Event-Driven Backend
 
 ![copilot-stack](../../assets/images/copilot-stack.png)
 
+### Agents
+
+![agents](../../assets/images/agents-block-diagram.png)
+
 ## Overview
 
 Project Miyagi presents a modern, event-driven architecture, incorporating AI-infused microservices to enable seamless integration of state-of-the-art (SoTA) foundation models in user experiences and backend workflows. Built on Azure primitives and orchestrated by Semantic Kernel, the architecture emphasizes scalability, flexibility, and adaptability, paving the way for nascent, AI-enabled intelligent app design.

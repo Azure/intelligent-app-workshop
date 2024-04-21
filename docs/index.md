@@ -25,6 +25,7 @@ By leveraging design thinking, [Project Miyagi](https://github.com/Azure-Samples
 1. Design Thinking Session: A collaborative brainstorming activity to identify your idiosyncratic use cases, focusing on addressing user needs and alleviating pain points, so that the workshop will be relevant for you.
 1. Introduction to Assistants API and Semantic Kernel (SK): A comprehensive presentation to familiarize participants with the fundamentals of SK, agent-like orchestration, and goals-first AI.
 1. End-to-End Application Lifecycle Workshop featuring [Miyagi](https://github.com/Azure-Samples/miyagi): Gain hands-on experience in incorporating SK primitives into the entire application lifecycle, including leveraging SK skills and prompt engineering to orchestrate complex flows with Azure OpenAI models. <p align="center"><img src="assets/images/basic-arch.png" width=50% /></p>
+<p align="center"><img src="assets/images/ai_application.png" width=50% /></p>
 1. Architecture Design Session: Dive into the intricacies of designing a robust and effective system architecture to support intelligent app development.
 
 ![miyagi-ui](assets/images/ui-annotations.png)
