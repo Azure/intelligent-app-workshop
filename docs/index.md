@@ -9,26 +9,33 @@ Inspired by Github Copilot's impact on developer productivity, this experiential
    :tv: For a preview, catch the [recording on :simple-youtube: Cosmos DB Live TV](https://www.youtube.com/watch?v=V8dlEvXdGEM&t=144s). For an overview on mental models, see [this video from Semantic Kernel's Channel](https://www.youtube.com/watch?v=EueJTTuluVQ&t=750s).
 
 
-## Topics for the workshop
+## Workshop Overview
+
+In this comprehensive workshop, you will:
+
+- Utilize Azure AI Studio for reasoning engines, Prompt Flow for LLMOps, AI Search for semantic retrieval systems, and Semantic Kernel for orchestration.
+- Work with [Miyagi](https://github.com/Azure-Samples/miyagi) codebase during the hands-on experiential workshop
+- Explore advanced capabilities such as AutoGen and GraphRag
+
+
+## Topics for the Workshop
 
 ???+ info "Pre-requisite"
 
-    Please signup for [Azure OpenAI (AOAI)](https://aka.ms/oai/access) and complete [Getting started with AOAI module](https://learn.microsoft.com/en-us/training/modules/get-started-openai/) to benefit from this workshop
+    Please sign up for [Azure OpenAI (AOAI)](https://aka.ms/oai/access) and complete the [Getting Started with AOAI module](https://learn.microsoft.com/en-us/training/modules/get-started-openai/) to get the most out of this workshop.
 
-1. Exploring the Art of the Possible with [Miyagi](https://github.com/Azure-Samples/miyagi) and [Semantic Kernel (SK)](https://github.com/microsoft/semantic-kernel) demos: Engage in interactive demonstrations to envision the potential applications of SK and [Miyagi](https://github.com/Azure-Samples/miyagi).
-1. Design Thinking Session: A collaborative brainstorming activity to identify your idiosyncratic use cases, focusing on addressing user needs and alleviating pain points, so that the workshop will be relevant for you.
-1. Introduction to Assistants API and Semantic Kernel (SK): A comprehensive presentation to familiarize participants with the fundamentals of SK, agent-like orchestration, and goals-first AI.
-1. End-to-End Application Lifecycle Workshop featuring [Miyagi](https://github.com/Azure-Samples/miyagi): Gain hands-on experience in incorporating SK primitives into the entire application lifecycle, including leveraging SK skills and prompt engineering to orchestrate complex flows with Azure OpenAI models. <p align="center"><img src="assets/images/basic-arch.png" width=50% /></p>
+1. **Brief Overview of Gen AI Capabilities and Use Cases**: Explore the art of the possible with multi-agent and advanced retrieval systems using samples like [Miyagi](https://github.com/Azure-Samples/miyagi) and [Holmes](https://github.com/Azure-Samples/holmes). Engage in interactive demonstrations to envision potential applications with reasoning engines and semantic memory systems.
+1. **Design Thinking Session (Optional)**: Participate in a collaborative brainstorming activity to identify your unique use cases, focusing on addressing user needs and alleviating pain points, ensuring the workshop is relevant to you.
+1. **AI Studio and Prompt Flow**: Quickly get started with your own copilot, grounded by your proprietary data in AI Search using our AI Studio experience. Customize it with Prompt Flow and deploy it to a production endpoint, including LLMOps integration.
+1. **AI Orchestration SDKs**: Enhance your custom copilot by integrating it with existing APIs and incorporating advanced orchestration and multi-turn LLM interactions using SDKs like Semantic Kernel and LangChain.
+1. **Multi-Agent and Advanced Retrieval**: Further develop your solution by leveraging multi-agent capabilities for reliable outputs and complex inference tasks with AutoGen, Assistants API, and GraphRag.
+1. **Other Use Cases**: Explore AI Document Intelligence and Vision model capabilities for automating business workflows.
+
+<p align="center"><img src="assets/images/basic-arch.png" width=50% /></p>
 <p align="center"><img src="assets/images/ai_application.png" width=50% /></p>
-1. Architecture Design Session: Dive into the intricacies of designing a robust and effective system architecture to support intelligent app development.
 
-![miyagi-ui](assets/images/ui-annotations.png)
+[See full agenda](wksp/00-intro/agenda-and-outcomes.md){ .md-button }
 
-<p align="left"><img src="assets/images/plugin.png" width=50% /></p>
-
-
-
-[See full-agenda](wksp/00-intro/agenda-and-outcomes.md){ .md-button }
 
 
 ### Disclaimer
