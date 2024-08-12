@@ -2,21 +2,22 @@
 
 In this hands-on workshop, we will explore how to use Microsoft's Copilot Stack to develop your own AI-infused, enterprise-grade applications that improve productivity and create hyper-personalized product experiences.
 
-[Sign up for updates](https://forms.office.com/r/rLds2s8RH1){ :target="_blank" .md-button .md-button--primary }
+We will also highlight the emergent capabilities that are advantageous to adopt, as well as the limitations that can be mitigated through engineering, particularly in the areas of orchestration and retrieval. Additionally, we will showcase the capabilities within the Copilot Stack that enable you to achieve this.
 
-![gpt4-capabilities](../../assets/images/gpt4-capabilities.PNG)
+
+![gpt-capabilities](../../assets/images/gpt-capabilities.PNG)
 
 ## Overview
 
-We will take a methodical approach, starting slow and building concepts with a DIY (Do It Yourself) mindset. This workshop covers a wide range of topics, including the latest frameworks, approaches, and architectures in AI-driven app development, in addition to production-grade deployment options on Azure. We will begin by identifying customer needs and then work backwards to determine how these new technologies can address those needs by integrating AI into every step of the process.
+This workshop offers a methodical, hands-on approach that starts with the basics and gradually introduces you to advanced capabilities. It covers a broad range of topics, including the latest frameworks, methodologies, and architectures in AI-driven app development, along with production-grade deployment options on Azure. We will begin with Azure AI Studio and Prompt Flow to demonstrate how easy it is to get started. From there, we will dive deeper into SDK-based development, utilizing AI orchestration libraries (Semantic Kernel, Langchain, Llamaindex) integrated with Azure AI's LLMOps tooling, the multi-agent framework with AutoGen with Assistants API, and advanced retrieval systems using GraphRag. Once you are well-versed in these capabilities, the next step is to identify customer needs and work backwards to determine how these technologies can be integrated into the development process to address those needs effectively.
 
 ### Who is this for
 
 This workshop is designed for:
 
-- Developers and Architects with a basic understanding of app development who want to incorporate AI into their apps
-- Product managers and designers interested in leveraging AI to improve user experiences
-- Anyone curious about the potential of AI in app development
+- Developers and Architects with a foundational understanding of app development who want to incorporate AI into their applications.
+- Product managers and designers interested in leveraging AI to enhance user experiences.
+- Anyone curious about the potential of AI in app development.
 
 ### Disclaimer
 
