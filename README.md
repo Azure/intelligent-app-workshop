@@ -1,32 +1,34 @@
-# Intelligent app workshop
+# Envisioning Workshop: Build Your Own Custom Copilot
 
 [![Open in Visual Studio Code](https://img.shields.io/static/v1?logo=visualstudiocode&label=&message=Open%20in%20VS%20Code&labelColor=2c2c32&color=007acc&logoColor=007acc)](https://github.dev/Azure/intelligent-app-workshop)
 [![License: CC BY-SA 4.0](https://img.shields.io/badge/License-CC%20BY--SA-222.svg)](https://creativecommons.org/licenses/by-sa/4.0/)
 
-This is an envisioning workshop, based on [Microsoft's Copilot stack](https://learn.microsoft.com/en-us/semantic-kernel/overview/#semantic-kernel-is-at-the-center-of-the-copilot-stack), to rethink user experience, architecture, and app development by leveraging the intelligence of foundation models. This comprehensive workshop utilizes the [Miyagi](https://github.com/Azure-Samples/miyagi) codebase and Semantic Kernel (SK), along with SK's Design thinking material, to guide you through the entire lifecycle of app development – from identifying user needs to deploying a fully functional, production-grade app on Azure.
+Welcome to this envisioning workshop designed to help you build your own custom Copilot using [Microsoft's Copilot stack](https://developer.microsoft.com/en-us/copilot). This workshop aims to rethink user experience, architecture, and app development by leveraging reasoning engines (Foundation models and Language Models) and semantic memory systems.
 
-> **Note**  
-> *Work in Progress*. Meanwhile, signup at [intelligentapp.dev](https://intelligentapp.dev) for updates and checkout our related repo that showcases Generative AI capabilities for cloud-native, event-driven microservices: [Azure/reddog-solutions](https://github.com/Azure/reddog-solutions#readme). As a mandatory pre-requisite, please signup for [Azure OpenAI (AOAI)](https://customervoice.microsoft.com/Pages/ResponsePage.aspx?id=v4j5cvGGr0GRqy180BHbR7en2Ais5pxKtso_Pz4b1_xUOFA5Qk1UWDRBMjg0WFhPMkIzTzhKQ1dWNyQlQCN0PWcu) and complete [Getting started with AOAI module](https://learn.microsoft.com/en-us/training/modules/get-started-openai/) to benefit from this workshop
->
-> :tv: For a preview, catch the [recording on Cosmos DB Live TV](https://www.youtube.com/watch?v=V8dlEvXdGEM&t=144s)
->
-> <p align="left"><a href="http://www.youtube.com/watch?feature=player_embedded&v=V8dlEvXdGEM&t=144s" target="_blank"><img src="docs/assets/images/video_recording.png" alt="Miyagi walkthrough" width="40%" height="40%" border="10" /></a></p> 
+## Workshop Overview
 
+In this comprehensive workshop, you will:
 
-Key takeaways:
+- Utilize Azure AI Studio for reasoning engines, Prompt Flow for LLMOps, AI Search for semantic retrieval systems, and Semantic Kernel for orchestration.
+- Work with [Miyagi](https://github.com/Azure-Samples/miyagi) codebase during the hands-on experiential workshop
+- Explore advanced capabilities such as AutoGen and GraphRag
 
-1. Uncover innovative ways to transform user experience and app design by integrating foundation models into interactions.
-2. Learn how to effectively harness Large Language Models (LLMs) with the [Miyagi](https://github.com/Azure-Samples/miyagi) codebase for streamlined development.
-3. Rethink how to serve your end-user needs with Semantic Kernel's Design Thinking workshop.
-4. Gain valuable insights into the production and deployment of apps powered by Large Language Models (LLMs).
+## Objectives
+
+This workshop will guide you through the entire lifecycle of app development, including:
+
+1. Identifying user needs
+2. Developing a fully functional, production-grade app
+3. Deploying your app on Azure with advanced capabilities
+
+By the end of this workshop, you will have a deeper understanding of how to leverage Microsoft's tools and technologies to create intelligent applications.
+
 
 <p align="center"><img src="docs/assets/images/basic-arch.png" width=50% /></p>
 
 ![wip-azure](docs/assets/images/wip-azure.png)
 
-![ui](docs/assets/images/ui-annotations.png)
 
-![plugins](docs/assets/images/plugin.png)
 
 ### Disclaimer
 
