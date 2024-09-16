@@ -1,1 +1,0 @@
-# Advanced AI Orchestration using Semantic Kernel (agents, plugins, planners)

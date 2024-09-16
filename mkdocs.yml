@@ -2,12 +2,50 @@ site_name: Intelligent App Workshop for Microsoft Copilot Stack
 site_description: Complimentary workshop to Project Miyagi to demonstrate the potential of integrating SoTA foundation models in user experiences and backend workflows. Orchestrated by Semantic Kernel and built on Azure primitives.
 site_author: Govind Kamtamneni, Principal AI Engineer, Azure Global Black Belt, Microsoft
 nav:
-  - Home: wksp2/index.md
-  - Module 1 - Build Custom Copilots using Azure AI Studio:
-      - wksp2/00-ai-studio/index.md
-  - Module 2 - Build Custom Copilots using Semantic Kernel:
-      - Pre-requisites: wksp2/01-semantic-kernel/pre-reqs.md
-      - Advanced AI Orchestration using Semantic Kernel: wksp2/01-semantic-kernel/hands-on-ai-orchestration.md
+  - Home: index.md
+  - Intro: wksp/00-intro/index.md
+  - Agenda & Outcomes: wksp/00-intro/agenda-and-outcomes.md
+  - Miyagi Architecture Overview: wksp/00-intro/architecture-overview.md
+  - Sample Walkthroughs for inspiration: wksp/00-intro/samples-walk-through.md
+  - Semantic Kernel overview: wksp/00-intro/semantic-kernel-overview.md
+  - Pre-requisites: wksp/00-intro/pre-reqs.md
+  - Module 1 - Discovery and Ideation:
+      - wksp/01-design-thinking/index.md
+      - Design Thinking Canvas: wksp/01-design-thinking/design-thinking-canvas.md
+      - Optional discovery sessions:
+          - JTBD Worksheet: wksp/01-design-thinking/jobs-to-be-done.md
+          - HEART Framework: wksp/01-design-thinking/heart-framework.md
+  - Module 2 - Fork and Get Hands-on: wksp/02-fork-and-get-hands-on/index.md
+  - Module 3 - Inner-loop: wksp/03-inner-loop/index.md
+  - Module 4 - Basics of Semantic Kernel: wksp/04-Semantic-Kernel-Basics/index.md
+  - Module 5 - Use cases deep-dive with Miyagi and Reddog:
+      - wksp/05-use-cases/index.md
+      - Synthesis: wksp/05-use-cases/synthesis.md
+      - Generation:
+          - Overview: wksp/05-use-cases/generation.md
+          - Text: wksp/05-use-cases/generation.md
+          - Images: wksp/05-use-cases/generation.md
+          - Code: wksp/05-use-cases/generation.md
+          - Video: wksp/05-use-cases/generation.md
+      - Conversation: wksp/05-use-cases/synthesis.md
+      - Summarization: wksp/05-use-cases/synthesis.md
+      - Classification: wksp/05-use-cases/synthesis.md
+      - Translation: wksp/05-use-cases/synthesis.md
+      - Speech-to-text: wksp/05-use-cases/synthesis.md
+      - Semantic Search: wksp/05-use-cases/synthesis.md
+      - Anomaly Detection: wksp/05-use-cases/synthesis.md
+      - Agency and Planning: wksp/05-use-cases/synthesis.md
+      - QA on Domain Knowledge: wksp/05-use-cases/synthesis.md
+      - Plugins: wksp/05-use-cases/synthesis.md
+  - Module 6 - Build Custom Copilots using Azure AI Studio:
+      - wksp2/06-ai-studio/index.md
+  - Module 7 - Hands-on AI Orchestration using Semantic Kernel:
+      - AI Orchestration using Semantic Kernel: 
+          - wksp2/07-semantic-kernel/index.md
+          - Simple AI Orchestration: 
+              - wksp2/07-semantic-kernel/simple-ai-orchestration/index.md
+              - Pre-requisites: wksp2/07-semantic-kernel/simple-ai-orchestration/pre-reqs.md
+          - Advanced AI Orchestration: wksp2/07-semantic-kernel/advanced-ai-orchestration/index.md
       - Extend custom copilot with AI Document Intelligence, AI Vision, and multi-modal Foundation model: wksp2/01-semantic-kernel/extend-copilot-ai-doc-intel.md
   - Post-workshop:
       - Feedback: wksp/other/feedback.md
