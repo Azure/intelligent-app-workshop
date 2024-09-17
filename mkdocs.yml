@@ -37,10 +37,10 @@ nav:
       - Agency and Planning: wksp/05-use-cases/synthesis.md
       - QA on Domain Knowledge: wksp/05-use-cases/synthesis.md
       - Plugins: wksp/05-use-cases/synthesis.md
-  - Module 6 - Build Custom Copilots using Azure AI Studio:
-      - wksp2/06-ai-studio/index.md
-  - Module 7 - Hands-on AI Orchestration using Semantic Kernel:
-      - AI Orchestration using Semantic Kernel: 
+  - Module 6 - Hands-on workshop: 
+      - Build Custom Copilots using Azure AI Studio:
+          - wksp2/06-ai-studio/index.md
+      - Hands-on AI Orchestration using Semantic Kernel:
           - wksp2/07-semantic-kernel/index.md
           - Simple AI Orchestration: 
               - wksp2/07-semantic-kernel/simple-ai-orchestration/index.md
