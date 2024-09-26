@@ -12,34 +12,34 @@
 
     1. Step 1: add code to initialize kernel with chat completion:
  
-    ```csharp
-    IKernelBuilder builder = KernelBuilderProvider.CreateKernelWithChatCompletion();
-    Kernel kernel = builder.Build();
-    ```
+        ```csharp
+        IKernelBuilder builder = KernelBuilderProvider.CreateKernelWithChatCompletion();
+        Kernel kernel = builder.Build();
+        ```
 
     1. Step 2: add the following system prompt:
 
-    ```csharp
-    OpenAIPromptExecutionSettings promptExecutionSettings = new()
-    {
-        ChatSystemPrompt = @"You are a friendly financial advisor that only emits financial advice in a creative and funny tone"
-    };
-    ```
+        ```csharp
+        OpenAIPromptExecutionSettings promptExecutionSettings = new()
+        {
+            ChatSystemPrompt = @"You are a friendly financial advisor that only emits financial advice in a creative and funny tone"
+        };
+        ```
 
     1. Step 3: initialize kernel arguments
 
-    ```csharp
-    KernelArguments kernelArgs = new(promptExecutionSettings);
-    ```
+        ```csharp
+        KernelArguments kernelArgs = new(promptExecutionSettings);
+        ```
 
     1. Step 4: add a loop to invoke prompt asynchronously providing user input and kernel arguments:
 
-    ```csharp
-    await foreach (var response in kernel.InvokePromptStreamingAsync(userInput, kernelArgs))
-    {
-        Console.Write(response);
-    }
-    ```
+        ```csharp
+        await foreach (var response in kernel.InvokePromptStreamingAsync(userInput, kernelArgs))
+        {
+            Console.Write(response);
+        }
+        ```
 
 1. Run the program with this command:
 
