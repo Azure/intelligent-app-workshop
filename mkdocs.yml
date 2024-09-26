@@ -45,6 +45,7 @@ nav:
           - Simple AI Orchestration: 
               - wksp2/07-semantic-kernel/simple-ai-orchestration/index.md
               - Pre-requisites: wksp2/07-semantic-kernel/simple-ai-orchestration/pre-reqs.md
+              - Lesson 1 - Simple Semantic Kernel chatbot with history: wksp2/07-semantic-kernel/simple-ai-orchestration/lesson1.md
           - Advanced AI Orchestration: wksp2/07-semantic-kernel/advanced-ai-orchestration/index.md
       - Extend custom copilot with AI Document Intelligence, AI Vision, and multi-modal Foundation model: wksp2/01-semantic-kernel/extend-copilot-ai-doc-intel.md
   - Post-workshop:

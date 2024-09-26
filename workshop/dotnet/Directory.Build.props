@@ -1,0 +1,11 @@
+<Project>
+
+    <PropertyGroup>
+        <TargetFramework>net8.0</TargetFramework>
+        <ImplicitUsings>enable</ImplicitUsings>
+        <Nullable>enable</Nullable>
+		<NoWarn>SKEXP0110;SKEXP0001;SKEXP0101</NoWarn>
+        <ManagePackageVersionsCentrally>true</ManagePackageVersionsCentrally>
+	</PropertyGroup>
+
+</Project>

@@ -8,9 +8,35 @@ Before attending the Intelligent App Development Workshop, please ensure you hav
 
 1. **Basic programming knowledge**: Familiarity with at least one programming language (e.g., Python, JavaScript, Java, or C#) and basic understanding of software development concepts.
 1. **Azure account**: A Microsoft Azure account with an active subscription. If you don't have one, sign up for a [free trial](https://azure.microsoft.com/en-us/free/).
-1. 1. **Azure OpenAI**: Ability to provision an [Azure OpenAI](https://azure.microsoft.com/en-us/services/openai/) resource is required.
+1. **Azure subscription with access enabled for the Azure OpenAI Service** - For more details, see the [Azure OpenAI Service documentation on how to get access](https://learn.microsoft.com/azure/ai-services/openai/overview#how-do-i-get-access-to-azure-openai). 
+1. **Azure OpenAI resource** - For this workshop, you'll need to deploy at least one model such as GPT 4. See the Azure OpenAI Service documentation for more details on [deploying models](https://learn.microsoft.com/azure/ai-services/openai/how-to/create-resource?pivots=web-portal) and [model availability](https://learn.microsoft.com/azure/ai-services/openai/concepts/models).
 1. **Development environment**: A computer with your preferred development environment installed, such as Visual Studio Code, PyCharm, or another IDE that supports the programming language you'll be using in the workshop.
 1. **Git**: Familiarity with Git and GitHub for version control. Ensure you have [Git](https://git-scm.com/book/en/v2/Getting-Started-Installing-Git) installed on your computer.
+1. **.NET CLI**: .NET CLI is included when you install [.NET SDK](https://dotnet.microsoft.com/en-us/download)
+
+## Initial Setup
+
+1. Ensure all [pre-requisites](pre-reqs.md) are met and installed.
+1. Clone this repo using: 
+
+    ```bash
+    git clone https://github.com/Azure/intelligent-app-workshop.git
+    ```
+
+1. Change directory into cloned repo:
+
+    ```bash
+    cd intelligent-app-workshop
+    ```
+
+1. Copy and rename the file `appsettings.json.example` into the corresponding lesson directory as follows (example command for Lesson1):
+
+    ```bash
+    cp workshop\donet\Lessons\appsettings.json.example workshop\dotnet\Lessons\Lesson1\appsettings.json
+    ```
+
+1. Retrieve the OpenAI Endpoint URL, deployed model name and API Key (from pre-requisites) into the app settings
+
 
 ??? note "Optional"
     The following prerequisites are optional but recommended to get the most out of the workshop:

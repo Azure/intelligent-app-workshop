@@ -1,0 +1,7 @@
+{
+
+  "endpoint": "<OpenAIEndpoint>",
+  "modelName": "<OpenAIModelName>",
+  "apiKey": ""
+
+}
