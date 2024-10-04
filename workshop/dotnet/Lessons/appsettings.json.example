@@ -2,6 +2,7 @@
 
   "endpoint": "<OpenAIEndpoint>",
   "modelName": "<OpenAIModelName>",
-  "apiKey": ""
+  "apiKey": "",
+  "stockServiceApiKey": ""
 
 }
