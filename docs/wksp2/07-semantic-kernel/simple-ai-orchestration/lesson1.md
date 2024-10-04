@@ -1,5 +1,7 @@
 # Lesson 1: Simple Semantic Kernel chat bot with history
 
+In this lesson we will create a semantic kernel chatbot with a system prompt and keeping track of chat history.
+
 1. Switch to Lesson 1 directory:
 
     ```bash

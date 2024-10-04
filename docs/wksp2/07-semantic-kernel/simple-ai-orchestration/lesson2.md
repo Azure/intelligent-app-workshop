@@ -1,7 +1,6 @@
-# Lesson 2: Simple Semantic Kernel chat agent with system prompt
+# Lesson 2: Simple Semantic Kernel chat agent with plugins
 
-In this lesson we will a system prompt to provide financial advice.
-
+In this lesson we will a semantic kernel plugins to be able to retrieve stock pricing.
 
 1. Switch to Lesson 2 directory:
 
