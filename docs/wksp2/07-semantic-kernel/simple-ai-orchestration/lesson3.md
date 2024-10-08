@@ -45,12 +45,19 @@ In this lesson we will a semantic kernel plugins to be able to retrieve stock pr
     kernel.Plugins.AddFromObject(new TimeInformationPlugin());
     ```
 
-1. Next locate Step 2 and add the following line (including the comma at the end) to be able to 
+1. Next locate Step 2 and add the following line to be able to 
    auto invoke kernel functions:
 
     ```csharp
-        // Step 2 - Add Auto invoke kernel functions as the tool call behavior
-        ToolCallBehavior = ToolCallBehavior.AutoInvokeKernelFunctions,
+        // TODO: Step 2 - Add Auto invoke kernel functions as the tool call behavior
+        ToolCallBehavior = ToolCallBehavior.AutoInvokeKernelFunctions
+    ```
+
+1. Next locate Step 3 and add the following parameters:
+
+    ```csharp
+        // TODO: Step 3 - Provide promptExecutionSettings and kernel arguments
+        await foreach (var chatUpdate in chatCompletionService.GetStreamingChatMessageContentsAsync(chatHistory, promptExecutionSettings, kernel))
     ```
 
 1. Re-run the program and ask what the current date is. The current date should be displayed this time:
@@ -95,16 +102,17 @@ In this lesson we will a semantic kernel plugins to be able to retrieve stock pr
     }
     ```
 
-1. Next, locate Step 3 in `Program.cs` and add import required for `StockService`:
+1. Next, locate Step 4 in `Program.cs` and add import required for `StockService`:
 
     ```csharp
-    // TODO: Step 3 - Add import required for StockService
+    // TODO: Step 4 - Add import required for StockService
     using Core.Utilities.Services;
     ```
 
-1. Next locate Step 4  and provide the following line to register the new `StockDataPlugin`:
+1. Next locate Step 5 and provide the following line to register the new `StockDataPlugin`:
 
     ```csharp
+    // TODO: Step 5 - Initialize Stock Data Plugin and register it in the kernel
     HttpClient httpClient = new();
     StockDataPlugin stockDataPlugin = new(new StocksService(httpClient));
     kernel.Plugins.AddFromObject(stockDataPlugin);

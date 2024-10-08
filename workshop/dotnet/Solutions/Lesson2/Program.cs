@@ -1,9 +1,8 @@
 using Core.Utilities.Config;
 using Microsoft.SemanticKernel;
 using Microsoft.SemanticKernel.Connectors.OpenAI;
-// Step 1 - add ChatCompletion import
+// Step 1 - Add ChatCompletion import
 using Microsoft.SemanticKernel.ChatCompletion;
-
 
 
 // Initialize the kernel with chat completion
@@ -13,15 +12,8 @@ Kernel kernel = builder.Build();
 // Step 2a - Get chatCompletionService and initialize chatHistory wiht system prompt
 var chatCompletionService = kernel.GetRequiredService<IChatCompletionService>();
 ChatHistory chatHistory = new("You are a friendly financial advisor that only emits financial advice in a creative and funny tone");
-// Step 2b - Remove the promptExecutionSettings and kernelArgs initialization code
-// Add system prompt
-OpenAIPromptExecutionSettings promptExecutionSettings = new()
-{
-    ChatSystemPrompt = @"You are a friendly financial advisor that only emits financial advice in a creative and funny tone"
-};
+// Step 2b - Remove the promptExecutionSettings and kernelArgs initialization code - REMOVED
 
-// Initialize kernel arguments
-KernelArguments kernelArgs = new(promptExecutionSettings);
 // Execute program.
 const string terminationPhrase = "quit";
 string? userInput;

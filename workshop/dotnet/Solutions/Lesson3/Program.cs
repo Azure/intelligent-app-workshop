@@ -1,8 +1,10 @@
 using Core.Utilities.Config;
-// Add import required for StockService
+// Step 4 - Add import required for StockService
 using Core.Utilities.Services;
 using Microsoft.SemanticKernel;
 using Microsoft.SemanticKernel.Connectors.OpenAI;
+// Add ChatCompletion import
+using Microsoft.SemanticKernel.ChatCompletion;
 // Temporarily added to enable Semantic Kernel tracing
 using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.Logging;
@@ -17,17 +19,20 @@ Kernel kernel = builder.Build();
 // Step 1 - Initialize Time plugin and registration in the kernel
 kernel.Plugins.AddFromObject(new TimeInformationPlugin());
 
-// Step 3 - Initialize Stock Data Plugin and register it in the kernel
+// Step 5 - Initialize Stock Data Plugin and register it in the kernel
 HttpClient httpClient = new();
 StockDataPlugin stockDataPlugin = new(new StocksService(httpClient));
 kernel.Plugins.AddFromObject(stockDataPlugin);
 
-// Add system propmpt
+// Get chatCompletionService and initialize chatHistory wiht system prompt
+var chatCompletionService = kernel.GetRequiredService<IChatCompletionService>();
+ChatHistory chatHistory = new("You are a friendly financial advisor that only emits financial advice in a creative and funny tone");
+// Remove the promptExecutionSettings and kernelArgs initialization code
+// Add system prompt
 OpenAIPromptExecutionSettings promptExecutionSettings = new()
 {
     // Step 2 - Add Auto invoke kernel functions as the tool call behavior
-    ToolCallBehavior = ToolCallBehavior.AutoInvokeKernelFunctions,
-    ChatSystemPrompt = @"You are a friendly financial advisor that only emits financial advice in a creative and funny tone"
+    ToolCallBehavior = ToolCallBehavior.AutoInvokeKernelFunctions
 };
 
 // Initialize kernel arguments
@@ -44,11 +49,18 @@ do
     if (userInput != null && userInput != terminationPhrase)
     {
         Console.Write("Assistant > ");
-        // Provide kernel arguments as a second parameter
-        await foreach (var response in kernel.InvokePromptStreamingAsync(userInput, kernelArgs))
+        // Initialize fullMessage variable and add user input to chat history
+        string fullMessage = "";
+        chatHistory.AddUserMessage(userInput);
+
+        // Step 3 - Provide promptExecutionSettings and kernel arguments
+        await foreach (var chatUpdate in chatCompletionService.GetStreamingChatMessageContentsAsync(chatHistory, promptExecutionSettings, kernel))
         {
-            Console.Write(response);
+            Console.Write(chatUpdate.Content);
+            fullMessage += chatUpdate.Content ?? "";
         }
+        chatHistory.AddAssistantMessage(fullMessage);
+
         Console.WriteLine();
     }
 }
