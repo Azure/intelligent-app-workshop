@@ -1,6 +1,6 @@
-# Lesson 2: Simple Semantic Kernel chat agent with plugins
+# Lesson 2: Simple Semantic Kernel chatbot with history
 
-In this lesson we will a semantic kernel plugins to be able to retrieve stock pricing.
+In this lesson we will a chat history to our chat agent.
 
 1. Switch to Lesson 2 directory:
 
@@ -14,115 +14,80 @@ In this lesson we will a semantic kernel plugins to be able to retrieve stock pr
     cp ../Lessons/Lesson1/appsettings.json .
     ```
 
-1. Run program and ask what the current date is:
+1. Open the project in your favorite IDE or text editor.
+
+1. Open `Program.cs` and locate the TODO for each step and apply the following changes for each:
+
+    1. Step 1: add code to initialize kernel with chat completion:
+
+        ```csharp
+        // TODO: Step 1 - Initialize Time plugin and registration in the kernel
+        kernel.Plugins.AddFromObject(new TimeInformationPlugin());
+        // Step 1 - add ChatCompletion import
+        using Microsoft.SemanticKernel.ChatCompletion;
+        ```
+
+    1. Step 2a: Get `chatCompletionService` and initialize `chatHistory` wiht system prompt
+
+        ```csharp
+        // TODO: Step 2a - Get chatCompletionService and initialize chatHistory wiht system prompt
+        var chatCompletionService = kernel.GetRequiredService<IChatCompletionService>();
+        ChatHistory chatHistory = new("You are a friendly financial advisor that only emits financial advice in a creative and funny tone");
+        ```
+    
+        Step 2b: Remove the `promptExecutionSettings` and `kernelArgs` initialization code
+
+        ```csharp
+        // Add system prompt
+        OpenAIPromptExecutionSettings promptExecutionSettings = new()
+        {
+            ChatSystemPrompt = @"You are a friendly financial advisor that only emits financial advice in a creative and funny tone"
+        };
+
+        // Initialize kernel arguments
+        KernelArguments kernelArgs = new(promptExecutionSettings);
+        ```
+    
+    1. Step 3: Initialize `fullMessage` variable and add user input to chat history:
+
+        ```csharp         
+        // TODO: Step 3 - Initialize fullMessage variable and add user input to chat history
+        string fullMessage = "";
+        chatHistory.AddUserMessage(userInput);
+        ```
+
+    1. Step 4: Remove the `foreach` loop below:
+
+        ```csharp
+        await foreach (var response in kernel.InvokePromptStreamingAsync(userInput, kernelArgs))
+        {
+            Console.Write(response);
+        }
+        ```
+
+        And replace it with this `foreach` loop including adding assistant message to chat history:
+
+        ```csharp
+        // TODO: Step 4 - Replace the foreach loop and replace it with this code including adding assistant message to chat history
+        await foreach (var chatUpdate in chatCompletionService.GetStreamingChatMessageContentsAsync(chatHistory))
+        {
+            Console.Write(chatUpdate.Content);
+            fullMessage += chatUpdate.Content ?? "";
+        }
+        chatHistory.AddAssistantMessage(fullMessage);
+        ```
+
+1. Re-run the program and start by stating your portfolio preference:
 
     ```bash
     dotnet run
-    User > what is the current date?
-    Assistant > I can't access today's date, but imagine it’s an eternal "Fri-yay," ready for financial fun! How can I help you on this hypothetical day?
+    User > My portfolio preference is moderate growth
+    Assistant > Ah, the sweet spot of moderation! You're like the Goldilocks of investing, not too hot, not too cold, but just right. Let's sprinkle some fairy dust on your portfolio and make it grow!
     ```
 
-1. Notice it does not provide a specific answer. Let's create a Semantic Kernel Plugin to be able to fix that. 
-   On the `Lesson2` directory create a new file name `TimeInformationPlugin.cs` in the same directory as `Program.cs` 
-   and add the following content
-
-    ```csharp
-    using System.ComponentModel;
-    using Microsoft.SemanticKernel;
-
-    public class TimeInformationPlugin
-    {
-        [KernelFunction] 
-        [Description("Retrieves the current time in UTC.")]
-        public string GetCurrentUtcTime() => DateTime.UtcNow.ToString("R");
-    }
-    ```
-
-1. Next locate Step 1 in `Program.cs` and provide the following line to register the `TimeInformationPlugin`:
-
-    ```csharp
-    // TODO: Step 1 - Initialize Time plugin and registration in the kernel
-    kernel.Plugins.AddFromObject(new TimeInformationPlugin());
-    ```
-
-1. Next locate Step 2 and add the following line (including the comma at the end) to be able to 
-   auto invoke kernel functions:
-
-    ```csharp
-        // Step 2 - Add Auto invoke kernel functions as the tool call behavior
-        ToolCallBehavior = ToolCallBehavior.AutoInvokeKernelFunctions,
-    ```
-
-1. Re-run the program and ask what the current date is. The current date should be displayed this time:
+1. Next ask what your portfolio preferenc is:
 
     ```bash
-    dotnet run
-    User > what is the current date?
-    Assistant > Today's date is October 4, 2024. Time flies like an arrow; fruit flies like a banana! 
-    ```
-
-1. Congratulations you have written your first Semantic Kernel plugin! Next, we are going to add another plugin
-   that will integrate to be able to an existing `StockService` included within the `Core.Utilities` project.
-   Create a new file named `StockDataPlugin.cs` in the same directory as `Program.cs` and include the following code,
-   which includes 2 functions, one to retrieve the stock price for the current date and another one for a specific date:
-
-    ```csharp
-    using Core.Utilities.Services;
-    using Core.Utilities.Models;
-    using Core.Utilities.Extensions;
-
-    using Microsoft.SemanticKernel;
-    using System.ComponentModel;
-
-    public class StockDataPlugin(StocksService stockService)
-    {
-        private readonly StocksService _stockService = stockService;
-
-        [KernelFunction, Description("Gets stock price")]
-        public async Task<string> GetStockPrice(string symbol)
-        {
-            string tabularData = (await _stockService.GetStockDailyOpenClose(symbol)).FormatStockData();
-            return tabularData;
-        }
-
-        [KernelFunction, Description("Gets stock price for a given date")]
-        public async Task<string> GetStockPriceForDate(string symbol, DateTime date)
-        {
-            string tabularData = (await _stockService.GetStockDailyOpenClose(symbol, date)).FormatStockData();
-            return tabularData;
-        }
-
-    }
-    ```
-
-1. Next, locate Step 3 in `Program.cs` and add import required for `StockService`:
-
-    ```csharp
-    // TODO: Step 3 - Add import required for StockService
-    using Core.Utilities.Services;
-    ```
-
-1. Next locate Step 4  and provide the following line to register the new `StockDataPlugin`:
-
-    ```csharp
-    HttpClient httpClient = new();
-    StockDataPlugin stockDataPlugin = new(new StocksService(httpClient));
-    kernel.Plugins.AddFromObject(stockDataPlugin);
-    ```
-
-1. Before we can run this, you need to get an API Key to be able to get stock prices from: 
-   https://polygon.io/dashboard/login. You can sign up for a free API Key by creating a login.
-
-1. Once the apiKey is provide, update the `appSettings.json` and paste it into this line:
-
-    ```json
-      "stockServiceApiKey": "<key>"
-    ```
-
-1. Next run program and ask stock pricing information:
-
-    ```bash
-    User > what is MSFT price?
-    Assistant > Hold onto your calculators! The price of MSFT is currently $417.63. 
-    Looks like it's trying to outshine the stars! 
+    User > what is my portfolio preference?
+    Assistant > Ah, you're the maestro of moderate growth! You're seeking a harmonious balance between risk and return, like a blend of jazz and rock in the symphony of investing. A sprinkle of thrill, a dash of stability, all wrapped in a comfy financial blanket.
     ```

@@ -7,7 +7,7 @@ using Microsoft.SemanticKernel.Connectors.OpenAI;
 IKernelBuilder builder = KernelBuilderProvider.CreateKernelWithChatCompletion();
 Kernel kernel = builder.Build();
 
-// TODO: Step 2 - Add system propmpt
+// TODO: Step 2 - Add system prompt
 OpenAIPromptExecutionSettings promptExecutionSettings = new()
 {
     ChatSystemPrompt = @"You are a friendly financial advisor that only emits financial advice in a creative and funny tone"
