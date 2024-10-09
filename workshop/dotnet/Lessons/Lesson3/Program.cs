@@ -1,5 +1,7 @@
 using Core.Utilities.Config;
-// TODO: Step 4 - Add import required for StockService
+// TODO: Step 1 - Add import for Plugins
+
+// TODO: Step 5 - Add import required for StockService
 
 using Microsoft.SemanticKernel;
 using Microsoft.SemanticKernel.Connectors.OpenAI;
@@ -11,10 +13,10 @@ using Microsoft.SemanticKernel.ChatCompletion;
 IKernelBuilder builder = KernelBuilderProvider.CreateKernelWithChatCompletion();
 Kernel kernel = builder.Build();
 
-// TODO: Step 1 - Initialize Time plugin and registration in the kernel
+// TODO: Step 2 - Initialize Time plugin and registration in the kernel
 
 
-// TODO: Step 5 - Initialize Stock Data Plugin and register it in the kernel
+// TODO: Step 6 - Initialize Stock Data Plugin and register it in the kernel
 
 
 // Get chatCompletionService and initialize chatHistory wiht system prompt
@@ -24,7 +26,7 @@ ChatHistory chatHistory = new("You are a friendly financial advisor that only em
 // Add system prompt
 OpenAIPromptExecutionSettings promptExecutionSettings = new()
 {
-    // Step 2 - Add Auto invoke kernel functions as the tool call behavior
+    // Step 3 - Add Auto invoke kernel functions as the tool call behavior
 
 };
 
@@ -46,7 +48,7 @@ do
         string fullMessage = "";
         chatHistory.AddUserMessage(userInput);
 
-        // TODO: Step 3 - Provide promptExecutionSettings and kernel arguments
+        // TODO: Step 4 - Provide promptExecutionSettings and kernel arguments
         await foreach (var chatUpdate in chatCompletionService.GetStreamingChatMessageContentsAsync(chatHistory))
         {
             Console.Write(chatUpdate.Content);

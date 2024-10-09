@@ -8,7 +8,7 @@ In this lesson we will a semantic kernel plugins to be able to retrieve stock pr
     cd Lessons/Lesson3
     ```
 
-1. Start by copying `appsetting.json` from Lesson 1:
+1. Start by copying `appsettings.json` from Lesson 1:
 
     ```bash
     cp ../Lessons/Lesson1/appsettings.json .
@@ -23,12 +23,21 @@ In this lesson we will a semantic kernel plugins to be able to retrieve stock pr
     ```
 
 1. Notice it does not provide a specific answer. Let's create a Semantic Kernel Plugin to be able to fix that. 
-   On the `Lesson3` directory create a new file name `TimeInformationPlugin.cs` in the same directory as `Program.cs` 
+   On the `Lesson3` directory create a new directory named `Plugins`:
+   
+    ```bash
+    mkdir Plugins
+    cd Plugins
+    ```
+
+ 1. In the `Plugins` directory create a new file named `TimeInformationPlugin.cs` 
    and add the following content
 
     ```csharp
     using System.ComponentModel;
     using Microsoft.SemanticKernel;
+
+    namespace Plugins;
 
     public class TimeInformationPlugin
     {
@@ -38,25 +47,32 @@ In this lesson we will a semantic kernel plugins to be able to retrieve stock pr
     }
     ```
 
-1. Next locate Step 1 in `Program.cs` and provide the following line to register the `TimeInformationPlugin`:
+1. Next locate Step 1 in `Program.cs` and add the following import line:
 
     ```csharp
-    // TODO: Step 1 - Initialize Time plugin and registration in the kernel
+    // TODO: Step 1 - Add import for Plugins
+    using Plugins;
+    ```
+
+1. Next locate Step 2 in `Program.cs` and provide the following line to register the `TimeInformationPlugin`:
+
+    ```csharp
+    // TODO: Step 2 - Initialize Time plugin and registration in the kernel
     kernel.Plugins.AddFromObject(new TimeInformationPlugin());
     ```
 
-1. Next locate Step 2 and add the following line to be able to 
+1. Next locate Step 3 and add the following line to be able to 
    auto invoke kernel functions:
 
     ```csharp
-        // TODO: Step 2 - Add Auto invoke kernel functions as the tool call behavior
+        // TODO: Step 3 - Add Auto invoke kernel functions as the tool call behavior
         ToolCallBehavior = ToolCallBehavior.AutoInvokeKernelFunctions
     ```
 
-1. Next locate Step 3 and add the following parameters:
+1. Next locate Step 4 and add the following parameters:
 
     ```csharp
-        // TODO: Step 3 - Provide promptExecutionSettings and kernel arguments
+        // TODO: Step 4 - Provide promptExecutionSettings and kernel arguments
         await foreach (var chatUpdate in chatCompletionService.GetStreamingChatMessageContentsAsync(chatHistory, promptExecutionSettings, kernel))
     ```
 
@@ -102,24 +118,24 @@ In this lesson we will a semantic kernel plugins to be able to retrieve stock pr
     }
     ```
 
-1. Next, locate Step 4 in `Program.cs` and add import required for `StockService`:
+1. Next, locate Step 5 in `Program.cs` and add import required for `StockService`:
 
     ```csharp
-    // TODO: Step 4 - Add import required for StockService
+    // TODO: Step 5 - Add import required for StockService
     using Core.Utilities.Services;
     ```
 
-1. Next locate Step 5 and provide the following line to register the new `StockDataPlugin`:
+1. Next locate Step 6 and provide the following line to register the new `StockDataPlugin`:
 
     ```csharp
-    // TODO: Step 5 - Initialize Stock Data Plugin and register it in the kernel
+    // TODO: Step 6 - Initialize Stock Data Plugin and register it in the kernel
     HttpClient httpClient = new();
     StockDataPlugin stockDataPlugin = new(new StocksService(httpClient));
     kernel.Plugins.AddFromObject(stockDataPlugin);
     ```
 
 1. Before we can run this, you need to get an API Key to be able to get stock prices from: 
-   https://polygon.io/dashboard/login. You can sign up for a free API Key by creating a login.
+   [https://polygon.io/dashboard/login](). You can sign up for a free API Key by creating a login.
 
 1. Once the apiKey is provide, update the `appSettings.json` and paste it into this line:
 

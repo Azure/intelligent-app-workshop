@@ -5,6 +5,8 @@ using Core.Utilities.Extensions;
 using Microsoft.SemanticKernel;
 using System.ComponentModel;
 
+namespace Plugins;
+
 public class StockDataPlugin(StocksService stockService)
 {
     private readonly StocksService _stockService = stockService;

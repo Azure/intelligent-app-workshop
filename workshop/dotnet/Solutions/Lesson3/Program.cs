@@ -1,5 +1,7 @@
 using Core.Utilities.Config;
-// Step 4 - Add import required for StockService
+// Step 1 - Add import for Plugins
+using Plugins;
+// Step 5 - Add import required for StockService
 using Core.Utilities.Services;
 using Microsoft.SemanticKernel;
 using Microsoft.SemanticKernel.Connectors.OpenAI;
@@ -13,13 +15,13 @@ using Microsoft.Extensions.Logging;
 // Initialize the kernel with chat completion
 IKernelBuilder builder = KernelBuilderProvider.CreateKernelWithChatCompletion();
 // Enable tracing
-//builder.Services.AddLogging(services => services.AddConsole().SetMinimumLevel(LogLevel.Trace));
+builder.Services.AddLogging(services => services.AddConsole().SetMinimumLevel(LogLevel.Trace));
 Kernel kernel = builder.Build();
 
-// Step 1 - Initialize Time plugin and registration in the kernel
+// Step 2 - Initialize Time plugin and registration in the kernel
 kernel.Plugins.AddFromObject(new TimeInformationPlugin());
 
-// Step 5 - Initialize Stock Data Plugin and register it in the kernel
+// Step 6 - Initialize Stock Data Plugin and register it in the kernel
 HttpClient httpClient = new();
 StockDataPlugin stockDataPlugin = new(new StocksService(httpClient));
 kernel.Plugins.AddFromObject(stockDataPlugin);
@@ -31,7 +33,7 @@ ChatHistory chatHistory = new("You are a friendly financial advisor that only em
 // Add system prompt
 OpenAIPromptExecutionSettings promptExecutionSettings = new()
 {
-    // Step 2 - Add Auto invoke kernel functions as the tool call behavior
+    // Step 3 - Add Auto invoke kernel functions as the tool call behavior
     ToolCallBehavior = ToolCallBehavior.AutoInvokeKernelFunctions
 };
 
@@ -53,7 +55,7 @@ do
         string fullMessage = "";
         chatHistory.AddUserMessage(userInput);
 
-        // Step 3 - Provide promptExecutionSettings and kernel arguments
+        // Step 4 - Provide promptExecutionSettings and kernel arguments
         await foreach (var chatUpdate in chatCompletionService.GetStreamingChatMessageContentsAsync(chatHistory, promptExecutionSettings, kernel))
         {
             Console.Write(chatUpdate.Content);
