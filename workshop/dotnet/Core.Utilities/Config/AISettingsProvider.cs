@@ -7,7 +7,7 @@ namespace Core.Utilities.Config;
 
 internal static class AISettingsProvider
 {
-    internal static AISettings GetSettings()
+    internal static AppSettings GetSettings()
     {
         IConfigurationRoot config = new ConfigurationBuilder()
             .AddJsonFile("appsettings.json", optional: true)
@@ -16,7 +16,7 @@ internal static class AISettingsProvider
             .Build();
 
         var aiSettings = config
-            .Get<AISettings>();
+            .Get<AppSettings>();
 
         Guard.Against.Null(aiSettings);
         Guard.Against.NullOrEmpty(aiSettings.ModelName);

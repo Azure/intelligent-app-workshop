@@ -2,7 +2,7 @@ using System.Text.Json.Serialization;
 
 namespace Core.Utilities.Models;
 
-public class AISettings {
+public class AppSettings {
 
     public string Endpoint { get; set; } = string.Empty;
     

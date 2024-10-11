@@ -1,9 +1,8 @@
-using Core.Utilities.Config;
 using Core.Utilities.Models;
+using Core.Utilities.Extensions;
 // Add import for Plugins
 using Plugins;
 // Add import required for StockService
-using Core.Utilities.Services;
 using Microsoft.SemanticKernel;
 using Microsoft.SemanticKernel.Connectors.OpenAI;
 // Add ChatCompletion import
@@ -21,47 +20,48 @@ namespace Controllers;
 public class ChatController : ControllerBase {
 
     private readonly Kernel _kernel;
+    private readonly OpenAIPromptExecutionSettings _promptExecutionSettings;
 
     public ChatController(Kernel kernel)
     {
         _kernel = kernel;
-    }
-
-    [HttpPost("/chat")]
-    public async Task<String> ReplyAsync(
-        String userInput, String[] history)
-    {
-        // Get chatCompletionService and initialize chatHistory wiht system prompt
-        var chatCompletionService = _kernel.GetRequiredService<IChatCompletionService>();
-        ChatHistory chatHistory = new(string.Join("\n", history));
-        chatHistory.AddUserMessage(userInput);
-        chatHistory.AddSystemMessage("You are a friendly financial advisor that only emits financial advice in a creative and funny tone");
-        // Add system prompt
-        OpenAIPromptExecutionSettings promptExecutionSettings = new()
+        _promptExecutionSettings = new()
         {
             // Step 3 - Add Auto invoke kernel functions as the tool call behavior
             ToolCallBehavior = ToolCallBehavior.AutoInvokeKernelFunctions
         };
 
-        // Initialize kernel arguments
-        KernelArguments kernelArgs = new(promptExecutionSettings);
+    }
+
+    [HttpPost("/chat")]
+    public async Task<ChatResponse> ReplyAsync([FromBody]ChatRequest request)
+    {
+        // Get chatCompletionService and initialize chatHistory wiht system prompt
+        var chatCompletionService = _kernel.GetRequiredService<IChatCompletionService>();
+        var chatHistory = new ChatHistory();
+        if (request.MessageHistory.Count == 0) { 
+            chatHistory.AddSystemMessage("You are a friendly financial advisor that only emits financial advice in a creative and funny tone");
+        }
+        else {
+            chatHistory = request.ToChatHistory();
+        }
 
         // Initialize fullMessage variable and add user input to chat history
         string fullMessage = "";
-        if (userInput != null)
+        if (request.InputMessage != null)
         {
-            chatHistory.AddUserMessage(userInput);
+            chatHistory.AddUserMessage(request.InputMessage);
 
             // Step 4 - Provide promptExecutionSettings and kernel arguments
-            await foreach (var chatUpdate in chatCompletionService.GetStreamingChatMessageContentsAsync(chatHistory, promptExecutionSettings, _kernel))
+            await foreach (var chatUpdate in chatCompletionService.GetStreamingChatMessageContentsAsync(chatHistory, _promptExecutionSettings, _kernel))
             {
                 Console.Write(chatUpdate.Content);
                 fullMessage += chatUpdate.Content ?? "";
             }
             chatHistory.AddAssistantMessage(fullMessage);
         }
-
-        return fullMessage;
+        var chatResponse = new ChatResponse(fullMessage, chatHistory.FromChatHistory());    
+        return chatResponse;
     }
 
 

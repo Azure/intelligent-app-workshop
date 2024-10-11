@@ -1,14 +1,14 @@
-﻿namespace Core.Utilities.Models
-{
-    public record Stocks(List<Stock> Stock);
+﻿namespace Core.Utilities.Models;
 
-    public record Stock(
-        string Symbol,
-        double Open,
-        double Close,
-        double AfterHours,
-        double PreMarket,
-        string From,
-        string Status = "OK"
-    );
-}
+public record Stocks(List<Stock> Stock);
+
+public record Stock(
+    string Symbol,
+    double Open,
+    double Close,
+    double AfterHours,
+    double PreMarket,
+    string From,
+    string Status = "OK"
+);
+
