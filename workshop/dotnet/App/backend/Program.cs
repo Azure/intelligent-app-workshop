@@ -1,6 +1,5 @@
-// Copyright (c) Microsoft. All rights reserved.
-
 using Microsoft.AspNetCore.Antiforgery;
+using Extensions;
 
 var builder = WebApplication.CreateBuilder(args);
 
@@ -23,6 +22,11 @@ builder.Services.AddHttpClient();
 
 builder.Services.AddDistributedMemoryCache();
 
+// Add Azure services
+//builder.Services.AddAzureServices();
+
+// Add Semantic Kernel services
+builder.Services.AddSkServices();
 
 var app = builder.Build();
 app.UseSwagger();

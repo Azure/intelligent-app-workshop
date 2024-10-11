@@ -17,28 +17,17 @@ using Microsoft.AspNetCore.Mvc;
 namespace Controllers;
 
 [ApiController]
-[Route("chat")]
+[Route("sk")]
 public class ChatController : ControllerBase {
 
     private readonly Kernel _kernel;
 
-    public ChatController()
+    public ChatController(Kernel kernel)
     {
-        IKernelBuilder builder = KernelBuilderProvider.CreateKernelWithChatCompletion();
-        // Enable tracing
-        builder.Services.AddLogging(services => services.AddConsole().SetMinimumLevel(LogLevel.Trace));
-        _kernel = builder.Build();
-
-        // Step 2 - Initialize Time plugin and registration in the kernel
-        _kernel.Plugins.AddFromObject(new TimeInformationPlugin());
-
-        // Step 6 - Initialize Stock Data Plugin and register it in the kernel
-        HttpClient httpClient = new();
-        StockDataPlugin stockDataPlugin = new(new StocksService(httpClient));
-        _kernel.Plugins.AddFromObject(stockDataPlugin);
+        _kernel = kernel;
     }
 
-    [HttpPost("/")]
+    [HttpPost("/chat")]
     public async Task<String> ReplyAsync(
         String userInput, String[] history)
     {
