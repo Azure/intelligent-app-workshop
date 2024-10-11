@@ -1,9 +1,13 @@
-﻿<Project Sdk="Microsoft.NET.Sdk"><PropertyGroup>  <UserSecretsId>baf96ebb-2f1a-4528-a2c3-c3179a4b7d35</UserSecretsId>
-  </PropertyGroup>
+﻿<Project Sdk="Microsoft.NET.Sdk.Web">
 
     <ItemGroup>
         <None Update="appsettings.json">
             <CopyToOutputDirectory>Always</CopyToOutputDirectory>
         </None>
+    </ItemGroup>
+
+    <ItemGroup>
+        <PackageReference Include="Microsoft.AspNetCore.Mvc" />
+        <PackageReference Include="Swashbuckle.AspNetCore" />
     </ItemGroup>
 </Project>

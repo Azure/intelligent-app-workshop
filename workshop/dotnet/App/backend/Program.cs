@@ -1,69 +1,54 @@
-using Core.Utilities.Config;
-// Step 1 - Add import for Plugins
-using Plugins;
-// Step 5 - Add import required for StockService
-using Core.Utilities.Services;
-using Microsoft.SemanticKernel;
-using Microsoft.SemanticKernel.Connectors.OpenAI;
-// Add ChatCompletion import
-using Microsoft.SemanticKernel.ChatCompletion;
-// Temporarily added to enable Semantic Kernel tracing
-using Microsoft.Extensions.DependencyInjection;
-using Microsoft.Extensions.Logging;
+// Copyright (c) Microsoft. All rights reserved.
+
+using Microsoft.AspNetCore.Antiforgery;
+
+var builder = WebApplication.CreateBuilder(args);
+
+builder.Services.AddControllers();
+builder.Services.AddEndpointsApiExplorer();
+builder.Services.AddSwaggerGen();
+
+// Load user secrets
+builder.Configuration.AddUserSecrets<Program>();
+//builder.Configuration.ConfigureAzureKeyVault();
+
+// See: https://aka.ms/aspnetcore/swashbuckle
+builder.Services.AddEndpointsApiExplorer();
+builder.Services.AddSwaggerGen();
+builder.Services.AddOutputCache();
+//builder.Services.AddCrossOriginResourceSharing();
+//builder.Services.AddAzureServices();
+builder.Services.AddAntiforgery(options => { options.HeaderName = "X-CSRF-TOKEN-HEADER"; options.FormFieldName = "X-CSRF-TOKEN-FORM"; });
+builder.Services.AddHttpClient();
+
+builder.Services.AddDistributedMemoryCache();
 
 
-// Initialize the kernel with chat completion
-IKernelBuilder builder = KernelBuilderProvider.CreateKernelWithChatCompletion();
-// Enable tracing
-builder.Services.AddLogging(services => services.AddConsole().SetMinimumLevel(LogLevel.Trace));
-Kernel kernel = builder.Build();
+var app = builder.Build();
+app.UseSwagger();
+app.UseSwaggerUI();
 
-// Step 2 - Initialize Time plugin and registration in the kernel
-kernel.Plugins.AddFromObject(new TimeInformationPlugin());
+//app.UseHttpsRedirection();
+app.UseOutputCache();
+app.UseRouting();
+app.UseCors();
+app.UseAntiforgery();
+app.MapControllers();
 
-// Step 6 - Initialize Stock Data Plugin and register it in the kernel
-HttpClient httpClient = new();
-StockDataPlugin stockDataPlugin = new(new StocksService(httpClient));
-kernel.Plugins.AddFromObject(stockDataPlugin);
-
-// Get chatCompletionService and initialize chatHistory wiht system prompt
-var chatCompletionService = kernel.GetRequiredService<IChatCompletionService>();
-ChatHistory chatHistory = new("You are a friendly financial advisor that only emits financial advice in a creative and funny tone");
-// Remove the promptExecutionSettings and kernelArgs initialization code
-// Add system prompt
-OpenAIPromptExecutionSettings promptExecutionSettings = new()
+app.Use(next => context =>
 {
-    // Step 3 - Add Auto invoke kernel functions as the tool call behavior
-    ToolCallBehavior = ToolCallBehavior.AutoInvokeKernelFunctions
-};
+    var antiforgery = app.Services.GetRequiredService<IAntiforgery>();
+    var tokens = antiforgery.GetAndStoreTokens(context);
+    context.Response.Cookies.Append("XSRF-TOKEN", tokens?.RequestToken ?? string.Empty, new CookieOptions() { HttpOnly = false });
+    return next(context);
+});
 
-// Initialize kernel arguments
-KernelArguments kernelArgs = new(promptExecutionSettings);
+app.Map("/", () => Results.Redirect("/swagger"));
 
-// Execute program.
-const string terminationPhrase = "quit";
-string? userInput;
-do
-{
-    Console.Write("User > ");
-    userInput = Console.ReadLine();
+// app.UseAuthorization();
 
-    if (userInput != null && userInput != terminationPhrase)
-    {
-        Console.Write("Assistant > ");
-        // Initialize fullMessage variable and add user input to chat history
-        string fullMessage = "";
-        chatHistory.AddUserMessage(userInput);
+app.MapControllerRoute(
+    "default",
+    "{controller=ChatController}");
 
-        // Step 4 - Provide promptExecutionSettings and kernel arguments
-        await foreach (var chatUpdate in chatCompletionService.GetStreamingChatMessageContentsAsync(chatHistory, promptExecutionSettings, kernel))
-        {
-            Console.Write(chatUpdate.Content);
-            fullMessage += chatUpdate.Content ?? "";
-        }
-        chatHistory.AddAssistantMessage(fullMessage);
-
-        Console.WriteLine();
-    }
-}
-while (userInput != terminationPhrase);
+app.Run();
