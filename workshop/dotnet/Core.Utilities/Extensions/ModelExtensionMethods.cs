@@ -11,9 +11,9 @@ namespace Core.Utilities.Extensions
         {
             StringBuilder stringBuilder = new();
 
-            stringBuilder.AppendLine("| Symbol | Price | Pre Market Price | After Hours Price | Date ");
+            stringBuilder.AppendLine("| Symbol | Price | Open | Low | High | Date ");
             stringBuilder.AppendLine("| ----- | ----- | ----- | ----- |");
-            stringBuilder.AppendLine($"| {stockData.Symbol} | {stockData.Open} | {stockData.PreMarket} | {stockData.AfterHours} | {stockData.From} ");
+            stringBuilder.AppendLine($"| {stockData.Symbol} | {stockData.Close} | {stockData.Open} | {stockData.Low} | {stockData.High} | {stockData.From} ");
 
             return stringBuilder.ToString();
         }

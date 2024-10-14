@@ -14,14 +14,14 @@ public class StockDataPlugin(StocksService stockService)
     [KernelFunction, Description("Gets stock price")]
     public async Task<string> GetStockPrice(string symbol)
     {
-        string tabularData = (await _stockService.GetStockDailyOpenClose(symbol)).FormatStockData();
+        string tabularData = (await _stockService.GetStockAggregate(symbol)).FormatStockData();
         return tabularData;
     }
 
     [KernelFunction, Description("Gets stock price for a given date")]
     public async Task<string> GetStockPriceForDate(string symbol, DateTime date)
     {
-        string tabularData = (await _stockService.GetStockDailyOpenClose(symbol, date)).FormatStockData();
+        string tabularData = (await _stockService.GetStockAggregate(symbol, date)).FormatStockData();
         return tabularData;
     }
 

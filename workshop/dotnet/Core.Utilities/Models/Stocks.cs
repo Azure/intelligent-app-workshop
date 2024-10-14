@@ -6,8 +6,8 @@ public record Stock(
     string Symbol,
     double Open,
     double Close,
-    double AfterHours,
-    double PreMarket,
+    double High,
+    double Low,
     string From,
     string Status = "OK"
 );
