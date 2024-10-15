@@ -9,7 +9,7 @@ public record AppSettings (
 
 public record OpenAI (
     string Endpoint,
-    string ModelName,
+    string DeploymentName,
     string ApiKey
 );
 

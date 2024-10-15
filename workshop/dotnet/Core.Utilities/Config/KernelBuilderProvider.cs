@@ -10,7 +10,7 @@ public static class KernelBuilderProvider
         return Kernel
             .CreateBuilder()
             .AddAzureOpenAIChatCompletion(
-                applicationSettings.OpenAI.ModelName,
+                applicationSettings.OpenAI.DeploymentName,
                 applicationSettings.OpenAI.Endpoint,
                 applicationSettings.OpenAI.ApiKey);
     }

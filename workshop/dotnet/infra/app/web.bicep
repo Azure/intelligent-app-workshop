@@ -44,6 +44,9 @@ param openAiChatGptDeployment string
 @description('The OpenAI API key')
 param openAiApiKey string
 
+@description('The Stock Service API key')
+param stockServiceApiKey string
+
 @description('An array of service binds')
 param serviceBinds array
 
@@ -96,17 +99,21 @@ module app '../core/host/container-app-upsert.bicep' = {
         value: storageContainerName
       }
       {
-        name: 'AZURE_OPENAI_ENDPOINT'
+        name: 'OpenAI__Endpoint'
         value: openAiEndpoint
       }
       {
-        name: 'AZURE_OPENAI_CHATGPT_DEPLOYMENT'
+        name: 'OpenAI_DeploymentName'
         value: openAiChatGptDeployment
       }
       {
-        name: 'OPENAI_API_KEY'
+        name: 'OpenAI__ApiKey'
         value: openAiApiKey
       }
+      {
+        name: 'StockService__ApiKey'
+        value: stockServiceApiKey
+      }      
     ]
     targetPort: 8080
   }

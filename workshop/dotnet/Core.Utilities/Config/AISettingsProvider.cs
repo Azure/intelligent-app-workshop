@@ -19,7 +19,7 @@ internal static class AISettingsProvider
             .Get<AppSettings>();
         Guard.Against.Null(aiSettings);
         Guard.Against.Null(aiSettings.OpenAI);
-        Guard.Against.NullOrEmpty(aiSettings.OpenAI.ModelName);
+        Guard.Against.NullOrEmpty(aiSettings.OpenAI.DeploymentName);
         Guard.Against.NullOrEmpty(aiSettings.OpenAI.ApiKey);
         Guard.Against.NullOrEmpty(aiSettings.OpenAI.Endpoint);
 

@@ -117,6 +117,8 @@ param openAIApiKey string
 @description('OpenAI Model')
 param openAiChatGptDeployment string
 
+@description('Stock Service API Key from Polygon.io')
+param stockServiceApiKey string
 
 var abbrs = loadJsonContent('./abbreviations.json')
 var resourceToken = toLower(uniqueString(subscription().id, environmentName, location))
@@ -175,6 +177,10 @@ module keyVaultSecrets 'core/security/keyvault-secrets.bicep' = {
         name: 'UseAOAI'
         value: useAOAI ? 'true' : 'false'
       }
+      {
+        name: 'StockServiceApiKey'
+        value: stockServiceApiKey
+      }
     ],
     useAOAI ? [
       {
@@ -193,6 +199,10 @@ module keyVaultSecrets 'core/security/keyvault-secrets.bicep' = {
       {
         name: 'OpenAiChatGptDeployment'
         value: openAiChatGptDeployment
+      }
+      {
+        name: 'StockServiceApiKey'
+        value: stockServiceApiKey
       }
     ])
   }
@@ -232,6 +242,7 @@ module web './app/web.bicep' = {
     storageContainerName: storageContainerName
     openAiApiKey: useAOAI ? '' : openAIApiKey
     openAiEndpoint: useAOAI ? azureOpenAi.outputs.endpoint : ''
+    stockServiceApiKey: stockServiceApiKey
     openAiChatGptDeployment: useAOAI ? azureChatGptDeploymentName : ''
     serviceBinds: []
   }
