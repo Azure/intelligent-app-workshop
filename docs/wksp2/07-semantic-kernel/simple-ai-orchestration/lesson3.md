@@ -140,7 +140,9 @@ In this lesson we will a semantic kernel plugins to be able to retrieve stock pr
 1. Once the apiKey is provide, update the `appSettings.json` and paste it into this line:
 
     ```json
-      "stockServiceApiKey": "<key>"
+      "StockService": {
+        "ApiKey": "<key>"
+      }
     ```
 
 1. Next run program and ask stock pricing information:

@@ -2,14 +2,17 @@ using System.Text.Json.Serialization;
 
 namespace Core.Utilities.Models;
 
-public class AppSettings {
+public record AppSettings (
+    OpenAI OpenAI,
+    StockService StockService
+);
 
-    public string Endpoint { get; set; } = string.Empty;
-    
-    public string ModelName { get; set; } = string.Empty;
+public record OpenAI (
+    string Endpoint,
+    string ModelName,
+    string ApiKey
+);
 
-    public string ApiKey { get; set; } = string.Empty;
-
-    public string StockServiceApiKey { get; set;} = string.Empty;
-    
-};
+public record StockService (
+    string ApiKey
+);

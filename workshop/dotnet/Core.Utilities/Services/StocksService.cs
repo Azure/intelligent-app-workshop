@@ -21,7 +21,7 @@ namespace Core.Utilities.Services
         {
             httpClient.BaseAddress = new Uri("https://api.polygon.io/v1/");
             _httpClient = httpClient;
-            _apiKey = AISettingsProvider.GetSettings().StockServiceApiKey;
+            _apiKey = AISettingsProvider.GetSettings().StockService.ApiKey;
         }
 
         /// <summary>

@@ -1,8 +1,10 @@
 {
-
-  "endpoint": "<OpenAIEndpoint>",
-  "modelName": "<OpenAIModelName>",
-  "apiKey": "",
-  "stockServiceApiKey": ""
-
+  "OpenAI": {
+    "endpoint": "<OpenAIEndpoint>",
+    "modelName": "<OpenAIModelName>",
+    "apiKey": ""
+  },
+  "StockService": {
+    "apiKey": ""
+  }
 }

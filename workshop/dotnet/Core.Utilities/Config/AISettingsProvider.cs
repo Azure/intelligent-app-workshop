@@ -17,11 +17,11 @@ internal static class AISettingsProvider
 
         var aiSettings = config
             .Get<AppSettings>();
-
         Guard.Against.Null(aiSettings);
-        Guard.Against.NullOrEmpty(aiSettings.ModelName);
-        Guard.Against.NullOrEmpty(aiSettings.ApiKey);
-        Guard.Against.NullOrEmpty(aiSettings.Endpoint);
+        Guard.Against.Null(aiSettings.OpenAI);
+        Guard.Against.NullOrEmpty(aiSettings.OpenAI.ModelName);
+        Guard.Against.NullOrEmpty(aiSettings.OpenAI.ApiKey);
+        Guard.Against.NullOrEmpty(aiSettings.OpenAI.Endpoint);
 
         return aiSettings;
     }
