@@ -63,11 +63,14 @@
       "value": "${OPENAI_API_KEY}"
     },
     "useAOAI": {
-      "value": "${USE_AOAI=true}"
+      "value": "${USE_AOAI=false}"
     },
     "openAiChatGptDeployment": {
-      "value": "${OPENAI_CHATGPT_DEPLOYMENT=gpt-4o-mini}"
+      "value": "${OPENAI_CHATGPT_DEPLOYMENT}"
     },
+    "openAiEndpoint": {
+      "value": "${OPENAI_ENDPOINT}"
+    },    
     "azureOpenAIChatGptModelVersion": {
       "value": "${AZURE_OPENAI_CHATGPT_MODEL_VERSION=2024-07-18}"
     },

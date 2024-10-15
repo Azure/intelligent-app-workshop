@@ -103,7 +103,7 @@ module app '../core/host/container-app-upsert.bicep' = {
         value: openAiEndpoint
       }
       {
-        name: 'OpenAI_DeploymentName'
+        name: 'OpenAI__DeploymentName'
         value: openAiChatGptDeployment
       }
       {

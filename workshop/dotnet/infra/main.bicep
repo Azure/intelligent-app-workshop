@@ -114,8 +114,11 @@ param useAOAI bool
 @description('OpenAI API Key, leave empty to provision a new Azure OpenAI instance')
 param openAIApiKey string
 
-@description('OpenAI Model')
+@description('OpenAI Deployment name')
 param openAiChatGptDeployment string
+
+@description('OpenAI Endoint')
+param openAiEndpoint string
 
 @description('Stock Service API Key from Polygon.io')
 param stockServiceApiKey string
@@ -200,10 +203,6 @@ module keyVaultSecrets 'core/security/keyvault-secrets.bicep' = {
         name: 'OpenAiChatGptDeployment'
         value: openAiChatGptDeployment
       }
-      {
-        name: 'StockServiceApiKey'
-        value: stockServiceApiKey
-      }
     ])
   }
 }
@@ -241,9 +240,9 @@ module web './app/web.bicep' = {
     storageBlobEndpoint: storage.outputs.primaryEndpoints.blob
     storageContainerName: storageContainerName
     openAiApiKey: useAOAI ? '' : openAIApiKey
-    openAiEndpoint: useAOAI ? azureOpenAi.outputs.endpoint : ''
+    openAiEndpoint: useAOAI ? azureOpenAi.outputs.endpoint : openAiEndpoint
     stockServiceApiKey: stockServiceApiKey
-    openAiChatGptDeployment: useAOAI ? azureChatGptDeploymentName : ''
+    openAiChatGptDeployment: useAOAI ? azureChatGptDeploymentName : openAiChatGptDeployment
     serviceBinds: []
   }
 }
