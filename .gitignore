@@ -21,7 +21,6 @@ node_modules/
 parts/
 sdist/
 var/
-package*.json
 *.egg-info/
 .installed.cfg
 *.egg
@@ -86,3 +85,4 @@ bld/
 [Ll]ogs/
 
 appsettings.json
+sample/frontend/.env
