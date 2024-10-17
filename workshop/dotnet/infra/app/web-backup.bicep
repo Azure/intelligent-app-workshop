@@ -8,9 +8,6 @@ param identityName string
 @description('The name of the Application Insights')
 param applicationInsightsName string
 
-@description('Port for Web UI')
-param webPort string = '80'
-
 @description('The name of the container apps environment')
 param containerAppsEnvironmentName string
 
@@ -38,8 +35,17 @@ param storageBlobEndpoint string
 @description('The name of the storage container')
 param storageContainerName string
 
-@description('The URI for the backend API')
-param apiEndpoint string
+@description('The OpenAI endpoint')
+param openAiEndpoint string
+
+@description('The OpenAI ChatGPT deployment name')
+param openAiChatGptDeployment string
+
+@description('The OpenAI API key')
+param openAiApiKey string
+
+@description('The Stock Service API key')
+param stockServiceApiKey string
 
 @description('An array of service binds')
 param serviceBinds array
@@ -93,15 +99,23 @@ module app '../core/host/container-app-upsert.bicep' = {
         value: storageContainerName
       }
       {
-        name: 'API_URI'
-        value: apiEndpoint
+        name: 'OpenAI__Endpoint'
+        value: openAiEndpoint
       }
       {
-        name: 'PORT'
-        value: webPort
+        name: 'OpenAI__DeploymentName'
+        value: openAiChatGptDeployment
+      }
+      {
+        name: 'OpenAI__ApiKey'
+        value: openAiApiKey
+      }
+      {
+        name: 'StockService__ApiKey'
+        value: stockServiceApiKey
       }      
     ]
-    targetPort: 80
+    targetPort: 8080
   }
 }
 

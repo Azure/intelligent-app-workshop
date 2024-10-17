@@ -8,9 +8,6 @@ param identityName string
 @description('The name of the Application Insights')
 param applicationInsightsName string
 
-@description('Port for Web UI')
-param webPort string = '80'
-
 @description('The name of the container apps environment')
 param containerAppsEnvironmentName string
 
@@ -18,7 +15,7 @@ param containerAppsEnvironmentName string
 param containerRegistryName string
 
 @description('The name of the service')
-param serviceName string = 'web'
+param serviceName string = 'api'
 
 @description('The name of the image')
 param imageName string = ''
@@ -38,8 +35,17 @@ param storageBlobEndpoint string
 @description('The name of the storage container')
 param storageContainerName string
 
-@description('The URI for the backend API')
-param apiEndpoint string
+@description('The OpenAI endpoint')
+param openAiEndpoint string
+
+@description('The OpenAI ChatGPT deployment name')
+param openAiChatGptDeployment string
+
+@description('The OpenAI API key')
+param openAiApiKey string
+
+@description('The Stock Service API key')
+param stockServiceApiKey string
 
 @description('An array of service binds')
 param serviceBinds array
@@ -93,15 +99,23 @@ module app '../core/host/container-app-upsert.bicep' = {
         value: storageContainerName
       }
       {
-        name: 'API_URI'
-        value: apiEndpoint
+        name: 'OpenAI__Endpoint'
+        value: openAiEndpoint
       }
       {
-        name: 'PORT'
-        value: webPort
+        name: 'OpenAI__DeploymentName'
+        value: openAiChatGptDeployment
+      }
+      {
+        name: 'OpenAI__ApiKey'
+        value: openAiApiKey
+      }
+      {
+        name: 'StockService__ApiKey'
+        value: stockServiceApiKey
       }      
     ]
-    targetPort: 80
+    targetPort: 8080
   }
 }
 
@@ -114,8 +128,8 @@ resource keyVault 'Microsoft.KeyVault/vaults@2022-07-01' existing = {
   scope: resourceGroup(keyVaultResourceGroupName)
 }
 
-output SERVICE_WEB_IDENTITY_NAME string = identityName
-output SERVICE_WEB_IDENTITY_PRINCIPAL_ID string = webIdentity.properties.principalId
-output SERVICE_WEB_IMAGE_NAME string = app.outputs.imageName
-output SERVICE_WEB_NAME string = app.outputs.name
-output SERVICE_WEB_URI string = app.outputs.uri
+output SERVICE_API_IDENTITY_NAME string = identityName
+output SERVICE_API_IDENTITY_PRINCIPAL_ID string = webIdentity.properties.principalId
+output SERVICE_API_IMAGE_NAME string = app.outputs.imageName
+output SERVICE_API_NAME string = app.outputs.name
+output SERVICE_API_URI string = app.outputs.uri

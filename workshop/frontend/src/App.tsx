@@ -2,7 +2,7 @@ import React, { useState, useEffect } from 'react';
 import { ChakraProvider, Box, VStack, Input, Text, Container, useColorMode, useColorModeValue, IconButton, Flex, InputGroup, InputRightElement } from '@chakra-ui/react';
 import { SunIcon, MoonIcon, ArrowForwardIcon } from '@chakra-ui/icons';
 import axios from 'axios';
-import { extendTheme, ThemeConfig } from "@chakra-ui/react";
+import { extendTheme, ThemeConfig } from '@chakra-ui/react';
 
 interface Message {
   message: string;
@@ -55,7 +55,7 @@ const ColorModeToggle = () => {
 function App() {
   const [inputMessage, setInputMessage] = useState('');
   const [messageHistory, setMessageHistory] = useState<Message[]>([]);
-  const [welcomeMessage, setWelcomeMessage] = useState<Message>({ message: 'Welcome to Azure Chat! How can I assist you today?', role: 'system' });
+  const [welcomeMessage, setWelcomeMessage] = useState<Message>({ message: 'You are a friendly financial advisor that only emits financial advice in a creative and funny tone', role: 'system' });
 
   useEffect(() => {
     setMessageHistory([welcomeMessage]);
@@ -65,7 +65,7 @@ function App() {
     if (!inputMessage.trim()) return;
 
     try {
-      const result = await axios.post('http://localhost:3001/api/chat', {
+      const result = await axios.post('https://ca-web-5ssljjzhgthbc.redbeach-42d46aa6.eastus2.azurecontainerapps.io/api/chat', {
         inputMessage,
         messageHistory
       }, {

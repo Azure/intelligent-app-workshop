@@ -23,13 +23,13 @@ RUN npm ci --only=production
 
 # Set environment variables
 ENV NODE_ENV=production
-ENV PORT=3001
+ENV PORT=80
 
 # Expose the correct port
-EXPOSE 3001
+EXPOSE 80
 
 # Create a shell script to run the server
-RUN echo '#!/bin/sh\n\nnode server.js' > /app/run.sh
+RUN echo 'node server.js' > /app/run.sh
 RUN chmod +x /app/run.sh
 
 CMD ["/app/run.sh"]

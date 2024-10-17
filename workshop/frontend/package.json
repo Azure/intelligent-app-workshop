@@ -18,6 +18,7 @@
     "cors": "^2.8.5",
     "express": "^4.21.1",
     "framer-motion": "^11.11.9",
+    "frontend": "file:",
     "react": "^18.3.1",
     "react-dom": "^18.3.1",
     "react-scripts": "5.0.1",
