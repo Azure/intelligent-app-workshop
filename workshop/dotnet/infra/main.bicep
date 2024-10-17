@@ -99,6 +99,12 @@ param storageResourceGroupName string = ''
 @description('Specifies if the web app exists')
 param webAppExists bool = false
 
+@description('Specifies if the api app exists')
+param apiAppExists bool = false
+
+@description('Name of the api app container')
+param apiContainerAppName string = ''
+
 @description('Name of the web app container')
 param webContainerAppName string = ''
 
@@ -107,6 +113,9 @@ param webIdentityName string = ''
 
 @description('Name of the web app image')
 param webImageName string = ''
+
+@description('Name of the api app image')
+param apiImageName string = ''
 
 @description('Use Azure OpenAI service')
 param useAOAI bool
@@ -221,7 +230,34 @@ module containerApps 'core/host/container-apps.bicep' = {
   }
 }
 
-// Web frontend
+
+// App api
+module api './app/api.bicep' = {
+  name: 'api'
+  scope: resourceGroup
+  params: {
+    name: !empty(apiContainerAppName) ? apiContainerAppName : '${abbrs.appContainerApps}api-${resourceToken}'
+    location: location
+    tags: updatedTags
+    imageName: apiImageName
+    identityName: !empty(webIdentityName) ? webIdentityName : '${abbrs.managedIdentityUserAssignedIdentities}api-${resourceToken}'
+    applicationInsightsName: monitoring.outputs.applicationInsightsName
+    containerAppsEnvironmentName: containerApps.outputs.environmentName
+    containerRegistryName: containerApps.outputs.registryName
+    exists: apiAppExists
+    keyVaultName: keyVault.outputs.name
+    keyVaultResourceGroupName: keyVaultResourceGroup.name
+    storageBlobEndpoint: storage.outputs.primaryEndpoints.blob
+    storageContainerName: storageContainerName
+    openAiApiKey: useAOAI ? '' : openAIApiKey
+    openAiEndpoint: useAOAI ? azureOpenAi.outputs.endpoint : openAiEndpoint
+    stockServiceApiKey: stockServiceApiKey
+    openAiChatGptDeployment: useAOAI ? azureChatGptDeploymentName : openAiChatGptDeployment
+    serviceBinds: []
+  }
+}
+
+// App web
 module web './app/web.bicep' = {
   name: 'web'
   scope: resourceGroup
@@ -239,15 +275,12 @@ module web './app/web.bicep' = {
     keyVaultResourceGroupName: keyVaultResourceGroup.name
     storageBlobEndpoint: storage.outputs.primaryEndpoints.blob
     storageContainerName: storageContainerName
-    openAiApiKey: useAOAI ? '' : openAIApiKey
-    openAiEndpoint: useAOAI ? azureOpenAi.outputs.endpoint : openAiEndpoint
-    stockServiceApiKey: stockServiceApiKey
-    openAiChatGptDeployment: useAOAI ? azureChatGptDeploymentName : openAiChatGptDeployment
+    apiEndpoint: '${api.outputs.SERVICE_API_URI}/chat'
     serviceBinds: []
   }
 }
 
-// Create an App Service Plan to group applications under the same payment plan and SKU
+// //Create an App Service Plan to group applications under the same payment plan and SKU
 // module appServicePlan './core/host/appserviceplan.bicep' = {
 //   name: 'appserviceplan'
 //   scope: resourceGroup
@@ -310,7 +343,7 @@ module storage 'core/storage/storage-account.bicep' = {
     name: !empty(storageAccountName) ? storageAccountName : '${abbrs.storageStorageAccounts}${resourceToken}'
     location: storageResourceGroupLocation
     tags: updatedTags
-    publicNetworkAccess: 'Enabled'
+    // publicNetworkAccess: 'Enabled'
     sku: {
       name: 'Standard_LRS'
     }
@@ -360,9 +393,9 @@ module storageContribRoleUser 'core/security/role.bicep' = {
 
 
 // SYSTEM IDENTITIES
-module azureOpenAiRoleBackend 'core/security/role.bicep' = if (useAOAI) {
+module azureOpenAiRoleApi 'core/security/role.bicep' = if (useAOAI) {
   scope: azureOpenAiResourceGroup
-  name: 'openai-role-backend'
+  name: 'openai-role-api'
   params: {
     principalId: web.outputs.SERVICE_WEB_IDENTITY_PRINCIPAL_ID
     roleDefinitionId: '5e0bd9bd-7b93-4f28-af87-19fc36ad61bd'
@@ -370,9 +403,9 @@ module azureOpenAiRoleBackend 'core/security/role.bicep' = if (useAOAI) {
   }
 }
 
-module storageRoleBackend 'core/security/role.bicep' = {
+module storageRoleApi 'core/security/role.bicep' = {
   scope: storageResourceGroup
-  name: 'storage-role-backend'
+  name: 'storage-role-api'
   params: {
     principalId: web.outputs.SERVICE_WEB_IDENTITY_PRINCIPAL_ID
     roleDefinitionId: '2a2b9908-6ea1-4ae2-8e65-a410df84e7d1'
@@ -380,9 +413,9 @@ module storageRoleBackend 'core/security/role.bicep' = {
   }
 }
 
-module storageContribRoleBackend 'core/security/role.bicep' = {
+module storageContribRoleApi 'core/security/role.bicep' = {
   scope: storageResourceGroup
-  name: 'storage-contribrole-backend'
+  name: 'storage-contribrole-api'
   params: {
     principalId: web.outputs.SERVICE_WEB_IDENTITY_PRINCIPAL_ID
     roleDefinitionId: 'ba92f5b4-2d11-453d-a403-e96b0029c9fe'
@@ -414,6 +447,8 @@ output AZURE_STORAGE_RESOURCE_GROUP string = storageResourceGroup.name
 output AZURE_TENANT_ID string = tenant().tenantId
 output SERVICE_WEB_IDENTITY_NAME string = web.outputs.SERVICE_WEB_IDENTITY_NAME
 output SERVICE_WEB_NAME string = web.outputs.SERVICE_WEB_NAME
+output SERVICE_API_IDENTITY_NAME string = api.outputs.SERVICE_API_IDENTITY_NAME
+output SERVICE_API_NAME string = api.outputs.SERVICE_API_NAME
 output USE_AOAI bool = useAOAI
 output AZURE_OPENAI_CHATGPT_MODEL_VERSION string = azureOpenAIChatGptModelVersion
 output AZURE_OPENAI_CHATGPT_MODEL_NAME string = azureOpenAIChatGptModelName

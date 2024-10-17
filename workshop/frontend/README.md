@@ -24,7 +24,7 @@ A React-based chat application for interacting with an AI assistant (backend), d
 
    ```bash
    API_URL=https://your-backend-api-url/chat
-   PORT=3001
+   PORT=80
    ```
 
 1. **Run the Application:**
@@ -33,7 +33,7 @@ A React-based chat application for interacting with an AI assistant (backend), d
    npm start
    ```
 
-   The application will be available at `http://localhost:3001`.
+   The application will be available at `http://localhost:80`.
 
 ### Docker Usage (Optional)
 
@@ -46,5 +46,5 @@ A React-based chat application for interacting with an AI assistant (backend), d
 1. **Run the Docker Container:**
 
    ```bash
-   docker run -p 3001:3001 -d simple-copilot-frontend
+   docker run -p 80:80 -d simple-copilot-frontend
    ```

@@ -53,6 +53,9 @@
     "webIdentityName": {
       "value": "${SERVICE_WEB_IDENTITY_NAME}"
     },
+    "apiAppExists": {
+      "value": "${SERVICE_API_RESOURCE_EXISTS=false}"
+    },
     "useApplicationInsights": {
       "value": "${AZURE_USE_APPLICATION_INSIGHTS=true}"
     },

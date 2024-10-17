@@ -4,7 +4,7 @@ const axios = require('axios');
 const path = require('path');
 
 const app = express();
-const PORT = process.env.PORT || 3001;
+const PORT = process.env.PORT;
 
 app.use(cors());
 app.use(express.json());
@@ -12,7 +12,7 @@ app.use(express.json());
 // Serve static files from the React app
 app.use(express.static(path.join(__dirname, 'build')));
 
-const API_URL = process.env.API_URL || 'https://ca-web-5ssljjzhgthbc.agreeablesea-63caf67a.eastus2.azurecontainerapps.io/chat';
+const API_URL = process.env.API_URL || 'http://localhost:' + PORT + '/chat';
 
 app.post('/api/chat', async (req, res) => {
   try {
