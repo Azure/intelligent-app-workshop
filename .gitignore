@@ -84,5 +84,7 @@ bld/
 [Ll]og/
 [Ll]ogs/
 
+# Frontend/react/npm files
 appsettings.json
-sample/frontend/.env
+.env
+package-lock.json

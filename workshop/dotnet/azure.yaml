@@ -2,10 +2,17 @@ name: semantic-kernel-workshop-csharp
 metadata:
   template: semantic-kernel-workshop-csharp@0.0.1-beta
 services:
-  web:
+  api:
     project: ./App/backend/
     host: containerapp
     language: dotnet
     docker:
       path: ../Dockerfile
       context: ../../
+  web:
+    project: ../frontend/
+    host: containerapp
+    language: ts
+    docker:
+      path: ./Dockerfile
+      context: ./

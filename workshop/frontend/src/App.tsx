@@ -2,7 +2,7 @@ import React, { useState, useEffect } from 'react';
 import { ChakraProvider, Box, VStack, Input, Text, Container, useColorMode, useColorModeValue, IconButton, Flex, InputGroup, InputRightElement } from '@chakra-ui/react';
 import { SunIcon, MoonIcon, ArrowForwardIcon } from '@chakra-ui/icons';
 import axios from 'axios';
-import { extendTheme, ThemeConfig } from "@chakra-ui/react";
+import { extendTheme, ThemeConfig } from '@chakra-ui/react';
 
 interface Message {
   message: string;
@@ -55,17 +55,21 @@ const ColorModeToggle = () => {
 function App() {
   const [inputMessage, setInputMessage] = useState('');
   const [messageHistory, setMessageHistory] = useState<Message[]>([]);
-  const [welcomeMessage, setWelcomeMessage] = useState<Message>({ message: 'Welcome to Azure Chat! How can I assist you today?', role: 'system' });
-
+  const [welcomeMessage, setWelcomeMessage] = useState<Message>({ message: 'You are a friendly financial advisor that only emits financial advice in a creative and funny tone', role: 'system' });
+  const proxy_url = process.env.REACT_APP_PROXY_URL;
   useEffect(() => {
     setMessageHistory([welcomeMessage]);
   }, []);
 
   const handleSendMessage = async () => {
     if (!inputMessage.trim()) return;
+    if (!proxy_url) {
+      console.error('Proxy URL is not set');
+      return;
+    }
 
     try {
-      const result = await axios.post('http://localhost:3001/api/chat', {
+      const result = await axios.post(proxy_url, {
         inputMessage,
         messageHistory
       }, {
