@@ -93,13 +93,13 @@ module app '../core/host/container-app-upsert.bicep' = {
         value: storageContainerName
       }
       {
-        name: 'API_URI'
+        name: 'API_URL'
         value: apiEndpoint
       }
       {
         name: 'PORT'
         value: webPort
-      }      
+      }
     ]
     targetPort: 80
   }
