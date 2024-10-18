@@ -280,20 +280,6 @@ module web './app/web.bicep' = {
   }
 }
 
-// //Create an App Service Plan to group applications under the same payment plan and SKU
-// module appServicePlan './core/host/appserviceplan.bicep' = {
-//   name: 'appserviceplan'
-//   scope: resourceGroup
-//   params: {
-//     name: !empty(appServicePlanName) ? appServicePlanName : '${abbrs.webServerFarms}${resourceToken}'
-//     location: location
-//     tags: updatedTags
-//     sku: {
-//       name: 'Y1'
-//       tier: 'Dynamic'
-//     }
-//   }
-// }
 
 // Monitor application with Azure Monitor
 module monitoring 'core/monitor/monitoring.bicep' = {

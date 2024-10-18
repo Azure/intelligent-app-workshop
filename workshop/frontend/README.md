@@ -24,6 +24,7 @@ A React-based chat application for interacting with an AI assistant (backend), d
 
    ```bash
    API_URL=https://your-backend-api-url/chat
+   REACT_APP_PROXY_URL=http://localhost/api/chat
    PORT=80
    ```
 

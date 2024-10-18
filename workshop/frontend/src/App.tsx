@@ -56,16 +56,20 @@ function App() {
   const [inputMessage, setInputMessage] = useState('');
   const [messageHistory, setMessageHistory] = useState<Message[]>([]);
   const [welcomeMessage, setWelcomeMessage] = useState<Message>({ message: 'You are a friendly financial advisor that only emits financial advice in a creative and funny tone', role: 'system' });
-
+  const proxy_url = process.env.REACT_APP_PROXY_URL;
   useEffect(() => {
     setMessageHistory([welcomeMessage]);
   }, []);
 
   const handleSendMessage = async () => {
     if (!inputMessage.trim()) return;
+    if (!proxy_url) {
+      console.error('Proxy URL is not set');
+      return;
+    }
 
     try {
-      const result = await axios.post('https://ca-web-5ssljjzhgthbc.redbeach-42d46aa6.eastus2.azurecontainerapps.io/api/chat', {
+      const result = await axios.post(proxy_url, {
         inputMessage,
         messageHistory
       }, {

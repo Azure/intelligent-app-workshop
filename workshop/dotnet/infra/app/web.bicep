@@ -100,6 +100,10 @@ module app '../core/host/container-app-upsert.bicep' = {
         name: 'PORT'
         value: webPort
       }
+      {
+        name: 'REACT_APP_PROXY_URL'
+        value: 'https://$(CONTAINER_APP_HOSTNAME)/api/chat'
+      }
     ]
     targetPort: 80
   }
