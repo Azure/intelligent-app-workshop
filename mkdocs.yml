@@ -118,11 +118,11 @@ copyright: Copyright &copy; 2023 Azure App Innovation GBB, Microsoft
 plugins:
   - git-revision-date
   - search
-  - table-reader
   - macros
   - glightbox
   - open-in-new-tab
   - mkdocs-video
+  - table-reader
 
 extra:
   analytics:
