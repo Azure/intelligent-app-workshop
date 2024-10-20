@@ -49,8 +49,9 @@ nav:
               - Lesson 2 - Simple Semantic Kernel chatbot with history: wksp2/07-semantic-kernel/simple-ai-orchestration/lesson2.md
               - Lesson 3 - Simple Semantic Kernel chatbot with plugins: wksp2/07-semantic-kernel/simple-ai-orchestration/lesson3.md
               - Build a deployable web application:
-                - wksp2/07-semantic-kernel/simple-ai-orchestration/app-howto.md
-                - Create Backend API: wksp2/07-semantic-kernel/simple-ai-orchestration/app-backend-api.md
+                - wksp2/07-semantic-kernel/simple-ai-orchestration/create-deployable-app/index.md
+                - Create Backend API: wksp2/07-semantic-kernel/simple-ai-orchestration/create-deployable-app/backend-api.md
+                - Create Web application: wksp2/07-semantic-kernel/simple-ai-orchestration/create-deployable-app/web-app.md
           - Advanced AI Orchestration: wksp2/07-semantic-kernel/advanced-ai-orchestration/index.md
       - Extend custom copilot with AI Document Intelligence, AI Vision, and multi-modal Foundation model: wksp2/01-semantic-kernel/extend-copilot-ai-doc-intel.md
   - Post-workshop:

@@ -1,7 +1,7 @@
 using System.ComponentModel;
 using Microsoft.SemanticKernel;
 
-namespace Plugins;
+namespace Core.Utilities.Plugins;
 
 public class TimeInformationPlugin
 {

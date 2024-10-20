@@ -22,16 +22,10 @@ In this lesson we will a semantic kernel plugins to be able to retrieve stock pr
     Assistant > I can't access today's date, but imagine it’s an eternal "Fri-yay," ready for financial fun! How can I help you on this hypothetical day?
     ```
 
-1. Notice it does not provide a specific answer. Let's create a Semantic Kernel Plugin to be able to fix that. 
-   On the `Lesson3` directory create a new directory named `Plugins`:
-   
-    ```bash
-    mkdir Plugins
-    cd Plugins
-    ```
+1. Notice it does not provide a specific answer. We can use a Semantic Kernel Plugin to be able to fix that.
 
- 1. In the `Plugins` directory create a new file named `TimeInformationPlugin.cs` 
-   and add the following content
+ 1. In the `Plugins` directory from `Console.Utilities` directory review the file named 
+    `TimeInformationPlugin.cs` which has the following content:
 
     ```csharp
     using System.ComponentModel;
@@ -51,7 +45,7 @@ In this lesson we will a semantic kernel plugins to be able to retrieve stock pr
 
     ```csharp
     // TODO: Step 1 - Add import for Plugins
-    using Plugins;
+    using Console.Utiltiies.Plugins;
     ```
 
 1. Next locate Step 2 in `Program.cs` and provide the following line to register the `TimeInformationPlugin`:
@@ -84,10 +78,10 @@ In this lesson we will a semantic kernel plugins to be able to retrieve stock pr
     Assistant > Today's date is October 4, 2024. Time flies like an arrow; fruit flies like a banana! 
     ```
 
-1. Congratulations you have written your first Semantic Kernel plugin! Next, we are going to add another plugin
+1. Congratulations you are now using your first Semantic Kernel plugin! Next, we are going to need another plugin
    that will integrate to be able to an existing `StockService` included within the `Core.Utilities` project.
-   Create a new file named `StockDataPlugin.cs` in the same directory as `Program.cs` and include the following code,
-   which includes 2 functions, one to retrieve the stock price for the current date and another one for a specific date:
+   Review the file named `StockDataPlugin.cs` from `Console.Utilities\Plugins` which includes 2 functions,
+   one to retrieve the stock price for the current date and another one for a specific date:
 
     ```csharp
     using Core.Utilities.Services;

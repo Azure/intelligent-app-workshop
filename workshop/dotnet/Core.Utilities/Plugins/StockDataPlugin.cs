@@ -5,7 +5,7 @@ using Core.Utilities.Extensions;
 using Microsoft.SemanticKernel;
 using System.ComponentModel;
 
-namespace Plugins;
+namespace Core.Utilities.Plugins;
 
 public class StockDataPlugin(StocksService stockService)
 {
