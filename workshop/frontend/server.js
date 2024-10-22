@@ -12,7 +12,7 @@ app.use(express.json());
 // Serve static files from the React app
 app.use(express.static(path.join(__dirname, 'build')));
 
-const API_URL = process.env.API_URL || 'http://localhost:5000/chat';
+const API_URL = process.env.API_URL;
 
 app.post('/api/chat', async (req, res) => {
   try {
