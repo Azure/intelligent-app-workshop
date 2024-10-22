@@ -35,7 +35,38 @@ Before attending the Intelligent App Development Workshop, please ensure you hav
     cp workshop\dotnet\Lessons\appsettings.json.example workshop\dotnet\Lessons\Lesson1\appsettings.json
     ```
 
-1. Retrieve the OpenAI Endpoint URL, API Key and deployed model name (from pre-requisites) into the app settings  **!!!TMS this section needs some work** The learn provides a lab environment and also have you delete resource created at the end.  Not sure on the use of API key or Endpoint is pointed out.  Need to add instructions on how to do so  **!!!TMS review/update later**
+1. Retrieve the OpenAI Endpoint URL, API Key and deployed model name
+   
+Get Azure OpenAI access values: From Portal
+
+The Azure OpenAI endpoint and key values will be found in the [Azure Portal](https://portal.azure.com) so let's start there.
+
+1. Go to the [Azure Portal](https://portal.azure.com).
+1. Go to the Azure OpenAI resource.
+1. Expand the **Resource Management** section in the sidebar (menu at left)
+1. Click the **Keys and Endpoint** option.
+1. Click **Show Keys** - you should see the following: KEY 1, KEY 2 and Endpoint.
+1. Use the **KEY 1** value for **AZURE_OPENAI_API_KEY**.
+1. Use the **Endpoint** value for **AZURE_OPENAI_ENDPOINT**.
+
+![Terminal](./images/aoai-deployment.jpg)
+
+Next, we need to create deployments from the Azure OpenAI models.
+
+1. Click the **Model deployments** option in the sidebar (left menu) for Azure OpenAI resource.
+1. In the destination page, click **Manage Deployments**
+1. (Optional) You can directly navigate to the [Azure OpenAI Studio website](https://oai.azure.com).
+
+This will take you to the Azure OpenAI Studio website, where we'll find the other values as described below.
+
+### 2.3 Get Azure OpenAI deployments: From Studio
+
+1. Navigate to [Azure OpenAI Studio](https://oai.azure.com) **from your resource** as described above.
+2. Click the **Deployments** tab (sidebar, left) to view currently deployed models.
+3. If your desired model is not deployed, use **Create new deployment** to deploy it. If using the new portal, use **Deploy model** button.
+4. You will need a _text-generation_ model - deploy the following model with the same name: **gpt-4-turbo-2024-04-09**
+5. You will need a _text-embedding_ model - deploy the following model with the same name: **text-embedding-ada-002**
+6.  Increase the token rate limit on the **gpt-4-turbo-2024-04-09** model deployment to at least 70k.  See below for example. 
 
 
 ??? note "Optional"
