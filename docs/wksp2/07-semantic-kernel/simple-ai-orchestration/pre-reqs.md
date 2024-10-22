@@ -32,7 +32,7 @@ Before attending the Intelligent App Development Workshop, please ensure you hav
 1. Copy and rename the file `appsettings.json.example` into the corresponding lesson directory as follows (example command for Lesson1):
 
     ```bash
-    cp workshop\donet\Lessons\appsettings.json.example workshop\dotnet\Lessons\Lesson1\appsettings.json
+    cp workshop\dotnet\Lessons\appsettings.json.example workshop\dotnet\Lessons\Lesson1\appsettings.json
     ```
 
 1. Retrieve the OpenAI Endpoint URL, deployed model name and API Key (from pre-requisites) into the app settings
