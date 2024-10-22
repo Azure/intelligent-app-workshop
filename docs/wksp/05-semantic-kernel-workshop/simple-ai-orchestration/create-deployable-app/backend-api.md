@@ -135,7 +135,7 @@ you through the process followed for create the backend API from the Console app
 1. Within the `Controllers` directory create a `ChatController.cs` file which exposes a reply
    method mapped to the `chat` path and the HTTP Post method:
 
-   ```csharp
+    ```csharp
     using Core.Utilities.Models;
     using Core.Utilities.Extensions;
     // Add import for Plugins
