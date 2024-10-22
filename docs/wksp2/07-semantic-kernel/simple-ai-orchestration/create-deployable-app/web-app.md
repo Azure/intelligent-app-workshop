@@ -27,9 +27,8 @@ The UI was created using React JS and a Node JS proxy to the API. Here is a high
     1. `REACT_APP_PROXY_URL` - url to the Node JS proxy
 
     ```shell
-    API_URL=http://localhost:5000/chat
     PORT=3001
-    REACT_APP_PROXY_URL=http://localhost:3001/api/chat
+    REACT_APP_PROXY_URL=/api/chat
     ```
 
 1. Start backend API using `dotnet run`
