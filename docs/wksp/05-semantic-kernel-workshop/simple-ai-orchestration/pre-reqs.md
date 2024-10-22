@@ -64,7 +64,8 @@ This will take you to the Azure OpenAI Studio website, where we'll find the othe
 1. Navigate to [Azure OpenAI Studio](https://oai.azure.com) **from your resource** as described above.
 2. Click the **Deployments** tab (sidebar, left) to view currently deployed models.
 3. If your desired model is not deployed, use **Create new deployment** to deploy it. If using the new portal, use **Deploy model** button.
-4. You will need a chat completion model (gpt-35-turbo model or similar)- deploy the model 
+4. You will need a chat completion model (gpt-35-turbo model or similar)- deploy the model
+5. Update appsettings.json deploymentName field with your model deployment name.
 
 ![Terminal](./images/deploy-model.jpg)
 ![Terminal](./images/model-deployments.jpg)
