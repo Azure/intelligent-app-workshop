@@ -8,7 +8,7 @@ param tags object = {}
   'Hot'
   'Premium' ])
 param accessTier string = 'Hot'
-param allowBlobPublicAccess bool = false
+param allowBlobPublicAccess bool = true
 param allowCrossTenantReplication bool = true
 param allowSharedKeyAccess bool = true
 param containers array = []
