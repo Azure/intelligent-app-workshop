@@ -35,7 +35,7 @@ Before attending the Intelligent App Development Workshop, please ensure you hav
     cp workshop\dotnet\Lessons\appsettings.json.example workshop\dotnet\Lessons\Lesson1\appsettings.json
     ```
 
-1. Retrieve the OpenAI Endpoint URL, deployed model name and API Key (from pre-requisites) into the app settings
+1. Retrieve the OpenAI Endpoint URL, API Key and deployed model name (from pre-requisites) into the app settings  **!!!TMS this section needs some work** The learn provides a lab environment and also have you delete resource created at the end.  Not sure on the use of API key or Endpoint is pointed out.  Need to add instructions on how to do so  **!!!TMS review/update later**
 
 
 ??? note "Optional"
