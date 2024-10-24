@@ -77,17 +77,21 @@ In this lesson we will add chat history to our chat agent.
         chatHistory.AddAssistantMessage(fullMessage);
         ```
 
-1. Re-run the program and start by stating your portfolio preference:
+1. Run the program and start by stating your portfolio preference:
 
     ```bash
     dotnet run
+   ```
+    ```bash 
     User > My portfolio preference is moderate growth
-    Assistant > Ah, the sweet spot of moderation! You're like the Goldilocks of investing, not too hot, not too cold, but just right. Let's sprinkle some fairy dust on your portfolio and make it grow!
     ```
+    Assistant > Ah, the sweet spot of moderation! You're like the Goldilocks of investing, not too hot, not too cold, but just right. Let's sprinkle some fairy dust on your portfolio and make it grow!
+   
 
 1. Next ask what your portfolio preferenc is:
 
     ```bash
     User > what is my portfolio preference?
-    Assistant > Ah, you're the maestro of moderate growth! You're seeking a harmonious balance between risk and return, like a blend of jazz and rock in the symphony of investing. A sprinkle of thrill, a dash of stability, all wrapped in a comfy financial blanket.
     ```
+    Assistant > Ah, you're the maestro of moderate growth! You're seeking a harmonious balance between risk and return, like a blend of jazz and rock in the symphony of investing. A sprinkle of thrill, a dash of stability, all wrapped in a comfy financial blanket.
+    
