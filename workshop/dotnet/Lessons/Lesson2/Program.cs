@@ -1,6 +1,7 @@
 using Core.Utilities.Config;
 using Microsoft.SemanticKernel;
 using Microsoft.SemanticKernel.Connectors.OpenAI;
+
 // TODO: Step 1 - add ChatCompletion import
 using Microsoft.SemanticKernel.ChatCompletion;
 
