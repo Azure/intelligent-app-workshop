@@ -71,8 +71,4 @@ In this lesson we will create a semantic kernel chatbot with a system prompt and
     
         Remember, always research like you're planning the perfect vacation and balance your choices like you balance a pizza with just the right amount of toppings. And of course, consult a real-world financial oracle before making any big moves. Bon appétit in the stock market buffet!
 
-   1. When prompted ask for financial advice:
 
-    ```
-    User > Which stocks do you recommend buying for moderate growth?
-    ```
