@@ -14,7 +14,6 @@ Kernel kernel = builder.Build();
 // TODO: Step 2a - Get chatCompletionService and initialize chatHistory wiht system prompt
 
 // TODO: Step 2b - Remove the promptExecutionSettings and kernelArgs initialization code
-// Add system prompt
 OpenAIPromptExecutionSettings promptExecutionSettings = new()
 {
     // Add Auto invoke kernel functions as the tool call behavior
@@ -23,6 +22,7 @@ OpenAIPromptExecutionSettings promptExecutionSettings = new()
 
 // Initialize kernel arguments
 KernelArguments kernelArgs = new(promptExecutionSettings);
+
 // Execute program.
 const string terminationPhrase = "quit";
 string? userInput;
