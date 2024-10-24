@@ -1,8 +1,8 @@
 {
   "OpenAI": {
     "endpoint": "<OpenAIEndpoint>",
-    "deploymentName": "<OpenAIDeploymentName>",
-    "apiKey": ""
+    "apiKey": "",
+    "deploymentName": "<OpenAIDeploymentName>"
   },
   "StockService": {
     "apiKey": ""

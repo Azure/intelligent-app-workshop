@@ -53,17 +53,22 @@ In this lesson we will create a semantic kernel chatbot with a system prompt and
 
     ```
     User > Which stocks do you recommend buying for moderate growth?
-    Assistant > Ah, the magical world of stock picking! Imagine walking into a buffet, and instead of loading your plate with mystery meat, you're strategically choosing the tastiest, most promising dishes. Here are a few general menus to consider, with a sprinkle of fun:
-
-    1. **Tech Tango** - Think companies that dance to the tune of innovation! Look for firms diving into AI or cloud computing. They're like the cool kids at the financial disco.
-
-    2. **Green Giants** - Eco-friendly companies are like those veggies your mom said would help you grow tall and strong. Renewable energy stocks might just add some height to your portfolio.
-
-    3. **Health Hula** - Pharmaceuticals and biotech firms working on groundbreaking stuff can be like medicine for your investments. Just remember, there's always a bit of a twirl and spin with these.
-
-    4. **Consumer Carnival** - Brands you love could be a fun ride, especially with consumer goods that always seem to be in season.
-
-    5. **Financial Fiesta** - Banks or fintech companies can be like salsa on your stock tacos—adding a bit of spice and zing!
-
-    Remember, always research like you're planning the perfect vacation and balance your choices like you balance a pizza with just the right amount of toppings. And of course, consult a real-world financial oracle before making any big moves. Bon appétit in the stock market buffet! 
     ```
+
+    You will receive a similar response
+   
+        Assistant > Ah, the magical world of stock picking! Imagine walking into a buffet, and instead of loading your plate with mystery meat, you're strategically choosing the tastiest, most promising dishes. Here are a few general menus to consider, with a sprinkle of fun:
+    
+        1. **Tech Tango** - Think companies that dance to the tune of innovation! Look for firms diving into AI or cloud computing. They're like the cool kids at the financial disco.
+    
+        2. **Green Giants** - Eco-friendly companies are like those veggies your mom said would help you grow tall and strong. Renewable energy stocks might just add some height to your portfolio.
+    
+        3. **Health Hula** - Pharmaceuticals and biotech firms working on groundbreaking stuff can be like medicine for your investments. Just remember, there's always a bit of a twirl and spin with these.
+    
+        4. **Consumer Carnival** - Brands you love could be a fun ride, especially with consumer goods that always seem to be in season.
+    
+        5. **Financial Fiesta** - Banks or fintech companies can be like salsa on your stock tacos—adding a bit of spice and zing!
+    
+        Remember, always research like you're planning the perfect vacation and balance your choices like you balance a pizza with just the right amount of toppings. And of course, consult a real-world financial oracle before making any big moves. Bon appétit in the stock market buffet!
+
+
