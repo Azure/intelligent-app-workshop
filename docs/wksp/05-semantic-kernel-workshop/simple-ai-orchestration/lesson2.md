@@ -1,17 +1,17 @@
 # Lesson 2: Simple Semantic Kernel chatbot with history
 
-In this lesson we will a chat history to our chat agent.
+In this lesson we will add chat history to our chat agent.
 
 1. Switch to Lesson 2 directory:
 
     ```bash
-    cd Lessons/Lesson2
+    cd ../Lesson2
     ```
 
 1. Start by copying `appsetting.json` from Lesson 1:
 
     ```bash
-    cp ../Lessons/Lesson1/appsettings.json .
+    cp ../Lesson1/appsettings.json .
     ```
 
 1. Open the project in your favorite IDE or text editor.
