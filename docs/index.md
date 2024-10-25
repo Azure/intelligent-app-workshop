@@ -15,7 +15,7 @@ In this comprehensive workshop, you will:
 
 - Utilize Azure AI Studio for reasoning engines, Prompt Flow for LLMOps, AI Search for semantic retrieval systems, and Semantic Kernel for orchestration.
 - Work with [Miyagi](https://github.com/Azure-Samples/miyagi) codebase during the hands-on experiential workshop.
-- Explore advanced capabilities such as AutoGen and GraphRaG with more coming soon.
+- Explore advanced capabilities such as AutoGen and GraphRaG.
 
 
 ## Topics for the Workshop
