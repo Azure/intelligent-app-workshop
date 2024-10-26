@@ -54,15 +54,6 @@ param containerRegistryName string = ''
 @description('Name of the resource group for the Azure container registry')
 param containerRegistryResourceGroupName string = ''
 
-@description('Name of the Azure Key Vault')
-param keyVaultName string = ''
-
-@description('Location of the resource group for the Azure Key Vault')
-param keyVaultResourceGroupLocation string = location
-
-@description('Name of the resource group for the Azure Key Vault')
-param keyVaultResourceGroupName string = ''
-
 @description('Name of the Azure Log Analytics workspace')
 param logAnalyticsName string = ''
 
@@ -108,9 +99,6 @@ param apiContainerAppName string = ''
 @description('Name of the web app container')
 param webContainerAppName string = ''
 
-@description('Name of the web app identity')
-param webIdentityName string = ''
-
 @description('Name of the web app image')
 param webImageName string = ''
 
@@ -154,67 +142,16 @@ resource storageResourceGroup 'Microsoft.Resources/resourceGroups@2021-04-01' ex
   name: !empty(storageResourceGroupName) ? storageResourceGroupName : resourceGroup.name
 }
 
-resource keyVaultResourceGroup 'Microsoft.Resources/resourceGroups@2021-04-01' existing = if (!empty(keyVaultResourceGroupName)) {
-  name: !empty(keyVaultResourceGroupName) ? keyVaultResourceGroupName : resourceGroup.name
-}
 
-// Store secrets in a keyvault
-module keyVault 'core/security/keyvault.bicep' = {
-  name: 'keyvault'
-  scope: keyVaultResourceGroup
+// Create a user assigned identity
+module identity './app/user-assigned-identity.bicep' = {
+  name: 'identity'
+  scope: resourceGroup
   params: {
-    name: !empty(keyVaultName) ? keyVaultName : '${abbrs.keyVaultVaults}${resourceToken}'
-    location: keyVaultResourceGroupLocation
-    tags: updatedTags
-    principalId: principalId
+    name: 'sk-app-identity'
   }
 }
 
-module keyVaultSecrets 'core/security/keyvault-secrets.bicep' = {
-  scope: keyVaultResourceGroup
-  name: 'keyvault-secrets'
-  params: {
-    keyVaultName: keyVault.outputs.name
-    tags: updatedTags
-    secrets: concat([
-      {
-        name: 'AzureStorageAccountEndpoint'
-        value: storage.outputs.primaryEndpoints.blob
-      }
-      {
-        name: 'AzureStorageContainer'
-        value: storageContainerName
-      }
-      {
-        name: 'UseAOAI'
-        value: useAOAI ? 'true' : 'false'
-      }
-      {
-        name: 'StockServiceApiKey'
-        value: stockServiceApiKey
-      }
-    ],
-    useAOAI ? [
-      {
-        name: 'AzureOpenAiServiceEndpoint'
-        value: azureOpenAi.outputs.endpoint
-      }
-      {
-        name: 'AzureOpenAiChatGptDeployment'
-        value: azureChatGptDeploymentName
-      }
-    ] : [
-      {
-        name: 'OpenAIAPIKey'
-        value: openAIApiKey
-      }
-      {
-        name: 'OpenAiChatGptDeployment'
-        value: openAiChatGptDeployment
-      }
-    ])
-  }
-}
 
 // Container apps host (including container registry)
 module containerApps 'core/host/container-apps.bicep' = {
@@ -240,15 +177,15 @@ module api './app/api.bicep' = {
     location: location
     tags: updatedTags
     imageName: apiImageName
-    identityName: !empty(webIdentityName) ? webIdentityName : '${abbrs.managedIdentityUserAssignedIdentities}api-${resourceToken}'
+    identityName: identity.outputs.name
     applicationInsightsName: monitoring.outputs.applicationInsightsName
     containerAppsEnvironmentName: containerApps.outputs.environmentName
     containerRegistryName: containerApps.outputs.registryName
+    userAssignedManagedIdentity: {
+      resourceId: identity.outputs.resourceId
+      clientId: identity.outputs.clientId
+    }
     exists: apiAppExists
-    keyVaultName: keyVault.outputs.name
-    keyVaultResourceGroupName: keyVaultResourceGroup.name
-    storageBlobEndpoint: storage.outputs.primaryEndpoints.blob
-    storageContainerName: storageContainerName
     openAiApiKey: useAOAI ? '' : openAIApiKey
     openAiEndpoint: useAOAI ? azureOpenAi.outputs.endpoint : openAiEndpoint
     stockServiceApiKey: stockServiceApiKey
@@ -266,15 +203,15 @@ module web './app/web.bicep' = {
     location: location
     tags: updatedTags
     imageName: webImageName
-    identityName: !empty(webIdentityName) ? webIdentityName : '${abbrs.managedIdentityUserAssignedIdentities}web-${resourceToken}'
+    identityName: identity.outputs.name
     applicationInsightsName: monitoring.outputs.applicationInsightsName
     containerAppsEnvironmentName: containerApps.outputs.environmentName
     containerRegistryName: containerApps.outputs.registryName
+    userAssignedManagedIdentity: {
+      resourceId: identity.outputs.resourceId
+      clientId: identity.outputs.clientId
+    }
     exists: webAppExists
-    keyVaultName: keyVault.outputs.name
-    keyVaultResourceGroupName: keyVaultResourceGroup.name
-    storageBlobEndpoint: storage.outputs.primaryEndpoints.blob
-    storageContainerName: storageContainerName
     apiEndpoint: '${api.outputs.SERVICE_API_URI}/chat'
     serviceBinds: []
   }
@@ -329,7 +266,6 @@ module storage 'core/storage/storage-account.bicep' = {
     name: !empty(storageAccountName) ? storageAccountName : '${abbrs.storageStorageAccounts}${resourceToken}'
     location: storageResourceGroupLocation
     tags: updatedTags
-    publicNetworkAccess: 'Disabled'
     sku: {
       name: 'Standard_LRS'
     }
@@ -340,7 +276,6 @@ module storage 'core/storage/storage-account.bicep' = {
     containers: [
       {
         name: storageContainerName
-        publicAccess: 'Blob'
       }
     ]
   }
@@ -357,16 +292,18 @@ module azureOpenAiRoleUser 'core/security/role.bicep' = if (useAOAI) {
   }
 }
 
+// Assign storage blob data contributor to the user for local runs
 module storageRoleUser 'core/security/role.bicep' = {
   scope: storageResourceGroup
   name: 'storage-role-user'
   params: {
-    principalId: principalId
-    roleDefinitionId: '2a2b9908-6ea1-4ae2-8e65-a410df84e7d1'
+    principalId: principalId 
+    roleDefinitionId: '2a2b9908-6ea1-4ae2-8e65-a410df84e7d1' // built-in role definition id for storage blob data reader
     principalType: principalType
   }
 }
 
+// Assign storage blob data contributor to the identity
 module storageContribRoleUser 'core/security/role.bicep' = {
   scope: storageResourceGroup
   name: 'storage-contribrole-user'
@@ -383,7 +320,7 @@ module azureOpenAiRoleApi 'core/security/role.bicep' = if (useAOAI) {
   scope: azureOpenAiResourceGroup
   name: 'openai-role-api'
   params: {
-    principalId: web.outputs.SERVICE_WEB_IDENTITY_PRINCIPAL_ID
+    principalId: identity.outputs.principalId
     roleDefinitionId: '5e0bd9bd-7b93-4f28-af87-19fc36ad61bd'
     principalType: 'ServicePrincipal'
   }
@@ -393,7 +330,7 @@ module storageRoleApi 'core/security/role.bicep' = {
   scope: storageResourceGroup
   name: 'storage-role-api'
   params: {
-    principalId: web.outputs.SERVICE_WEB_IDENTITY_PRINCIPAL_ID
+    principalId: identity.outputs.principalId
     roleDefinitionId: '2a2b9908-6ea1-4ae2-8e65-a410df84e7d1'
     principalType: 'ServicePrincipal'
   }
@@ -403,7 +340,7 @@ module storageContribRoleApi 'core/security/role.bicep' = {
   scope: storageResourceGroup
   name: 'storage-contribrole-api'
   params: {
-    principalId: web.outputs.SERVICE_WEB_IDENTITY_PRINCIPAL_ID
+    principalId: identity.outputs.principalId
     roleDefinitionId: 'ba92f5b4-2d11-453d-a403-e96b0029c9fe'
     principalType: 'ServicePrincipal'
   }
@@ -416,9 +353,6 @@ output AZURE_CONTAINER_ENVIRONMENT_NAME string = containerApps.outputs.environme
 output AZURE_CONTAINER_REGISTRY_ENDPOINT string = containerApps.outputs.registryLoginServer
 output AZURE_CONTAINER_REGISTRY_NAME string = containerApps.outputs.registryName
 output AZURE_CONTAINER_REGISTRY_RESOURCE_GROUP string = containerApps.outputs.registryName
-output AZURE_KEY_VAULT_ENDPOINT string = keyVault.outputs.endpoint
-output AZURE_KEY_VAULT_NAME string = keyVault.outputs.name
-output AZURE_KEY_VAULT_RESOURCE_GROUP string = keyVaultResourceGroup.name
 output AZURE_LOCATION string = location
 output AZURE_OPENAI_RESOURCE_LOCATION string = openAiResourceGroupLocation
 output AZURE_OPENAI_CHATGPT_DEPLOYMENT string = azureChatGptDeploymentName

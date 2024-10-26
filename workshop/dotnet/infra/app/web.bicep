@@ -26,71 +26,43 @@ param imageName string = ''
 @description('Specifies if the resource exists')
 param exists bool
 
-@description('The name of the Key Vault')
-param keyVaultName string
-
-@description('The name of the Key Vault resource group')
-param keyVaultResourceGroupName string = resourceGroup().name
-
-@description('The storage blob endpoint')
-param storageBlobEndpoint string
-
-@description('The name of the storage container')
-param storageContainerName string
-
 @description('The URI for the backend API')
 param apiEndpoint string
 
 @description('An array of service binds')
 param serviceBinds array
 
-resource webIdentity 'Microsoft.ManagedIdentity/userAssignedIdentities@2023-01-31' = {
-  name: identityName
-  location: location
+type managedIdentity = {
+  resourceId: string
+  clientId: string
 }
 
-module webKeyVaultAccess '../core/security/keyvault-access.bicep' = {
-  name: 'web-keyvault-access'
-  scope: resourceGroup(keyVaultResourceGroupName)
-  params: {
-    principalId: webIdentity.properties.principalId
-    keyVaultName: keyVault.name
-  }
-}
+@description('Unique identifier for user-assigned managed identity.')
+param userAssignedManagedIdentity managedIdentity
 
 module app '../core/host/container-app-upsert.bicep' = {
   name: '${serviceName}-container-app'
-  dependsOn: [ webKeyVaultAccess ]
   params: {
     name: name
     location: location
     tags: union(tags, { 'azd-service-name': serviceName })
-    identityName: webIdentity.name
+    identityName: identityName
     imageName: imageName
     exists: exists
     serviceBinds: serviceBinds
     containerAppsEnvironmentName: containerAppsEnvironmentName
     containerRegistryName: containerRegistryName
+    secrets: {
+      'azure-managed-identity-client-id':  userAssignedManagedIdentity.clientId
+    }
     env: [
       {
-        name: 'AZURE_CLIENT_ID'
-        value: webIdentity.properties.clientId
+        name: 'AZURE_MANAGED_IDENTITY_CLIENT_ID'
+        value: 'azure-managed-identity-client-id'
       }
       {
         name: 'APPLICATIONINSIGHTS_CONNECTION_STRING'
         value: !empty(applicationInsightsName) ? applicationInsights.properties.ConnectionString : ''
-      }
-      {
-        name: 'AZURE_KEY_VAULT_ENDPOINT'
-        value: keyVault.properties.vaultUri
-      }
-      {
-        name: 'AZURE_STORAGE_BLOB_ENDPOINT'
-        value: storageBlobEndpoint
-      }
-      {
-        name: 'AZURE_STORAGE_CONTAINER'
-        value: storageContainerName
       }
       {
         name: 'API_URL'
@@ -113,13 +85,7 @@ resource applicationInsights 'Microsoft.Insights/components@2020-02-02' existing
   name: applicationInsightsName
 }
 
-resource keyVault 'Microsoft.KeyVault/vaults@2022-07-01' existing = {
-  name: keyVaultName
-  scope: resourceGroup(keyVaultResourceGroupName)
-}
-
 output SERVICE_WEB_IDENTITY_NAME string = identityName
-output SERVICE_WEB_IDENTITY_PRINCIPAL_ID string = webIdentity.properties.principalId
 output SERVICE_WEB_IMAGE_NAME string = app.outputs.imageName
 output SERVICE_WEB_NAME string = app.outputs.name
 output SERVICE_WEB_URI string = app.outputs.uri
