@@ -21,9 +21,7 @@ In this lesson we will add chat history to our chat agent.
     1. Step 1: add code to initialize kernel with chat completion:
 
         ```csharp
-        // TODO: Step 1 - Initialize Time plugin and registration in the kernel
-        kernel.Plugins.AddFromObject(new TimeInformationPlugin());
-        // Step 1 - add ChatCompletion import
+        // TODO: Step 1 - add ChatCompletion import
         using Microsoft.SemanticKernel.ChatCompletion;
         ```
 
