@@ -1,27 +1,32 @@
-# Lesson 2: Simple Semantic Kernel chat agent with plugins
+# Lesson 3: Simple Semantic Kernel chat agent with plugins
 
 In this lesson we will a semantic kernel plugins to be able to retrieve stock pricing.
 
-1. Switch to Lesson 2 directory:
+1. Switch to Lesson 3 directory:
 
     ```bash
-    cd Lessons/Lesson3
+    cd ../Lesson3
     ```
 
 1. Start by copying `appsettings.json` from Lesson 1:
 
     ```bash
-    cp ../Lessons/Lesson1/appsettings.json .
+    cp ../Lesson1/appsettings.json .
     ```
 
 1. Run program and ask what the current date is:
 
     ```bash
     dotnet run
-    User > what is the current date?
-    Assistant > I can't access today's date, but imagine it’s an eternal "Fri-yay," ready for financial fun! How can I help you on this hypothetical day?
     ```
-
+   At the "User >" prompt enter
+   ```bash
+   What is the current date?
+    ```
+   Assistant will give a similar response:
+   ```
+   Assistant > I can't access today's date, but imagine it’s an eternal "Fri-yay," ready for financial fun! How can I help you on this hypothetical day?
+   ```
 1. Notice it does not provide a specific answer. We can use a Semantic Kernel Plugin to be able to fix that.
 
  1. In the `Plugins` directory from `Console.Utilities` directory review the file named 
