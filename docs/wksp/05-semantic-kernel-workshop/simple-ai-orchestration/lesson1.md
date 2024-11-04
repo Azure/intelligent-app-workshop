@@ -10,7 +10,7 @@ In this lesson we will create a semantic kernel chatbot with a system prompt and
 
 1. Open the project in your favorite IDE or text editor.
 
-1. Open `Program.cs` and locate the TODO for each step and apply the following changes for each:
+1. Open `Program.cs` and locate the **TODO** for each step and apply the following changes for each:
 
     1. Step 1: add code to initialize kernel with chat completion:
  
@@ -52,10 +52,10 @@ In this lesson we will create a semantic kernel chatbot with a system prompt and
 1. When prompted ask for financial advice:
 
     ```
-    User > Which stocks do you recommend buying for moderate growth?
+    Which stocks do you recommend buying for moderate growth?
     ```
 
-    You will receive a similar response
+    You will receive a similar response:
    
         Assistant > Ah, the magical world of stock picking! Imagine walking into a buffet, and instead of loading your plate with mystery meat, you're strategically choosing the tastiest, most promising dishes. Here are a few general menus to consider, with a sprinkle of fun:
     
