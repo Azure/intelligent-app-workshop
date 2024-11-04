@@ -18,7 +18,7 @@ In this lesson we will add chat history to our chat agent.
 
 1. Open `Program.cs` and locate the **TODO** for each step and apply the following changes for each:
 
-    1. Step 1: add code to include the chat completion namespace & initialize kernel with chat completion:
+    1. TODO: Step 1: add code to include the chat completion namespace & initialize kernel with chat completion:
 
         ```csharp
         using Microsoft.SemanticKernel.ChatCompletion;
@@ -26,14 +26,14 @@ In this lesson we will add chat history to our chat agent.
         Kernel kernel = builder.Build();
         ```
 
-    1. Step 2a: Add code to get `chatCompletionService` instance and to initialize `chatHistory` with system prompt
+    1. TODO: Step 2a: Add code to get `chatCompletionService` instance and to initialize `chatHistory` with system prompt
 
         ```csharp
         var chatCompletionService = kernel.GetRequiredService<IChatCompletionService>();
         ChatHistory chatHistory = new("You are a friendly financial advisor that only emits financial advice in a creative and funny tone");
         ```
     
-        Step 2b: **Remove** the `promptExecutionSettings` and `kernelArgs` initialization code
+        TODO: Step 2b: **Remove** the `promptExecutionSettings` and `kernelArgs` initialization code
 
         ```csharp
         OpenAIPromptExecutionSettings promptExecutionSettings = new()
@@ -45,14 +45,14 @@ In this lesson we will add chat history to our chat agent.
         KernelArguments kernelArgs = new(promptExecutionSettings);
         ```
     
-    1. Step 3: Add code to initialize `fullMessage` variable and add user input to chat history:
+    1. TODO: Step 3: Add code to initialize `fullMessage` variable and add user input to chat history:
 
         ```csharp         
         string fullMessage = "";
         chatHistory.AddUserMessage(userInput);
         ```
 
-    1. Step 4: **Remove** the `foreach` loop below:
+    1. TODO: Step 4: **Remove** the `foreach` loop below:
 
         ```csharp
         await foreach (var response in kernel.InvokePromptStreamingAsync(userInput, kernelArgs))
