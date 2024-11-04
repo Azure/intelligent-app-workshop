@@ -1,9 +1,5 @@
 # Prerequisites
 
-!!! note "Mandatory pre-requisite"
-
-    Please signup for [Azure OpenAI (AOAI)](https://aka.ms/oai/access) and complete [Getting started with AOAI module](https://learn.microsoft.com/en-us/training/modules/get-started-openai/)
-
 Before attending the Intelligent App Development Workshop, please ensure you have the following prerequisites in place:
 
 1. **Basic programming knowledge**: Familiarity with at least one programming language (e.g., Python, JavaScript, Java, or C#) and basic understanding of software development concepts.
@@ -16,59 +12,57 @@ Before attending the Intelligent App Development Workshop, please ensure you hav
 
 ## Initial Setup
 
-### 1. Ensure all [pre-requisites](pre-reqs.md) are met and installed.
-### 2. Clone this repo using: 
+1. Ensure all [pre-requisites](pre-reqs.md) are met and installed.
+2. Clone this repo using: 
 
     ```bash
     git clone https://github.com/Azure/intelligent-app-workshop.git
     ```
 
-### 3. Change directory into cloned repo:
+3. Change directory into cloned repo:
 
     ```bash
     cd intelligent-app-workshop
     ```
 
-### 4. Copy and rename the file `appsettings.json.example` into the corresponding lesson directory as follows (example command for Lesson1):
+4. Copy and rename the file `appsettings.json.example` into the corresponding lesson directory as follows (example command for Lesson1):
 
     ```bash
     cp workshop\dotnet\Lessons\appsettings.json.example workshop\dotnet\Lessons\Lesson1\appsettings.json
     ```
 
-### 5. Retrieve the OpenAI Endpoint URL, API Key and deployed model name then update newly created appsettings.json
+5. Retrieve the OpenAI Endpoint URL, API Key and deployed model name then update newly created appsettings.json
 
-#### 5.1 Get Azure OpenAI access values: From Portal
+    1. Get Azure OpenAI access values: From Portal:
 
-The Azure OpenAI endpoint and key values will be found in the [Azure Portal](https://portal.azure.com) so let's start there.
+        The Azure OpenAI endpoint and key values will be found in the [Azure Portal](https://portal.azure.com) so let's start there.
+        1. Go to the [Azure Portal](https://portal.azure.com).
+        1. Go to the Azure OpenAI resource.
+        1. Expand the **Resource Management** section in the sidebar (menu at left)
+        1. Click the **Keys and Endpoint** option.
+        1. Click **Show Keys** - you should see the following: KEY 1, KEY 2 and Endpoint.
+        1. Use the **KEY 1** value for **apiKey** in appsettings.json under OpenAI.
+        1. Use the **Endpoint** value for **endpoint** in appsettings.json under OpenAI.
+        
+        ![Terminal](./images/keys-and-endpoint.jpg)
+        
+        Next, we need to create deployments from the Azure OpenAI models.
+        
+        1. Click the **Model deployments** option in the sidebar (left menu) for Azure OpenAI resource.
+        1. In the destination page, click **Manage Deployments**
+        1. (Optional) You can directly navigate to the [Azure OpenAI Studio website](https://oai.azure.com).
+        
+        This will take you to the Azure OpenAI Studio website, where we'll find the other values as described below.
 
-1. Go to the [Azure Portal](https://portal.azure.com).
-1. Go to the Azure OpenAI resource.
-1. Expand the **Resource Management** section in the sidebar (menu at left)
-1. Click the **Keys and Endpoint** option.
-1. Click **Show Keys** - you should see the following: KEY 1, KEY 2 and Endpoint.
-1. Use the **KEY 1** value for **apiKey** in appsettings.json under OpenAI.
-1. Use the **Endpoint** value for **endpoint** in appsettings.json under OpenAI.
-
-![Terminal](./images/keys-and-endpoint.jpg)
-
-Next, we need to create deployments from the Azure OpenAI models.
-
-1. Click the **Model deployments** option in the sidebar (left menu) for Azure OpenAI resource.
-1. In the destination page, click **Manage Deployments**
-1. (Optional) You can directly navigate to the [Azure OpenAI Studio website](https://oai.azure.com).
-
-This will take you to the Azure OpenAI Studio website, where we'll find the other values as described below.
-
-#### 5.2 Get Azure OpenAI deployments: From Studio
-
-1. Navigate to [Azure OpenAI Studio](https://oai.azure.com) **from your resource** as described above.
-2. Click the **Deployments** tab (sidebar, left) to view currently deployed models.
-3. If your desired model is not deployed, use **Create new deployment** to deploy it. If using the new portal, use **Deploy model** button.
-4. You will need a chat completion model (gpt-35-turbo model or similar)- deploy the model
-5. Update appsettings.json deploymentName field with your model deployment name.
-
-![Terminal](./images/deploy-model.jpg)
-![Terminal](./images/model-deployments.jpg)
+    1. Get Azure OpenAI deployments: From Studio
+    
+        1. Navigate to [Azure OpenAI Studio](https://oai.azure.com) **from your resource** as described above.
+        2. Click the **Deployments** tab (sidebar, left) to view currently deployed models.
+        3. If your desired model is not deployed, use **Create new deployment** to deploy it. If using the new portal, use **Deploy model** button.
+        4. You will need a chat completion model (gpt-4o model or similar)- deploy the model
+        5. Update appsettings.json deploymentName field with your model deployment name.
+        
+        ![Terminal](./images/deploy-model.jpg)
 
 ??? note "Optional"
     The following prerequisites are optional but recommended to get the most out of the workshop:
