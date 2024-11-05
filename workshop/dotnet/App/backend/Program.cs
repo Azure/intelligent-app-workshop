@@ -1,5 +1,6 @@
 using Microsoft.AspNetCore.Antiforgery;
 using Extensions;
+using System.Text.Json.Serialization;
 
 var builder = WebApplication.CreateBuilder(args);
 
@@ -9,6 +10,9 @@ builder.Services.AddSwaggerGen();
 // See: https://aka.ms/aspnetcore/swashbuckle
 builder.Services.AddEndpointsApiExplorer();
 builder.Services.AddSwaggerGen();
+// Required to generate enumeration values in Swagger doc
+builder.Services.AddControllersWithViews().AddJsonOptions(options => 
+    options.JsonSerializerOptions.Converters.Add(new JsonStringEnumConverter()));
 builder.Services.AddOutputCache();
 builder.Services.AddAntiforgery(options => { 
     options.HeaderName = "X-CSRF-TOKEN-HEADER"; 

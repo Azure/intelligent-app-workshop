@@ -22,7 +22,7 @@ namespace Core.Utilities.Extensions
         {
             var chatHistory = new ChatHistory();
             chatRequest.MessageHistory.ForEach(chatMessage => {
-                string role = chatMessage.Role;
+                string role = chatMessage.Role.ToString();
                 if ("Tool".Equals(role, StringComparison.OrdinalIgnoreCase)) {
                     role = AuthorRole.Assistant.Label;
                     role = "assistant";
@@ -36,7 +36,7 @@ namespace Core.Utilities.Extensions
             var messageHistory = new List<ChatMessage>();
             messageHistory.AddRange(chatHistory
                 .Where(m => m.Content != null)
-                .Select(m => new ChatMessage(m.Content!, m.Role.Label)));
+                .Select(m => new ChatMessage(m.Content!, Enum.TryParse<Role>(m.Role.Label, out var role) ? role : Role.User)));
 
             return messageHistory;
         }
