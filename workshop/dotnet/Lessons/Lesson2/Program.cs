@@ -3,13 +3,6 @@ using Microsoft.SemanticKernel;
 using Microsoft.SemanticKernel.Connectors.OpenAI;
 
 // TODO: Step 1 - add ChatCompletion import
-using Microsoft.SemanticKernel.ChatCompletion;
-
-
-
-// Initialize the kernel with chat completion
-IKernelBuilder builder = KernelBuilderProvider.CreateKernelWithChatCompletion();
-Kernel kernel = builder.Build();
 
 // TODO: Step 2a - Get chatCompletionService and initialize chatHistory wiht system prompt
 
@@ -37,7 +30,7 @@ do
         // TODO: Step 3 - Initialize fullMessage variable and add user input to chat history
 
 
-        // TODO: Step 4 - Replace the foreach loop and replace it with `chatCompletionService` code 
+        // TODO: Step 4 - Remove the foreach loop and replace it with `chatCompletionService` code 
         // including adding assistant message to chat history
         await foreach (var response in kernel.InvokePromptStreamingAsync(userInput, kernelArgs))
         {
