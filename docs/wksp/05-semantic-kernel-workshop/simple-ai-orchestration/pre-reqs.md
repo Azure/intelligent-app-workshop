@@ -8,7 +8,9 @@ Before attending the Intelligent App Development Workshop, please ensure you hav
 1. **Azure OpenAI resource** - For this workshop, you'll need to deploy at least one model such as GPT 4. See the Azure OpenAI Service documentation for more details on [deploying models](https://learn.microsoft.com/azure/ai-services/openai/how-to/create-resource?pivots=web-portal) and [model availability](https://learn.microsoft.com/azure/ai-services/openai/concepts/models).
 1. **Development environment**: A computer with your preferred development environment installed, such as Visual Studio Code, PyCharm, or another IDE that supports the programming language you'll be using in the workshop.
 1. **Git**: Familiarity with Git and GitHub for version control. Ensure you have [Git](https://git-scm.com/book/en/v2/Getting-Started-Installing-Git) installed on your computer.
+1. **Azure CLI**: Install the [Azure Command-Line Interface (CLI)](https://docs.microsoft.com/en-us/cli/azure/install-azure-cli) to interact with Azure services and manage resources from the command line.
 1. **.NET CLI**: .NET CLI is included when you install [.NET SDK](https://dotnet.microsoft.com/en-us/download)
+1. **Docker**: Install [Docker Desktop](https://www.docker.com/products/docker-desktop) to build and run containerized applications.
 
 ## Initial Setup
 
@@ -64,15 +66,5 @@ Before attending the Intelligent App Development Workshop, please ensure you hav
         
         ![Terminal](./images/deploy-model.jpg)
 
-??? note "Optional"
-    The following prerequisites are optional but recommended to get the most out of the workshop:
-    
-    1. **Azure CLI**: Install the [Azure Command-Line Interface (CLI)](https://docs.microsoft.com/en-us/cli/azure/install-azure-cli) to interact with Azure services and manage resources from the command line.
-
-    1. **Azure Functions Core Tools**: Install the [Azure Functions Core Tools](https://docs.microsoft.com/en-us/azure/azure-functions/functions-run-local?tabs=windows%2Ccsharp%2Cbash#v2) to create, test, and deploy Azure Functions from your local development environment.
-    
-    1. **Docker**: Install [Docker Desktop](https://www.docker.com/products/docker-desktop) to build and run containerized applications.
-    
-    1. **Cognitive Services SDKs**: Install the SDKs for the Azure Cognitive Services you'll be using in the workshop, such as the [Azure OpenAI SDK](https://pypi.org/project/azure-cognitiveservices-openai/), based on your programming language and the services used during the workshop.
 
 By ensuring you have completed these prerequisites, you'll be well-prepared to dive into the Intelligent App Development Workshop and make the most of the hands-on learning experience.
