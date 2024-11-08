@@ -1,0 +1,11 @@
+{
+    "customizations": {
+        "vscode": {
+            "extensions": [
+                "ms-dotnettools.csdevkit",
+                "EditorConfig.EditorConfig",
+                "GitHub.copilot"
+			]
+		}
+	}
+}
