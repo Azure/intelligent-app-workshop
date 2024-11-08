@@ -10,16 +10,16 @@ In this lesson we will create a semantic kernel chatbot with a system prompt and
 
 1. Open the project in your favorite IDE or text editor.
 
-1. Open `Program.cs` and locate the TODO for each step and apply the following changes for each:
+1. Open `Program.cs` and locate the **TODO** for each step and apply the following changes for each:
 
-    1. Step 1: add code to initialize kernel with chat completion:
+    1. TODO: Step 1: add code to initialize kernel with chat completion:
  
         ```csharp
         IKernelBuilder builder = KernelBuilderProvider.CreateKernelWithChatCompletion();
         Kernel kernel = builder.Build();
         ```
 
-    1. Step 2: add the following system prompt:
+    1. TODO: Step 2: add the following system prompt:
 
         ```csharp
         OpenAIPromptExecutionSettings promptExecutionSettings = new()
@@ -28,13 +28,13 @@ In this lesson we will create a semantic kernel chatbot with a system prompt and
         };
         ```
 
-    1. Step 3: initialize kernel arguments
+    1. TODO: Step 3: initialize kernel arguments
 
         ```csharp
         KernelArguments kernelArgs = new(promptExecutionSettings);
         ```
 
-    1. Step 4: add a loop to invoke prompt asynchronously providing user input and kernel arguments:
+    1. TODO: Step 4: add a loop to invoke prompt asynchronously providing user input and kernel arguments:
 
         ```csharp
         await foreach (var response in kernel.InvokePromptStreamingAsync(userInput, kernelArgs))
@@ -52,10 +52,10 @@ In this lesson we will create a semantic kernel chatbot with a system prompt and
 1. When prompted ask for financial advice:
 
     ```
-    User > Which stocks do you recommend buying for moderate growth?
+    Which stocks do you recommend buying for moderate growth?
     ```
 
-    You will receive a similar response
+    You will receive a similar response:
    
         Assistant > Ah, the magical world of stock picking! Imagine walking into a buffet, and instead of loading your plate with mystery meat, you're strategically choosing the tastiest, most promising dishes. Here are a few general menus to consider, with a sprinkle of fun:
     

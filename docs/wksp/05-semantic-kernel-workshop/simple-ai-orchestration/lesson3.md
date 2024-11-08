@@ -1,30 +1,35 @@
-# Lesson 2: Simple Semantic Kernel chat agent with plugins
+# Lesson 3: Simple Semantic Kernel chat agent with plugins
 
 In this lesson we will a semantic kernel plugins to be able to retrieve stock pricing.
 
-1. Switch to Lesson 2 directory:
+1. Switch to Lesson 3 directory:
 
     ```bash
-    cd Lessons/Lesson3
+    cd ../Lesson3
     ```
 
 1. Start by copying `appsettings.json` from Lesson 1:
 
     ```bash
-    cp ../Lessons/Lesson1/appsettings.json .
+    cp ../Lesson1/appsettings.json .
     ```
 
 1. Run program and ask what the current date is:
 
     ```bash
     dotnet run
-    User > what is the current date?
-    Assistant > I can't access today's date, but imagine it’s an eternal "Fri-yay," ready for financial fun! How can I help you on this hypothetical day?
     ```
-
+   At the prompt enter
+   ```bash
+   What is the current date?
+    ```
+   Assistant will give a similar response:
+   ```
+   Assistant > I can't access today's date, but imagine it’s an eternal "Fri-yay," ready for financial fun! How can I help you on this hypothetical day?
+   ```
 1. Notice it does not provide a specific answer. We can use a Semantic Kernel Plugin to be able to fix that.
 
- 1. In the `Plugins` directory from `Console.Utilities` directory review the file named 
+ 1. In the `Plugins` directory from `Core.Utilities` directory review the file named 
     `TimeInformationPlugin.cs` which has the following content:
 
     ```csharp
@@ -41,32 +46,28 @@ In this lesson we will a semantic kernel plugins to be able to retrieve stock pr
     }
     ```
 
-1. Next locate Step 1 in `Program.cs` and add the following import line:
+1. Next locate TODO: Step 1 in `Program.cs` and add the following import line:
 
     ```csharp
-    // TODO: Step 1 - Add import for Plugins
-    using Console.Utiltiies.Plugins;
+    using Core.Utiltiies.Plugins;
     ```
 
-1. Next locate Step 2 in `Program.cs` and provide the following line to register the `TimeInformationPlugin`:
+1. Next locate TODO: Step 2 in `Program.cs` and provide the following line to register the `TimeInformationPlugin`:
 
     ```csharp
-    // TODO: Step 2 - Initialize Time plugin and registration in the kernel
     kernel.Plugins.AddFromObject(new TimeInformationPlugin());
     ```
 
-1. Next locate Step 3 and add the following line to be able to 
+1. Next locate TODO: Step 3 and add the following line to be able to 
    auto invoke kernel functions:
 
     ```csharp
-        // TODO: Step 3 - Add Auto invoke kernel functions as the tool call behavior
         ToolCallBehavior = ToolCallBehavior.AutoInvokeKernelFunctions
     ```
 
-1. Next locate Step 4 and add the following parameters:
+1. Next locate TODO: Step 4 and add the following parameters:
 
     ```csharp
-        // TODO: Step 4 - Provide promptExecutionSettings and kernel arguments
         await foreach (var chatUpdate in chatCompletionService.GetStreamingChatMessageContentsAsync(chatHistory, promptExecutionSettings, kernel))
     ```
 
@@ -74,13 +75,16 @@ In this lesson we will a semantic kernel plugins to be able to retrieve stock pr
 
     ```bash
     dotnet run
-    User > what is the current date?
+    What is the current date?
+    ```
+    Assistant response:
+    ```
     Assistant > Today's date is October 4, 2024. Time flies like an arrow; fruit flies like a banana! 
     ```
 
-1. Congratulations you are now using your first Semantic Kernel plugin! Next, we are going to need another plugin
-   that will integrate to be able to an existing `StockService` included within the `Core.Utilities` project.
-   Review the file named `StockDataPlugin.cs` from `Console.Utilities\Plugins` which includes 2 functions,
+1. Congratulations you are now using your first Semantic Kernel plugin! Next, we are going to leverage another plugin
+   that will provide a `StockService`.  This plugin is included within the `Core.Utilities` project.
+   Review the file named `StockDataPlugin.cs` from `Core.Utilities\Plugins` which includes 2 functions,
    one to retrieve the stock price for the current date and another one for a specific date:
 
     ```csharp
@@ -112,17 +116,15 @@ In this lesson we will a semantic kernel plugins to be able to retrieve stock pr
     }
     ```
 
-1. Next, locate Step 5 in `Program.cs` and add import required for `StockService`:
+1. Next, locate TODO: Step 5 in `Program.cs` and add import required for `StockService`:
 
     ```csharp
-    // TODO: Step 5 - Add import required for StockService
     using Core.Utilities.Services;
     ```
 
-1. Next locate Step 6 and provide the following line to register the new `StockDataPlugin`:
+1. Next locate TODO: Step 6 and provide the following line to register the new `StockDataPlugin`:
 
     ```csharp
-    // TODO: Step 6 - Initialize Stock Data Plugin and register it in the kernel
     HttpClient httpClient = new();
     StockDataPlugin stockDataPlugin = new(new StocksService(httpClient));
     kernel.Plugins.AddFromObject(stockDataPlugin);
@@ -131,7 +133,7 @@ In this lesson we will a semantic kernel plugins to be able to retrieve stock pr
 1. Before we can run this, you need to get an API Key to be able to get stock prices from: 
    [https://polygon.io/dashboard/login](). You can sign up for a free API Key by creating a login.
 
-1. Once the apiKey is provide, update the `appSettings.json` and paste it into this line:
+1. Once you have an apiKey, update the `appSettings.json` and paste it into this line:
 
     ```json
       "StockService": {
@@ -142,7 +144,11 @@ In this lesson we will a semantic kernel plugins to be able to retrieve stock pr
 1. Next run program and ask stock pricing information:
 
     ```bash
-    User > what is MSFT price?
+    dotnet run
+    What is MSFT price?
+    ```
+    Assistant response:
+   ```
     Assistant > Hold onto your calculators! The price of MSFT is currently $417.63. 
     Looks like it's trying to outshine the stars! 
     ```
