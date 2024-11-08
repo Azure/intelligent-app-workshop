@@ -16,9 +16,11 @@ The UI was created using React JS and a Node JS proxy to the API. Here is a high
 ### Build Web UI
 
 1. Go to the frontend directory
+
    ```bash
    cd workshop/frontend
    ```
+
 1. Run `npm install` to get required dependencies
 
 1. Run `npm run build` to build the React application

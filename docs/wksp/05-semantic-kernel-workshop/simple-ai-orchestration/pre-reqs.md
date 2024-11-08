@@ -15,7 +15,7 @@ Before attending the Intelligent App Development Workshop, please ensure you hav
 ## Initial Setup
 
 1. Ensure all [pre-requisites](pre-reqs.md) are met and installed.
-2. Clone this repo using: 
+2. Clone this repo using:
 
     ```bash
     git clone https://github.com/Azure/intelligent-app-workshop.git
@@ -45,26 +45,25 @@ Before attending the Intelligent App Development Workshop, please ensure you hav
         1. Click **Show Keys** - you should see the following: KEY 1, KEY 2 and Endpoint.
         1. Use the **KEY 1** value for **apiKey** in appsettings.json under OpenAI.
         1. Use the **Endpoint** value for **endpoint** in appsettings.json under OpenAI.
-        
+
         ![Terminal](./images/keys-and-endpoint.jpg)
-        
+
         Next, we need to create deployments from the Azure OpenAI models.
-        
+
         1. Click the **Model deployments** option in the sidebar (left menu) for Azure OpenAI resource.
         1. In the destination page, click **Manage Deployments**
         1. (Optional) You can directly navigate to the [Azure OpenAI Studio website](https://oai.azure.com).
-        
+
         This will take you to the Azure OpenAI Studio website, where we'll find the other values as described below.
 
     1. Get Azure OpenAI deployments: From Studio
-    
-        1. Navigate to [Azure OpenAI Studio](https://oai.azure.com) **from your resource** as described above.
-        2. Click the **Deployments** tab (sidebar, left) to view currently deployed models.
-        3. If your desired model is not deployed, use **Create new deployment** to deploy it. If using the new portal, use **Deploy model** button.
-        4. You will need a chat completion model (gpt-4o model or similar)- deploy the model
-        5. Update appsettings.json deploymentName field with your model deployment name.
-        
-        ![Terminal](./images/deploy-model.jpg)
 
+        1. Navigate to [Azure OpenAI Studio](https://oai.azure.com) **from your resource** as described above.
+        1. Click the **Deployments** tab (sidebar, left) to view currently deployed models.
+        1. If your desired model is not deployed, use **Create new deployment** to deploy it. If using the new portal, use **Deploy model** button.
+        1. You will need a chat completion model (gpt-4o model or similar)- deploy the model
+        1. Update appsettings.json deploymentName field with your model deployment name.
+
+        ![Terminal](./images/deploy-model.jpg)
 
 By ensuring you have completed these prerequisites, you'll be well-prepared to dive into the Intelligent App Development Workshop and make the most of the hands-on learning experience.

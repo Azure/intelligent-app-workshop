@@ -19,18 +19,23 @@ In this lesson we will a semantic kernel plugins to be able to retrieve stock pr
     ```bash
     dotnet run
     ```
+
    At the prompt enter
+
    ```bash
    What is the current date?
     ```
+
    Assistant will give a similar response:
-   ```
+
+   ```txt
    Assistant > I can't access today's date, but imagine it’s an eternal "Fri-yay," ready for financial fun! How can I help you on this hypothetical day?
    ```
+
 1. Notice it does not provide a specific answer. We can use a Semantic Kernel Plugin to be able to fix that.
 
- 1. In the `Plugins` directory from `Core.Utilities` directory review the file named 
-    `TimeInformationPlugin.cs` which has the following content:
+1. In the `Plugins` directory from `Core.Utilities` directory review the file named
+   `TimeInformationPlugin.cs` which has the following content:
 
     ```csharp
     using System.ComponentModel;
@@ -77,8 +82,10 @@ In this lesson we will a semantic kernel plugins to be able to retrieve stock pr
     dotnet run
     What is the current date?
     ```
+
     Assistant response:
-    ```
+
+    ```txt
     Assistant > Today's date is October 4, 2024. Time flies like an arrow; fruit flies like a banana! 
     ```
 
@@ -146,9 +153,12 @@ In this lesson we will a semantic kernel plugins to be able to retrieve stock pr
     ```bash
     dotnet run
     What is MSFT price?
+
     ```
+
     Assistant response:
-   ```
+
+    ```txt
     Assistant > Hold onto your calculators! The price of MSFT is currently $417.63. 
     Looks like it's trying to outshine the stars! 
     ```

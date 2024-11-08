@@ -41,7 +41,7 @@ services:
 
 ### `infra` directory
 
-Within the `infra` directory you have the option to provide either `bicep` or `terraform templates
+Within the `infra` directory you have the option to provide either `bicep` or `terraform` templates
 to deploy the required infrastructure for our application to run. In this example we
 use `bicep` templates which are organized as follows:
 

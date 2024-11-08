@@ -1,6 +1,6 @@
 # Simple AI Orchestration using Semantic Kernel
 
-This hands on workshop goes through the following lessons for creating a simple Semantic Kernel 
+This hands on workshop goes through the following lessons for creating a simple Semantic Kernel
 chatbot as a console application:
 
 1. [Lesson 1: Create Simple Semantic Kernel chatbot](lesson1.md)

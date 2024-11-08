@@ -13,7 +13,7 @@ In this lesson we will create a semantic kernel chatbot with a system prompt and
 1. Open `Program.cs` and locate the **TODO** for each step and apply the following changes for each:
 
     1. TODO: Step 1: add code to initialize kernel with chat completion:
- 
+
         ```csharp
         IKernelBuilder builder = KernelBuilderProvider.CreateKernelWithChatCompletion();
         Kernel kernel = builder.Build();
@@ -51,12 +51,13 @@ In this lesson we will create a semantic kernel chatbot with a system prompt and
 
 1. When prompted ask for financial advice:
 
-    ```
+    ```txt
     Which stocks do you recommend buying for moderate growth?
     ```
 
     You will receive a similar response:
-   
+
+    ```txt
         Assistant > Ah, the magical world of stock picking! Imagine walking into a buffet, and instead of loading your plate with mystery meat, you're strategically choosing the tastiest, most promising dishes. Here are a few general menus to consider, with a sprinkle of fun:
     
         1. **Tech Tango** - Think companies that dance to the tune of innovation! Look for firms diving into AI or cloud computing. They're like the cool kids at the financial disco.
@@ -70,5 +71,4 @@ In this lesson we will create a semantic kernel chatbot with a system prompt and
         5. **Financial Fiesta** - Banks or fintech companies can be like salsa on your stock tacos—adding a bit of spice and zing!
     
         Remember, always research like you're planning the perfect vacation and balance your choices like you balance a pizza with just the right amount of toppings. And of course, consult a real-world financial oracle before making any big moves. Bon appétit in the stock market buffet!
-
-
+    ```
