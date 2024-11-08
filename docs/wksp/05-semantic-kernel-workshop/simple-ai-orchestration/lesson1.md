@@ -2,6 +2,8 @@
 
 In this lesson we will create a semantic kernel chatbot with a system prompt and keeping track of chat history.
 
+1. Ensure all [pre-requisites](pre-reqs.md) are met and installed.
+
 1. Switch to Lesson 1 directory:
 
     ```bash
