@@ -1,7 +1,7 @@
 # Creating the Backend API
 
 These changes are already available in the repository. These instructions walk
-you through the process followed for create the backend API from the Console application:
+you through the process followed to create the backend API from the Console application:
 
 1. Start by creating a new directory:
 
@@ -30,6 +30,7 @@ you through the process followed for create the backend API from the Console app
    ```csharp
     using Microsoft.AspNetCore.Antiforgery;
     using Extensions;
+    using System.Text.Json.Serialization;
 
     var builder = WebApplication.CreateBuilder(args);
 
@@ -39,6 +40,9 @@ you through the process followed for create the backend API from the Console app
     // See: https://aka.ms/aspnetcore/swashbuckle
     builder.Services.AddEndpointsApiExplorer();
     builder.Services.AddSwaggerGen();
+    // Required to generate enumeration values in Swagger doc
+    builder.Services.AddControllersWithViews().AddJsonOptions(options => 
+        options.JsonSerializerOptions.Converters.Add(new JsonStringEnumConverter()));
     builder.Services.AddOutputCache();
     builder.Services.AddAntiforgery(options => { 
         options.HeaderName = "X-CSRF-TOKEN-HEADER"; 
