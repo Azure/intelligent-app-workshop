@@ -137,10 +137,7 @@ In this lesson we will a semantic kernel plugins to be able to retrieve stock pr
     kernel.Plugins.AddFromObject(stockDataPlugin);
     ```
 
-1. Before we can run this, you need to get an API Key to be able to get stock prices from: 
-   [https://polygon.io/dashboard/login](). You can sign up for a free API Key by creating a login.
-
-1. Once you have an apiKey, update the `appSettings.json` and paste it into this line:
+1. Use the apiKey from polygon.io from the [pre-requisites](pre-reqs.md) and update the `appSettings.json` and paste it into this line:
 
     ```json
       "StockService": {

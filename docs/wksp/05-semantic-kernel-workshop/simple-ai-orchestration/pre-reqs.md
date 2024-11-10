@@ -5,7 +5,22 @@ Before attending the Intelligent App Development Workshop, please ensure you hav
 1. **Azure account**: A Microsoft Azure account with an active subscription. If you don't have one, sign up for a [free trial](https://azure.microsoft.com/en-us/free/).
 1. **Azure subscription with access enabled for the Azure OpenAI Service** - For more details, see the [Azure OpenAI Service documentation on how to get access](https://learn.microsoft.com/azure/ai-services/openai/overview#how-do-i-get-access-to-azure-openai). 
 1. **Azure OpenAI resource** - For this workshop, you'll need to deploy at least one model such as GPT 4. See the Azure OpenAI Service documentation for more details on [deploying models](https://learn.microsoft.com/azure/ai-services/openai/how-to/create-resource?pivots=web-portal) and [model availability](https://learn.microsoft.com/azure/ai-services/openai/concepts/models).
-1. **Development environment**: Either `Gihub CodeSpaces` or A computer with your preferred development environment installed, such as Visual Studio Code or another IDE that supports the programming language you'll be using in the workshop. If using `Github CodeSpaces` all prerequisites will be pre-installed. If using your local computer, the following pre-requisites are needed:
+
+## Development Environment Setup
+
+You have the option of using [Github CodeSpaces](https://docs.github.com/en/codespaces/getting-started/quickstart) or your local development environment.
+
+### Using Github CodeSpaces (recommmended)
+
+If using Github CodeSpaces all prerequisites will be pre-installed, however you will need to create a fork as follows:
+
+1. Navigate to this link to create a new [fork](https://github.com/Azure/intelligent-app-workshop/fork) (must be logged into your github account).
+1. Accept the default values and click on **"Create fork"** which will take you to the forked repository in the browser.
+1. From your forked repository click on the **"<> Code"** button. Then click on the **"Create codespace on main"** button.
+
+### Using local development environment
+
+If you prefer using a computer with using a local development environment, the following pre-requisites need to be installed:
     1. **Git**: Ensure you have [Git](https://git-scm.com/downloads) installed on your computer.
     1. **Azure CLI**: Install the [Azure Command-Line Interface (CLI)](https://docs.microsoft.com/en-us/cli/azure/install-azure-cli) to interact with Azure services and manage resources from the command line.
     1. **.NET SDK**: install [.NET SDK](https://dotnet.microsoft.com/en-us/download) to build and run .NET projects.
@@ -14,28 +29,27 @@ Before attending the Intelligent App Development Workshop, please ensure you hav
     1. **Azure Development CLI**: Install [azd](https://learn.microsoft.com/en-us/azure/developer/azure-developer-cli/install-azd) to be able to provision and deploy application to Azure.
     1. **bash/shell terminal**: the lessons assume bash/shell script syntax. If using Windows, either you can either using Git Bash (included when you install Git) or installing [WSL (Windows Subsystem for Linux)](https://learn.microsoft.com/en-us/windows/wsl/install).
 
+Next you will need to clone this repo using:
+
+```bash
+git clone https://github.com/Azure/intelligent-app-workshop.git
+```
+
+Change directory into cloned repo:
+
+```bash
+cd intelligent-app-workshop
+```
+
 ## Initial Setup
 
-1. Ensure all [pre-requisites](pre-reqs.md) are met and installed.
-2. Clone this repo using:
-
-    ```bash
-    git clone https://github.com/Azure/intelligent-app-workshop.git
-    ```
-
-3. Change directory into cloned repo:
-
-    ```bash
-    cd intelligent-app-workshop
-    ```
-
-4. Copy and rename the file `appsettings.json.example` into the corresponding lesson directory as follows (example command for Lesson1):
+1. Copy and rename the file `appsettings.json.example` into the corresponding lesson directory as follows (example command for Lesson1):
 
     ```bash
     cp workshop\dotnet\Lessons\appsettings.json.example workshop\dotnet\Lessons\Lesson1\appsettings.json
     ```
 
-5. Retrieve the OpenAI Endpoint URL, API Key and deployed model name then update newly created appsettings.json
+1. Retrieve the OpenAI Endpoint URL, API Key and deployed model name then update newly created `appsettings.json`
 
     1. Get Azure OpenAI access values: From Portal:
 
@@ -67,5 +81,7 @@ Before attending the Intelligent App Development Workshop, please ensure you hav
         1. Update appsettings.json deploymentName field with your model deployment name.
 
         ![Terminal](./images/deploy-model.jpg)
+
+1. Additionally we need to obtain an API Key to be able to get stock prices from [polygon.io](https://polygon.io/dashboard/login). You can sign up for a free API Key by creating a login. This value will be needed for [Lesson 3](lesson3.md).
 
 By ensuring you have completed these prerequisites, you'll be well-prepared to dive into the Intelligent App Development Workshop and make the most of the hands-on learning experience.
