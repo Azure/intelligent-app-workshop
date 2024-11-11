@@ -7,13 +7,24 @@ you through the process followed to create the backend API from the Console appl
 
     ```bash
     mkdir -p workshop/dotnet/App/backend
-    cd workshop/dotnet/App/backend
     ```
 
 1. Next create a new SDK .NET project:
 
     ```bash
-    dotnet new webapi -n MinimialApi
+    cd workshop/dotnet/App/
+    dotnet new webapi -n backend --no-openapi --force
+    cd backend
+    ```
+
+1. Build project to confirm it is successful:
+
+    ```txt
+    dotnet build
+
+    Build succeeded.
+        0 Warning(s)
+        0 Error(s)
     ```
 
 1. Add the following nuget packages:
@@ -23,7 +34,7 @@ you through the process followed to create the backend API from the Console appl
     dotnet add package Swashbuckle.AspNetCore
     ```
 
-1. Create a new `Program.cs` in the project directory. This file initializes and loads
+1. Replace the contents of `Program.cs` in the project directory with the following code. This file initializes and loads
    the required services and configuration for the API, namely configuring CORS protection,
    enabling controllers for the API and exposing Swagger document:
 
@@ -88,7 +99,7 @@ you through the process followed to create the backend API from the Console appl
     cd Extensions
     ```
 
-1. In the `Extensions` directory create a `ServiceExtensions.cs` class with the following code 
+1. In the `Extensions` directory create a `ServiceExtensions.cs` class with the following code
    to initialie the semantic kernel:
 
     ```csharp
@@ -120,7 +131,7 @@ you through the process followed to create the backend API from the Console appl
                 HttpClient httpClient = new();
                 StockDataPlugin stockDataPlugin = new(new StocksService(httpClient));
                 kernel.Plugins.AddFromObject(stockDataPlugin);
-                
+
                 return kernel;
             });
         }
@@ -142,8 +153,6 @@ you through the process followed to create the backend API from the Console appl
     ```csharp
     using Core.Utilities.Models;
     using Core.Utilities.Extensions;
-    // Add import for Plugins
-    using Plugins;
     // Add import required for StockService
     using Microsoft.SemanticKernel;
     using Microsoft.SemanticKernel.Connectors.OpenAI;
@@ -206,6 +215,7 @@ you through the process followed to create the backend API from the Console appl
             return chatResponse;
         }
 
+
     }
     ```
 
@@ -214,6 +224,8 @@ you through the process followed to create the backend API from the Console appl
 1. To run API locally first copy valid `appsettings.json` from completed `Lessons/Lesson3` into `backend` directory:
 
     ```bash
+    #cd into backend directory
+    cd ../
     cp ../../Lessons/Lesson3/appsettings.json .
     ```
 
@@ -226,7 +238,7 @@ you through the process followed to create the backend API from the Console appl
       Now listening on: http://localhost:5000
     ```
 
-1. Application will start on default port (5000). Navigate to <http://localhost:5000> and it should redirect you to the swagger UI page.
+1. Application will start on specified port (port may be different). Navigate to <http://localhost:5000> or corresponding [forwarded address](https://docs.github.com/en/codespaces/developing-in-a-codespace/forwarding-ports-in-your-codespace) (if using Github CodeSpace) and it should redirect you to the swagger UI page.
 
 1. You can either test the API using the "Try it out" feature from within Swagger UI, or via command line using `curl` command:
 
