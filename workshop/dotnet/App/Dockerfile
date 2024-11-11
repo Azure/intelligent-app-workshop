@@ -10,13 +10,13 @@ COPY ["../Directory.Packages.props", "."]
 COPY ["App/Directory.Build.props", "App/"]
 COPY ["App/backend/", "App/backend/"]
 COPY ["../../Core.Utilities/", "Core.Utilities/"]
-RUN dotnet restore "App/backend/MinimalApi.csproj"
+RUN dotnet restore "App/backend/backend.csproj"
 
 WORKDIR "/src/App/backend"
 FROM build AS publish
-RUN dotnet publish "MinimalApi.csproj" -o /app
+RUN dotnet publish "backend.csproj" -o /app
 
 FROM base AS final
 WORKDIR /app
 COPY --from=publish /app .
-ENTRYPOINT ["dotnet", "MinimalApi.dll"]
+ENTRYPOINT ["dotnet", "backend.dll"]
