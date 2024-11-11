@@ -4,6 +4,10 @@ using Microsoft.SemanticKernel.Connectors.OpenAI;
 
 // TODO: Step 1 - add ChatCompletion import
 
+// Initialize the kernel with chat completion
+IKernelBuilder builder = KernelBuilderProvider.CreateKernelWithChatCompletion();
+Kernel kernel = builder.Build();
+
 // TODO: Step 2a - Get chatCompletionService and initialize chatHistory wiht system prompt
 
 // TODO: Step 2b - Remove the promptExecutionSettings and kernelArgs initialization code

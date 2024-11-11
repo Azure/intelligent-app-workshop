@@ -27,7 +27,7 @@ do
     if (userInput != null && userInput != terminationPhrase)
     {
         Console.Write("Assistant > ");
-        // TODO: Step 4 - Provide kernel arguments as a second parameter
+        // TODO: Step 4 - add a loop to invoke prompt asynchronously providing user input and kernel arguments
         await foreach (var response in kernel.InvokePromptStreamingAsync(userInput, kernelArgs))
         {
             Console.Write(response);
