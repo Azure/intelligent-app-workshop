@@ -2,6 +2,8 @@
 
 In this lesson we will add chat history to our chat agent.
 
+1. Ensure all [pre-requisites](pre-reqs.md) are met and installed.
+
 1. Switch to Lesson 2 directory:
 
     ```bash
@@ -18,12 +20,10 @@ In this lesson we will add chat history to our chat agent.
 
 1. Open `Program.cs` and locate the **TODO** for each step and apply the following changes for each:
 
-    1. TODO: Step 1: add code to include the chat completion namespace & initialize kernel with chat completion:
+    1. TODO: Step 1: add code to include the chat completion namespace
 
         ```csharp
         using Microsoft.SemanticKernel.ChatCompletion;
-        IKernelBuilder builder = KernelBuilderProvider.CreateKernelWithChatCompletion();
-        Kernel kernel = builder.Build();
         ```
 
     1. TODO: Step 2a: Add code to get `chatCompletionService` instance and to initialize `chatHistory` with system prompt
@@ -33,7 +33,7 @@ In this lesson we will add chat history to our chat agent.
         ChatHistory chatHistory = new("You are a friendly financial advisor that only emits financial advice in a creative and funny tone");
         ```
 
-        TODO: Step 2b: **Remove** the `promptExecutionSettings` and `kernelArgs` initialization code
+        TODO: Step 2b: **Remove** the `promptExecutionSettings` and `kernelArgs` initialization code below
 
         ```csharp
         OpenAIPromptExecutionSettings promptExecutionSettings = new()

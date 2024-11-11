@@ -7,7 +7,7 @@ In this lesson we will create a semantic kernel chatbot with a system prompt and
 1. Switch to Lesson 1 directory:
 
     ```bash
-    cd Lessons\Lesson1
+    cd workshop/dotnet/Lessons/Lesson1
     ```
 
 1. Open the project in your favorite IDE or text editor.

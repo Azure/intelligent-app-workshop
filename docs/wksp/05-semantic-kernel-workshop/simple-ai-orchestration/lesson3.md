@@ -2,6 +2,8 @@
 
 In this lesson we will a semantic kernel plugins to be able to retrieve stock pricing.
 
+1. Ensure all [pre-requisites](pre-reqs.md) are met and installed (including updating the StockService `apiKey` value in the `appSettings.json` file using the key from [polygon.io](https://polygon.io/dashboard)).
+
 1. Switch to Lesson 3 directory:
 
     ```bash
@@ -54,7 +56,7 @@ In this lesson we will a semantic kernel plugins to be able to retrieve stock pr
 1. Next locate TODO: Step 1 in `Program.cs` and add the following import line:
 
     ```csharp
-    using Core.Utiltiies.Plugins;
+    using Core.Utilities.Plugins;
     ```
 
 1. Next locate TODO: Step 2 in `Program.cs` and provide the following line to register the `TimeInformationPlugin`:
@@ -135,14 +137,6 @@ In this lesson we will a semantic kernel plugins to be able to retrieve stock pr
     HttpClient httpClient = new();
     StockDataPlugin stockDataPlugin = new(new StocksService(httpClient));
     kernel.Plugins.AddFromObject(stockDataPlugin);
-    ```
-
-1. Use the apiKey from polygon.io from the [pre-requisites](pre-reqs.md) and update the `appSettings.json` and paste it into this line:
-
-    ```json
-      "StockService": {
-        "ApiKey": "<key>"
-      }
     ```
 
 1. Next run program and ask stock pricing information:
