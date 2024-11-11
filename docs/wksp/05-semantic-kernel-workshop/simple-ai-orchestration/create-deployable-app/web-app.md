@@ -28,26 +28,34 @@ The UI was created using React JS and a Node JS proxy to the API. Here is a high
 ### Run Web UI
 
 1. Create `.env` file in `frontend` directory and provide the following required values:
-    1. `API_URL` - URL to the backend API
     1. `PORT` - port where React app is running
     1. `REACT_APP_PROXY_URL` - url to the Node JS proxy
 
     ```shell
-    PORT=3001
-    REACT_APP_PROXY_URL=/api/chat
+    export PORT=3001
+    export REACT_APP_PROXY_URL=/api/chat
     ```
 
-1. Start backend API using `dotnet run`
-
-1. On a separate terminal start React application using `npm start`
-
-1. On a separate terminal export the following required variables for NodeJS application:
+1. On a separate terminal export the following required variables for NodeJS proxy application
+   (note `API_URL` will be different if using Github Codespace, e.g. `https://awesome-journey-65pj9v9pw52rrrx-5020.app.github.dev/chat`):
 
     ```bash
-    PORT=3001
-    API_URL=http://localhost:5000/chat
+    export PORT=3001
+    export API_URL=http://localhost:5000/chat
     ```
 
-    1. Start the NodeJS application using `node server.js`
+    1. From `workshop/frontend` directory start the NodeJS proxy application using `node server.js`
 
-1. Navigate to browser on <http://localhost:3001> and test the chat application.
+1. On a separate terminal start backend API using:
+
+    ```bash
+    cd workshop/dotnet/App/backend/
+    dotnet run
+    ```
+
+    1. If testing from GitHub Codespace, the port forwarded for .NET application must have a port visibility of Public:
+        1. To change this, click on the **PORTS** tab in Visual Studio Code and then right click running .NET application row and hover over **Port Visibility** and click **Public**
+           and click on **Public**
+           ![change-port-visibility](./../images/public-port.jpg)
+
+1. Navigate to browser on <http://localhost:3001> or forwarded address (if using Github Codespace) and test the chat application.

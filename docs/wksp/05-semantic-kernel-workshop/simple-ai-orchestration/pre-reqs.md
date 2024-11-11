@@ -8,11 +8,11 @@ Before attending the Intelligent App Development Workshop, please ensure you hav
 
 ## Development Environment Setup
 
-You have the option of using [Github CodeSpaces](https://docs.github.com/en/codespaces/getting-started/quickstart) or your local development environment.
+You have the option of using [Github Codespaces](https://docs.github.com/en/codespaces/getting-started/quickstart) or your local development environment.
 
-### Using Github CodeSpaces (recommmended)
+### Using Github Codespaces (recommmended)
 
-If using Github CodeSpaces all prerequisites will be pre-installed, however you will need to create a fork as follows:
+If using Github Codespaces all prerequisites will be pre-installed, however you will need to create a fork as follows:
 
 1. Navigate to this link to create a new [fork](https://github.com/Azure/intelligent-app-workshop/fork) (must be logged into your github account).
 1. Accept the default values and click on **"Create fork"** which will take you to the forked repository in the browser.
