@@ -1,7 +1,7 @@
 using Core.Utilities.Config;
 using Core.Utilities.Models;
 // Add import for Plugins
-using Plugins;
+using Core.Utilities.Plugins;
 // Add import required for StockService
 using Core.Utilities.Services;
 using Microsoft.SemanticKernel;

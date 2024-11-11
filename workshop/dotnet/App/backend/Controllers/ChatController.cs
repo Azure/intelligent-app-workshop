@@ -1,7 +1,5 @@
 using Core.Utilities.Models;
 using Core.Utilities.Extensions;
-// Add import for Plugins
-using Plugins;
 // Add import required for StockService
 using Microsoft.SemanticKernel;
 using Microsoft.SemanticKernel.Connectors.OpenAI;
