@@ -6,7 +6,7 @@ using Microsoft.SemanticKernel.Connectors.OpenAI;
 // TODO: Step 1 - Initialize the kernel with chat completion
 
 
-// TODO: Step 2 - Add system propmpt
+// TODO: Step 2 - Add system prompt
 
 
 // TODO: Step 3 - Initialize kernel arguments
