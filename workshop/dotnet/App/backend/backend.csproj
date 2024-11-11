@@ -1,14 +1,14 @@
-﻿<Project Sdk="Microsoft.NET.Sdk.Web"><PropertyGroup>  <UserSecretsId>0b9505af-93c5-4d5b-8ea5-a3b472deb0bc</UserSecretsId>
+<Project Sdk="Microsoft.NET.Sdk.Web">
+
+  <PropertyGroup>
+    <TargetFramework>net8.0</TargetFramework>
+    <Nullable>enable</Nullable>
+    <ImplicitUsings>enable</ImplicitUsings>
   </PropertyGroup>
 
-    <ItemGroup>
-        <None Update="appsettings.json">
-            <CopyToOutputDirectory>Always</CopyToOutputDirectory>
-        </None>
-    </ItemGroup>
+  <ItemGroup>
+    <PackageReference Include="Microsoft.AspNetCore.Mvc" />
+    <PackageReference Include="Swashbuckle.AspNetCore" />
+  </ItemGroup>
 
-    <ItemGroup>
-        <PackageReference Include="Microsoft.AspNetCore.Mvc" />
-        <PackageReference Include="Swashbuckle.AspNetCore" />
-    </ItemGroup>
 </Project>
