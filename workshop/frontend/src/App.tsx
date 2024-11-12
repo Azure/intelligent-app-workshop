@@ -56,7 +56,7 @@ function App() {
   const [inputMessage, setInputMessage] = useState('');
   const [messageHistory, setMessageHistory] = useState<Message[]>([]);
   const [welcomeMessage, setWelcomeMessage] = useState<Message>({ message: 'You are a friendly financial advisor that only emits financial advice in a creative and funny tone', role: 'system' });
-  const proxy_url = process.env.REACT_APP_PROXY_URL;
+  const proxy_url = process.env.REACT_APP_PROXY_URL || '/api/chat';
   useEffect(() => {
     setMessageHistory([welcomeMessage]);
   }, []);
