@@ -45,7 +45,7 @@ Within the `infra` directory you have the option to provide either `bicep` or `t
 to deploy the required infrastructure for our application to run. In this example we
 use `bicep` templates which are organized as follows:
 
-* infra
+* **infra**
   * `main.bicep` - contains the bicep parameters and modules to deploy
   * `main.paramters.json` - parameter values to be used during deployment
   * `abbreviations.json` - optional file to specify suffix abbreviations for each resource type
@@ -53,11 +53,11 @@ use `bicep` templates which are organized as follows:
       * `api.bicep` - bicep template for backend application infrastructure
       * `web.bicep` - bicep templated for web application infrastructure
     * core - subdirectory with templates for core infrastructure components
-      * ai - subdirectory for AI related components
-      * host - subdirectory for container app, environment and registry components
-      * monitor - subdirectory for monitoring components (e.g. application insights)
-      * security - subdirectory for security components (e.g. keyvault)
-      * storage - subdirectory for storage components (e.g. storage account)
+      * **ai** - subdirectory for AI related components
+      * **host** - subdirectory for container app, environment and registry components
+      * **monitor** - subdirectory for monitoring components (e.g. application insights)
+      * **security** - subdirectory for security components (e.g. keyvault)
+      * **storage** - subdirectory for storage components (e.g. storage account)
 
 The `azd init` command can be used to generate a starter template, however the quickest way
 to generate an existing template is to find a template that uses similar components from
@@ -68,7 +68,7 @@ to generate an existing template is to find a template that uses similar compone
 You can build, provision all resources and deploy by following these steps:
 
 1. Switch to `workshop/donet` directory.
-1. Ensure Docker desktip is running.
+1. Ensure Docker desktop is running.
 1. Run `azd auth login` to login to your Azure account.
 1. Run `azd up` to provision Azure resources and deploy this sample to those resources.
    You will be prompted for the following parameters:

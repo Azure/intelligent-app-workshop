@@ -1,7 +1,8 @@
 {
     "image": "mcr.microsoft.com/devcontainers/universal:2",
     "features": {
-        "ghcr.io/azure/azure-dev/azd:latest": {}
+        "ghcr.io/azure/azure-dev/azd:latest": {},
+        "ghcr.io/devcontainers/features/azure-cli:latest": {}
     },
     "customizations": {
         "vscode": {
