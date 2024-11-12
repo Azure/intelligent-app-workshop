@@ -80,10 +80,10 @@ You can build, provision all resources and deploy by following these steps:
       * 'openAiChatGptDeployment': e.g. gpt-4o
       * 'openAiEndpoint'
       * 'stockServiceApiKey'
-1. After the application has been successfully deployed you will see the API
-   and Web Service URLs printed in the console.  
+1. After the application has been successfully deployed you will see the API and Web Service URLs printed in the console.  
    Click the Web Service URL to interact with the application in your browser.
-    > NOTE: It may take a few minutes for the application to be fully deployed.
+
+   **NOTE:** It may take a few minutes for the application to be fully  deployed.
 
 ## Deployment removal
 
