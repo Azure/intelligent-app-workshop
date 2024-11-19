@@ -1,0 +1,10 @@
+{
+  "OpenAI": {
+    "endpoint": "<OpenAIEndpoint>",
+    "apiKey": "",
+    "deploymentName": "<OpenAIDeploymentName>"
+  },
+  "StockService": {
+    "apiKey": ""
+  }
+}

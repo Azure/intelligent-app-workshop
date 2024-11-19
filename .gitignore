@@ -21,7 +21,6 @@ node_modules/
 parts/
 sdist/
 var/
-package*.json
 *.egg-info/
 .installed.cfg
 *.egg
@@ -69,3 +68,23 @@ ENV/
 # MkDocs documentation
 site*/
 .vscode/
+
+# Build results
+[Dd]ebug/
+[Dd]ebugPublic/
+[Rr]elease/
+[Rr]eleases/
+x64/
+x86/
+[Aa][Rr][Mm]/
+[Aa][Rr][Mm]64/
+bld/
+[Bb]in/
+[Oo]bj/
+[Ll]og/
+[Ll]ogs/
+
+# Frontend/react/npm files
+appsettings.json
+.env
+package-lock.json

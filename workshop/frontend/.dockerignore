@@ -1,0 +1,7 @@
+# Exclude node_modules and logs
+node_modules
+npm-debug.log
+
+# Exclude Git-related files
+.git
+.gitignore

@@ -18,25 +18,41 @@ nav:
   - Module 2 - Fork and Get Hands-on: wksp/02-fork-and-get-hands-on/index.md
   - Module 3 - Inner-loop: wksp/03-inner-loop/index.md
   - Module 4 - Basics of Semantic Kernel: wksp/04-Semantic-Kernel-Basics/index.md
-  - Module 5 - Use cases deep-dive with Miyagi and Reddog:
-      - wksp/05-use-cases/index.md
-      - Synthesis: wksp/05-use-cases/synthesis.md
+  - Module 5 - Hands-on AI Orchestration using Semantic Kernel Workshop: 
+      - wksp/05-semantic-kernel-workshop/simple-ai-orchestration/index.md
+      - Pre-requisites: wksp/05-semantic-kernel-workshop/simple-ai-orchestration/pre-reqs.md
+      - Lesson 1 - Simple Semantic Kernel chatbot: wksp/05-semantic-kernel-workshop/simple-ai-orchestration/lesson1.md
+      - Lesson 2 - Simple Semantic Kernel chatbot with history: wksp/05-semantic-kernel-workshop/simple-ai-orchestration/lesson2.md
+      - Lesson 3 - Simple Semantic Kernel chatbot with plugins: wksp/05-semantic-kernel-workshop/simple-ai-orchestration/lesson3.md
+      - Build a deployable web application:
+        - wksp/05-semantic-kernel-workshop/simple-ai-orchestration/create-deployable-app/index.md
+        - Create Backend API: wksp/05-semantic-kernel-workshop/simple-ai-orchestration/create-deployable-app/backend-api.md
+        - Create Web application: wksp/05-semantic-kernel-workshop/simple-ai-orchestration/create-deployable-app/web-app.md
+        - Deploy Azure resources: wksp/05-semantic-kernel-workshop/simple-ai-orchestration/create-deployable-app/azd-infra.md
+  - Module 6 - Use cases deep-dive with Miyagi and Reddog:
+      - wksp/06-use-cases/index.md
+      - Synthesis: wksp/06-use-cases/synthesis.md
       - Generation:
-          - Overview: wksp/05-use-cases/generation.md
-          - Text: wksp/05-use-cases/generation.md
-          - Images: wksp/05-use-cases/generation.md
-          - Code: wksp/05-use-cases/generation.md
-          - Video: wksp/05-use-cases/generation.md
-      - Conversation: wksp/05-use-cases/synthesis.md
-      - Summarization: wksp/05-use-cases/synthesis.md
-      - Classification: wksp/05-use-cases/synthesis.md
-      - Translation: wksp/05-use-cases/synthesis.md
-      - Speech-to-text: wksp/05-use-cases/synthesis.md
-      - Semantic Search: wksp/05-use-cases/synthesis.md
-      - Anomaly Detection: wksp/05-use-cases/synthesis.md
-      - Agency and Planning: wksp/05-use-cases/synthesis.md
-      - QA on Domain Knowledge: wksp/05-use-cases/synthesis.md
-      - Plugins: wksp/05-use-cases/synthesis.md
+          - Overview: wksp/06-use-cases/generation.md
+          - Text: wksp/06-use-cases/generation.md
+          - Images: wksp/06-use-cases/generation.md
+          - Code: wksp/06-use-cases/generation.md
+          - Video: wksp/06-use-cases/generation.md
+      - Conversation: wksp/06-use-cases/synthesis.md
+      - Summarization: wksp/06-use-cases/synthesis.md
+      - Classification: wksp/06-use-cases/synthesis.md
+      - Translation: wksp/06-use-cases/synthesis.md
+      - Speech-to-text: wksp/06-use-cases/synthesis.md
+      - Semantic Search: wksp/06-use-cases/synthesis.md
+      - Anomaly Detection: wksp/06-use-cases/synthesis.md
+      - Agency and Planning: wksp/06-use-cases/synthesis.md
+      - QA on Domain Knowledge: wksp/06-use-cases/synthesis.md
+      - Plugins: wksp/06-use-cases/synthesis.md
+  - Module 7 - Building Custom Copilots:
+      - Build Custom Copilots using Azure AI Studio: wksp/07-custom-copilot/index.md
+      - Extend Custom Copilot with AI Document Intelligence, AI Vision, and multi-modal Foundation model: wksp/07-custom-copilot/extend-copilot-ai-doc-intel.md  
+
+
   - Post-workshop:
       - Feedback: wksp/other/feedback.md
   - Appendix:
@@ -119,6 +135,7 @@ plugins:
   - git-revision-date
   - search
   - macros
+  - table-reader
   - glightbox
   - open-in-new-tab
   - mkdocs-video
