@@ -3,6 +3,7 @@
 This hands on workshop goes through the following lessons for creating a simple Semantic Kernel
 chatbot as a console application:
 
+1. [Prerequisites](pre-reqs.md)
 1. [Lesson 1: Create Simple Semantic Kernel chatbot](lesson1.md)
 1. [Lesson 2: Create Simple Semantic Kernel chatbot with history](lesson2.md)
 1. [Lesson 3: Create Simple Semantic Kernel chatbot with plugins](lesson3.md)
