@@ -53,9 +53,7 @@ cd intelligent-app-workshop
 1. Create Azure OpenAI Service and retrieve the Endpoint URL, API Key and deployed model name then update newly created `appsettings.json`
 
     1. Get Azure OpenAI access values (from Azure Portal):
-
-        First we need to create a new Azure OpenAI Service, so let's start there.
-        1. Go to the [Azure Portal](https://portal.azure.com).
+        1. First we need to create a new Azure OpenAI Service, so let's start there. Go to the [Azure Portal](https://portal.azure.com).
         1. Click on [Create A Resource](https://ms.portal.azure.com/#create/hub)
         1. On the search bar type **Azure OpenAI** and hit enter
         1. Locate **Azure OpenAI** and click **Create**
@@ -82,13 +80,13 @@ cd intelligent-app-workshop
 
         1. Click the **Model deployments** option in the sidebar (left menu) for Azure OpenAI resource.
         1. In the destination page, click **Manage Deployments**
-        1. (Optional) You can directly navigate to the [Azure OpenAI Studio website](https://oai.azure.com).
+        1. (Optional) You can directly navigate to the [Azure AI Foundry portal](https://oai.azure.com).
 
-        This will take you to the Azure OpenAI Studio website, where we'll find the other values as described below.
+        This will take you to the Azure AI Foundry website, where we'll find the other values as described below.
 
-    1. Create and get Azure OpenAI deployment value (from Azure OpenAI Studio):
+    1. Create and get Azure OpenAI deployment value (from Azure AI Foundry):
 
-        1. Navigate to [Azure OpenAI Studio](https://oai.azure.com) **from your resource** as described above.
+        1. Navigate to [Azure AI Foundry](https://oai.azure.com) **from your resource** as described above.
         1. Click the **Deployments** tab (sidebar, left) to view currently deployed models.
         1. If your desired model is not deployed, click on **Deploy Model** then select to **Deploy Base Model**.
         1. You will need a chat completion model. For this workshop we recommend using `gpt-4o`. Select `gpt-4o` from the drop down and click **Confirm**.
