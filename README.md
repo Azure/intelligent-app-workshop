@@ -9,7 +9,7 @@ Welcome to this envisioning workshop designed to help you build your own custom 
 
 In this comprehensive workshop, you will:
 
-- Utilize Azure AI Studio for reasoning engines, Prompt Flow for LLMOps, AI Search for semantic retrieval systems, and Semantic Kernel for orchestration.
+- Utilize Azure AI Foundry for reasoning engines, Prompt Flow for LLMOps, AI Search for semantic retrieval systems, and Semantic Kernel for orchestration.
 - Work with [Miyagi](https://github.com/Azure-Samples/miyagi) codebase during the hands-on experiential workshop
 - Explore advanced capabilities such as AutoGen and GraphRag
 
