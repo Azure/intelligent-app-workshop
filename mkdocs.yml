@@ -49,7 +49,7 @@ nav:
       - QA on Domain Knowledge: wksp/06-use-cases/synthesis.md
       - Plugins: wksp/06-use-cases/synthesis.md
   - Module 7 - Building Custom Copilots:
-      - Build Custom Copilots using Azure AI Studio: wksp/07-custom-copilot/index.md
+      - Build Custom Copilots using Azure AI Foundry: wksp/07-custom-copilot/index.md
       - Extend Custom Copilot with AI Document Intelligence, AI Vision, and multi-modal Foundation model: wksp/07-custom-copilot/extend-copilot-ai-doc-intel.md  
 
 

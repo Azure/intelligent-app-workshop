@@ -13,7 +13,7 @@ Inspired by Github Copilot's impact on developer productivity, this experiential
 
 In this comprehensive workshop, you will:
 
-- Utilize Azure AI Studio for reasoning engines, Prompt Flow for LLMOps, AI Search for semantic retrieval systems, and Semantic Kernel for orchestration.
+- Utilize Azure AI Foundry for reasoning engines, Prompt Flow for LLMOps, AI Search for semantic retrieval systems, and Semantic Kernel for orchestration.
 - Work with [Miyagi](https://github.com/Azure-Samples/miyagi) codebase during the hands-on experiential workshop.
 - Explore advanced capabilities such as AutoGen and GraphRaG.
 
@@ -22,7 +22,7 @@ In this comprehensive workshop, you will:
 
 ???+ info "Pre-requisite"
 
-    Please sign up for [Azure OpenAI (AOAI)](https://aka.ms/oai/access) and complete the [Getting Started with AOAI module](https://learn.microsoft.com/en-us/training/modules/get-started-openai/) to get the most out of this workshop.
+    Please complete the [Getting Started with AOAI module](https://learn.microsoft.com/en-us/training/modules/get-started-openai/) to get the most out of this workshop.
 
 1. **Brief Overview of Gen AI Capabilities and Use Cases**: Explore the art of the possible with multi-agent and advanced retrieval systems using samples like [Miyagi](https://github.com/Azure-Samples/miyagi) and [Holmes](https://github.com/Azure-Samples/holmes). Engage in interactive demonstrations to envision potential applications with reasoning engines and semantic memory systems.
 1. **Design Thinking Session (Optional)**: Participate in a collaborative brainstorming activity to identify your unique use cases, focusing on addressing user needs and alleviating pain points, ensuring the workshop is relevant to you.
