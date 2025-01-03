@@ -10,7 +10,8 @@ public record AppSettings (
 public record OpenAI (
     string Endpoint,
     string DeploymentName,
-    string ApiKey
+    string ApiKey,
+    string EmbeddingsDeploymentName
 );
 
 public record StockService (

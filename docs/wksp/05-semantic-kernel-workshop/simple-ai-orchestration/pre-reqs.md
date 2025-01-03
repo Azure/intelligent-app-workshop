@@ -57,7 +57,7 @@ cd intelligent-app-workshop
         1. Click on [Create A Resource](https://ms.portal.azure.com/#create/hub)
         1. On the search bar type **Azure OpenAI** and hit enter
         1. Locate **Azure OpenAI** and click **Create**
-        1. On the **Create Azure OpeanAI** page, provide the following information for the fields on the Basics tab:
+        1. On the **Create Azure OpenAI** page, provide the following information for the fields on the Basics tab:
             * Subscription: The Azure subscription to used for your service.
             * Resource group: The Azure resource group to contain your Azure OpenAI service resource. You can create a new group or use a pre-existing group.
             * Region: The location of your instance. Different locations can introduce latency, but they don't affect the runtime availability of your resource.
@@ -78,22 +78,33 @@ cd intelligent-app-workshop
 
         Next, we need to create deployments from the Azure OpenAI models.
 
-        1. Click the **Model deployments** option in the sidebar (left menu) for Azure OpenAI resource.
-        1. In the destination page, click **Manage Deployments**
-        1. (Optional) You can directly navigate to the [Azure AI Foundry portal](https://oai.azure.com).
+        1. Click the **Overview** option in the sidebar (left menu) for the Azure OpenAI resource.
+        1. Click on **Explore Azure AI Foundry portal** button. Click continue to leave Azure Portal when prompted.
+        1. Alternatively, you can directly navigate to the [Azure AI Foundry portal](https://ai.azure.com).
 
         This will take you to the Azure AI Foundry website, where we'll find the other values as described below.
 
-    1. Create and get Azure OpenAI deployment value (from Azure AI Foundry):
+    1. Deploy Azure OpenAI model (from Azure AI Foundry):
 
-        1. Navigate to [Azure AI Foundry](https://oai.azure.com) **from your resource** as described above.
-        1. Click the **Deployments** tab (sidebar, left) to view currently deployed models.
+        1. Navigate to [Azure AI Foundry](https://ai.azure.com) **from your resource** as described above.
+        1. Click on **Deployments** (sidebar, left within **Shared Resources**) to view currently deployed models.
         1. If your desired model is not deployed, click on **Deploy Model** then select to **Deploy Base Model**.
         1. You will need a chat completion model. For this workshop we recommend using `gpt-4o`. Select `gpt-4o` from the drop down and click **Confirm**.
         1. Accept the default `gpt-4o` values and click **Deploy**
-            ![Terminal](./images/deploy-model.jpg)
+            ![Terminal](./images/deploy-model.png)
         1. Update `appsettings.json` deploymentName field with your model deployment name.
         1. Use the **Deployment Name** value (e.g. gpt-4o) as the **deploymentName** value within the `OpenAI` element in the `appsettings.json` file.
+
+    1. Deploy Azure Text Embedding model (from Azure AI Foundry):
+
+        1. Navigate to [Azure AI Foundry](https://ai.azure.com) **from your resource** as described above.
+        1. Click on **Deployments** (sidebar, left within **Shared Resources**) to view currently deployed models.
+        1. Click on **Deploy Model** then select to **Deploy Base Model**.
+        1. You will need a Text Embedding model. For this workshop, we recommend using `text-embedding-ada-002`. Type `text-embedding-ada-002` from the drop down and click **Confirm**.
+        1. Accept the default `text-embedding-ada-002` model values and click **Deploy**
+            ![Terminal](./images/deploy-embedding-model.png)
+        1. Update `appsettings.json` embeddingsDeploymentName field with your Text Embeddings model deployment name.
+        1. Use the **Deployment Name** value (e.g. text-embedding-ada-002) as the **embeddingsDeploymentName** value within the `OpenAI` element in the `appsettings.json` file.
 
 1. Additionally, we need to obtain an API Key to be able to get stock prices from [polygon.io](https://polygon.io/dashboard/login). You can sign up for a free API Key by creating a login. This value will be needed for [Lesson 3](lesson3.md).
     1. Once logged in, from the [polygon.io Dashboard](https://polygon.io/dashboard) locate the **Keys** section. Copy the default key value and paste it as the **apiKey** value within the `StockService` element in the `appsettings.json` file.
