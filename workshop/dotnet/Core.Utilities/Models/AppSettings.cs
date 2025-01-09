@@ -4,7 +4,8 @@ namespace Core.Utilities.Models;
 
 public record AppSettings (
     OpenAI OpenAI,
-    StockService StockService
+    StockService StockService,
+    BingSearchService BingSearchService
 );
 
 public record OpenAI (
@@ -14,5 +15,9 @@ public record OpenAI (
 );
 
 public record StockService (
+    string ApiKey
+);
+
+public record BingSearchService (
     string ApiKey
 );
