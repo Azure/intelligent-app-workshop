@@ -35,6 +35,9 @@ param openAiApiKey string
 @description('The Stock Service API key')
 param stockServiceApiKey string
 
+@description('The Bing Search Service API key')
+param bingApiKey string
+
 @description('An array of service binds')
 param serviceBinds array
 
@@ -62,6 +65,7 @@ module app '../core/host/container-app-upsert.bicep' = {
         'open-ai-api-key': openAiApiKey
         'stock-service-api-key': stockServiceApiKey
         'azure-managed-identity-client-id':  userAssignedManagedIdentity.clientId
+        'bing-search-api-key': bingApiKey
       }
     env: [
       {
@@ -87,7 +91,11 @@ module app '../core/host/container-app-upsert.bicep' = {
       {
         name: 'StockService__ApiKey'
         secretRef: 'stock-service-api-key'
-      }      
+      }
+      {
+        name: 'BingSearchService__ApiKey'
+        secretRef: 'bing-search-service-api-key'
+      } 
     ]
     targetPort: 8080
   }

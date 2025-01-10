@@ -87,6 +87,9 @@ param storageResourceGroupLocation string = location
 @description('Name of the resource group for the storage account')
 param storageResourceGroupName string = ''
 
+@description('Bing Search Service name')
+param bingSearchServiceName string = ''
+
 @description('Specifies if the web app exists')
 param webAppExists bool = false
 
@@ -114,7 +117,7 @@ param openAIApiKey string
 @description('OpenAI Deployment name')
 param openAiChatGptDeployment string
 
-@description('OpenAI Endoint')
+@description('OpenAI Endpoint')
 param openAiEndpoint string
 
 @description('Stock Service API Key from Polygon.io')
@@ -152,6 +155,15 @@ module identity './app/user-assigned-identity.bicep' = {
   }
 }
 
+module bingSearch './core/bing/bing-search.bicep' = {
+  name: 'bingSearch'
+  scope: resourceGroup
+  params: {
+    location: location
+    tags: updatedTags
+    name: !empty(bingSearchServiceName) ? bingSearchServiceName : '${abbrs.searchSearchServices}${resourceToken}'
+  }
+}
 
 // Container apps host (including container registry)
 module containerApps 'core/host/container-apps.bicep' = {
@@ -189,6 +201,7 @@ module api './app/api.bicep' = {
     openAiApiKey: useAOAI ? '' : openAIApiKey
     openAiEndpoint: useAOAI ? azureOpenAi.outputs.endpoint : openAiEndpoint
     stockServiceApiKey: stockServiceApiKey
+    bingApiKey: bingSearch.outputs.apiKey
     openAiChatGptDeployment: useAOAI ? azureChatGptDeploymentName : openAiChatGptDeployment
     serviceBinds: []
   }
@@ -258,6 +271,7 @@ module azureOpenAi 'core/ai/cognitiveservices.bicep' = if (useAOAI) {
     ]
   }
 }
+
 
 module storage 'core/storage/storage-account.bicep' = {
   name: 'storage'
