@@ -54,6 +54,7 @@ use `bicep` templates which are organized as follows:
       * `web.bicep` - bicep templated for web application infrastructure
     * core - subdirectory with templates for core infrastructure components
       * **ai** - subdirectory for AI related components
+      * **bing** - subdirectory for Bing Search service
       * **host** - subdirectory for container app, environment and registry components
       * **monitor** - subdirectory for monitoring components (e.g. application insights)
       * **security** - subdirectory for security components (e.g. keyvault)
@@ -81,7 +82,6 @@ You can build, provision all resources and deploy by following these steps:
           * **openAiChatGptDeployment**: e.g. gpt-4o
           * **openAiEndpoint**
           * **stockServiceApiKey**
-          * **bingSearchApiKey**
 1. After the application has been successfully deployed you will see the API and Web Service URLs printed in the console.  
    Click the Web Service URL to interact with the application in your browser.
 
