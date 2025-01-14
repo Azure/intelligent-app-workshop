@@ -87,8 +87,8 @@ param storageResourceGroupLocation string = location
 @description('Name of the resource group for the storage account')
 param storageResourceGroupName string = ''
 
-@description('Bing Search Service name')
-param bingSearchServiceName string = ''
+@description('Bing Search Api key')
+param bingSearchApiKey string
 
 @description('Specifies if the web app exists')
 param webAppExists bool = false
@@ -155,16 +155,6 @@ module identity './app/user-assigned-identity.bicep' = {
   }
 }
 
-module bingSearch './core/bing/bing-search.bicep' = {
-  name: 'bingSearch'
-  scope: resourceGroup
-  params: {
-    location: location
-    tags: updatedTags
-    name: !empty(bingSearchServiceName) ? bingSearchServiceName : '${abbrs.searchSearchServices}${resourceToken}'
-  }
-}
-
 // Container apps host (including container registry)
 module containerApps 'core/host/container-apps.bicep' = {
   name: 'container-apps'
@@ -201,7 +191,7 @@ module api './app/api.bicep' = {
     openAiApiKey: useAOAI ? '' : openAIApiKey
     openAiEndpoint: useAOAI ? azureOpenAi.outputs.endpoint : openAiEndpoint
     stockServiceApiKey: stockServiceApiKey
-    bingApiKey: bingSearch.outputs.apiKey
+    bingSearchApiKey: bingSearchApiKey
     openAiChatGptDeployment: useAOAI ? azureChatGptDeploymentName : openAiChatGptDeployment
     serviceBinds: []
   }
