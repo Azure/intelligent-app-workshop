@@ -1,4 +1,4 @@
-# Lesson 3: Simple Semantic Kernel chat agent with plugins
+# Lesson 3: Semantic Kernel chatbot with plugins
 
 In this lesson we will a semantic kernel plugins to be able to retrieve stock pricing.
 

@@ -5,9 +5,9 @@ using System.Reflection;
 
 namespace Core.Utilities.Config;
 
-internal static class AISettingsProvider
+public static class AISettingsProvider
 {
-    internal static AppSettings GetSettings()
+    public static AppSettings GetSettings()
     {
         IConfigurationRoot config = new ConfigurationBuilder()
             .AddJsonFile("appsettings.json", optional: true)

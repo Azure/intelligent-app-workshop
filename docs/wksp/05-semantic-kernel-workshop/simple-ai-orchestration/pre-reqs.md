@@ -95,6 +95,28 @@ cd intelligent-app-workshop
         1. Update `appsettings.json` deploymentName field with your model deployment name.
         1. Use the **Deployment Name** value (e.g. gpt-4o) as the **deploymentName** value within the `OpenAI` element in the `appsettings.json` file.
 
+1. Create Azure Bing Search v7 Service in Azure and retrieve the API Key to update newly created `appsettings.json`. This value will be needed for [Lesson 4](lesson4.md).
+    1. Create Bing Search Service (from Azure Portal):
+        1. Go to the [Azure Portal](https://portal.azure.com).
+        1. Click on [Create A Resource](https://ms.portal.azure.com/#create/hub)
+        1. On the search bar type **Bing Search** and hit enter
+        1. Locate **Bing Search v7** and click **Create**
+        1. On the **Create a Bing Search Resource** page, provide the following information for the fields on the Basics tab:
+            * Subscription: The Azure subscription to used for your service.
+            * Resource group: The Azure resource group to contain your Bing service resource. You can create a new group or use a pre-existing group.
+            * Name: A descriptive and unique name for your Bing Search Service resource, such as `bing-search-myid`.
+            * Region: Global (default).
+            * Pricing Tier: The pricing tier for the resource. The `F1` tier is free and recommended for testing purposes.
+        1. Click **Next**.
+        1. On the **Tags** tab click **Next**
+        1. Click **Create**.
+    1. Get the Bing Search API Key and update `appsettings.json` file:
+        1. Go to the [Azure Portal](https://portal.azure.com).
+        1. On the search bar type **Bing Reources** and hit enter
+        1. Locate the **Bing Service** created above and click on it.
+        1. Expand **RESOURCE MANAGEMENT** and click on **Keys and Endpoint**
+        1. Copy the value from **Key 1** and paste it as the **ApiKey** value within the `BingSearchService` element in the `appsettings.json` file.
+
 1. Additionally, we need to obtain an API Key to be able to get stock prices from [polygon.io](https://polygon.io/dashboard/login). You can sign up for a free API Key by creating a login. This value will be needed for [Lesson 3](lesson3.md).
     1. Once logged in, from the [polygon.io Dashboard](https://polygon.io/dashboard) locate the **Keys** section. Copy the default key value and paste it as the **apiKey** value within the `StockService` element in the `appsettings.json` file.
 

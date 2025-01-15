@@ -1,4 +1,4 @@
-# Lesson 2: Simple Semantic Kernel chatbot with history
+# Lesson 2: Semantic Kernel chatbot with history
 
 In this lesson we will add chat history to our chat agent.
 

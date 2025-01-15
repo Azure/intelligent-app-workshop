@@ -1,4 +1,4 @@
-# Lesson 1: Simple Semantic Kernel chatbot
+# Lesson 1: Semantic Kernel chatbot
 
 In this lesson we will create a semantic kernel chatbot with a system prompt and keeping track of chat history.
 

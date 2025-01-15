@@ -1,5 +1,4 @@
 using Core.Utilities.Services;
-using Core.Utilities.Models;
 using Core.Utilities.Extensions;
 
 using Microsoft.SemanticKernel;
