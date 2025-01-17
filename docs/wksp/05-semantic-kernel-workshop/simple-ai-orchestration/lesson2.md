@@ -20,20 +20,20 @@ In this lesson we will add chat history to our chat agent.
 
 1. Open `Program.cs` and locate the **TODO** for each step and apply the following changes for each:
 
-    1. TODO: Step 1: add code to include the chat completion namespace
+    1. **TODO: Step 1**: add code to include the chat completion namespace
 
         ```csharp
         using Microsoft.SemanticKernel.ChatCompletion;
         ```
 
-    1. TODO: Step 2a: Add code to get `chatCompletionService` instance and to initialize `chatHistory` with system prompt
+    1. **TODO: Step 2a**: Add code to get `chatCompletionService` instance and to initialize `chatHistory` with system prompt
 
         ```csharp
         var chatCompletionService = kernel.GetRequiredService<IChatCompletionService>();
         ChatHistory chatHistory = new("You are a friendly financial advisor that only emits financial advice in a creative and funny tone");
         ```
 
-        TODO: Step 2b: **Remove** the `promptExecutionSettings` and `kernelArgs` initialization code below
+        **TODO: Step 2b**: **Remove** the `promptExecutionSettings` and `kernelArgs` initialization code below
 
         ```csharp
         OpenAIPromptExecutionSettings promptExecutionSettings = new()
@@ -45,14 +45,14 @@ In this lesson we will add chat history to our chat agent.
         KernelArguments kernelArgs = new(promptExecutionSettings);
         ```
 
-    1. TODO: Step 3: Add code to initialize `fullMessage` variable and add user input to chat history:
+    1. **TODO: Step 3**: Add code to initialize `fullMessage` variable and add user input to chat history:
 
         ```csharp
         string fullMessage = "";
         chatHistory.AddUserMessage(userInput);
         ```
 
-    1. TODO: Step 4: **Remove** the `foreach` loop below:
+    1. **TODO: Step 4**: **Remove** the `foreach` loop below:
 
         ```csharp
         await foreach (var response in kernel.InvokePromptStreamingAsync(userInput, kernelArgs))
@@ -105,7 +105,7 @@ In this lesson we will add chat history to our chat agent.
 1. Next ask which stocks you should have bought if you could go back to the year you were born:
 
     ```txt
-    If I could go back in time to the year I was born, which stocks would have made me a millionare?
+    If I could go back in time to the year I was born, which stocks would have made me a millionaire?
     ```
 
     You will receive a similar response:

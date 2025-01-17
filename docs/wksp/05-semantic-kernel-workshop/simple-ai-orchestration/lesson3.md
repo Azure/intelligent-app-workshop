@@ -22,22 +22,21 @@ In this lesson we will a semantic kernel plugins to be able to retrieve stock pr
     dotnet run
     ```
 
-   At the prompt enter
+    At the prompt enter:
 
-   ```bash
-   What is the current date?
+    ```bash
+    What is the current date?
     ```
 
-   Assistant will give a similar response:
+    Assistant will give a similar response:
 
-   ```txt
-   Assistant > I can't access today's date, but imagine it’s an eternal "Fri-yay," ready for financial fun! How can I help you on this hypothetical day?
-   ```
+    ```txt
+    Assistant > I can't access today's date, but imagine it’s an eternal "Fri-yay," ready for financial fun! How can I help you on this hypothetical day?
+    ```
 
 1. Notice it does not provide a specific answer. We can use a Semantic Kernel Plugin to be able to fix that.
 
-1. In the `Plugins` directory from `Core.Utilities` directory review the file named
-   `TimeInformationPlugin.cs` which has the following content:
+1. In the `Plugins` directory from `Core.Utilities` directory review the file named `TimeInformationPlugin.cs` which has the following content:
 
     ```csharp
     using System.ComponentModel;
@@ -53,26 +52,25 @@ In this lesson we will a semantic kernel plugins to be able to retrieve stock pr
     }
     ```
 
-1. Next locate TODO: Step 1 in `Program.cs` and add the following import line:
+1. Next locate **TODO: Step 1** in `Program.cs` and add the following import line:
 
     ```csharp
     using Core.Utilities.Plugins;
     ```
 
-1. Next locate TODO: Step 2 in `Program.cs` and provide the following line to register the `TimeInformationPlugin`:
+1. Next locate **TODO: Step 2** in `Program.cs` and provide the following line to register the `TimeInformationPlugin`:
 
     ```csharp
     kernel.Plugins.AddFromObject(new TimeInformationPlugin());
     ```
 
-1. Next locate TODO: Step 3 and add the following line to be able to 
-   auto invoke kernel functions:
+1. Next locate **TODO: Step 3** and add the following line to be able to auto invoke kernel functions:
 
     ```csharp
         ToolCallBehavior = ToolCallBehavior.AutoInvokeKernelFunctions
     ```
 
-1. Next locate TODO: Step 4 and add the following parameters:
+1. Next locate **TODO: Step 4** and add the following parameters:
 
     ```csharp
         await foreach (var chatUpdate in chatCompletionService.GetStreamingChatMessageContentsAsync(chatHistory, promptExecutionSettings, kernel))
@@ -125,13 +123,13 @@ In this lesson we will a semantic kernel plugins to be able to retrieve stock pr
     }
     ```
 
-1. Next, locate TODO: Step 5 in `Program.cs` and add import required for `StockService`:
+1. Next, locate **TODO: Step 5** in `Program.cs` and add import required for `StockService`:
 
     ```csharp
     using Core.Utilities.Services;
     ```
 
-1. Next locate TODO: Step 6 and provide the following line to register the new `StockDataPlugin`:
+1. Next locate **TODO: Step 6** and provide the following line to register the new `StockDataPlugin`:
 
     ```csharp
     HttpClient httpClient = new();

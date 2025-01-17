@@ -2,7 +2,7 @@
 
 In this lesson we will add a Web Search Engine plugin that uses Bing Search to our semantic kernel chatbot.
 
-1. Ensure all [pre-requisites](pre-reqs.md) are met and installed (including updating the `BingSearchService` `apiKey` value in the `appSettings.json` file using the key from **Bing Search Service v7** in Azure (https://portal.azure.com)).
+1. Ensure all [pre-requisites](pre-reqs.md) are met and installed (including updating the `BingSearchService` `apiKey` value in the `appSettings.json` file using the key from **Bing Search Service v7** in [Azure Portal](https://portal.azure.com).
 
 1. Switch to Lesson 4 directory:
 
@@ -22,24 +22,24 @@ In this lesson we will add a Web Search Engine plugin that uses Bing Search to o
     dotnet run
     ```
 
-   At the prompt enter
+1. At the prompt enter:
 
-   ```bash
-   What is the sentiment on Microsoft stock?
+    ```bash
+    What is the sentiment on Microsoft stock?
     ```
 
-   Assistant will give a generic response:
+    Assistant will give a generic response:
 
-   ```txt
-   Assistant > The sentiment on Microsoft (ticker symbol: MSFT) largely hinges on factors like:
+    ```txt
+    Assistant > The sentiment on Microsoft (ticker symbol: MSFT) largely hinges on factors like:
 
-    - Tech innovation (e.g., AI, Azure cloud service, and gaming)
-    - Quarterly earnings reports
-    - Overall market conditions
-    - How much caffeine traders have consumed
-   ```
+        - Tech innovation (e.g., AI, Azure cloud service, and gaming)
+        - Quarterly earnings reports
+        - Overall market conditions
+        - How much caffeine traders have consumed
+    ```
 
-1. Notice it does not provide a specific answer. We can add the Web Search Engine plugin to be able to provide a better answer.
+    Notice it does not provide a specific answer. We can add the Web Search Engine plugin to be able to provide a better answer.
 
 1. Next locate **TODO: Step 1** in `Program.cs` and add the following import lines:
 
