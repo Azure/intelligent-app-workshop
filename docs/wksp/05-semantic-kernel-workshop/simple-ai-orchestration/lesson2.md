@@ -10,7 +10,7 @@ In this lesson we will add chat history to our chat agent.
     cd ../Lesson2
     ```
 
-1. Start by copying `appsetting.json` from Lesson 1:
+1. Start by copying `appsettings.json` from Lesson 1:
 
     ```bash
     cp ../Lesson1/appsettings.json .
