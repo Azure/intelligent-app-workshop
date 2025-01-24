@@ -12,7 +12,7 @@ namespace Controllers;
 public class PluginInfoController : ControllerBase {
 
     private readonly Kernel _kernel;
-    
+
     public PluginInfoController(Kernel kernel)
     {
         _kernel = kernel;
@@ -22,7 +22,7 @@ public class PluginInfoController : ControllerBase {
     /// Get the metadata for all the plugins and functions.
     /// </summary>
     /// <returns></returns>
-    [HttpGet("/puginInfo/metadata")]
+    [HttpGet("/pluginInfo/metadata")]
     public async Task<IList<PluginFunctionMetadata>> GetPluginInfoMetadata()
     {
         var functions = _kernel.Plugins.GetFunctionsMetadata().ToPluginFunctionMetadataList();

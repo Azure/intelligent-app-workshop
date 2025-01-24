@@ -290,6 +290,6 @@ you through the process followed to create the backend API from the Console appl
 
     ```bash
     curl -X 'GET' \
-    'http://localhost:5000/puginInfo/metadata' \
+    'http://localhost:5000/pluginInfo/metadata' \
     -H 'accept: text/plain'
     ```
