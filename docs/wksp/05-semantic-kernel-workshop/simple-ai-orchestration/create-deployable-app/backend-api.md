@@ -34,11 +34,9 @@ you through the process followed to create the backend API from the Console appl
     dotnet add package Swashbuckle.AspNetCore
     ```
 
-1. Replace the contents of `Program.cs` in the project directory with the following code. This file initializes and loads
-   the required services and configuration for the API, namely configuring CORS protection,
-   enabling controllers for the API and exposing Swagger document:
+1. Replace the contents of `Program.cs` in the project directory with the following code. This file initializes and loads the required services and configuration for the API, namely configuring CORS protection, enabling controllers for the API and exposing Swagger document:
 
-   ```csharp
+    ```csharp
     using Microsoft.AspNetCore.Antiforgery;
     using Extensions;
     using System.Text.Json.Serialization;
@@ -90,7 +88,7 @@ you through the process followed to create the backend API from the Console appl
         "{controller=ChatController}");
 
     app.Run();
-   ```
+    ```
 
 1. Next we need to create `Extensions` directory to and add service extensions:
 
@@ -99,8 +97,7 @@ you through the process followed to create the backend API from the Console appl
     cd Extensions
     ```
 
-1. In the `Extensions` directory create a `ServiceExtensions.cs` class with the following code
-   to initialie the semantic kernel:
+1. In the `Extensions` directory create a `ServiceExtensions.cs` class with the following code to initialize the semantic kernel:
 
     ```csharp
     using Core.Utilities.Config;
@@ -147,8 +144,7 @@ you through the process followed to create the backend API from the Console appl
     cd Controllers
     ```
 
-1. Within the `Controllers` directory create a `ChatController.cs` file which exposes a reply
-   method mapped to the `chat` path and the HTTP Post method:
+1. Within the `Controllers` directory create a `ChatController.cs` file which exposes a reply method mapped to the `chat` path and the `HTTP POST` method:
 
     ```csharp
     using Core.Utilities.Models;
@@ -219,6 +215,42 @@ you through the process followed to create the backend API from the Console appl
     }
     ```
 
+1. Within the `Controllers` directory create a `PluginInfoController.cs` file which exposes a method mapped to the `/puginInfo/metadata` path and the `HTTP GET` method to print out all plugin information loaded in the kernel:
+
+    ```csharp
+    using Microsoft.Extensions.DependencyInjection;
+    using Microsoft.Extensions.Logging;
+    using Microsoft.SemanticKernel;
+    using Microsoft.AspNetCore.Mvc;
+    using Core.Utilities.Models;
+    using Core.Utilities.Extensions;
+
+    namespace Controllers;
+
+    [ApiController]
+    [Route("sk")]
+    public class PluginInfoController : ControllerBase {
+
+        private readonly Kernel _kernel;
+        
+        public PluginInfoController(Kernel kernel)
+        {
+            _kernel = kernel;
+        }
+
+        /// <summary>
+        /// Get the metadata for all the plugins and functions.
+        /// </summary>
+        /// <returns></returns>
+        [HttpGet("/puginInfo/metadata")]
+        public async Task<IList<PluginFunctionMetadata>> GetPluginInfoMetadata()
+        {
+            var functions = _kernel.Plugins.GetFunctionsMetadata().ToPluginFunctionMetadataList();
+            return functions;
+        }
+    }
+    ```
+
 ## Running the Backend API locally
 
 1. To run API locally first copy valid `appsettings.json` from completed `Lessons/Lesson3` into `backend` directory:
@@ -240,7 +272,7 @@ you through the process followed to create the backend API from the Console appl
 
 1. Application will start on specified port (port may be different). Navigate to <http://localhost:5000> or corresponding [forwarded address](https://docs.github.com/en/codespaces/developing-in-a-codespace/forwarding-ports-in-your-codespace) (if using Github CodeSpace) and it should redirect you to the swagger UI page.
 
-1. You can either test the API using the "Try it out" feature from within Swagger UI, or via command line using `curl` command:
+1. You can either test the `chat` endpoint using the "Try it out" feature from within Swagger UI, or via command line using `curl` command:
 
     ```bash
     curl -X 'POST' \
@@ -252,4 +284,12 @@ you through the process followed to create the backend API from the Console appl
     "messageHistory": [
     ]
     }'
+    ```
+
+1. You can also test the `pluginInfo/metadata` endpoint using the "Try it out" feature from within Swagger UI, or via command line using `curl` command:
+
+    ```bash
+    curl -X 'GET' \
+    'http://localhost:5000/puginInfo/metadata' \
+    -H 'accept: text/plain'
     ```

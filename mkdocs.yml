@@ -25,6 +25,7 @@ nav:
       - Lesson 2 - Semantic Kernel chatbot with history: wksp/05-semantic-kernel-workshop/simple-ai-orchestration/lesson2.md
       - Lesson 3 - Semantic Kernel chatbot with plugins: wksp/05-semantic-kernel-workshop/simple-ai-orchestration/lesson3.md
       - Lesson 4 - Semantic Kernel chatbot with Web Search engine plugin: wksp/05-semantic-kernel-workshop/simple-ai-orchestration/lesson4.md
+      - Lesson 5 - Describe all plugins in Semantic Kernel chatbot: wksp/05-semantic-kernel-workshop/simple-ai-orchestration/lesson5.md
       - Build a deployable web application:
         - wksp/05-semantic-kernel-workshop/simple-ai-orchestration/create-deployable-app/index.md
         - Create Backend API: wksp/05-semantic-kernel-workshop/simple-ai-orchestration/create-deployable-app/backend-api.md

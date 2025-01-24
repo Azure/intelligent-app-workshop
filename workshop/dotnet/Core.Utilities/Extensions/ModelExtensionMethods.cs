@@ -41,5 +41,63 @@ namespace Core.Utilities.Extensions
             return messageHistory;
         }
 
+        public static IList<PluginFunctionMetadata> ToPluginFunctionMetadataList(this IList<KernelFunctionMetadata> plugins)
+        {
+            return plugins.Select(p => p.ToPluginFunctionMetadata()).ToList();
+        }
+
+        public static PluginFunctionMetadata ToPluginFunctionMetadata(this KernelFunctionMetadata kernelFunctionMetadata)
+        {
+            return new PluginFunctionMetadata(kernelFunctionMetadata.Name, 
+                kernelFunctionMetadata.Description, 
+                kernelFunctionMetadata.Parameters.Select(p => p.ToPluginParameterMetadata()).ToList());
+        }
+
+        public static PluginParameterMetadata ToPluginParameterMetadata(this KernelParameterMetadata pluginParameterMetadata)
+        {
+            return new PluginParameterMetadata(pluginParameterMetadata.Name, pluginParameterMetadata.ParameterType?.Name ?? string.Empty, pluginParameterMetadata.Description, pluginParameterMetadata.DefaultValue);
+        }
+
+        public static String ToPrintableString(this IList<KernelFunctionMetadata> plugins) {
+            var pluginFunctionMetadataList = plugins.ToPluginFunctionMetadataList();
+            return pluginFunctionMetadataList?.ToPrintableString() ?? string.Empty;
+        }        
+
+        private static String ToPrintableString(this IList<PluginFunctionMetadata> functions)
+        {
+            var sb = new StringBuilder();
+            sb.AppendLine("**********************************************");
+            sb.AppendLine("****** Registered plugins and functions ******");
+            sb.AppendLine("**********************************************");
+            sb.AppendLine();
+            foreach (PluginFunctionMetadata func in functions)
+            {
+                sb.AppendLine(ToString(func));
+            }
+            return sb.ToString();
+        }
+        
+        /// <summary>
+        /// Returns the function information as string
+        /// </summary>
+        /// <param name="func"></param>
+        private static String ToString(this PluginFunctionMetadata func)
+        {
+            var sb = new StringBuilder();
+            sb.AppendLine($"Plugin: {func.Name}");
+            sb.AppendLine($"   {func.Name}: {func.Description}");
+
+            if (func.Parameters.Count > 0)
+            {
+                sb.AppendLine("      Params:");
+                foreach (var p in func.Parameters)
+                {
+                    sb.AppendLine($"      - {p.Name}: {p.Description}");
+                    sb.AppendLine($"        default: '{p.DefaultValue}'");
+                }
+            }
+            return sb.ToString();
+        }
+
     }
 }
