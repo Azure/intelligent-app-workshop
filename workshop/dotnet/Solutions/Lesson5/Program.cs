@@ -3,9 +3,11 @@ using Core.Utilities.Config;
 using Core.Utilities.Plugins;
 // Add import required for StockService
 using Core.Utilities.Services;
+// Step 1 - Add import for ModelExtensionMethods
+using Core.Utilities.Extensions;
 using Microsoft.SemanticKernel;
 using Microsoft.SemanticKernel.Connectors.OpenAI;
-// Step 1 - Add imports for Bing Search plugin
+// Add imports for Bing Search plugin
 using Microsoft.SemanticKernel.Plugins.Web;
 using Microsoft.SemanticKernel.Plugins.Web.Bing;
 // Add ChatCompletion import
@@ -29,7 +31,7 @@ HttpClient httpClient = new();
 StockDataPlugin stockDataPlugin = new(new StocksService(httpClient));
 kernel.Plugins.AddFromObject(stockDataPlugin);
 
-// Step 2 - Initialize Bing Search plugin
+// Initialize Bing Search plugin
 var bingApiKey = AISettingsProvider.GetSettings().BingSearchService.ApiKey;
 if (!string.IsNullOrEmpty(bingApiKey))
 {
@@ -52,7 +54,12 @@ OpenAIPromptExecutionSettings promptExecutionSettings = new()
 // Initialize kernel arguments
 KernelArguments kernelArgs = new(promptExecutionSettings);
 
+// Step 2 - add call to print all plugins and functions
+var functions = kernel.Plugins.GetFunctionsMetadata();
+Console.WriteLine(functions.ToPrintableString());
+// Step 3 - Comment out all code after "Execute program" comment
 // Execute program.
+/*
 const string terminationPhrase = "quit";
 string? userInput;
 do
@@ -79,3 +86,4 @@ do
     }
 }
 while (userInput != terminationPhrase);
+*/

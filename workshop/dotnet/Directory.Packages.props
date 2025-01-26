@@ -13,6 +13,7 @@
     <PackageVersion Include="Microsoft.SemanticKernel" Version="1.33.0" />
     <PackageVersion Include="Microsoft.SemanticKernel.Agents.Core" Version="1.33.0-alpha" />
     <PackageVersion Include="Microsoft.SemanticKernel.Plugins.Web" Version="1.33.0-alpha" />
+    <PackageVersion Include="Microsoft.SemanticKernel.Plugins.Core" Version="1.33.0-alpha" />
     <PackageVersion Include="Swashbuckle.AspNetCore" Version="6.8.1" />
     <PackageVersion Include="xunit" Version="2.4.1" />
     <PackageVersion Include="xunit.runner.visualstudio" Version="2.4.3" />

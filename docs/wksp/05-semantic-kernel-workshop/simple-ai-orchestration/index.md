@@ -8,6 +8,7 @@ chatbot as a console application:
 1. [Lesson 2: Semantic Kernel chatbot with history](lesson2.md)
 1. [Lesson 3: Semantic Kernel chatbot with plugins](lesson3.md)
 1. [Lesson 4: Semantic Kernel chatbot with Web Search engine plugin](lesson4.md)
+1. [Lesson 5: Describe all plugins in Semantic Kernel chatbot](lesson5.md)
 
 Subsequently the following lessons guide you through converting that chatbot application
 into a deployable application with a backend API and Web UI frontend and deploying into Azure:
