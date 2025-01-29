@@ -3,10 +3,14 @@ using Core.Utilities.Config;
 using Core.Utilities.Plugins;
 // Add import required for StockService
 using Core.Utilities.Services;
-// Step 1 - Add import for ModelExtensionMethods
+// Add import for ModelExtensionMethods
 using Core.Utilities.Extensions;
 using Microsoft.SemanticKernel;
 using Microsoft.SemanticKernel.Connectors.OpenAI;
+
+// TODO: Step 1 - Add import for Agents
+
+
 // Add imports for Bing Search plugin
 using Microsoft.SemanticKernel.Plugins.Web;
 using Microsoft.SemanticKernel.Plugins.Web.Bing;
@@ -42,6 +46,7 @@ if (!string.IsNullOrEmpty(bingApiKey))
 
 // Get chatCompletionService and initialize chatHistory with system prompt
 var chatCompletionService = kernel.GetRequiredService<IChatCompletionService>();
+// TODO: Step 2 - Remove initial prompt
 ChatHistory chatHistory = new("You are a friendly financial advisor that only emits financial advice in a creative and funny tone");
 // Remove the promptExecutionSettings and kernelArgs initialization code
 // Add system prompt
@@ -54,11 +59,16 @@ OpenAIPromptExecutionSettings promptExecutionSettings = new()
 // Initialize kernel arguments
 KernelArguments kernelArgs = new(promptExecutionSettings);
 
-// Step 2 - Add call to print all plugins and functions
+// Add call to print all plugins and functions
 var functions = kernel.Plugins.GetFunctionsMetadata();
+// TODO: Step 3 - Comment out line to print plugins
 Console.WriteLine(functions.ToPrintableString());
-// Step 3 - Comment out all code after "Execute program" comment
+
+// TODO: Step 4 - Add code to create Stock Sentiment Agent
+
+
 // Execute program.
+// TODO: Step 5 - Uncomment previously commented code
 /*
 const string terminationPhrase = "quit";
 string? userInput;
@@ -75,6 +85,7 @@ do
         chatHistory.AddUserMessage(userInput);
 
         // Provide promptExecutionSettings and kernel arguments
+        // TODO: Step 6 - Replace chatCompletionService with stockSentimentAgent
         await foreach (var chatUpdate in chatCompletionService.GetStreamingChatMessageContentsAsync(chatHistory, promptExecutionSettings, kernel))
         {
             Console.Write(chatUpdate.Content);
