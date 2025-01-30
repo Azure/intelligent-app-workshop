@@ -22,6 +22,12 @@ In this lesson we will add functionality to list all plugins and plugin paramete
     dotnet run
     ```
 
+1. Locate **TODO: Step 1 - Add import for ModelExtensionMethods** in `Program.cs` and add the following import:
+
+    ```csharp
+    using Core.Utilities.Extensions;
+    ```
+
 1. Next locate **TODO: Step 2 - add call to print all plugins and functions** in `Program.cs` and add the following lines to print out kernel plugins info:
 
     ```csharp
