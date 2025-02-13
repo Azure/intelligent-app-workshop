@@ -38,6 +38,9 @@ param stockServiceApiKey string
 @description('The Bing Search Service API key')
 param bingSearchApiKey string
 
+//@description('The Grounding with Bing Search API key')
+//param bingSearchGroundingApiKey string = ''
+
 @description('An array of service binds')
 param serviceBinds array
 
@@ -66,6 +69,7 @@ module app '../core/host/container-app-upsert.bicep' = {
         'stock-service-api-key': stockServiceApiKey
         'azure-managed-identity-client-id':  userAssignedManagedIdentity.clientId
         'bing-search-service-api-key': bingSearchApiKey
+        // 'bing-search-grounding-api-key': bingSearchGroundingApiKey
       }
     env: [
       {
@@ -96,6 +100,10 @@ module app '../core/host/container-app-upsert.bicep' = {
         name: 'BingSearchService__ApiKey'
         secretRef: 'bing-search-service-api-key'
       } 
+      // {
+      //   name: 'BingSearchGrounding__ApiKey'
+      //   secretRef: 'bing-search-grounding-api-key'
+      // }
     ]
     targetPort: 8080
   }

@@ -90,6 +90,9 @@ param storageResourceGroupName string = ''
 @description('Bing Search Service name')
 param bingSearchServiceName string = ''
 
+@description('Grounding with Bing resource name')
+param bingSearchGroundingName string = ''
+
 @description('Specifies if the web app exists')
 param webAppExists bool = false
 
@@ -160,7 +163,16 @@ module bingSearch './core/bing/bing-search.bicep' = {
   scope: resourceGroup
   params: {
     tags: updatedTags
-    name: !empty(bingSearchServiceName) ? bingSearchServiceName : '${abbrs.searchSearchServices}${resourceToken}'
+    name: !empty(bingSearchServiceName) ? bingSearchServiceName : '${abbrs.bingSearchServices}${resourceToken}'
+  }
+}
+
+module bingSearchGrounding './core/bing/bing-grounding.bicep' = {
+  name: 'bingSearchGrounding'
+  scope: resourceGroup
+  params: {
+    tags: updatedTags
+    name: !empty(bingSearchGroundingName) ? bingSearchGroundingName : '${abbrs.bingSearchGroundings}${resourceToken}'
   }
 }
 
@@ -201,6 +213,7 @@ module api './app/api.bicep' = {
     openAiEndpoint: useAOAI ? azureOpenAi.outputs.endpoint : openAiEndpoint
     stockServiceApiKey: stockServiceApiKey
     bingSearchApiKey: bingSearch.outputs.apiKey
+    //bingSearchGroundingApiKey: bingSearchGrounding.outputs.apiKey
     openAiChatGptDeployment: useAOAI ? azureChatGptDeploymentName : openAiChatGptDeployment
     serviceBinds: []
   }
