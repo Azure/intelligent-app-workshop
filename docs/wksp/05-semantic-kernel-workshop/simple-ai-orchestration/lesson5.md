@@ -7,13 +7,35 @@ In this lesson we will introduce a Chat Completion Agent. The [Chat Completion A
 1. Switch to Lesson 5 directory:
 
     ```bash
-    cd ../Lesson4
+    cd ../Lesson5
     ```
 
 1. Start by copying `appsettings.json` from Lesson 1:
 
     ```bash
     cp ../Lesson1/appsettings.json .
+    ```
+
+1. Open `Program.cs` and locate: **TODO: Step 0a - Comment line to print all plugins and functions** and comment the line below:
+
+    ```bash
+    Console.WriteLine(functions.ToPrintableString());
+    ```
+
+1. Next locate **TODO: Step 0b - Uncomment out all code after "Execute program" comment** in `Program.cs` by removing the `/*` and `*/` characters so that the chat completion code executes:
+
+    ```csharp
+    // TODO: Step 0b - Uncomment out all code after "Execute program" comment
+    // Execute program.
+    /*
+    const string terminationPhrase = "quit";
+    string? userInput;
+    do
+    {
+        ...
+    }
+    while (userInput != terminationPhrase);
+    */
     ```
 
 1. Run program and ask what the sentiment on Microsoft stock is:

@@ -3,6 +3,8 @@ using Core.Utilities.Config;
 using Core.Utilities.Plugins;
 // Add import required for StockService
 using Core.Utilities.Services;
+// Add import for ModelExtensionMethods
+using Core.Utilities.Extensions;
 using Microsoft.SemanticKernel;
 using Microsoft.SemanticKernel.Connectors.OpenAI;
 // TODO: Step 1 - Add import for Agents
@@ -44,7 +46,14 @@ OpenAIPromptExecutionSettings promptExecutionSettings = new()
 // Initialize kernel arguments
 KernelArguments kernelArgs = new(promptExecutionSettings);
 
+// Add call to print all plugins and functions
+var functions = kernel.Plugins.GetFunctionsMetadata();
+// TODO: Step 0a - Comment line to print all plugins and functions
+Console.WriteLine(functions.ToPrintableString());
+
+// TODO: Step 0b - Uncomment out all code after "Execute program" comment
 // Execute program.
+/*
 const string terminationPhrase = "quit";
 string? userInput;
 do
@@ -71,3 +80,4 @@ do
     }
 }
 while (userInput != terminationPhrase);
+*/
