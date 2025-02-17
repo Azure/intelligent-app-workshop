@@ -5,7 +5,7 @@ using Core.Utilities.Plugins;
 using Core.Utilities.Services;
 using Microsoft.SemanticKernel;
 using Microsoft.SemanticKernel.Connectors.OpenAI;
-// TODO: Step 1 - Add imports for Bing Search plugin
+// TODO: Step 1 - Add import for Agents
 
 // Add ChatCompletion import
 using Microsoft.SemanticKernel.ChatCompletion;
@@ -28,8 +28,7 @@ HttpClient httpClient = new();
 StockDataPlugin stockDataPlugin = new(new StocksService(httpClient));
 kernel.Plugins.AddFromObject(stockDataPlugin);
 
-// TODO: Step 2 - Initialize Bing Search plugin
-
+// TODO: Step 2 - Add code to create Stock Sentiment Agent
 
 // Get chatCompletionService and initialize chatHistory with system prompt
 var chatCompletionService = kernel.GetRequiredService<IChatCompletionService>();
@@ -60,7 +59,7 @@ do
         string fullMessage = "";
         chatHistory.AddUserMessage(userInput);
 
-        // Step 4 - Provide promptExecutionSettings and kernel arguments
+        // TODO: Step 3 - Replace chatCompletionService with stockSentimentAgent
         await foreach (var chatUpdate in chatCompletionService.GetStreamingChatMessageContentsAsync(chatHistory, promptExecutionSettings, kernel))
         {
             Console.Write(chatUpdate.Content);
