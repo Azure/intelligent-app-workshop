@@ -3,10 +3,10 @@ using Core.Utilities.Config;
 using Core.Utilities.Plugins;
 // Add import required for StockService
 using Core.Utilities.Services;
-// Step 1 - Add import for ModelExtensionMethods
-using Core.Utilities.Extensions;
 using Microsoft.SemanticKernel;
 using Microsoft.SemanticKernel.Connectors.OpenAI;
+// Step 1 - Add import for Agents
+using Microsoft.SemanticKernel.Agents;
 // Add ChatCompletion import
 using Microsoft.SemanticKernel.ChatCompletion;
 // Temporarily added to enable Semantic Kernel tracing
@@ -28,6 +28,26 @@ HttpClient httpClient = new();
 StockDataPlugin stockDataPlugin = new(new StocksService(httpClient));
 kernel.Plugins.AddFromObject(stockDataPlugin);
 
+// Step 2 - Add code to create Stock Sentiment Agent
+ChatCompletionAgent stockSentimentAgent =
+    new()
+    {
+        Name = "StockSentimentAgent",
+        Instructions =
+            """
+            Your responsibility is to find the stock sentiment for a given Stock.
+
+            RULES:
+            - Use stock sentiment scale from 1 to 10 where stock sentiment is 1 for sell and 10 for buy.
+            - Provide the rating in your response and a recommendation to buy, hold or sell.
+            - Include the reasoning behind your recommendation.
+            - Include the source of the sentiment in your response.
+            """,
+        Kernel = kernel,
+        Arguments = new KernelArguments(new OpenAIPromptExecutionSettings() { 
+            FunctionChoiceBehavior = FunctionChoiceBehavior.Auto()})
+    };
+
 // Get chatCompletionService and initialize chatHistory with system prompt
 var chatCompletionService = kernel.GetRequiredService<IChatCompletionService>();
 ChatHistory chatHistory = new("You are a friendly financial advisor that only emits financial advice in a creative and funny tone");
@@ -42,12 +62,7 @@ OpenAIPromptExecutionSettings promptExecutionSettings = new()
 // Initialize kernel arguments
 KernelArguments kernelArgs = new(promptExecutionSettings);
 
-// Step 2 - Add call to print all plugins and functions
-var functions = kernel.Plugins.GetFunctionsMetadata();
-Console.WriteLine(functions.ToPrintableString());
-// Step 3 - Comment out all code after "Execute program" comment
 // Execute program.
-/*
 const string terminationPhrase = "quit";
 string? userInput;
 do
@@ -62,8 +77,8 @@ do
         string fullMessage = "";
         chatHistory.AddUserMessage(userInput);
 
-        // Provide promptExecutionSettings and kernel arguments
-        await foreach (var chatUpdate in chatCompletionService.GetStreamingChatMessageContentsAsync(chatHistory, promptExecutionSettings, kernel))
+        // Step 3 - Replace chatCompletionService with stockSentimentAgent
+        await foreach (var chatUpdate in stockSentimentAgent.InvokeAsync(chatHistory, kernelArgs))
         {
             Console.Write(chatUpdate.Content);
             fullMessage += chatUpdate.Content ?? "";
@@ -74,4 +89,3 @@ do
     }
 }
 while (userInput != terminationPhrase);
-*/
