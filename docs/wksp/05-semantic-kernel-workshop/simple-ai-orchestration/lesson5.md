@@ -70,26 +70,6 @@ In this lesson we will add functionality to list all plugins and plugin paramete
             default: ''
         - date:
             default: ''
-
-    Plugin: Search
-    Search: Perform a web search.
-        Params:
-        - query: Search query
-            default: ''
-        - count: Number of results
-            default: '10'
-        - offset: Number of results to skip
-            default: '0'
-
-    Plugin: GetSearchResults
-    GetSearchResults: Perform a web search and return complete results.
-        Params:
-        - query: Text to search for
-            default: ''
-        - count: Number of results
-            default: '1'
-        - offset: Number of results to skip
-            default: '0'
     ```
 
 1. Review the `Core.Utilities.Extensions.ModelExtensionMethods` class in the `CoreUtilities` project to understand how the plugins are traversed to print out plugins and corresponding plugin parameters information.

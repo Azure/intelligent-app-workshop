@@ -7,9 +7,6 @@ using Core.Utilities.Services;
 using Core.Utilities.Extensions;
 using Microsoft.SemanticKernel;
 using Microsoft.SemanticKernel.Connectors.OpenAI;
-// Add imports for Bing Search plugin
-using Microsoft.SemanticKernel.Plugins.Web;
-using Microsoft.SemanticKernel.Plugins.Web.Bing;
 // Add ChatCompletion import
 using Microsoft.SemanticKernel.ChatCompletion;
 // Temporarily added to enable Semantic Kernel tracing
@@ -30,15 +27,6 @@ kernel.Plugins.AddFromObject(new TimeInformationPlugin());
 HttpClient httpClient = new();
 StockDataPlugin stockDataPlugin = new(new StocksService(httpClient));
 kernel.Plugins.AddFromObject(stockDataPlugin);
-
-// Initialize Bing Search plugin
-var bingApiKey = AISettingsProvider.GetSettings().BingSearchService.ApiKey;
-if (!string.IsNullOrEmpty(bingApiKey))
-{
-    var bingConnector = new BingConnector(bingApiKey);
-    var bing = new WebSearchEnginePlugin(bingConnector);
-    kernel.ImportPluginFromObject(bing, "bing");
-}
 
 // Get chatCompletionService and initialize chatHistory with system prompt
 var chatCompletionService = kernel.GetRequiredService<IChatCompletionService>();
