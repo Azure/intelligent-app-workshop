@@ -3,11 +3,10 @@ using Core.Utilities.Config;
 using Core.Utilities.Plugins;
 // Add import required for StockService
 using Core.Utilities.Services;
+// Step 1 - Add import for ModelExtensionMethods
+using Core.Utilities.Extensions;
 using Microsoft.SemanticKernel;
 using Microsoft.SemanticKernel.Connectors.OpenAI;
-// Step 1 - Add imports for Bing Search plugin
-using Microsoft.SemanticKernel.Plugins.Web;
-using Microsoft.SemanticKernel.Plugins.Web.Bing;
 // Add ChatCompletion import
 using Microsoft.SemanticKernel.ChatCompletion;
 // Temporarily added to enable Semantic Kernel tracing
@@ -29,15 +28,6 @@ HttpClient httpClient = new();
 StockDataPlugin stockDataPlugin = new(new StocksService(httpClient));
 kernel.Plugins.AddFromObject(stockDataPlugin);
 
-// Step 2 - Initialize Bing Search plugin
-var bingApiKey = AISettingsProvider.GetSettings().BingSearchService.ApiKey;
-if (!string.IsNullOrEmpty(bingApiKey))
-{
-    var bingConnector = new BingConnector(bingApiKey);
-    var bing = new WebSearchEnginePlugin(bingConnector);
-    kernel.ImportPluginFromObject(bing, "bing");
-}
-
 // Get chatCompletionService and initialize chatHistory with system prompt
 var chatCompletionService = kernel.GetRequiredService<IChatCompletionService>();
 ChatHistory chatHistory = new("You are a friendly financial advisor that only emits financial advice in a creative and funny tone");
@@ -52,7 +42,12 @@ OpenAIPromptExecutionSettings promptExecutionSettings = new()
 // Initialize kernel arguments
 KernelArguments kernelArgs = new(promptExecutionSettings);
 
+// Step 2 - Add call to print all plugins and functions
+var functions = kernel.Plugins.GetFunctionsMetadata();
+Console.WriteLine(functions.ToPrintableString());
+// Step 3 - Comment out all code after "Execute program" comment
 // Execute program.
+/*
 const string terminationPhrase = "quit";
 string? userInput;
 do
@@ -79,3 +74,4 @@ do
     }
 }
 while (userInput != terminationPhrase);
+*/

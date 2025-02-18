@@ -1,6 +1,6 @@
-# Lesson 5: Describe all plugins in Semantic Kernel chatbot
+# Lesson 5: Semantic Kernel chatbot with Chat Completion Agent
 
-In this lesson we will add functionality to list all plugins and plugin parameters that are loaded in the application's Semantic Kernel instance.
+In this lesson we will introduce a Chat Completion Agent. The [Chat Completion Agent](https://learn.microsoft.com/en-us/semantic-kernel/frameworks/agent/chat-completion-agent?pivots=programming-language-csharp) is one of the agents available in the Semantic Kernel Agent framework. This agent has specific instructions to provide sentiment analysis on stocks. Note that the [Agent Framework](https://learn.microsoft.com/en-us/semantic-kernel/frameworks/agent/?pivots=programming-language-csharp) is currently in preview and subject to change.
 
 1. Ensure all [pre-requisites](pre-reqs.md) are met and installed.
 
@@ -16,80 +16,111 @@ In this lesson we will add functionality to list all plugins and plugin paramete
     cp ../Lesson1/appsettings.json .
     ```
 
-1. Run program to validate the code is functional:
+1. Open `Program.cs` and locate: **TODO: Step 0a - Comment line to print all plugins and functions** and comment the line below:
+
+    ```bash
+    Console.WriteLine(functions.ToPrintableString());
+    ```
+
+1. Next locate **TODO: Step 0b - Uncomment out all code after "Execute program" comment** in `Program.cs` by removing the `/*` and `*/` characters so that the chat completion code executes:
+
+    ```csharp
+    // TODO: Step 0b - Uncomment out all code after "Execute program" comment
+    // Execute program.
+    /*
+    const string terminationPhrase = "quit";
+    string? userInput;
+    do
+    {
+        ...
+    }
+    while (userInput != terminationPhrase);
+    */
+    ```
+
+1. Run program and ask what the sentiment on Microsoft stock is:
 
     ```bash
     dotnet run
     ```
 
-1. Locate **TODO: Step 1 - Add import for ModelExtensionMethods** in `Program.cs` and add the following import:
-
-    ```csharp
-    using Core.Utilities.Extensions;
-    ```
-
-1. Next locate **TODO: Step 2 - add call to print all plugins and functions** in `Program.cs` and add the following lines to print out kernel plugins info:
-
-    ```csharp
-    var functions = kernel.Plugins.GetFunctionsMetadata();
-    Console.WriteLine(functions.ToPrintableString());
-    ```
-
-1. Next locate **TODO: Step 3 - Comment out all code after "Execute program" comment** and comment all lines of code after the `//Execute program` line.
-
-    ```csharp
-    // TODO: Step 3 - Comment out all code after "Execute program" comment
-    // Execute program.
-    /*
-    const string terminationPhrase = "quit";
-    ...
-    while (userInput != terminationPhrase);
-    */
-    ```
-
-1. Re-run the program and you should see an output similar to this:
+1. At the prompt enter:
 
     ```bash
-    **********************************************
-    ****** Registered plugins and functions ******
-    **********************************************
-
-    Plugin: GetCurrentUtcTime
-    GetCurrentUtcTime: Retrieves the current time in UTC.
-
-    Plugin: GetStockPrice
-    GetStockPrice: Gets stock price
-        Params:
-        - symbol:
-            default: ''
-
-    Plugin: GetStockPriceForDate
-    GetStockPriceForDate: Gets stock price for a given date
-        Params:
-        - symbol:
-            default: ''
-        - date:
-            default: ''
-
-    Plugin: Search
-    Search: Perform a web search.
-        Params:
-        - query: Search query
-            default: ''
-        - count: Number of results
-            default: '10'
-        - offset: Number of results to skip
-            default: '0'
-
-    Plugin: GetSearchResults
-    GetSearchResults: Perform a web search and return complete results.
-        Params:
-        - query: Text to search for
-            default: ''
-        - count: Number of results
-            default: '1'
-        - offset: Number of results to skip
-            default: '0'
+    What is the sentiment on Microsoft stock?
     ```
 
-1. Review the `Core.Utilities.Extensions.ModelExtensionMethods` class in the `CoreUtilities` project to understand how the plugins are traversed to print out plugins and corresponding plugin parameters information.
+    Assistant will give a generic response:
+
+    ```txt
+    Assistant > The sentiment on Microsoft (ticker symbol: MSFT) largely hinges on factors like:
+
+        - Tech innovation (e.g., AI, Azure cloud service, and gaming)
+        - Quarterly earnings reports
+        - Overall market conditions
+        - How much caffeine traders have consumed
+    ```
+
+    Notice it does not provide a specific answer. We will add introduce a Stock Sentiment agent to provide a more specific answer.
+
+1. Next locate **TODO: Step 1** in `Program.cs` and add the following import lines:
+
+    ```csharp
+    using Microsoft.SemanticKernel.Agents;
+    ```
+
+1. Next locate **TODO: Step 2 - Add code to create Stock Sentiment Agent** in `Program.cs` and provide the following lines to initialize the `StockSentimentAgent` using `ChatCompletionAgent`:
+
+    ```csharp
+    ChatCompletionAgent stockSentimentAgent =
+        new()
+        {
+            Name = "StockSentimentAgent",
+            Instructions =
+                """
+                Your responsibility is to find the stock sentiment for a given Stock.
+
+                RULES:
+                - Use stock sentiment scale from 1 to 10 where stock sentiment is 1 for sell and 10 for buy.
+                - Provide the rating in your response and a recommendation to buy, hold or sell.
+                - Include the reasoning behind your recommendation.
+                - Include the source of the sentiment in your response.
+                """,
+            Kernel = kernel,
+            Arguments = new KernelArguments(new OpenAIPromptExecutionSettings() { 
+                FunctionChoiceBehavior = FunctionChoiceBehavior.Auto()})
+        };
+    ```
+
+1. Locate **TODO: Step 3 - Replace chatCompletionService with stockSentimentAgent** and replace the `foreach` line to use the `stockSentimentAgent` instead of the `chatCompletionService` as follows:
+
+    ```bash
+        await foreach (var chatUpdate in stockSentimentAgent.InvokeAsync(chatHistory, kernelArgs))
+    ```
+
+1. Re-run the program and ask what the sentiment on Microsoft stock is:
+
+    ```bash
+    dotnet run
+    User > What is the sentiment on Microsoft stock?
+    ```
+
+    Assistant response:
+
+    ```txt
+    Assistant > Based on its current performance, Microsoft's stock price (MSFT) is at $408.43, reflecting a strong position as a leading tech giant known for its robust ecosystem and diversified revenue streams.
+
+    Stock Sentiment: **8 out of 10**
+    Recommendation: **Buy**
+
+    Reasoning:
+    1. Microsoft's cloud computing segment, Azure, is growing rapidly and gaining market share.
+    2. The company's involvement in AI and other cutting-edge technologies positions it for long-term growth.
+    3. Continuous expansion into lucrative markets like gaming (Xbox) and enterprise software keeps its portfolio resilient.
+
+    However, as with all investments, ensure you're comfortable with the valuation and market conditions before diving in!
+
+    Source: Current stock price from live data. 
+    ```
+
+Expect to see a more specific response. Notice it provides a rating on 1 to 10 and recommendation to sell, hold or buy as specified in the agent instructions, however the only live data used for this recommendation is the stock price, so I would not trust this advice blindly. On the next lesson we will introduce grounding with Bing search to be able to retrieve more up to date data grounded using Bing Search data.

@@ -1,10 +1,10 @@
-# Lesson 4: Semantic Kernel chatbot with Web Search engine plugin
+# Lesson 4: Describe all plugins in Semantic Kernel chatbot
 
-In this lesson we will add a Web Search Engine plugin that uses Bing Search to our semantic kernel chatbot.
+In this lesson we will add functionality to list all plugins and plugin parameters that are loaded in the application's Semantic Kernel instance.
 
-1. Ensure all [pre-requisites](pre-reqs.md) are met and installed (including updating the `BingSearchService` `apiKey` value in the `appSettings.json` file using the key from **Bing Search Service v7** in [Azure Portal](https://portal.azure.com).
+1. Ensure all [pre-requisites](pre-reqs.md) are met and installed.
 
-1. Switch to Lesson 4 directory:
+1. Switch to Lesson 5 directory:
 
     ```bash
     cd ../Lesson4
@@ -16,69 +16,60 @@ In this lesson we will add a Web Search Engine plugin that uses Bing Search to o
     cp ../Lesson1/appsettings.json .
     ```
 
-1. Run program and ask what the sentiment on Microsoft stock is:
+1. Run program to validate the code is functional:
 
     ```bash
     dotnet run
     ```
 
-1. At the prompt enter:
-
-    ```bash
-    What is the sentiment on Microsoft stock?
-    ```
-
-    Assistant will give a generic response:
-
-    ```txt
-    Assistant > The sentiment on Microsoft (ticker symbol: MSFT) largely hinges on factors like:
-
-        - Tech innovation (e.g., AI, Azure cloud service, and gaming)
-        - Quarterly earnings reports
-        - Overall market conditions
-        - How much caffeine traders have consumed
-    ```
-
-    Notice it does not provide a specific answer. We can add the Web Search Engine plugin to be able to provide a better answer.
-
-1. Next locate **TODO: Step 1** in `Program.cs` and add the following import lines:
+1. Locate **TODO: Step 1 - Add import for ModelExtensionMethods** in `Program.cs` and add the following import:
 
     ```csharp
-    using Microsoft.SemanticKernel.Plugins.Web;
-    using Microsoft.SemanticKernel.Plugins.Web.Bing;
+    using Core.Utilities.Extensions;
     ```
 
-1. Next locate **TODO: Step 2** in `Program.cs` and provide the following lines to initialize and register the `WebSearchEnginePlugin`:
+1. Next locate **TODO: Step 2 - add call to print all plugins and functions** in `Program.cs` and add the following lines to print out kernel plugins info:
 
     ```csharp
-    var bingApiKey = AISettingsProvider.GetSettings().BingSearchService.ApiKey;
-    if (!string.IsNullOrEmpty(bingApiKey))
-    {
-        var bingConnector = new BingConnector(bingApiKey);
-        var bing = new WebSearchEnginePlugin(bingConnector);
-        kernel.ImportPluginFromObject(bing, "bing");
-    }
+    var functions = kernel.Plugins.GetFunctionsMetadata();
+    Console.WriteLine(functions.ToPrintableString());
     ```
 
-1. Re-run the program and ask what the sentiment on Microsoft stock is:
+1. Next locate **TODO: Step 3 - Comment out all code after "Execute program" comment** and comment all lines of code after the `//Execute program` line.
+
+    ```csharp
+    // TODO: Step 3 - Comment out all code after "Execute program" comment
+    // Execute program.
+    /*
+    const string terminationPhrase = "quit";
+    ...
+    while (userInput != terminationPhrase);
+    */
+    ```
+
+1. Re-run the program and you should see an output similar to this:
 
     ```bash
-    dotnet run
-    User > What is the sentiment on Microsoft stock?
+    **********************************************
+    ****** Registered plugins and functions ******
+    **********************************************
+
+    Plugin: GetCurrentUtcTime
+    GetCurrentUtcTime: Retrieves the current time in UTC.
+
+    Plugin: GetStockPrice
+    GetStockPrice: Gets stock price
+        Params:
+        - symbol:
+            default: ''
+
+    Plugin: GetStockPriceForDate
+    GetStockPriceForDate: Gets stock price for a given date
+        Params:
+        - symbol:
+            default: ''
+        - date:
+            default: ''
     ```
 
-    Assistant response:
-
-    ```txt
-    Assistant > Ah, Microsoft stock seems to be the belle of the ball with mixed but leaning-positive vibes. Let me serve up the sentiment soup:
-
-    - **Positives:** There's more excitement than usual, with higher-than-average media sentiment compared to other tech companies. Plus, analysts are dishing out 12-month price targets like cocktails, with an average around $489.55 and some saying it could go as high as $600—a nice little pie in the sky for investors! 🍰🚀
-
-    - **Concerns:** Clouds (pun intended!) aren't all silver-lining for Microsoft, as they've got capacity constraints in their cloud services. Choppy waters ahead, perhaps? 🌩️
-
-    - **Buzz:** Oh, it's trending alright! Tons of people are searching, sharing, and probably debating MSFT more than their weekend plans.
-
-    Feeling FOMO or ready to YOLO-invest? Don’t forget to watch that ticker—MSFT!    
-    ```
-
-Expect to see a more specific response. With the Web Search Engine plugin, you can now tap into any web search, so your agent will leverage that plugin to find information not available via other plugins or within the LLM being used.
+1. Review the `Core.Utilities.Extensions.ModelExtensionMethods` class in the `CoreUtilities` project to understand how the plugins are traversed to print out plugins and corresponding plugin parameters information.
