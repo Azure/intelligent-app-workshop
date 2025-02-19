@@ -146,7 +146,7 @@ you through the process followed to create the backend API from the Console appl
     cd Controllers
     ```
 
-1. Within the `Controllers` directory create a `ChatController.cs` file which exposes a reply method mapped to the `chat` path and the `HTTP POST` method. Be sure to set `_connectionString` and `_groundingWithBingConnectionId`:
+1. Within the `Controllers` directory create a `ChatController.cs` file which exposes a reply method mapped to the `chat` path and the `HTTP POST` method.`:
 
     ```csharp
     using Core.Utilities.Models;
