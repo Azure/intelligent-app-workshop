@@ -5,10 +5,6 @@ using Core.Utilities.Plugins;
 // Add import required for StockService
 using Core.Utilities.Services;
 using Microsoft.SemanticKernel;
-// Add imports for Bing Search plugin
-using Microsoft.SemanticKernel.Plugins.Web;
-using Microsoft.SemanticKernel.Plugins.Web.Bing;
-
 namespace Extensions;
 
 public static class ServiceExtensions
@@ -29,15 +25,6 @@ public static class ServiceExtensions
             HttpClient httpClient = new();
             StockDataPlugin stockDataPlugin = new(new StocksService(httpClient));
             kernel.Plugins.AddFromObject(stockDataPlugin);
-            
-            // Initialize Bing Search plugin
-            var bingApiKey = AISettingsProvider.GetSettings().BingSearchService.ApiKey;
-            if (!string.IsNullOrEmpty(bingApiKey))
-            {
-                var bingConnector = new BingConnector(bingApiKey);
-                var bing = new WebSearchEnginePlugin(bingConnector);
-                kernel.ImportPluginFromObject(bing, "bing");
-            }
 
             return kernel;
         });

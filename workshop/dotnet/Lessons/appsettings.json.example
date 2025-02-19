@@ -1,10 +1,15 @@
 {
-  "OpenAI": {
-    "endpoint": "<OpenAIEndpoint>",
-    "apiKey": "",
-    "deploymentName": "<OpenAIDeploymentName>"
+  "ManagedIdentity": {
+    "clientId": ""
   },
   "StockService": {
-    "apiKey": ""
+    "apiKey": "<StockServiceApiKey>"
+  },
+  "AIFoundryProject": {
+    "connectionString": "<OpenAIConnectionString>",
+    "groundingWithBingConnectionId": "<GroundingWithBingConnectionId>",
+    "endpoint": "<OpenAIEndpoint>",
+    "apiKey": "<OpenAIApiKey>",
+    "deploymentName": "<OpenAIDeploymentName>"
   }
 }

@@ -78,9 +78,11 @@ You can build, provision all resources and deploy by following these steps:
         * Select an Azure subscription to use from list
         * Select an Azure location to use: e.g. (US) East US 2 (eastus2)
         * Enter a value for the infrastructure parameters:
+          * **aiFoundryProjectConnectionString**
           * **openAIApiKey**
           * **openAiChatGptDeployment**: e.g. gpt-4o
           * **openAiEndpoint**
+          * **groundingWithBingConnectionId**
           * **stockServiceApiKey**
 1. After the application has been successfully deployed you will see the API and Web Service URLs printed in the console.  
    Click the Web Service URL to interact with the application in your browser.

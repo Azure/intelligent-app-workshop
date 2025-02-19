@@ -3,21 +3,23 @@ using System.Text.Json.Serialization;
 namespace Core.Utilities.Models;
 
 public record AppSettings (
-    OpenAI OpenAI,
     StockService StockService,
-    BingSearchService BingSearchService
-);
-
-public record OpenAI (
-    string Endpoint,
-    string DeploymentName,
-    string ApiKey
+    AIFoundryProject AIFoundryProject,
+    ManagedIdentity ManagedIdentity
 );
 
 public record StockService (
     string ApiKey
 );
 
-public record BingSearchService (
+public record ManagedIdentity (
+    string ClientId
+);
+
+public record AIFoundryProject (
+    string ConnectionString,
+    string GroundingWithBingConnectionId,
+    string Endpoint,
+    string DeploymentName,
     string ApiKey
 );

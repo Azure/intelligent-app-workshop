@@ -16,5 +16,7 @@
     <PackageReference Include="Microsoft.SemanticKernel.Agents.Core" />
     <PackageReference Include="Microsoft.SemanticKernel.Plugins.Web" />
     <PackageReference Include="Microsoft.SemanticKernel.Plugins.Core" />
+    <PackageReference Include="Microsoft.SemanticKernel.Agents.AzureAI"/>
+    <PackageReference Include="Azure.Identity"/>
   </ItemGroup>
 </Project>

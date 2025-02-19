@@ -1,17 +1,20 @@
 using Core.Utilities.Models;
+using Core.Utilities.Config;
 using Core.Utilities.Extensions;
 // Add import required for StockService
 using Microsoft.SemanticKernel;
-using Microsoft.SemanticKernel.Connectors.OpenAI;
 // Add ChatCompletion import
 using Microsoft.SemanticKernel.ChatCompletion;
 // Add import for Agents
+using Microsoft.SemanticKernel.Agents.AzureAI;
 using Microsoft.SemanticKernel.Agents;
 // Temporarily added to enable Semantic Kernel tracing
-using Microsoft.Extensions.DependencyInjection;
-using Microsoft.Extensions.Logging;
+
+using Azure.AI.Projects;
+using Azure.Identity;
 
 using Microsoft.AspNetCore.Mvc;
+using Azure;
 
 namespace Controllers;
 
@@ -20,63 +23,99 @@ namespace Controllers;
 public class ChatController : ControllerBase {
 
     private readonly Kernel _kernel;
-    private readonly OpenAIPromptExecutionSettings _promptExecutionSettings;
 
-    private readonly ChatCompletionAgent _stockSentimentAgent;
+    private AzureAIAgent _stockSentimentAgent;
+    private AgentsClient _agentsClient;
+    private readonly string _connectionString;
+    private readonly string _groundingWithBingConnectionId;
+    private readonly string _deploymentName;
+    private readonly string _managedIdentityClientId;
+    
     public ChatController(Kernel kernel)
     {
-        _kernel = kernel;
-        _promptExecutionSettings = new()
-        {
-            // Add Auto invoke kernel functions as the tool call behavior
-            ToolCallBehavior = ToolCallBehavior.AutoInvokeKernelFunctions
-        };
-        _stockSentimentAgent = GetStockSemanticAgentAsync().Result;
+        _kernel = kernel;       
 
+        _connectionString = AISettingsProvider.GetSettings().AIFoundryProject.ConnectionString;
+        _groundingWithBingConnectionId = AISettingsProvider.GetSettings().AIFoundryProject.GroundingWithBingConnectionId;
+        _deploymentName = AISettingsProvider.GetSettings().AIFoundryProject.DeploymentName;
+        _managedIdentityClientId = AISettingsProvider.GetSettings().ManagedIdentity.ClientId;
+         
+        _agentsClient = GetAgentsClient().Result;
+        _stockSentimentAgent = GetAzureAIAgent().Result;
     }
 
     /// <summary>
     /// Get StockSemanticAgent instance
     /// </summary>
     /// <returns></returns>
-    private async Task<ChatCompletionAgent> GetStockSemanticAgentAsync()
+    private async Task<AzureAIAgent> GetAzureAIAgent()
     {
-        // Get StockSemanticAgent instance
-        ChatCompletionAgent stockSentimentAgent =
-            new()
-            {
-                Name = "StockSentimentAgent",
-                Instructions =
+        var credentialOptions = new DefaultAzureCredentialOptions
+        {
+            ManagedIdentityClientId = _managedIdentityClientId
+        };
+        var projectClient = new AIProjectClient(_connectionString, new DefaultAzureCredential(credentialOptions));
+        
+        var clientProvider =  AzureAIClientProvider.FromConnectionString(_connectionString, new DefaultAzureCredential(credentialOptions));
+                    
+        ConnectionResponse bingConnection = await projectClient.GetConnectionsClient().GetConnectionAsync(_groundingWithBingConnectionId);
+        var connectionId = bingConnection.Id;
+
+        ToolConnectionList connectionList = new ToolConnectionList
+        {
+            ConnectionList = { new ToolConnection(connectionId) }
+        };
+        BingGroundingToolDefinition bingGroundingTool = new BingGroundingToolDefinition(connectionList);
+
+        var definition = await _agentsClient.CreateAgentAsync(
+            _deploymentName,
+            instructions:
                     """
-                    Your responsibility is to find the stock sentiment for a given Stock.
+                    Your responsibility is to find the stock sentiment for a given Stock, emitting advice in a creative and funny tone.
 
                     RULES:
-                    - Use stock sentiment scale from 1 to 10 where stock sentiment is 1 for sell and 10 for buy.
-                    - Only use reliable sources such as Yahoo Finance, MarketWatch, Fidelity and similar.
-                    - Provide the rating in your response and a recommendation to buy, hold or sell.
+                    - Report a stock sentiment scale from 1 to 10 where stock sentiment is 1 for sell and 10 for buy.
+                    - Only use current data reputable sources such as Yahoo Finance, MarketWatch, Fidelity and similar.
+                    - Provide the stock sentiment scale in your response and a recommendation to buy, hold or sell.
                     - Include the reasoning behind your recommendation.
-                    - Include the source of the sentiment in your response.
+                    - Be sure to cite the source of the information.
                     """,
-                Kernel = _kernel,
-                Arguments = new KernelArguments(new OpenAIPromptExecutionSettings() { 
-                    FunctionChoiceBehavior = FunctionChoiceBehavior.Auto()})
-            };
-        return stockSentimentAgent;
+            tools:
+            [
+                bingGroundingTool
+            ]);
+        var agent = new AzureAIAgent(definition, clientProvider)
+        {
+            Kernel = _kernel,
+        };
+        
+        return agent;
+    }
+    /// <summary>
+    /// Get AgentsClient instance
+    /// </summary>
+    /// <returns></returns>
+    private async Task<AgentsClient> GetAgentsClient()
+    {
+        var clientProvider =  AzureAIClientProvider.FromConnectionString(_connectionString, new DefaultAzureCredential(
+            new DefaultAzureCredentialOptions
+            {
+                ManagedIdentityClientId = _managedIdentityClientId
+            }
+        ));
+        return clientProvider.Client.GetAgentsClient();
     }
 
     [HttpPost("/chat")]
     public async Task<ChatResponse> ReplyAsync([FromBody]ChatRequest request)
     {
-        // Get chatCompletionService and initialize chatHistory wiht system prompt
-        var chatCompletionService = _kernel.GetRequiredService<IChatCompletionService>();
         var chatHistory = new ChatHistory();
         if (request.MessageHistory.Count == 0) { 
-            chatHistory.AddSystemMessage("You are a friendly financial advisor that only emits financial advice in a creative and funny tone");
+            chatHistory.AddSystemMessage("You are a friendly financial advisor.");
         }
         else {
             chatHistory = request.ToChatHistory();
         }
-        KernelArguments kernelArgs = new(_promptExecutionSettings);
 
         // Initialize fullMessage variable and add user input to chat history
         string fullMessage = "";
@@ -84,17 +123,34 @@ public class ChatController : ControllerBase {
         {
             chatHistory.AddUserMessage(request.InputMessage);
 
-            // Invoke stockSentimentAgent chat completion with kernel arguments
-            await foreach (var chatUpdate in _stockSentimentAgent.InvokeAsync(chatHistory, kernelArgs))
+            // Create a thread for the agent conversation.
+            AgentThread thread = await _agentsClient.CreateThreadAsync();
+
+            ChatMessageContent message = new(AuthorRole.User, request.InputMessage);
+            await _stockSentimentAgent.AddChatMessageAsync(thread.Id, message);
+
+            await foreach (ChatMessageContent response in _stockSentimentAgent.InvokeAsync(thread.Id))
             {
-                Console.Write(chatUpdate.Content);
-                fullMessage += chatUpdate.Content ?? "";
+                // Include TextContent (via ChatMessageContent.Content), if present.
+                string contentExpression = string.IsNullOrWhiteSpace(response.Content) ? string.Empty : response.Content;
+                chatHistory.AddAssistantMessage(contentExpression);
+                fullMessage += contentExpression;
+
+                // Provide visibility for inner content (that isn't TextContent).
+                foreach (KernelContent item in response.Items)
+                {
+                    if (item is AnnotationContent annotation)
+                    {
+                        var annotationExpression = ($"  [{item.GetType().Name}] {annotation.Quote}: File #{annotation.FileId}");
+                        chatHistory.AddAssistantMessage(annotationExpression);
+                        fullMessage += annotationExpression;
+                    }
+                }
             }
-            chatHistory.AddAssistantMessage(fullMessage);
         }
+            
         var chatResponse = new ChatResponse(fullMessage, chatHistory.FromChatHistory());    
         return chatResponse;
     }
-
 
 }

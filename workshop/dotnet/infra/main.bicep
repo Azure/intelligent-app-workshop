@@ -36,9 +36,6 @@ param applicationInsightsDashboardName string = ''
 @description('Name of the Azure Application Insights resource')
 param applicationInsightsName string = ''
 
-@description('Name of the Azure App Service Plan')
-param appServicePlanName string = ''
-
 @description('Capacity of the chat GPT deployment. Default: 10')
 param chatGptDeploymentCapacity int = 8
 
@@ -87,8 +84,8 @@ param storageResourceGroupLocation string = location
 @description('Name of the resource group for the storage account')
 param storageResourceGroupName string = ''
 
-@description('Bing Search Service name')
-param bingSearchServiceName string = ''
+@description('Name of the resource group for the foundry resources')
+param foundryResourceGroupName string = ''
 
 @description('Specifies if the web app exists')
 param webAppExists bool = false
@@ -123,6 +120,12 @@ param openAiEndpoint string
 @description('Stock Service API Key from Polygon.io')
 param stockServiceApiKey string
 
+@description('AI Foundry Project connection string')
+param aiFoundryProjectConnectionString string
+
+@description('Grounding with Bing Connection Id')
+param groundingWithBingConnectionId string
+
 var abbrs = loadJsonContent('./abbreviations.json')
 var resourceToken = toLower(uniqueString(subscription().id, environmentName, location))
 
@@ -140,11 +143,9 @@ resource azureOpenAiResourceGroup 'Microsoft.Resources/resourceGroups@2021-04-01
   name: !empty(openAiResourceGroupName) ? openAiResourceGroupName : resourceGroup.name
 }
 
-
 resource storageResourceGroup 'Microsoft.Resources/resourceGroups@2021-04-01' existing = if (!empty(storageResourceGroupName)) {
   name: !empty(storageResourceGroupName) ? storageResourceGroupName : resourceGroup.name
 }
-
 
 // Create a user assigned identity
 module identity './app/user-assigned-identity.bicep' = {
@@ -152,15 +153,6 @@ module identity './app/user-assigned-identity.bicep' = {
   scope: resourceGroup
   params: {
     name: 'sk-app-identity'
-  }
-}
-
-module bingSearch './core/bing/bing-search.bicep' = {
-  name: 'bingSearch'
-  scope: resourceGroup
-  params: {
-    tags: updatedTags
-    name: !empty(bingSearchServiceName) ? bingSearchServiceName : '${abbrs.searchSearchServices}${resourceToken}'
   }
 }
 
@@ -200,7 +192,9 @@ module api './app/api.bicep' = {
     openAiApiKey: useAOAI ? '' : openAIApiKey
     openAiEndpoint: useAOAI ? azureOpenAi.outputs.endpoint : openAiEndpoint
     stockServiceApiKey: stockServiceApiKey
-    bingSearchApiKey: bingSearch.outputs.apiKey
+    userAssignedRoleClientId: identity.outputs.clientId
+    aiFoundryProjectConnectionString: aiFoundryProjectConnectionString
+    groundingWithBingConnectionId: groundingWithBingConnectionId
     openAiChatGptDeployment: useAOAI ? azureChatGptDeploymentName : openAiChatGptDeployment
     serviceBinds: []
   }
@@ -228,7 +222,6 @@ module web './app/web.bicep' = {
     serviceBinds: []
   }
 }
-
 
 // Monitor application with Azure Monitor
 module monitoring 'core/monitor/monitoring.bicep' = {
@@ -271,7 +264,6 @@ module azureOpenAi 'core/ai/cognitiveservices.bicep' = if (useAOAI) {
   }
 }
 
-
 module storage 'core/storage/storage-account.bicep' = {
   name: 'storage'
   scope: storageResourceGroup
@@ -291,17 +283,6 @@ module storage 'core/storage/storage-account.bicep' = {
         name: storageContainerName
       }
     ]
-  }
-}
-
-// USER ROLES
-module azureOpenAiRoleUser 'core/security/role.bicep' = if (useAOAI) {
-  scope: azureOpenAiResourceGroup
-  name: 'openai-role-user'
-  params: {
-    principalId: principalId
-    roleDefinitionId: '5e0bd9bd-7b93-4f28-af87-19fc36ad61bd'
-    principalType: principalType
   }
 }
 
@@ -354,6 +335,15 @@ module storageContribRoleApi 'core/security/role.bicep' = {
   params: {
     principalId: identity.outputs.principalId
     roleDefinitionId: 'ba92f5b4-2d11-453d-a403-e96b0029c9fe'
+    principalType: 'ServicePrincipal'
+  }
+}
+
+module dataScientistRole 'core/security/subscription-role.bicep' = {
+  name: 'data-scientist-role'
+  params: {
+    principalId: api.outputs.SERVICE_API_PRINCIPAL_ID
+    roleDefinitionId: 'f6c7c914-8db3-469d-8ca1-694a8f32e121' // Azure ML Data Scientist
     principalType: 'ServicePrincipal'
   }
 }
