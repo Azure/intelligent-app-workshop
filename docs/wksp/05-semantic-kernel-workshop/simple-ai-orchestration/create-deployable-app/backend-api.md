@@ -146,7 +146,7 @@ you through the process followed to create the backend API from the Console appl
     cd Controllers
     ```
 
-1. Within the `Controllers` directory create a `ChatController.cs` file which exposes a reply method mapped to the `chat` path and the `HTTP POST` method.`:
+1. Within the `Controllers` directory create a `ChatController.cs` file which exposes a reply method mapped to the `chat` path and the `HTTP POST` method.:
 
     ```csharp
     using Core.Utilities.Models;
@@ -156,7 +156,7 @@ you through the process followed to create the backend API from the Console appl
     using Microsoft.SemanticKernel;
     // Add ChatCompletion import
     using Microsoft.SemanticKernel.ChatCompletion;
-    // Add import for Agentss
+    // Add import for Agents
     using Microsoft.SemanticKernel.Agents.AzureAI;
     using Microsoft.SemanticKernel.Agents;
     // Temporarily added to enable Semantic Kernel tracing
@@ -189,7 +189,7 @@ you through the process followed to create the backend API from the Console appl
             _connectionString = AISettingsProvider.GetSettings().AIFoundryProject.ConnectionString;
             _groundingWithBingConnectionId = AISettingsProvider.GetSettings().AIFoundryProject.GroundingWithBingConnectionId;
             _deploymentName = AISettingsProvider.GetSettings().AIFoundryProject.DeploymentName;
-            _managedIdentityClientId = AISettingsProvider.GetSettings().ManagedIdentity.ClientId;
+            _managedIdentityClientId = AISettingsProvider.GetSettings().ManagedIdentity?.ClientId;
             
             _agentsClient = GetAgentsClient().Result;
             _stockSentimentAgent = GetAzureAIAgent().Result;
@@ -201,10 +201,7 @@ you through the process followed to create the backend API from the Console appl
         /// <returns></returns>
         private async Task<AzureAIAgent> GetAzureAIAgent()
         {
-            var credentialOptions = new DefaultAzureCredentialOptions
-            {
-                ManagedIdentityClientId = _managedIdentityClientId
-            };
+            var credentialOptions = GetDefaultAzureCredential();
             var projectClient = new AIProjectClient(_connectionString, new DefaultAzureCredential(credentialOptions));
             
             var clientProvider =  AzureAIClientProvider.FromConnectionString(_connectionString, new DefaultAzureCredential(credentialOptions));
@@ -247,14 +244,21 @@ you through the process followed to create the backend API from the Console appl
         /// </summary>
         /// <returns></returns>
         private async Task<AgentsClient> GetAgentsClient()
-        {
-            var clientProvider =  AzureAIClientProvider.FromConnectionString(_connectionString, new DefaultAzureCredential(
-                new DefaultAzureCredentialOptions
-                {
-                    ManagedIdentityClientId = _managedIdentityClientId
-                }
-            ));
+        {        
+            var clientProvider =  AzureAIClientProvider.FromConnectionString(_connectionString, GetDefaultAzureCredential());
             return clientProvider.Client.GetAgentsClient();
+        }
+
+        private DefaultAzureCredential GetDefaultAzureCredential()
+        {
+            // Conditionally set the Azure credentials because a managed identity client is required if you're running in ACA but not locally
+            var credential = string.IsNullOrEmpty(_managedIdentityClientId) ? 
+                new DefaultAzureCredential() 
+                : new DefaultAzureCredential(new DefaultAzureCredentialOptions
+                    {
+                        ManagedIdentityClientId = _managedIdentityClientId
+                    });
+            return credential;
         }
 
         [HttpPost("/chat")]
