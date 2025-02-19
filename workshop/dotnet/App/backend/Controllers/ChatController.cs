@@ -38,7 +38,7 @@ public class ChatController : ControllerBase {
         _connectionString = AISettingsProvider.GetSettings().AIFoundryProject.ConnectionString;
         _groundingWithBingConnectionId = AISettingsProvider.GetSettings().AIFoundryProject.GroundingWithBingConnectionId;
         _deploymentName = AISettingsProvider.GetSettings().AIFoundryProject.DeploymentName;
-        _managedIdentityClientId = AISettingsProvider.GetSettings().ManagedIdentity.ClientId;
+        _managedIdentityClientId = AISettingsProvider.GetSettings().ManagedIdentity?.ClientId;
          
         _agentsClient = GetAgentsClient().Result;
         _stockSentimentAgent = GetAzureAIAgent().Result;
@@ -50,10 +50,7 @@ public class ChatController : ControllerBase {
     /// <returns></returns>
     private async Task<AzureAIAgent> GetAzureAIAgent()
     {
-        var credentialOptions = new DefaultAzureCredentialOptions
-        {
-            ManagedIdentityClientId = _managedIdentityClientId
-        };
+        var credentialOptions = GetDefaultAzureCredential();
         var projectClient = new AIProjectClient(_connectionString, new DefaultAzureCredential(credentialOptions));
         
         var clientProvider =  AzureAIClientProvider.FromConnectionString(_connectionString, new DefaultAzureCredential(credentialOptions));
@@ -96,14 +93,21 @@ public class ChatController : ControllerBase {
     /// </summary>
     /// <returns></returns>
     private async Task<AgentsClient> GetAgentsClient()
-    {
-        var clientProvider =  AzureAIClientProvider.FromConnectionString(_connectionString, new DefaultAzureCredential(
-            new DefaultAzureCredentialOptions
-            {
-                ManagedIdentityClientId = _managedIdentityClientId
-            }
-        ));
+    {        
+        var clientProvider =  AzureAIClientProvider.FromConnectionString(_connectionString, GetDefaultAzureCredential());
         return clientProvider.Client.GetAgentsClient();
+    }
+
+    private DefaultAzureCredential GetDefaultAzureCredential()
+    {
+        // Conditionally set the Azure credentials because a managed identity client is required if you're running in ACA but not locally
+        var credential = string.IsNullOrEmpty(_managedIdentityClientId) ? 
+            new DefaultAzureCredential() 
+            : new DefaultAzureCredential(new DefaultAzureCredentialOptions
+                {
+                    ManagedIdentityClientId = _managedIdentityClientId
+                });
+        return credential;
     }
 
     [HttpPost("/chat")]

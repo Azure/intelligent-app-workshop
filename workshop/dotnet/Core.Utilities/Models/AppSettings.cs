@@ -5,7 +5,7 @@ namespace Core.Utilities.Models;
 public record AppSettings (
     StockService StockService,
     AIFoundryProject AIFoundryProject,
-    ManagedIdentity ManagedIdentity
+    ManagedIdentity? ManagedIdentity = null // Not needed when running locally
 );
 
 public record StockService (
@@ -13,7 +13,7 @@ public record StockService (
 );
 
 public record ManagedIdentity (
-    string ClientId
+    string ClientId = "" // Not needed when running locally
 );
 
 public record AIFoundryProject (
