@@ -90,8 +90,8 @@ cd intelligent-app-workshop
     1. Click **Create**
 
 1. Store AI Foundry settings in `appsettings.json`
-    1. In Azure AI Foundry, copy the API key and use it as the **apiKey** value in the `OpenAI` element of `appsettings.json`.
-    1. Under **Included capabilities** choose **Azure OpenAI Service** and copy the endpoint. Use it as the **endpoint** value in the `OpenAI` element of `appsettings.json`.
+    1. In Azure AI Foundry, copy the API key and use it as the **apiKey** value in the `AIFoundryProject` element of `appsettings.json`.
+    1. Under **Included capabilities** choose **Azure OpenAI Service** and copy the endpoint. Use it as the **endpoint** value in the `AIFoundryProject` element of `appsettings.json`.
     1. On the right side of the screen, locate the **Project connection string** and use it as the **connectionString** value within the `AIFoundryProject` element in `appSettings.json`.
             ![Azure Foundry Project settings](./images/ai-foundry-project.jpg)
 
@@ -104,7 +104,8 @@ cd intelligent-app-workshop
     1. Adjust the Tokens per Minute Rate Limit to at least 250 requests per minute (RPM)
     1. Click **Deploy**.
         ![Terminal](./images/deploy-model.jpg)
-    1. Use the **Deployment Name** value (e.g. gpt-4o) as the **deploymentName** value within the `OpenAI` element in the `appsettings.json` file.
+    1. Use the **Deployment Name** value (e.g. gpt-4o) as the **deploymentName** value within the `AIFoundryProject` element in the `appsettings.json` file.
+    1. Wait a few minutes after deployment to allow the API to come online.
 
 1. Create Agents connection to Grounding with Bing Search resource:
 
