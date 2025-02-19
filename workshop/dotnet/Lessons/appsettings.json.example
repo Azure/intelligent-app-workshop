@@ -1,7 +1,4 @@
 {
-  "ManagedIdentity": {
-    "clientId": ""
-  },
   "StockService": {
     "apiKey": "<StockServiceApiKey>"
   },
