@@ -34,7 +34,7 @@ In this lesson, we will add a Semantic Kernel Azure AI agent to our chatbot prog
 
     ```csharp
     var connectionString = AISettingsProvider.GetSettings().AIFoundryProject.ConnectionString;
-    var groundingWithBingConnectionId = AISettingsProvider.GetSettings().AIFoundryProject.GroundingWithBingConnectionId;
+    var bingConnectionId = AISettingsProvider.GetSettings().AIFoundryProject.GroundingWithBingConnectionId;
 
     var projectClient = new AIProjectClient(connectionString, new DefaultAzureCredential());
                 

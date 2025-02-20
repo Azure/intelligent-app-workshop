@@ -201,10 +201,10 @@ you through the process followed to create the backend API from the Console appl
         /// <returns></returns>
         private async Task<AzureAIAgent> GetAzureAIAgent()
         {
-            var credentialOptions = GetDefaultAzureCredential();
-            var projectClient = new AIProjectClient(_connectionString, new DefaultAzureCredential(credentialOptions));
+            var credential = GetDefaultAzureCredential();
+            var projectClient = new AIProjectClient(_connectionString, credential);
             
-            var clientProvider =  AzureAIClientProvider.FromConnectionString(_connectionString, new DefaultAzureCredential(credentialOptions));
+            var clientProvider =  AzureAIClientProvider.FromConnectionString(_connectionString, credential);
                         
             ConnectionResponse bingConnection = await projectClient.GetConnectionsClient().GetConnectionAsync(_groundingWithBingConnectionId);
             var connectionId = bingConnection.Id;

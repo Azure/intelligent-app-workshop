@@ -39,7 +39,7 @@ public class ChatController : ControllerBase {
         _groundingWithBingConnectionId = AISettingsProvider.GetSettings().AIFoundryProject.GroundingWithBingConnectionId;
         _deploymentName = AISettingsProvider.GetSettings().AIFoundryProject.DeploymentName;
         _managedIdentityClientId = AISettingsProvider.GetSettings().ManagedIdentity?.ClientId;
-         
+        
         _agentsClient = GetAgentsClient().Result;
         _stockSentimentAgent = GetAzureAIAgent().Result;
     }
@@ -50,10 +50,10 @@ public class ChatController : ControllerBase {
     /// <returns></returns>
     private async Task<AzureAIAgent> GetAzureAIAgent()
     {
-        var credentialOptions = GetDefaultAzureCredential();
-        var projectClient = new AIProjectClient(_connectionString, new DefaultAzureCredential(credentialOptions));
+        var credential = GetDefaultAzureCredential();
+        var projectClient = new AIProjectClient(_connectionString, credential);
         
-        var clientProvider =  AzureAIClientProvider.FromConnectionString(_connectionString, new DefaultAzureCredential(credentialOptions));
+        var clientProvider =  AzureAIClientProvider.FromConnectionString(_connectionString, credential);
                     
         ConnectionResponse bingConnection = await projectClient.GetConnectionsClient().GetConnectionAsync(_groundingWithBingConnectionId);
         var connectionId = bingConnection.Id;
