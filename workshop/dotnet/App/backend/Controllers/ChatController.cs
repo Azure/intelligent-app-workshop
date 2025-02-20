@@ -115,7 +115,7 @@ public class ChatController : ControllerBase {
     {
         var chatHistory = new ChatHistory();
         if (request.MessageHistory.Count == 0) { 
-            chatHistory.AddSystemMessage("You are a friendly financial advisor.");
+            chatHistory.AddSystemMessage("You are a friendly financial advisor who only emits financial advice in a creative and funny tone.");
         }
         else {
             chatHistory = request.ToChatHistory();
