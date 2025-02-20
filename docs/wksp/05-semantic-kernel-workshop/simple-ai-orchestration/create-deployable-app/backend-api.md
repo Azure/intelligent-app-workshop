@@ -266,7 +266,7 @@ you through the process followed to create the backend API from the Console appl
         {
             var chatHistory = new ChatHistory();
             if (request.MessageHistory.Count == 0) { 
-                chatHistory.AddSystemMessage("You are a friendly financial advisor.");
+                chatHistory.AddSystemMessage("You are a friendly financial advisor who only emits financial advice in a creative and funny tone.");
             }
             else {
                 chatHistory = request.ToChatHistory();
