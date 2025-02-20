@@ -3,10 +3,10 @@
     "apiKey": "<StockServiceApiKey>"
   },
   "AIFoundryProject": {
-    "connectionString": "<OpenAIConnectionString>",
+    "connectionString": "<AIFoundryConnectionString>",
     "groundingWithBingConnectionId": "<GroundingWithBingConnectionId>",
-    "endpoint": "<OpenAIEndpoint>",
-    "apiKey": "<OpenAIApiKey>",
-    "deploymentName": "<OpenAIDeploymentName>"
+    "endpoint": "<AIFoundryEndpoint>",
+    "apiKey": "<AIFoundryApiKey>",
+    "deploymentName": "<modelDeploymentName>"
   }
 }

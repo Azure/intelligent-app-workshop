@@ -77,11 +77,11 @@ cd intelligent-app-workshop
         * Subscription: The Azure subscription to be used for your service.
         * Resource group: The Azure resource group to contain your Azure AI Foundry Hub service resource. For simplicity, use the same resource group you used for the Bing Search grounding resource.
         * Region: The location of your instance. Different locations can introduce latency, but they don't affect the runtime availability of your resource.
-        * Name: A descriptive and unique name for your Azure AI Foundry Hub service resource, such as `aifoundryhub-intelligent-app-workshop-myid`.
+        * Name: A descriptive and unique name for your Azure AI Foundry Hub service resource, such as `aifoundryhub-sk-workshop-myid`.
     1. Click **Review + create**.
     1. Click **Create**.
     1. When the deployment is complete, click **Go to resource**
-    1. Click **Launch Azure AI Foundry"
+    1. Click **Launch Azure AI Foundry**
 
 1. Create an Azure AI Foundry project:
 
@@ -92,12 +92,12 @@ cd intelligent-app-workshop
 1. Store AI Foundry settings in `appsettings.json`
     1. In Azure AI Foundry, copy the API key and use it as the **apiKey** value in the `AIFoundryProject` element of `appsettings.json`.
     1. Under **Included capabilities** choose **Azure OpenAI Service** and copy the endpoint. Use it as the **endpoint** value in the `AIFoundryProject` element of `appsettings.json`.
-    1. On the right side of the screen, locate the **Project connection string** and use it as the **connectionString** value within the `AIFoundryProject` element in `appSettings.json`.
+    1. On the right side of the screen, locate the **Project connection string** (within **Project Details**) and use it as the **connectionString** value within the `AIFoundryProject` element in `appSettings.json`.
             ![Azure Foundry Project settings](./images/ai-foundry-project.jpg)
 
 1. Deploy a model in Azure AI Foundry:
 
-    1. Click the **Models & Assets*** tab (sidebar, left) to view currently deployed models.
+    1. Click the **Models + endpoints*** tab (sidebar, left) to view currently deployed models.
     1. If your desired model is not deployed, click on **Deploy Model** then select to **Deploy Base Model**.
     1. You will need a chat completion model. For this workshop we recommend using `gpt-4o`. Select `gpt-4o` from the drop down and click **Confirm**.
     1. Click **Customize** and choose the `2024-08-06` model. At the time of this workshop, this is the latest version that integrates with Azure AI Agent Service, which we will use in Lesson 6.
@@ -111,14 +111,14 @@ cd intelligent-app-workshop
 
     1. Click on **Playgrounds** on the left side.
     1. In the Agents playground box, click **Try the Agents playground**.
-    1. Choose your OpenAI Service instance in the dropdown and click **Let's go**.
+    1. Choose your Azure OpenAI Service instance in the dropdown and click **Let's go**.
     1. Scroll down and find the `Knowledge` section on the right. Click **Add**.
-        ![Addknowledge](./images/add-knowledge.jpg)    
+        ![Addknowledge](./images/add-knowledge.jpg)
     1. Click **Grounding with Bing Search**.
-    1. Choose **New Connection**.
+    1. Click **Create connection**.
     1. Find the resource you created and click **Add connection**.
     1. Click **Connect**.
-    1. On the Agents playground page, use the name of the connection you just created as the **groundingWithBingConnectionId** value within the `AIFoundryProject` element in the `appSettings.json` file.
+    1. From the Agents playground page, locate the **Knowledge** section and copy the name of the connection you just created and paste it as the **groundingWithBingConnectionId** value within the `AIFoundryProject` element in the `appSettings.json` file.
 
 1. Additionally, we need to obtain an API Key to be able to get stock prices from [polygon.io](https://polygon.io/dashboard/login). You can sign up for a free API Key by creating a login. This value will be needed for [Lesson 3](lesson3.md).
     1. Once logged in, from the [polygon.io Dashboard](https://polygon.io/dashboard) locate the **Keys** section. Copy the default key value and paste it as the **apiKey** value within the `StockService` element in the `appsettings.json` file.
