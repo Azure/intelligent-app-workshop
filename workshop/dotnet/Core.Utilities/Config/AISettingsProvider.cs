@@ -18,10 +18,12 @@ public static class AISettingsProvider
         var aiSettings = config
             .Get<AppSettings>();
         Guard.Against.Null(aiSettings);
-        Guard.Against.Null(aiSettings.OpenAI);
-        Guard.Against.NullOrEmpty(aiSettings.OpenAI.DeploymentName);
-        Guard.Against.NullOrEmpty(aiSettings.OpenAI.ApiKey);
-        Guard.Against.NullOrEmpty(aiSettings.OpenAI.Endpoint);
+        Guard.Against.Null(aiSettings.AIFoundryProject);
+        Guard.Against.NullOrEmpty(aiSettings.AIFoundryProject.DeploymentName);
+        Guard.Against.NullOrEmpty(aiSettings.AIFoundryProject.GroundingWithBingConnectionId);
+        Guard.Against.NullOrEmpty(aiSettings.AIFoundryProject.ApiKey);
+        Guard.Against.NullOrEmpty(aiSettings.AIFoundryProject.Endpoint);
+        Guard.Against.NullOrEmpty(aiSettings.AIFoundryProject.ConnectionString);
 
         return aiSettings;
     }

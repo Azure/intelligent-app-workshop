@@ -3,8 +3,7 @@
 Before attending the Intelligent App Development Workshop, please ensure you have the following prerequisites in place:
 
 1. **Azure account**: A Microsoft Azure account with an active subscription. If you don't have one, sign up for a [free trial](https://azure.microsoft.com/en-us/free/).
-1. **Azure subscription with access enabled for the Azure OpenAI Service** - For more details, see the [Azure OpenAI Service documentation on how to get access](https://learn.microsoft.com/azure/ai-services/openai/overview#how-do-i-get-access-to-azure-openai). 
-1. **Azure OpenAI resource** - For this workshop, you'll need to deploy at least one model such as GPT 4. See the Azure OpenAI Service documentation for more details on [deploying models](https://learn.microsoft.com/azure/ai-services/openai/how-to/create-resource?pivots=web-portal) and [model availability](https://learn.microsoft.com/azure/ai-services/openai/concepts/models).
+1. **Azure subscription with access enabled for the Azure AI Foundry** - For more details, see the [Azure AI Foundry documentation on how to get access](https://learn.microsoft.com/en-us/azure/ai-studio/what-is-ai-studio#how-to-get-access). 
 
 ## Development Environment Setup
 
@@ -50,72 +49,76 @@ cd intelligent-app-workshop
     cp workshop/dotnet/Lessons/appsettings.json.example workshop/dotnet/Lessons/Lesson1/appsettings.json
     ```
 
-1. Create Azure OpenAI Service and retrieve the Endpoint URL, API Key and deployed model name then update newly created `appsettings.json`
+1. Create Azure Grounding with Bing Search resource. We will use this to ensure the LLM can get current data from the internet:
 
-    1. Get Azure OpenAI access values (from Azure Portal):
-        1. First we need to create a new Azure OpenAI Service, so let's start there. Go to the [Azure Portal](https://portal.azure.com).
-        1. Click on [Create A Resource](https://ms.portal.azure.com/#create/hub)
-        1. On the search bar type **Azure OpenAI** and hit enter
-        1. Locate **Azure OpenAI** and click **Create**
-        1. On the **Create Azure OpeanAI** page, provide the following information for the fields on the Basics tab:
-            * Subscription: The Azure subscription to used for your service.
-            * Resource group: The Azure resource group to contain your Azure OpenAI service resource. You can create a new group or use a pre-existing group.
-            * Region: The location of your instance. Different locations can introduce latency, but they don't affect the runtime availability of your resource.
-            * Name: A descriptive and unique name for your Azure AI Service resource, such as `aoai-intelligent-app-workshop-myid`.
-            * Pricing Tier: The pricing tier for the resource. Currently, only the `Standard S0` tier is available for the Azure AI Service.
-            * Check the box to acknowledge that you have read and understood all the Responsible AI notices.
-        1. Click **Next**.
-        1. Review default **Network** values and click **Next**
-        1. On the **Tags** tab click **Next**
-        1. Click **Create**.
-        1. From the deployment page, wait for the deployment to complete and then click **Go to resource**
-        1. Expand the **Resource Management** section in the sidebar (menu at left)
-        1. Click the **Keys and Endpoint** option - you should see the following: KEY 1, KEY 2 and Endpoint.
-        1. Copy the **KEY 1** value and paste it into the **apiKey** value within the `OpenAI` element in the `appsettings.json` file.
-        1. Copy the **Endpoint** value and paste it as the **endpoint** value within the `OpenAI` element in the `appsettings.json` file.
-
-            ![Azure Open AI Keys and Endpoint](./images/keys-and-endpoint.jpg)
-
-        Next, we need to create deployments from the Azure OpenAI models.
-
-        1. Click the **Model deployments** option in the sidebar (left menu) for Azure OpenAI resource.
-        1. In the destination page, click **Manage Deployments**
-        1. (Optional) You can directly navigate to the [Azure AI Foundry portal](https://oai.azure.com).
-
-        This will take you to the Azure AI Foundry website, where we'll find the other values as described below.
-
-    1. Create and get Azure OpenAI deployment value (from Azure AI Foundry):
-
-        1. Navigate to [Azure AI Foundry](https://oai.azure.com) **from your resource** as described above.
-        1. Click the **Deployments** tab (sidebar, left) to view currently deployed models.
-        1. If your desired model is not deployed, click on **Deploy Model** then select to **Deploy Base Model**.
-        1. You will need a chat completion model. For this workshop we recommend using `gpt-4o`. Select `gpt-4o` from the drop down and click **Confirm**.
-        1. Accept the default `gpt-4o` values and click **Deploy**
-            ![Terminal](./images/deploy-model.jpg)
-        1. Update `appsettings.json` deploymentName field with your model deployment name.
-        1. Use the **Deployment Name** value (e.g. gpt-4o) as the **deploymentName** value within the `OpenAI` element in the `appsettings.json` file.
-
-1. Create Azure Bing Search v7 Service in Azure and retrieve the API Key to update newly created `appsettings.json`. This value will be needed for [Lesson 4](lesson4.md).
     1. Create Bing Search Service (from Azure Portal):
         1. Go to the [Azure Portal](https://portal.azure.com).
         1. Click on [Create A Resource](https://ms.portal.azure.com/#create/hub)
-        1. On the search bar type **Bing Search** and hit enter
-        1. Locate **Bing Search v7** and click **Create**
-        1. On the **Create a Bing Search Resource** page, provide the following information for the fields on the Basics tab:
+        1. On the search bar type **Grounding with Bing Search** and hit enter
+        1. Locate **Grounding with Bing Search** and click **Create**
+        1. On the **Create a Grounding with Bing Search Resource** page, provide the following information for the fields on the Basics tab:
             * Subscription: The Azure subscription to used for your service.
             * Resource group: The Azure resource group to contain your Bing service resource. You can create a new group or use a pre-existing group.
-            * Name: A descriptive and unique name for your Bing Search Service resource, such as `bing-search-myid`.
+            * Name: A descriptive and unique name for your Grounding with Bing Search Service resource, such as `grounding-bing-search-myid`.
             * Region: Global (default).
-            * Pricing Tier: The pricing tier for the resource. The `F1` tier is free and recommended for testing purposes.
+            * Pricing Tier: Grounding with Bing Search (default)
+            * Terms: Check the box to acknowledge the terms of use.
         1. Click **Next**.
         1. On the **Tags** tab click **Next**
         1. Click **Create**.
-    1. Get the Bing Search API Key and update `appsettings.json` file:
-        1. Go to the [Azure Portal](https://portal.azure.com).
-        1. On the search bar type **Bing Reources** and hit enter
-        1. Locate the **Bing Service** created above and click on it.
-        1. Expand **RESOURCE MANAGEMENT** and click on **Keys and Endpoint**
-        1. Copy the value from **Key 1** and paste it as the **ApiKey** value within the `BingSearchService` element in the `appsettings.json` file.
+
+1. Create an Azure AI Foundry Hub:
+
+    1. Go to the [Azure Portal](https://portal.azure.com).
+    1. Click on [Create A Resource](https://ms.portal.azure.com/#create/hub).
+    1. On the search bar type **Azure AI Foundry** and hit enter.
+    1. Locate **Azure AI Foundry** and click **Create**.
+    1. On the **Create Azure AI Foundry Hub** page, provide the following information for the fields on the Basics tab:
+        * Subscription: The Azure subscription to be used for your service.
+        * Resource group: The Azure resource group to contain your Azure AI Foundry Hub service resource. For simplicity, use the same resource group you used for the Bing Search grounding resource.
+        * Region: The location of your instance. Different locations can introduce latency, but they don't affect the runtime availability of your resource.
+        * Name: A descriptive and unique name for your Azure AI Foundry Hub service resource, such as `aifoundryhub-sk-workshop-myid`.
+    1. Click **Review + create**.
+    1. Click **Create**.
+    1. When the deployment is complete, click **Go to resource**
+    1. Click **Launch Azure AI Foundry**
+
+1. Create an Azure AI Foundry project:
+
+    1. Click **New Project**
+    1. Enter a name for your project
+    1. Click **Create**
+
+1. Store AI Foundry settings in `appsettings.json`
+    1. In Azure AI Foundry, copy the API key and use it as the **apiKey** value in the `AIFoundryProject` element of `appsettings.json`.
+    1. Under **Included capabilities** choose **Azure OpenAI Service** and copy the endpoint. Use it as the **endpoint** value in the `AIFoundryProject` element of `appsettings.json`.
+    1. On the right side of the screen, locate the **Project connection string** (within **Project Details**) and use it as the **connectionString** value within the `AIFoundryProject` element in `appSettings.json`.
+            ![Azure Foundry Project settings](./images/ai-foundry-project.jpg)
+
+1. Deploy a model in Azure AI Foundry:
+
+    1. Click the **Models + endpoints*** tab (sidebar, left) to view currently deployed models.
+    1. If your desired model is not deployed, click on **Deploy Model** then select to **Deploy Base Model**.
+    1. You will need a chat completion model. For this workshop we recommend using `gpt-4o`. Select `gpt-4o` from the drop down and click **Confirm**.
+    1. Click **Customize** and choose the `2024-05-13` model. At the time of this workshop, this is the [latest version](https://learn.microsoft.com/en-us/azure/ai-services/agents/how-to/tools/bing-grounding?pivots=overview#setup) that integrates with Azure AI Agent Service, which we will use in Lesson 6.
+    1. Adjust the Tokens per Minute Rate Limit to at least 250 requests per minute (RPM)
+    1. Click **Deploy**.
+        ![Terminal](./images/deploy-model.jpg)
+    1. Use the **Deployment Name** value (e.g. gpt-4o) as the **deploymentName** value within the `AIFoundryProject` element in the `appsettings.json` file.
+    1. Wait a few minutes after deployment to allow the API to come online.
+
+1. Create Agents connection to Grounding with Bing Search resource:
+
+    1. Click on **Playgrounds** on the left side.
+    1. In the Agents playground box, click **Try the Agents playground**.
+    1. Choose your Azure OpenAI Service instance in the dropdown and click **Let's go**.
+    1. Scroll down and find the `Knowledge` section on the right. Click **Add**.
+        ![Addknowledge](./images/add-knowledge.jpg)
+    1. Click **Grounding with Bing Search**.
+    1. Click **Create connection**.
+    1. Find the resource you created and click **Add connection**.
+    1. Click **Connect**.
+    1. From the Agents playground page, locate the **Knowledge** section and copy the name of the connection you just created and paste it as the **groundingWithBingConnectionId** value within the `AIFoundryProject` element in the `appSettings.json` file.
 
 1. Additionally, we need to obtain an API Key to be able to get stock prices from [polygon.io](https://polygon.io/dashboard/login). You can sign up for a free API Key by creating a login. This value will be needed for [Lesson 3](lesson3.md).
     1. Once logged in, from the [polygon.io Dashboard](https://polygon.io/dashboard) locate the **Keys** section. Copy the default key value and paste it as the **apiKey** value within the `StockService` element in the `appsettings.json` file.

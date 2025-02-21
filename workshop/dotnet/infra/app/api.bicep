@@ -35,8 +35,14 @@ param openAiApiKey string
 @description('The Stock Service API key')
 param stockServiceApiKey string
 
-@description('The Bing Search Service API key')
-param bingSearchApiKey string
+@description('The user-assigned role client id')
+param userAssignedRoleClientId string
+
+@description('AI Foundry Project connection string')
+param aiFoundryProjectConnectionString string
+
+@description('Grounding with Bing connection id')
+param groundingWithBingConnectionId string
 
 @description('An array of service binds')
 param serviceBinds array
@@ -65,7 +71,9 @@ module app '../core/host/container-app-upsert.bicep' = {
         'open-ai-api-key': openAiApiKey
         'stock-service-api-key': stockServiceApiKey
         'azure-managed-identity-client-id':  userAssignedManagedIdentity.clientId
-        'bing-search-service-api-key': bingSearchApiKey
+        'user-assigned-role-client-id': userAssignedRoleClientId
+        'ai-foundry-project-connection-string': aiFoundryProjectConnectionString
+        'grounding-with-bing-connection-id': groundingWithBingConnectionId
       }
     env: [
       {
@@ -77,25 +85,37 @@ module app '../core/host/container-app-upsert.bicep' = {
         value: !empty(applicationInsightsName) ? applicationInsights.properties.ConnectionString : ''
       }
       {
-        name: 'OpenAI__Endpoint'
+        name: 'ManagedIdentity__ClientId'
+        secretREf: 'azure-managed-identity-client-id'
+      }
+      {
+        name: 'AIFoundryProject__Endpoint'
         value: openAiEndpoint
       }
       {
-        name: 'OpenAI__DeploymentName'
+        name: 'AIFoundryProject__DeploymentName'
         value: openAiChatGptDeployment
       }
       {
-        name: 'OpenAI__ApiKey'
+        name: 'AIFoundryProject__ApiKey'
         secretRef: 'open-ai-api-key'
+      }
+      {
+        name: 'AIFoundryProject__ConnectionString'
+        secretRef: 'ai-foundry-project-connection-string'
+      }
+      {
+        name: 'AIFoundryProject__GroundingWithBingConnectionId'
+        secretRef: 'grounding-with-bing-connection-id'
+      }
+      {
+        name: 'AIFoundryProject__UserAssignedRoleClientId'
+        secretRef: 'user-assigned-role-client-id'
       }
       {
         name: 'StockService__ApiKey'
         secretRef: 'stock-service-api-key'
       }
-      {
-        name: 'BingSearchService__ApiKey'
-        secretRef: 'bing-search-service-api-key'
-      } 
     ]
     targetPort: 8080
   }
@@ -109,3 +129,4 @@ output SERVICE_API_IDENTITY_NAME string = identityName
 output SERVICE_API_IMAGE_NAME string = app.outputs.imageName
 output SERVICE_API_NAME string = app.outputs.name
 output SERVICE_API_URI string = app.outputs.uri
+output SERVICE_API_PRINCIPAL_ID string = app.outputs.principalId

@@ -8,7 +8,7 @@ Before attending the Intelligent App Development Workshop, please ensure you hav
 
 1. **Basic programming knowledge**: Familiarity with at least one programming language (e.g., Python, JavaScript, Java, or C#) and basic understanding of software development concepts.
 1. **Azure account**: A Microsoft Azure account with an active subscription. If you don't have one, sign up for a [free trial](https://azure.microsoft.com/en-us/free/).
-1. 1. **Azure OpenAI**: Ability to provision an [Azure OpenAI](https://azure.microsoft.com/en-us/services/openai/) resource is required.
+1. 1. **Azure OpenAI**: Ability to provision an [Azure AIFoundry](https://azure.microsoft.com/en-us/products/ai-foundry/) resource is required.
 1. **Development environment**: A computer with your preferred development environment installed, such as Visual Studio Code, PyCharm, or another IDE that supports the programming language you'll be using in the workshop.
 1. **Git**: Familiarity with Git and GitHub for version control. Ensure you have [Git](https://git-scm.com/book/en/v2/Getting-Started-Installing-Git) installed on your computer.
 

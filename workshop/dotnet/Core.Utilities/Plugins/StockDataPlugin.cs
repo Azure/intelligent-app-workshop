@@ -18,9 +18,10 @@ public class StockDataPlugin(StocksService stockService)
     }
 
     [KernelFunction, Description("Gets stock price for a given date")]
-    public async Task<string> GetStockPriceForDate(string symbol, DateTime date)
+    public async Task<string> GetStockPriceForDate(string symbol, string date)
     {
-        string tabularData = (await _stockService.GetStockAggregate(symbol, date)).FormatStockData();
+        var dateTime = DateTime.Parse(date);
+        string tabularData = (await _stockService.GetStockAggregate(symbol, dateTime)).FormatStockData();
         return tabularData;
     }
 
