@@ -296,7 +296,7 @@ you through the process followed to create the backend API from the Console appl
                     {
                         if (item is AnnotationContent annotation)
                         {
-                            var annotationExpression = ($"  [{item.GetType().Name}] {annotation.Quote}: File #{annotation.FileId}");
+                            var annotationExpression = ($" {annotation.Quote}: File #{annotation.FileId}");
                             chatHistory.AddAssistantMessage(annotationExpression);
                             fullMessage += annotationExpression;
                         }
