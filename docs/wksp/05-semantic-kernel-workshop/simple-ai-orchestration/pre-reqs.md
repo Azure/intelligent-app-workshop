@@ -100,7 +100,7 @@ cd intelligent-app-workshop
     1. Click the **Models + endpoints*** tab (sidebar, left) to view currently deployed models.
     1. If your desired model is not deployed, click on **Deploy Model** then select to **Deploy Base Model**.
     1. You will need a chat completion model. For this workshop we recommend using `gpt-4o`. Select `gpt-4o` from the drop down and click **Confirm**.
-    1. Click **Customize** and choose the `2024-08-06` model. At the time of this workshop, this is the latest version that integrates with Azure AI Agent Service, which we will use in Lesson 6.
+    1. Click **Customize** and choose the `2024-05-13` model. At the time of this workshop, this is the latest version that integrates with Azure AI Agent Service, which we will use in Lesson 6.
     1. Adjust the Tokens per Minute Rate Limit to at least 250 requests per minute (RPM)
     1. Click **Deploy**.
         ![Terminal](./images/deploy-model.jpg)

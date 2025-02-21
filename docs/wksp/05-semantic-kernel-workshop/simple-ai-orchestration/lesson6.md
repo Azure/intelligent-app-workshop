@@ -93,14 +93,15 @@ In this lesson, we will add a Semantic Kernel Azure AI agent to our chatbot prog
 
     ```txt
     User > what is the stock sentiment on Microsoft?
-    Assistant > As of February 2025, the sentiment for Microsoft (MSFT) stock is generally positive. The stock is rated as a "Moderate Buy" by 29 Wall Street analysts, with 26 advising a "Buy" and 3 recommending a "Hold"【5†source】. The average price target for the stock is $510.96, which suggests a potential upside of about 23.95% from its current price around $412【6†source】.
+    Assistant > Assistant > **Microsoft (MSFT) Stock Sentiment: 9/10**
 
     **Recommendation: Buy**
 
     **Reasoning:**
-    - **Analyst Consensus:** The overwhelming majority of analysts recommend buying MSFT, indicating confidence in its future performance.
-    - **Price Target Upside:** With a considerable potential price increase expected, it seems like a promising time to invest.
-    - **Market Confidence:** The stock reflects strong investor confidence and potential growth【5†source】【6†source】.
+    - Microsoft's stock has a consensus rating of "Moderate Buy" based on ratings from 29 Wall Street analysts. Out of these, 26 analysts have given a "Buy" rating, while only 3 have given a "Hold" rating【5†source】.
+    - The average price target for Microsoft is $510.96, which represents a 25.10% upside from the current price of $408.43【5†source】.
+    - The strong consensus among analysts and significant potential upside suggest a solid buy opportunity.
 
-    These indicators support the recommendation to buy Microsoft stock at this time.
+    **Source:**
+    MarketBeat, Microsoft (MSFT) Stock Forecast and Price Target 2025【5†source】.
     ```
