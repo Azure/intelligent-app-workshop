@@ -20,7 +20,7 @@ using Microsoft.SemanticKernel.Agents.AzureAI;
 // Initialize the kernel with chat completion
 IKernelBuilder builder = KernelBuilderProvider.CreateKernelWithChatCompletion();
 // Enable tracing
-builder.Services.AddLogging(services => services.AddConsole().SetMinimumLevel(LogLevel.Trace));
+// builder.Services.AddLogging(services => services.AddConsole().SetMinimumLevel(LogLevel.Trace));
 Kernel kernel = builder.Build();
 
 // Initialize Time plugin and registration in the kernel
