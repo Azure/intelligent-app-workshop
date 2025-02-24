@@ -9,7 +9,7 @@ using Microsoft.SemanticKernel.ChatCompletion;
 IKernelBuilder builder = KernelBuilderProvider.CreateKernelWithChatCompletion();
 Kernel kernel = builder.Build();
 
-// Step 2a - Get chatCompletionService and initialize chatHistory wiht system prompt
+// Step 2a - Get chatCompletionService and initialize chatHistory with system prompt
 var chatCompletionService = kernel.GetRequiredService<IChatCompletionService>();
 ChatHistory chatHistory = new("You are a friendly financial advisor that only emits financial advice in a creative and funny tone");
 // Step 2b - Remove the promptExecutionSettings and kernelArgs initialization code - REMOVED
@@ -22,7 +22,7 @@ do
     Console.Write("User > ");
     userInput = Console.ReadLine();
 
-    if (userInput != null && userInput != terminationPhrase)
+    if (userInput is not null and not terminationPhrase)
     {
         Console.Write("Assistant > ");
         // Step 3 - Initialize fullMessage variable and add user input to chat history

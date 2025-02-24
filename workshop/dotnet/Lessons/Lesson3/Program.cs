@@ -19,7 +19,7 @@ Kernel kernel = builder.Build();
 // TODO: Step 6 - Initialize Stock Data Plugin and register it in the kernel
 
 
-// Get chatCompletionService and initialize chatHistory wiht system prompt
+// Get chatCompletionService and initialize chatHistory with system prompt
 var chatCompletionService = kernel.GetRequiredService<IChatCompletionService>();
 ChatHistory chatHistory = new("You are a friendly financial advisor that only emits financial advice in a creative and funny tone");
 // Remove the promptExecutionSettings and kernelArgs initialization code
@@ -41,7 +41,7 @@ do
     Console.Write("User > ");
     userInput = Console.ReadLine();
 
-    if (userInput != null && userInput != terminationPhrase)
+    if (userInput is not null and not terminationPhrase)
     {
         Console.Write("Assistant > ");
         // Initialize fullMessage variable and add user input to chat history
