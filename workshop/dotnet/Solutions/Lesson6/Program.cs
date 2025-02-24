@@ -28,11 +28,11 @@ kernel.Plugins.AddFromObject(new TimeInformationPlugin());
 
 // TODO: Step 2 - Initialize connection to Grounding with Bing Search tool and agent
 var connectionString = AISettingsProvider.GetSettings().AIFoundryProject.ConnectionString;
-var bingConnectionId = AISettingsProvider.GetSettings().AIFoundryProject.GroundingWithBingConnectionId;
+var groundingWithBingConnectionId = AISettingsProvider.GetSettings().AIFoundryProject.GroundingWithBingConnectionId;
 
 var projectClient = new AIProjectClient(connectionString, new DefaultAzureCredential());
 
-ConnectionResponse bingConnection = await projectClient.GetConnectionsClient().GetConnectionAsync(bingConnectionId);
+ConnectionResponse bingConnection = await projectClient.GetConnectionsClient().GetConnectionAsync(groundingWithBingConnectionId);
 var connectionId = bingConnection.Id;
 
 ToolConnectionList connectionList = new ToolConnectionList
@@ -41,7 +41,7 @@ ToolConnectionList connectionList = new ToolConnectionList
 };
 BingGroundingToolDefinition bingGroundingTool = new BingGroundingToolDefinition(connectionList);
 
-var clientProvider =  AzureAIClientProvider.FromConnectionString(connectionString, new AzureCliCredential());
+var clientProvider =  AzureAIClientProvider.FromConnectionString(connectionString, credentials);
 AgentsClient client = clientProvider.Client.GetAgentsClient();
 var definition = await client.CreateAgentAsync(
     "gpt-4o",
