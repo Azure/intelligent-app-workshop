@@ -1,4 +1,4 @@
-# Lesson 6: Create Semantic Kernel chat completion agent
+# Lesson 6: Create Grounded Agent with Azure AI Agent service
 
 In this lesson, we will add a Semantic Kernel Azure AI agent to our chatbot program. This agent will be a Stock Sentiment agent to provide a recommendation to buy, hold, or sell a stock based on a stock sentiment rating.
 

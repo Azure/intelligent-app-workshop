@@ -46,7 +46,7 @@ ChatCompletionAgent stockSentimentAgent =
             - Include the source of the sentiment in your response.
             """,
         Kernel = kernel,
-        Arguments = new KernelArguments(new OpenAIPromptExecutionSettings() { 
+        Arguments = new KernelArguments(new OpenAIPromptExecutionSettings() {
             FunctionChoiceBehavior = FunctionChoiceBehavior.Auto()})
     };
 
@@ -78,7 +78,7 @@ do
     Console.Write("User > ");
     userInput = Console.ReadLine();
 
-    if (userInput != null && userInput != terminationPhrase)
+    if (userInput is not null and not terminationPhrase)
     {
         Console.Write("Assistant > ");
         // Initialize fullMessage variable and add user input to chat history

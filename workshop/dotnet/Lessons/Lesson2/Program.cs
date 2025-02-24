@@ -8,7 +8,7 @@ using Microsoft.SemanticKernel.Connectors.OpenAI;
 IKernelBuilder builder = KernelBuilderProvider.CreateKernelWithChatCompletion();
 Kernel kernel = builder.Build();
 
-// TODO: Step 2a - Get chatCompletionService and initialize chatHistory wiht system prompt
+// TODO: Step 2a - Get chatCompletionService and initialize chatHistory with system prompt
 
 // TODO: Step 2b - Remove the promptExecutionSettings and kernelArgs initialization code
 OpenAIPromptExecutionSettings promptExecutionSettings = new()
@@ -28,13 +28,13 @@ do
     Console.Write("User > ");
     userInput = Console.ReadLine();
 
-    if (userInput != null && userInput != terminationPhrase)
+    if (userInput is not null and not terminationPhrase)
     {
         Console.Write("Assistant > ");
         // TODO: Step 3 - Initialize fullMessage variable and add user input to chat history
 
 
-        // TODO: Step 4 - Remove the foreach loop and replace it with `chatCompletionService` code 
+        // TODO: Step 4 - Remove the foreach loop and replace it with `chatCompletionService` code
         // including adding assistant message to chat history
         await foreach (var response in kernel.InvokePromptStreamingAsync(userInput, kernelArgs))
         {

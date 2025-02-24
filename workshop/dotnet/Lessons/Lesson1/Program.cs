@@ -19,7 +19,7 @@ do
     Console.Write("User > ");
     userInput = Console.ReadLine();
 
-    if (userInput != null && userInput != terminationPhrase)
+    if (userInput is not null and not terminationPhrase)
     {
         Console.Write("Assistant > ");
         // TODO: Step 4 - add a loop to invoke prompt asynchronously providing user input and kernel arguments
