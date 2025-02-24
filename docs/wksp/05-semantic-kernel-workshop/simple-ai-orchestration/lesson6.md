@@ -85,6 +85,7 @@ In this lesson, we will add a Semantic Kernel Azure AI agent to our chatbot prog
         await foreach (ChatMessageContent response in agent.InvokeAsync(thread.Id))
         {
             string contentExpression = string.IsNullOrWhiteSpace(response.Content) ? string.Empty : response.Content;
+            chatHistory.AddAssistantMessage(contentExpression);
             Console.WriteLine($"{contentExpression}");
         }
 ```

@@ -62,8 +62,6 @@ do
         chatHistory.AddUserMessage(userInput);
 
         // TODO: Step 4 - Invoke the agent
-        
-        chatHistory.AddAssistantMessage(fullMessage);
 
         Console.WriteLine();
     }
