@@ -17,3 +17,5 @@ into a deployable application with a backend API and Web UI frontend and deployi
 1. [Create Backend API](create-deployable-app/backend-api.md)
 1. [Create Web application](create-deployable-app/web-app.md)
 1. [Deploy application into Azure](create-deployable-app/azd-infra.md)
+
+ ![Chatbot Application Diagram](./images/architecture.png)

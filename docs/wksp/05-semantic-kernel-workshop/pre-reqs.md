@@ -9,7 +9,7 @@ Before attending the Intelligent App Development Workshop, please ensure you hav
 
 You have the option of using [Github Codespaces](https://docs.github.com/en/codespaces/getting-started/quickstart) or your local development environment.
 
-### Using Github Codespaces (recommmended)
+### Using Github Codespaces (recommended)
 
 If using Github Codespaces all prerequisites will be pre-installed, however you will need to create a fork as follows:
 
