@@ -1,6 +1,19 @@
-# Hands-on AI Orchestration using Semantic Kernel
+# Hands-on AI Orchestration using Semantic Kernel Workshop
 
-This workshop is broken into 2 main sections:
+This hands-on workshop goes through the following lessons for creating a simple Semantic Kernel
+chatbot as a console application:
 
-1. [Create simple AI Orchestration using Sematic Kernel](simple-ai-orchestration/index.md)
-1. [Create advanced AI Orchestration using Semantic Kernel with agents and planners](advanced-ai-orchestration/index.md)
+1. [Prerequisites](pre-reqs.md)
+1. [Lesson 1: Semantic Kernel chatbot](lesson1.md)
+1. [Lesson 2: Semantic Kernel chatbot with history](lesson2.md)
+1. [Lesson 3: Semantic Kernel chatbot with plugins](lesson3.md)
+1. [Lesson 4: Describe all plugins in Semantic Kernel chatbot](lesson4.md)
+1. [Lesson 5: Semantic Kernel chatbot with Chat Completion Agent](lesson5.md)
+1. [Lesson 6: Create Grounded Agent with Azure AI Agent service](lesson6.md)
+
+Subsequently, the following lessons guide you through converting that chatbot application
+into a deployable application with a backend API and Web UI frontend and deploying into Azure:
+
+1. [Create Backend API](create-deployable-app/backend-api.md)
+1. [Create Web application](create-deployable-app/web-app.md)
+1. [Deploy application into Azure](create-deployable-app/azd-infra.md)

@@ -19,19 +19,19 @@ nav:
   - Module 3 - Inner-loop: wksp/03-inner-loop/index.md
   - Module 4 - Basics of Semantic Kernel: wksp/04-Semantic-Kernel-Basics/index.md
   - Module 5 - Hands-on AI Orchestration using Semantic Kernel Workshop: 
-      - wksp/05-semantic-kernel-workshop/simple-ai-orchestration/index.md
-      - Pre-requisites: wksp/05-semantic-kernel-workshop/simple-ai-orchestration/pre-reqs.md
-      - Lesson 1 - Semantic Kernel chatbot: wksp/05-semantic-kernel-workshop/simple-ai-orchestration/lesson1.md
-      - Lesson 2 - Semantic Kernel chatbot with history: wksp/05-semantic-kernel-workshop/simple-ai-orchestration/lesson2.md
-      - Lesson 3 - Semantic Kernel chatbot with plugins: wksp/05-semantic-kernel-workshop/simple-ai-orchestration/lesson3.md
-      - Lesson 4 - Describe all plugins in Semantic Kernel chatbot: wksp/05-semantic-kernel-workshop/simple-ai-orchestration/lesson4.md
-      - Lesson 5 - Semantic Kernel chatbot with Chat Completion Agent: wksp/05-semantic-kernel-workshop/simple-ai-orchestration/lesson5.md
-      - Lesson 6 - Create Grounded Agent with Azure AI Agent service: wksp/05-semantic-kernel-workshop/simple-ai-orchestration/lesson6.md
+      - wksp/05-semantic-kernel-workshop/index.md
+      - Pre-requisites: wksp/05-semantic-kernel-workshop/pre-reqs.md
+      - Lesson 1 - Semantic Kernel chatbot: wksp/05-semantic-kernel-workshop/lesson1.md
+      - Lesson 2 - Semantic Kernel chatbot with history: wksp/05-semantic-kernel-workshop/lesson2.md
+      - Lesson 3 - Semantic Kernel chatbot with plugins: wksp/05-semantic-kernel-workshop/lesson3.md
+      - Lesson 4 - Describe all plugins in Semantic Kernel chatbot: wksp/05-semantic-kernel-workshop/lesson4.md
+      - Lesson 5 - Semantic Kernel chatbot with Chat Completion Agent: wksp/05-semantic-kernel-workshop/lesson5.md
+      - Lesson 6 - Create Grounded Agent with Azure AI Agent service: wksp/05-semantic-kernel-workshop/lesson6.md
       - Build a deployable web application:
-        - wksp/05-semantic-kernel-workshop/simple-ai-orchestration/create-deployable-app/index.md
-        - Create Backend API: wksp/05-semantic-kernel-workshop/simple-ai-orchestration/create-deployable-app/backend-api.md
-        - Create Web application: wksp/05-semantic-kernel-workshop/simple-ai-orchestration/create-deployable-app/web-app.md
-        - Deploy Azure resources: wksp/05-semantic-kernel-workshop/simple-ai-orchestration/create-deployable-app/azd-infra.md
+        - wksp/05-semantic-kernel-workshop/create-deployable-app/index.md
+        - Create Backend API: wksp/05-semantic-kernel-workshop/create-deployable-app/backend-api.md
+        - Create Web application: wksp/05-semantic-kernel-workshop/create-deployable-app/web-app.md
+        - Deploy Azure resources: wksp/05-semantic-kernel-workshop/create-deployable-app/azd-infra.md
   - Module 6 - Use cases deep-dive with Miyagi and Reddog:
       - wksp/06-use-cases/index.md
       - Synthesis: wksp/06-use-cases/synthesis.md
