@@ -41,7 +41,7 @@ ToolConnectionList connectionList = new ToolConnectionList
 };
 BingGroundingToolDefinition bingGroundingTool = new BingGroundingToolDefinition(connectionList);
 
-var clientProvider =  AzureAIClientProvider.FromConnectionString(connectionString, credentials);
+var clientProvider =  AzureAIClientProvider.FromConnectionString(connectionString, new AzureCliCredential());
 AgentsClient client = clientProvider.Client.GetAgentsClient();
 var definition = await client.CreateAgentAsync(
     "gpt-4o",
