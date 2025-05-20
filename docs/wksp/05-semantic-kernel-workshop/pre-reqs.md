@@ -91,7 +91,7 @@ cd intelligent-app-workshop
 1. Deploy Pre-requisite resource template
 
     1. In your cli, go to the `/workshop/pre-reqs/` directory and run  `az login`
-    1. Run `azd provision -e my-environment`, replacing the environment name with your desired name.
+    1. Run `azd provision -e sk-test-pre-req`. Later, if you choose to deploy the app to ACA, you will deploy to a different resource group (`sk-test`).
     1. Choose the appropriate subscription and location. `eastus2` is recommended.
 
 1. Store AI Foundry settings in `appsettings.json`
