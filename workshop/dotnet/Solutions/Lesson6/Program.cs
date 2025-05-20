@@ -30,7 +30,7 @@ kernel.Plugins.AddFromObject(new TimeInformationPlugin());
 var connectionString = AISettingsProvider.GetSettings().AIFoundryProject.ConnectionString;
 var groundingWithBingConnectionId = AISettingsProvider.GetSettings().AIFoundryProject.GroundingWithBingConnectionId;
 
-var projectClient = new AIProjectClient(connectionString, new DefaultAzureCredential());
+var projectClient = new AIProjectClient(connectionString, new AzureCliCredential());
 
 ConnectionResponse bingConnection = await projectClient.GetConnectionsClient().GetConnectionAsync(groundingWithBingConnectionId);
 var connectionId = bingConnection.Id;
