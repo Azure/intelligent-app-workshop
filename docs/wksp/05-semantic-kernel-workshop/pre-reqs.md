@@ -9,13 +9,21 @@ Before attending the Intelligent App Development Workshop, please ensure you hav
 
 You have the option of using [Github Codespaces](https://docs.github.com/en/codespaces/getting-started/quickstart) or your local development environment.
 
-### Using Github Codespaces (recommended)
+### Using Github Codespaces
 
 If using Github Codespaces all prerequisites will be pre-installed, however you will need to create a fork as follows:
 
 1. Navigate to this link to create a new [fork](https://github.com/Azure/intelligent-app-workshop/fork) (must be logged into your github account).
 1. Accept the default values and click on **"Create fork"** which will take you to the forked repository in the browser.
 1. From your forked repository click on the **"<> Code"** button. Then click on the **"Create codespace on main"** button.
+
+### Using Local Dev Container
+
+If you want to use a local dev container, you're in luck! This repo has a container definition.
+
+1. Install VS Code with the C# and Dev Container extensions.
+1. Install Docker Desktop locally
+1. Open the repo in VS Code and choose the option to re-open the repo in the dev container. If it's the first time, it may take a while to download the image but you can choose the option to monitor the container log.
 
 ### Using local development environment
 
