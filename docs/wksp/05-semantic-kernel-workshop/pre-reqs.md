@@ -41,24 +41,16 @@ Change directory into cloned repo:
 cd intelligent-app-workshop
 ```
 
-## Initial Setup
-
-1. Copy and rename the file `appsettings.json.example` into the corresponding lesson directory as follows (example command for Lesson1):
-
-    ```bash
-    cp workshop/dotnet/Lessons/appsettings.json.example workshop/dotnet/Lessons/Lesson1/appsettings.json
-    ```
-
 1. Create Azure Grounding with Bing Search resource. We will use this to ensure the LLM can get current data from the internet:
 
-    1. Create Bing Search Service (from Azure Portal):
+    1. Create Grounding with Bing Search resource (from Azure Portal):
         1. Go to the [Azure Portal](https://portal.azure.com).
         1. Click on [Create A Resource](https://ms.portal.azure.com/#create/hub)
         1. On the search bar type **Grounding with Bing Search** and hit enter
         1. Locate **Grounding with Bing Search** and click **Create**
         1. On the **Create a Grounding with Bing Search Resource** page, provide the following information for the fields on the Basics tab:
             * Subscription: The Azure subscription to used for your service.
-            * Resource group: The Azure resource group to contain your Bing service resource. You can create a new group or use a pre-existing group.
+            * Resource group: Select the resource group created by the prerequisites stack
             * Name: A descriptive and unique name for your Grounding with Bing Search Service resource, such as `grounding-bing-search-myid`.
             * Region: Global (default).
             * Pricing Tier: Grounding with Bing Search (default)
@@ -67,60 +59,47 @@ cd intelligent-app-workshop
         1. On the **Tags** tab click **Next**
         1. Click **Create**.
 
-1. Create an Azure AI Foundry Hub:
-
-    1. Go to the [Azure Portal](https://portal.azure.com).
-    1. Click on [Create A Resource](https://ms.portal.azure.com/#create/hub).
-    1. On the search bar type **Azure AI Foundry** and hit enter.
-    1. Locate **Azure AI Foundry** and click **Create**.
-    1. On the **Create Azure AI Foundry Hub** page, provide the following information for the fields on the Basics tab:
-        * Subscription: The Azure subscription to be used for your service.
-        * Resource group: The Azure resource group to contain your Azure AI Foundry Hub service resource. For simplicity, use the same resource group you used for the Bing Search grounding resource.
-        * Region: The location of your instance. Different locations can introduce latency, but they don't affect the runtime availability of your resource.
-        * Name: A descriptive and unique name for your Azure AI Foundry Hub service resource, such as `aifoundryhub-sk-workshop-myid`.
-    1. Click **Review + create**.
-    1. Click **Create**.
-    1. When the deployment is complete, click **Go to resource**
-    1. Click **Launch Azure AI Foundry**
-
-1. Create an Azure AI Foundry project:
-
-    1. Click **New Project**
-    1. Enter a name for your project
-    1. Click **Create**
-
-1. Store AI Foundry settings in `appsettings.json`
-    1. In Azure AI Foundry, copy the API key and use it as the **apiKey** value in the `AIFoundryProject` element of `appsettings.json`.
-    1. Under **Included capabilities** choose **Azure OpenAI Service** and copy the endpoint. Use it as the **endpoint** value in the `AIFoundryProject` element of `appsettings.json`.
-    1. On the right side of the screen, locate the **Project connection string** (within **Project Details**) and use it as the **connectionString** value within the `AIFoundryProject` element in `appSettings.json`.
-            ![Azure Foundry Project settings](./images/ai-foundry-project.jpg)
-
-1. Deploy a model in Azure AI Foundry:
-
-    1. Click the **Models + endpoints*** tab (sidebar, left) to view currently deployed models.
-    1. If your desired model is not deployed, click on **Deploy Model** then select to **Deploy Base Model**.
-    1. You will need a chat completion model. For this workshop we recommend using `gpt-4o`. Select `gpt-4o` from the drop down and click **Confirm**.
-    1. Click **Customize** and choose the `2024-05-13` model. At the time of this workshop, this is the [latest version](https://learn.microsoft.com/en-us/azure/ai-services/agents/how-to/tools/bing-grounding?pivots=overview#setup) that integrates with Azure AI Agent Service, which we will use in Lesson 6.
-    1. Adjust the Tokens per Minute Rate Limit to at least 250 requests per minute (RPM)
-    1. Click **Deploy**.
-        ![Terminal](./images/deploy-model.jpg)
-    1. Use the **Deployment Name** value (e.g. gpt-4o) as the **deploymentName** value within the `AIFoundryProject` element in the `appsettings.json` file.
-    1. Wait a few minutes after deployment to allow the API to come online.
-
 1. Create Agents connection to Grounding with Bing Search resource:
 
-    1. Click on **Playgrounds** on the left side.
-    1. In the Agents playground box, click **Try the Agents playground**.
-    1. Choose your Azure OpenAI Service instance in the dropdown and click **Let's go**.
-    1. Scroll down and find the `Knowledge` section on the right. Click **Add**.
-        ![Addknowledge](./images/add-knowledge.jpg)
-    1. Click **Grounding with Bing Search**.
+    1. Go to the Azure AI Foundry (https://ai.azure.com/) and choose your project
+    1. Scroll down on the left side and click **Management Center**.
+    1. On the left side click **Connected Resources**.
+    1. You will see that the bicep template deployed an OpenAI resource and connected it to your Foundry project.
+    1. Click **New Connection**
+        ![Newconnection](./images/connected-resources.jpg)
+    1. Scroll down and choose **Grounding with Bing Search**.
     1. Click **Create connection**.
+        ![Groundingconnection](./images/bing-grounding-connection.jpg)
     1. Find the resource you created and click **Add connection**.
-    1. Click **Connect**.
-    1. From the Agents playground page, locate the **Knowledge** section and copy the name of the connection you just created and paste it as the **groundingWithBingConnectionId** value within the `AIFoundryProject` element in the `appSettings.json` file.
+    1. Click **Close**.
+    1. On the Connections page, copy the name of the connection you just created and paste it as the **groundingWithBingConnectionId** value within the `AIFoundryProject` element in the `appSettings.json` file.
 
-1. Additionally, we need to obtain an API Key to be able to get stock prices from [polygon.io](https://polygon.io/dashboard/login). You can sign up for a free API Key by creating a login. This value will be needed for [Lesson 3](lesson3.md).
+1. Upgrade OpenAI Connection
+
+    1. The OpenAI connection needs to be upgraded to allow you to see your deployed model. On the Connections page, click on your Open AI connection.
+    1. Click **Upgrade Connection**
+        ![Upgradeconnection](./images/upgrade-connection.jpg)
+    1. On the left, click **Models + Endpoints** and you should see your `gpt-4o` deployment. If you need to adjust settings on it at a later time, this is where you can find it.
+
+## Initial Setup
+
+1. Copy and rename the file `appsettings.json.example` into the corresponding lesson directory as follows (example command for Lesson1):
+
+    ```bash
+    cp workshop/dotnet/Lessons/appsettings.json.example workshop/dotnet/Lessons/Lesson1/appsettings.json
+    ```
+1. Deploy Pre-requisite resource template
+
+    1. In your cli, go to the `/workshop/pre-reqs/` directory and run  `az login`
+    1. Run `azd provision -e my-environment`, replacing the environment name with your desired name.
+    1. Choose the appropriate subscription and location. `eastus2` is recommended.
+
+1. Store AI Foundry settings in `appsettings.json`
+    1. In Azure AI Foundry main project page, copy the connection string and use it as the **connectionString** value in the `AIFoundryProject` element of `appsettings.json`.
+    1. Under **My Assets** choose **Models + Endpoints**. Next to the `gpt-4o` deployment, click `Get Endpoint`. Copy the endpoint and store it as **endpoint** value in the `AIFoundryProject` element of `appsettings.json`. Copy the api key and store as the **apiKey** value in `appsettings.json`.
+            ![OpenAI Deployment settings](./images/open-ai-connection.jpg)
+
+1. We need to obtain an API Key to be able to get stock prices from [polygon.io](https://polygon.io/dashboard/login). You can sign up for a free API Key by creating a login. This value will be needed for [Lesson 3](lesson3.md).
     1. Once logged in, from the [polygon.io Dashboard](https://polygon.io/dashboard) locate the **Keys** section. Copy the default key value and paste it as the **apiKey** value within the `StockService` element in the `appsettings.json` file.
 
 By ensuring you have completed these prerequisites, you'll be well-prepared to dive into the Intelligent App Development Workshop and make the most of the hands-on learning experience.
