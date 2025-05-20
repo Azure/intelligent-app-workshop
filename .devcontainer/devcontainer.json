@@ -16,7 +16,6 @@
 			]
 		}
 	},
-    "postCreateCommand": "echo 'nameserver 8.8.8.8' | sudo tee -a /etc/resolv.conf && echo 'nameserver 1.1.1.1' | sudo tee -a /etc/resolv.conf && curl -s https://login.microsoftonline.com > /dev/null && echo 'Network connectivity verified'",
     "hostRequirements": {
         "memory": "8gb"
     },

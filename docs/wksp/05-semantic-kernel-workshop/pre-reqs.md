@@ -49,27 +49,38 @@ Change directory into cloned repo:
 cd intelligent-app-workshop
 ```
 
+## Set up Azure Resources
+
+1. Deploy Pre-requisite resource template
+
+    1. In your cli, go to the `/workshop/pre-reqs/` directory and run  `az login`
+    1. Run `azd provision -e sk-test-pre-req`. Later, if you choose to deploy the app to ACA, you will deploy to a different resource group (`sk-test`).
+    1. Choose the appropriate subscription and location. `eastus2` or `swedencentral` are recommended.
+    1. When complete, you should be able to log to the portal and see the resources:
+        1. Go to the [Azure Portal](https://portal.azure.com).
+        1. In the search bar, type in `Resource Groups`, and choose the Resource Groups page.
+        1. Locate the newly created RG and view the resources in it.
+
 1. Create Azure Grounding with Bing Search resource. We will use this to ensure the LLM can get current data from the internet:
 
-    1. Create Grounding with Bing Search resource (from Azure Portal):
-        1. Go to the [Azure Portal](https://portal.azure.com).
-        1. Click on [Create A Resource](https://ms.portal.azure.com/#create/hub)
-        1. On the search bar type **Grounding with Bing Search** and hit enter
-        1. Locate **Grounding with Bing Search** and click **Create**
-        1. On the **Create a Grounding with Bing Search Resource** page, provide the following information for the fields on the Basics tab:
-            * Subscription: The Azure subscription to used for your service.
-            * Resource group: Select the resource group created by the prerequisites stack
-            * Name: A descriptive and unique name for your Grounding with Bing Search Service resource, such as `grounding-bing-search-myid`.
-            * Region: Global (default).
-            * Pricing Tier: Grounding with Bing Search (default)
-            * Terms: Check the box to acknowledge the terms of use.
-        1. Click **Next**.
-        1. On the **Tags** tab click **Next**
-        1. Click **Create**.
+    1. Go to the [Azure Portal](https://portal.azure.com).
+    1. Click on [Create A Resource](https://ms.portal.azure.com/#create/hub)
+    1. On the search bar type **Grounding with Bing Search** and hit enter
+    1. Locate **Grounding with Bing Search** and click **Create**
+    1. On the **Create a Grounding with Bing Search Resource** page, provide the following information for the fields on the Basics tab:
+        * Subscription: The Azure subscription to used for your service.
+        * Resource group: Select the resource group created by the prerequisites stack
+        * Name: A descriptive and unique name for your Grounding with Bing Search Service resource, such as `grounding-bing-search-myid`.
+        * Region: Global (default).
+        * Pricing Tier: Grounding with Bing Search (default)
+        * Terms: Check the box to acknowledge the terms of use.
+    1. Click **Next**.
+    1. On the **Tags** tab click **Next**
+    1. Click **Create**.
 
 1. Create Agents connection to Grounding with Bing Search resource:
 
-    1. Go to the Azure AI Foundry (https://ai.azure.com/) and choose your project
+    1. Go to the Azure AI Foundry (https://ai.azure.com/) and choose the project created by bicep.
     1. Scroll down on the left side and click **Management Center**.
     1. On the left side click **Connected Resources**.
     1. You will see that the bicep template deployed an OpenAI resource and connected it to your Foundry project.
@@ -89,22 +100,19 @@ cd intelligent-app-workshop
         ![Upgradeconnection](./images/upgrade-connection.jpg)
     1. On the left, click **Models + Endpoints** and you should see your `gpt-4o` deployment. If you need to adjust settings on it at a later time, this is where you can find it.
 
-## Initial Setup
+## appsettings.json Configuration
 
-1. Copy and rename the file `appsettings.json.example` into the corresponding lesson directory as follows (example command for Lesson1):
+1. Go to the `workshop/dotnet/Lessons` directory. Copy and rename the file `appsettings.json.example` into each of the lesson directories as follows (example command for Lesson1):
 
     ```bash
     cp workshop/dotnet/Lessons/appsettings.json.example workshop/dotnet/Lessons/Lesson1/appsettings.json
     ```
-1. Deploy Pre-requisite resource template
-
-    1. In your cli, go to the `/workshop/pre-reqs/` directory and run  `az login`
-    1. Run `azd provision -e sk-test-pre-req`. Later, if you choose to deploy the app to ACA, you will deploy to a different resource group (`sk-test`).
-    1. Choose the appropriate subscription and location. `eastus2` is recommended.
 
 1. Store AI Foundry settings in `appsettings.json`
     1. In Azure AI Foundry main project page, copy the connection string and use it as the **connectionString** value in the `AIFoundryProject` element of `appsettings.json`.
-    1. Under **My Assets** choose **Models + Endpoints**. Next to the `gpt-4o` deployment, click `Get Endpoint`. Copy the endpoint and store it as **endpoint** value in the `AIFoundryProject` element of `appsettings.json`. Copy the api key and store as the **apiKey** value in `appsettings.json`.
+    1. Under **My Assets** choose **Models + Endpoints**. Next to the `gpt-4o` deployment, click `Get Endpoint`. 
+    1. Copy the endpoint and store it as **endpoint** value in the `AIFoundryProject` element of `appsettings.json`. 
+    1. Copy the api key and store as the **apiKey** value in `appsettings.json`.
             ![OpenAI Deployment settings](./images/open-ai-connection.jpg)
 
 1. We need to obtain an API Key to be able to get stock prices from [polygon.io](https://polygon.io/dashboard/login). You can sign up for a free API Key by creating a login. This value will be needed for [Lesson 3](lesson3.md).
