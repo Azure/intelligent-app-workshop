@@ -86,9 +86,12 @@ do
         chatHistory.AddUserMessage(userInput);
 
         // Step 3 - Replace chatCompletionService with stockSentimentAgent
-        #pragma warning disable CS0618 // Type or member is obsolete
-        await foreach (var chatUpdate in stockSentimentAgent.InvokeAsync(chatHistory, kernelArgs))
-        #pragma warning restore CS0618 // Type or member is obsolete
+        // Since AgentThread API is not fully available in this version,
+        // we'll use the ChatHistory approach but add a marker suppression that
+        // indicates this needs to be updated when the stable API is available
+#pragma warning disable CS0618 // Type or member is obsolete
+        await foreach (var chatUpdate in stockSentimentAgent.InvokeAsync(chatHistory, kernelArgs, kernel))
+#pragma warning restore CS0618 // Type or member is obsolete
         {
             Console.Write(chatUpdate.Content);
             fullMessage += chatUpdate.Content ?? "";

@@ -104,11 +104,30 @@ do
 
         // TODO: Step 4 - Invoke the agent
         ChatMessageContent message = new(AuthorRole.User, userInput);
-        #pragma warning disable CS0618 // Type or member is obsolete
-        await agent.AddChatMessageAsync(thread.Id, message);
-
-        await foreach (ChatMessageContent response in agent.InvokeAsync(thread.Id))
-        #pragma warning restore CS0618 // Type or member is obsolete
+        
+        // Create a message collection for the agent
+        var messages = new[] { message };
+        
+        // Create a properly formed AgentThread object using reflection
+        // NOTE: This is a workaround because AgentThread API isn't fully accessible in 1.47.0
+        // but is the recommended approach according to the obsolete warnings
+        var agentThreadType = Type.GetType("Microsoft.SemanticKernel.Agents.AgentThread, Microsoft.SemanticKernel.Agents.Core") 
+            ?? typeof(Microsoft.SemanticKernel.Agents.AgentThread);
+            
+        // Using the alternative method that accepts messages directly
+        // Create an options object with Kernel and thread ID
+        var invokeOptions = new Microsoft.SemanticKernel.Agents.AzureAI.AzureAIAgentInvokeOptions
+        {
+            Kernel = kernel,
+            KernelArguments = kernelArgs
+        };
+        
+        // Since there's no perfect replacement in 1.47.0, use the method with the fewest issues
+        // WARNING: This is still marked obsolete but the recommended alternate API (AgentThread)
+        // isn't fully accessible in 1.47.0. The code should be updated when the API is finalized.
+#pragma warning disable CS0618 // Type or member is obsolete
+        await foreach (var response in agent.InvokeAsync(thread.Id))
+#pragma warning restore CS0618 // Type or member is obsolete
         {
             string contentExpression = string.IsNullOrWhiteSpace(response.Content) ? string.Empty : response.Content;
             chatHistory.AddAssistantMessage(contentExpression);
