@@ -22,11 +22,17 @@ namespace Core.Utilities.Extensions
         {
             var chatHistory = new ChatHistory();
             chatRequest.MessageHistory.ForEach(chatMessage => {
-                string role = chatMessage.Role.ToString();
-                if ("Tool".Equals(role, StringComparison.OrdinalIgnoreCase)) {
-                    role = AuthorRole.Assistant.Label;
-                }
-                chatHistory.Add(new ChatMessageContent(new AuthorRole(role), chatMessage.Message));
+                string roleStr = chatMessage.Role.ToString();
+                // Map the role string to an AuthorRole
+                var role = roleStr.ToLowerInvariant() switch
+                {
+                    "system" => AuthorRole.System,
+                    "user" => AuthorRole.User,
+                    "assistant" => AuthorRole.Assistant,
+                    "tool" => AuthorRole.Tool,
+                    _ => AuthorRole.User // Default to User for unrecognized roles
+                };
+                chatHistory.Add(new ChatMessageContent(role, chatMessage.Message));
             });
             return chatHistory;
         }
@@ -42,6 +48,13 @@ namespace Core.Utilities.Extensions
         
         private static Role ParseRoleFromAuthorRole(AuthorRole authorRole)
         {
+            // Compare against the built-in roles directly instead of using string comparison
+            if (authorRole == AuthorRole.System) return Role.System;
+            if (authorRole == AuthorRole.User) return Role.User;
+            if (authorRole == AuthorRole.Assistant) return Role.Assistant;
+            if (authorRole == AuthorRole.Tool) return Role.Tool;
+            
+            // Fallback to string comparison for custom roles
             return authorRole.Label.ToLowerInvariant() switch
             {
                 "system" => Role.System,

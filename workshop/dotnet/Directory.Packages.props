@@ -1,7 +1,8 @@
 <Project>
   <ItemGroup>
     <PackageVersion Include="Ardalis.GuardClauses" Version="5.0.0" />
-    <PackageVersion Include="Azure.Core" Version="1.44.1" />
+    <PackageVersion Include="Azure.Core" Version="1.46.1" />
+    <PackageVersion Include="Azure.AI.Agents.Persistent" Version="1.0.0" />
     <PackageVersion Include="Microsoft.AspNetCore.Mvc" Version="2.3.0" />
     <PackageVersion Include="Microsoft.AspNetCore.OpenApi" Version="8.0.2" />
     <PackageVersion Include="Microsoft.Extensions.Configuration" Version="8.0.0" />
@@ -11,11 +12,12 @@
     <PackageVersion Include="Microsoft.Extensions.Logging" Version="8.0.1" />
     <PackageVersion Include="Microsoft.Extensions.Logging.Console" Version="8.0.1" />
     <PackageVersion Include="Microsoft.Extensions.DependencyInjection" Version="8.0.1" />
-    <PackageVersion Include="Microsoft.SemanticKernel" Version="1.47.0" />
-    <PackageVersion Include="Microsoft.SemanticKernel.Agents.AzureAI" Version="1.47.0-preview" />
-    <PackageVersion Include="Microsoft.SemanticKernel.Agents.Core" Version="1.47.0" />
-    <PackageVersion Include="Microsoft.SemanticKernel.Plugins.Web" Version="1.47.0-alpha" />
-    <PackageVersion Include="Microsoft.SemanticKernel.Plugins.Core" Version="1.47.0-alpha" />
+    <PackageVersion Include="Microsoft.SemanticKernel" Version="1.53.1" />
+    <PackageVersion Include="Microsoft.SemanticKernel.Agents.AzureAI" Version="1.53.1-preview" />
+    <PackageVersion Include="Microsoft.SemanticKernel.Agents.Core" Version="1.53.1" />
+    <PackageVersion Include="Microsoft.SemanticKernel.Agents.Abstractions" Version="1.53.1" />
+    <PackageVersion Include="Microsoft.SemanticKernel.Plugins.Web" Version="1.53.1-alpha" />
+    <PackageVersion Include="Microsoft.SemanticKernel.Plugins.Core" Version="1.53.1-preview" />
     <PackageVersion Include="Azure.Identity" Version="1.13.2" />
     <PackageVersion Include="Swashbuckle.AspNetCore" Version="6.8.1" />
     <PackageVersion Include="xunit" Version="2.4.1" />

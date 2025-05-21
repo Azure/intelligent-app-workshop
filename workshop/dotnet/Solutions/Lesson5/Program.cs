@@ -85,13 +85,14 @@ do
         string fullMessage = "";
         chatHistory.AddUserMessage(userInput);
 
-        // Step 3 - Replace chatCompletionService with stockSentimentAgent
-        // Since AgentThread API is not fully available in this version,
-        // we'll use the ChatHistory approach but add a marker suppression that
-        // indicates this needs to be updated when the stable API is available
-#pragma warning disable CS0618 // Type or member is obsolete
-        await foreach (var chatUpdate in stockSentimentAgent.InvokeAsync(chatHistory, kernelArgs, kernel))
-#pragma warning restore CS0618 // Type or member is obsolete
+        // Step 3 - Invoke the agent with the current API in SK 1.53.1
+        // Creating a new chat history with the agent instructions as system message
+        // and adding the user message for context
+        ChatHistory agentChat = new(stockSentimentAgent.Instructions);
+        agentChat.AddUserMessage(userInput);
+        
+        // Using the updated API (in SK 1.53.1) to invoke the agent with the chat history
+        await foreach (var chatUpdate in stockSentimentAgent.InvokeAsync(agentChat, kernel: kernel))
         {
             Console.Write(chatUpdate.Content);
             fullMessage += chatUpdate.Content ?? "";

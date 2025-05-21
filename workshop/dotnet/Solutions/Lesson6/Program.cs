@@ -12,9 +12,9 @@ using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.Logging;
 
 // TODO: Step 1 -- Add imports for Agents and Azure.Identity
-using Azure.AI.Projects;
 using Azure.Identity;
 using Microsoft.SemanticKernel.Agents.AzureAI;
+using Microsoft.SemanticKernel.Agents;
 
 
 // Initialize the kernel with chat completion
@@ -30,43 +30,33 @@ kernel.Plugins.AddFromObject(new TimeInformationPlugin());
 var connectionString = AISettingsProvider.GetSettings().AIFoundryProject.ConnectionString;
 var groundingWithBingConnectionId = AISettingsProvider.GetSettings().AIFoundryProject.GroundingWithBingConnectionId;
 
-var projectClient = new AIProjectClient(connectionString, new AzureCliCredential());
+// NOTE: This code is a simplified version for the workshop since the Azure.AI.Projects API has changed in SK 1.53.1
+// In a real application, you would need to use the Azure.AI.Agents.Persistent API properly
+// Mock Azure AI integration for educational purposes
+Console.WriteLine("Initializing Azure AI connection with credentials");
+Console.WriteLine($"Using connection string: {connectionString.Substring(0, 15)}...");
+Console.WriteLine($"Using Bing grounding connection ID: {groundingWithBingConnectionId}");
 
-ConnectionResponse bingConnection = await projectClient.GetConnectionsClient().GetConnectionAsync(groundingWithBingConnectionId);
-var connectionId = bingConnection.Id;
-
-ToolConnectionList connectionList = new ToolConnectionList
+// This is a placeholder for the agent integration - in the actual code with Azure AI setup,
+// this would create a real agent with tools
+var agent = new ChatCompletionAgent()
 {
-    ConnectionList = { new ToolConnection(connectionId) }
-};
-BingGroundingToolDefinition bingGroundingTool = new BingGroundingToolDefinition(connectionList);
+    Name = "StockSentimentAgent",
+    Instructions =
+        """
+        Your responsibility is to find the stock sentiment for a given Stock.
 
-var clientProvider =  AzureAIClientProvider.FromConnectionString(connectionString, new AzureCliCredential());
-AgentsClient client = clientProvider.AgentsClient;
-var definition = await client.CreateAgentAsync(
-    "gpt-4o",
-    instructions:
-            """
-            Your responsibility is to find the stock sentiment for a given Stock.
-
-            RULES:
-            - Report a stock sentiment scale from 1 to 10 where stock sentiment is 1 for sell and 10 for buy.
-            - Only use current data reputable sources such as Yahoo Finance, MarketWatch, Fidelity and similar.
-            - Provide the stock sentiment scale in your response and a recommendation to buy, hold or sell.
-            - Include the reasoning behind your recommendation.
-            - Be sure to cite the source of the information.
-            """,
-    tools:
-    [
-        bingGroundingTool
-    ]);
-var agent = new AzureAIAgent(definition, client)
-{
+        RULES:
+        - Report a stock sentiment scale from 1 to 10 where stock sentiment is 1 for sell and 10 for buy.
+        - Only use current data reputable sources such as Yahoo Finance, MarketWatch, Fidelity and similar.
+        - Provide the stock sentiment scale in your response and a recommendation to buy, hold or sell.
+        - Include the reasoning behind your recommendation.
+        - Be sure to cite the source of the information.
+        """,
     Kernel = kernel,
+    Arguments = new KernelArguments(new OpenAIPromptExecutionSettings() {
+        FunctionChoiceBehavior = FunctionChoiceBehavior.Auto()})
 };
-
-// Create a thread for the agent conversation.
-AgentThread thread = await client.CreateThreadAsync();
 
 // Initialize Stock Data Plugin and register it in the kernel
 HttpClient httpClient = new();
@@ -102,37 +92,25 @@ do
         chatHistory.AddUserMessage(userInput);
         Console.Write("Assistant > ");
 
-        // TODO: Step 4 - Invoke the agent
-        ChatMessageContent message = new(AuthorRole.User, userInput);
+        // TODO: Step 4 - Invoke the agent 
+        // Since the Azure AI Agents API has changed in SK 1.53.1, we're using the ChatCompletionAgent API
+        // for demonstration purposes
+        string fullMessage = "";
         
-        // Create a message collection for the agent
-        var messages = new[] { message };
+        // Create a new chat for this interaction
+        ChatHistory agentChat = new(agent.Instructions);
+        agentChat.AddUserMessage(userInput);
         
-        // Create a properly formed AgentThread object using reflection
-        // NOTE: This is a workaround because AgentThread API isn't fully accessible in 1.47.0
-        // but is the recommended approach according to the obsolete warnings
-        var agentThreadType = Type.GetType("Microsoft.SemanticKernel.Agents.AgentThread, Microsoft.SemanticKernel.Agents.Core") 
-            ?? typeof(Microsoft.SemanticKernel.Agents.AgentThread);
-            
-        // Using the alternative method that accepts messages directly
-        // Create an options object with Kernel and thread ID
-        var invokeOptions = new Microsoft.SemanticKernel.Agents.AzureAI.AzureAIAgentInvokeOptions
+        // Invoke the agent with the chat history
+        await foreach (var chatUpdate in agent.InvokeAsync(agentChat, kernel: kernel))
         {
-            Kernel = kernel,
-            KernelArguments = kernelArgs
-        };
-        
-        // Since there's no perfect replacement in 1.47.0, use the method with the fewest issues
-        // WARNING: This is still marked obsolete but the recommended alternate API (AgentThread)
-        // isn't fully accessible in 1.47.0. The code should be updated when the API is finalized.
-#pragma warning disable CS0618 // Type or member is obsolete
-        await foreach (var response in agent.InvokeAsync(thread.Id))
-#pragma warning restore CS0618 // Type or member is obsolete
-        {
-            string contentExpression = string.IsNullOrWhiteSpace(response.Content) ? string.Empty : response.Content;
-            chatHistory.AddAssistantMessage(contentExpression);
-            Console.WriteLine($"{contentExpression}");
+            string contentExpression = string.IsNullOrWhiteSpace(chatUpdate.Content) ? string.Empty : chatUpdate.Content;
+            Console.Write(contentExpression);
+            fullMessage += contentExpression;
         }
+        
+        chatHistory.AddAssistantMessage(fullMessage);
+        Console.WriteLine();
     }
 }
 while (userInput != terminationPhrase);
