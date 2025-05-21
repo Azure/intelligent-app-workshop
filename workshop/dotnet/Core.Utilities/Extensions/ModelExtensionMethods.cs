@@ -25,7 +25,6 @@ namespace Core.Utilities.Extensions
                 string role = chatMessage.Role.ToString();
                 if ("Tool".Equals(role, StringComparison.OrdinalIgnoreCase)) {
                     role = AuthorRole.Assistant.Label;
-                    role = "assistant";
                 }
                 chatHistory.Add(new ChatMessageContent(new AuthorRole(role), chatMessage.Message));
             });
@@ -36,9 +35,21 @@ namespace Core.Utilities.Extensions
             var messageHistory = new List<ChatMessage>();
             messageHistory.AddRange(chatHistory
                 .Where(m => m.Content != null)
-                .Select(m => new ChatMessage(m.Content!, Enum.TryParse<Role>(m.Role.Label, out var role) ? role : Role.User)));
+                .Select(m => new ChatMessage(m.Content!, ParseRoleFromAuthorRole(m.Role))));
 
             return messageHistory;
+        }
+        
+        private static Role ParseRoleFromAuthorRole(AuthorRole authorRole)
+        {
+            return authorRole.Label.ToLowerInvariant() switch
+            {
+                "system" => Role.System,
+                "user" => Role.User,
+                "assistant" => Role.Assistant,
+                "tool" => Role.Tool,
+                _ => Role.User // Default to User for unrecognized roles
+            };
         }
 
         public static IList<PluginFunctionMetadata> ToPluginFunctionMetadataList(this IList<KernelFunctionMetadata> plugins)
