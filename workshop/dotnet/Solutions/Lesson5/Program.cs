@@ -86,7 +86,9 @@ do
         chatHistory.AddUserMessage(userInput);
 
         // Step 3 - Replace chatCompletionService with stockSentimentAgent
+        #pragma warning disable CS0618 // Type or member is obsolete
         await foreach (var chatUpdate in stockSentimentAgent.InvokeAsync(chatHistory, kernelArgs))
+        #pragma warning restore CS0618 // Type or member is obsolete
         {
             Console.Write(chatUpdate.Content);
             fullMessage += chatUpdate.Content ?? "";

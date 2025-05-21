@@ -42,7 +42,7 @@ ToolConnectionList connectionList = new ToolConnectionList
 BingGroundingToolDefinition bingGroundingTool = new BingGroundingToolDefinition(connectionList);
 
 var clientProvider =  AzureAIClientProvider.FromConnectionString(connectionString, new AzureCliCredential());
-AgentsClient client = clientProvider.Client.GetAgentsClient();
+AgentsClient client = clientProvider.AgentsClient;
 var definition = await client.CreateAgentAsync(
     "gpt-4o",
     instructions:
@@ -60,7 +60,7 @@ var definition = await client.CreateAgentAsync(
     [
         bingGroundingTool
     ]);
-var agent = new AzureAIAgent(definition, clientProvider)
+var agent = new AzureAIAgent(definition, client)
 {
     Kernel = kernel,
 };
@@ -104,9 +104,11 @@ do
 
         // TODO: Step 4 - Invoke the agent
         ChatMessageContent message = new(AuthorRole.User, userInput);
+        #pragma warning disable CS0618 // Type or member is obsolete
         await agent.AddChatMessageAsync(thread.Id, message);
 
         await foreach (ChatMessageContent response in agent.InvokeAsync(thread.Id))
+        #pragma warning restore CS0618 // Type or member is obsolete
         {
             string contentExpression = string.IsNullOrWhiteSpace(response.Content) ? string.Empty : response.Content;
             chatHistory.AddAssistantMessage(contentExpression);
