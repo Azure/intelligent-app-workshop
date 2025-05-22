@@ -340,7 +340,7 @@ module storageContribRoleApi 'core/security/role.bicep' = {
 }
 
 module dataScientistRole 'core/security/subscription-role.bicep' = {
-  name: 'data-scientist-role'
+  name: 'data-scientist-role-${resourceToken}'
   params: {
     principalId: api.outputs.SERVICE_API_PRINCIPAL_ID
     roleDefinitionId: 'f6c7c914-8db3-469d-8ca1-694a8f32e121' // Azure ML Data Scientist
