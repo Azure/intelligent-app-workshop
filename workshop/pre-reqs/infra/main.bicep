@@ -6,7 +6,8 @@ targetScope = 'subscription'
 param environmentName string
 
 @description('Primary location for all resources')
-@allowed([ 'centralus', 'eastus2', 'eastasia', 'westus', 'westeurope', 'westus2', 'australiaeast', 'eastus', 'francecentral', 'japaneast', 'nortcentralus', 'swedencentral', 'switzerlandnorth', 'uksouth' ])
+// Locations that support gpt-4o
+@allowed([ 'australiaeast', 'brazilsouth', 'canadaeast', 'eastus', 'eastus2', 'francecentral', 'germanywestcentral', 'japaneast', 'koreacentral', 'northcentralus', 'norwayeast', 'polandcentral', 'switzerlandnorth', 'southafricanorth','southcentralus', 'southindia', 'spaincentral', 'swedencentral', 'switzerlandnorth', 'uaenorth', 'uksouth', 'westeurope', 'westus', 'westus3' ])
 param location string
 
 @description('Tags to apply to the resources')

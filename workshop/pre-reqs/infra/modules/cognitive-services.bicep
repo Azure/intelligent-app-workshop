@@ -15,7 +15,7 @@ param gptModelDeploymentName string = 'gpt-4o'
 @description('Capacity of the GPT model deployment')
 param gptModelCapacity int = 1
 @description('SKU name for the GPT model deployment')
-param gptModelSkuName string = 'GlobalStandard'
+param gptModelSkuName string = 'Standard'
 @description('Format of the GPT model')
 param gptModelFormat string = 'OpenAI'
 @description('Version of the GPT model')
