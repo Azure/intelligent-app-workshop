@@ -35,7 +35,6 @@ module cognitiveServicesAccount 'modules/cognitive-services.bicep' = {
     location: location
     tags: updatedTags
     name: name
-    aiHubName: '${abbrs.cognitiveServicesAccounts}${environmentName}-hub'
     aiProjectName:  '${abbrs.cognitiveServicesAccounts}${environmentName}-pro'
   }
 }
