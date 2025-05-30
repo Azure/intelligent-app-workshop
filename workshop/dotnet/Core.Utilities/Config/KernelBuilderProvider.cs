@@ -11,7 +11,7 @@ public static class KernelBuilderProvider
             .CreateBuilder()
             .AddAzureOpenAIChatCompletion(
                 applicationSettings.AIFoundryProject.DeploymentName,
-                applicationSettings.AIFoundryProject.Endpoint,
+                applicationSettings.AIFoundryProject.FoundryEndpoint,
                 applicationSettings.AIFoundryProject.ApiKey);
     }
 }

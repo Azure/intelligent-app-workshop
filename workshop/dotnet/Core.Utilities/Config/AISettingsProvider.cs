@@ -22,8 +22,7 @@ public static class AISettingsProvider
         Guard.Against.NullOrEmpty(aiSettings.AIFoundryProject.DeploymentName);
         Guard.Against.NullOrEmpty(aiSettings.AIFoundryProject.GroundingWithBingConnectionId);
         Guard.Against.NullOrEmpty(aiSettings.AIFoundryProject.ApiKey);
-        Guard.Against.NullOrEmpty(aiSettings.AIFoundryProject.Endpoint);
-        Guard.Against.NullOrEmpty(aiSettings.AIFoundryProject.ConnectionString);
+        Guard.Against.NullOrEmpty(aiSettings.AIFoundryProject.FoundryEndpoint);
 
         return aiSettings;
     }

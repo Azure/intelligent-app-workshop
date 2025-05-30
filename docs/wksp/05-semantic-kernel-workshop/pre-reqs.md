@@ -102,18 +102,18 @@ cd intelligent-app-workshop
 
 ## appsettings.json Configuration
 
-1. Go to the `workshop/dotnet/Lessons` directory. Copy and rename the file `appsettings.json.example` into each of the lesson directories as follows (example command for Lesson1):
-
-    ```bash
-    cp workshop/dotnet/Lessons/appsettings.json.example workshop/dotnet/Lessons/Lesson1/appsettings.json
-    ```
-
 1. Store AI Foundry settings in `appsettings.json`
     1. In Azure AI Foundry main project page, copy the connection string and use it as the **connectionString** value in the `AIFoundryProject` element of `appsettings.json`.
     1. Under **My Assets** choose **Models + Endpoints**. Next to the `gpt-4o` deployment, click `Get Endpoint`. 
     1. Copy the endpoint and store it as **endpoint** value in the `AIFoundryProject` element of `appsettings.json`. 
     1. Copy the api key and store as the **apiKey** value in `appsettings.json`.
             ![OpenAI Deployment settings](./images/open-ai-connection.jpg)
+
+1. Go to the `workshop/dotnet/Lessons` directory. Copy and rename the file `appsettings.json.example` into each of the lesson directories as follows (example command for Lesson1):
+
+    ```bash
+    cp workshop/dotnet/Lessons/appsettings.json.example workshop/dotnet/Lessons/Lesson1/appsettings.json
+    ```
 
 1. We need to obtain an API Key to be able to get stock prices from [polygon.io](https://polygon.io/dashboard/login). You can sign up for a free API Key by creating a login. This value will be needed for [Lesson 3](lesson3.md).
     1. Once logged in, from the [polygon.io Dashboard](https://polygon.io/dashboard) locate the **Keys** section. Copy the default key value and paste it as the **apiKey** value within the `StockService` element in the `appsettings.json` file.

@@ -7,46 +7,33 @@ using Microsoft.SemanticKernel;
 using Microsoft.SemanticKernel.Connectors.OpenAI;
 // Add ChatCompletion import
 using Microsoft.SemanticKernel.ChatCompletion;
-// Temporarily added to enable Semantic Kernel tracing
-using Microsoft.Extensions.DependencyInjection;
-using Microsoft.Extensions.Logging;
 
 // TODO: Step 1 -- Add imports for Agents and Azure.Identity
-using Azure.AI.Projects;
-using Azure.Identity;
 using Microsoft.SemanticKernel.Agents.AzureAI;
+using Azure.AI.Agents.Persistent;
+using Azure.Identity;
+using Microsoft.SemanticKernel.Agents;
 
-
-// Initialize the kernel with chat completion
-IKernelBuilder builder = KernelBuilderProvider.CreateKernelWithChatCompletion();
-// Enable tracing
-// builder.Services.AddLogging(services => services.AddConsole().SetMinimumLevel(LogLevel.Trace));
-Kernel kernel = builder.Build();
-
-// Initialize Time plugin and registration in the kernel
-kernel.Plugins.AddFromObject(new TimeInformationPlugin());
 
 // TODO: Step 2 - Initialize connection to Grounding with Bing Search tool and agent
-var connectionString = AISettingsProvider.GetSettings().AIFoundryProject.ConnectionString;
+var foundryEndpoint = AISettingsProvider.GetSettings().AIFoundryProject.FoundryEndpoint;
+var client3 = AzureAIAgent.CreateAgentsClient(foundryEndpoint, new AzureCliCredential());
+PersistentAgent definition3 = await client3.Administration.CreateAgentAsync("gpt-4o");
+        
+Console.WriteLine($"Foundry Endpoint: {foundryEndpoint}");
 var groundingWithBingConnectionId = AISettingsProvider.GetSettings().AIFoundryProject.GroundingWithBingConnectionId;
 
-var projectClient = new AIProjectClient(connectionString, new AzureCliCredential());
+BingGroundingSearchConfiguration bingToolConfiguration = new(AISettingsProvider.GetSettings().AIFoundryProject.GroundingWithBingConnectionId);
+BingGroundingSearchToolParameters bingToolParameters = new([bingToolConfiguration]);
 
-ConnectionResponse bingConnection = await projectClient.GetConnectionsClient().GetConnectionAsync(groundingWithBingConnectionId);
-var connectionId = bingConnection.Id;
+var client = AzureAIAgent.CreateAgentsClient(foundryEndpoint, new AzureCliCredential());
 
-ToolConnectionList connectionList = new ToolConnectionList
-{
-    ConnectionList = { new ToolConnection(connectionId) }
-};
-BingGroundingToolDefinition bingGroundingTool = new BingGroundingToolDefinition(connectionList);
-
-var clientProvider =  AzureAIClientProvider.FromConnectionString(connectionString, new AzureCliCredential());
-AgentsClient client = clientProvider.Client.GetAgentsClient();
-var definition = await client.CreateAgentAsync(
+PersistentAgent definition = await client.Administration.CreateAgentAsync(
+    //AISettingsProvider.GetSettings().AIFoundryProject.DeploymentName,
     "gpt-4o",
-    instructions:
-            """
+    "StockSentimentAgent",
+    "An agent that provides stock sentiment analysis and recommendations.",
+    """
             Your responsibility is to find the stock sentiment for a given Stock.
 
             RULES:
@@ -55,26 +42,23 @@ var definition = await client.CreateAgentAsync(
             - Provide the stock sentiment scale in your response and a recommendation to buy, hold or sell.
             - Include the reasoning behind your recommendation.
             - Be sure to cite the source of the information.
-            """,
-    tools:
-    [
-        bingGroundingTool
-    ]);
-var agent = new AzureAIAgent(definition, clientProvider)
-{
-    Kernel = kernel,
-};
+            """
+    //tools: [new BingGroundingToolDefinition(bingToolParameters)]
+    );
 
-// Create a thread for the agent conversation.
-AgentThread thread = await client.CreateThreadAsync();
+AzureAIAgent agent = new(
+    definition,
+    client,
+    templateFactory: new KernelPromptTemplateFactory());
+
+agent.Kernel.Plugins.AddFromObject(new TimeInformationPlugin());
 
 // Initialize Stock Data Plugin and register it in the kernel
 HttpClient httpClient = new();
 StockDataPlugin stockDataPlugin = new(new StocksService(httpClient));
-kernel.Plugins.AddFromObject(stockDataPlugin);
+agent.Kernel.Plugins.AddFromObject(stockDataPlugin);
 
 // Get chatCompletionService and initialize chatHistory with system prompt
-var chatCompletionService = kernel.GetRequiredService<IChatCompletionService>();
 ChatHistory chatHistory = new("You are a friendly financial advisor that only emits financial advice in a creative and funny tone");
 // Remove the promptExecutionSettings and kernelArgs initialization code
 // Add system prompt
@@ -84,11 +68,11 @@ OpenAIPromptExecutionSettings promptExecutionSettings = new()
     ToolCallBehavior = ToolCallBehavior.AutoInvokeKernelFunctions
 };
 
-// Initialize kernel arguments
-KernelArguments kernelArgs = new(promptExecutionSettings);
-
 // TODO: Step 3 - Uncomment out all code after "Execute program" comment
 // Execute program.
+
+// Create a thread for the agent conversation.
+AgentThread thread = new AzureAIAgentThread(client);
 
 const string terminationPhrase = "quit";
 string? userInput;

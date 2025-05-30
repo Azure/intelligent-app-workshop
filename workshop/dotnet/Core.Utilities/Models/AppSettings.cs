@@ -17,9 +17,8 @@ public record ManagedIdentity (
 );
 
 public record AIFoundryProject (
-    string ConnectionString,
+    string FoundryEndpoint,
     string GroundingWithBingConnectionId,
-    string Endpoint,
     string DeploymentName,
     string ApiKey
 );
