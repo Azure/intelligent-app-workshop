@@ -13,7 +13,7 @@ In this lesson we will create a basic AI agent using Microsoft Agent Framework w
 1. Copy the configuration file from the Solutions directory:
 
     ```bash
-    cp ../../Solutions/Lesson1/appsettings.json .
+    cp ../appsettings.json.example .
     ```
 
 1. Open the project in your favorite IDE or text editor.
