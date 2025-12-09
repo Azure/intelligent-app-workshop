@@ -120,9 +120,7 @@ cd intelligent-app-workshop
     1. In Azure AI Foundry main project page, copy the project endpoint and use it as the **connectionString** value in the `AIFoundryProject` element of `appsettings.json`.
     1. Copy the `Azure OpenAI` endpoint and paste into the `endpoint` field.
     1. Enter `gpt-4.1` as the `deploymentName` field.
-    1. Copy the endpoint and store it as **endpoint** value in the `AIFoundryProject` element of `appsettings.json`. 
     1. Copy the api key and store as the **apiKey** value in `appsettings.json`.
-            ![OpenAI Deployment settings](./images/open-ai-connection.jpg)
 
 1. We need to obtain an API Key to be able to get stock prices from [Massive](https://massive.com/dashboard/login). You can sign up for a free API Key by creating a login. This value will be needed for [Lesson 3](lesson3.md).
     1. Once logged in, from the [Massive Dashboard](https://massive.com/dashboard) locate the **Keys** section. Copy the default key value and paste it as the **apiKey** value within the `StockService` element in the `appsettings.json` file.
