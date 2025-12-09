@@ -75,10 +75,10 @@
       "value": "${OPENAI_ENDPOINT}"
     },    
     "azureOpenAIChatGptModelVersion": {
-      "value": "${AZURE_OPENAI_CHATGPT_MODEL_VERSION=2024-07-18}"
+      "value": "${AZURE_OPENAI_CHATGPT_MODEL_VERSION=2025-04-14}"
     },
     "azureOpenAIChatGptModelName": {
-      "value": "${AZURE_OPENAI_CHATGPT_MODEL_NAME=gpt-4o-mini}"
+      "value": "${AZURE_OPENAI_CHATGPT_MODEL_NAME=gpt-4.1}"
     },
     "azureOpenAIChatGptDeploymentCapacity": {
       "value": "${AZURE_OPENAI_CHATGPT_DEPLOYMENT_CAPACITY=30}"

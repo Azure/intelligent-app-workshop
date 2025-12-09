@@ -1,16 +1,12 @@
 using Core.Utilities.Config;
 using Microsoft.Extensions.AI;
 using Microsoft.Agents.AI;
-// TODO: Step 1 - Add the required using statements for plugins
-
-// Step 1 - Initialize the chat client using Microsoft Agent Framework
-IChatClient chatClient = AgentFrameworkProvider.CreateChatClientWithApiKey();
+// TODO: Step 1 - Add the required using statements for plugins and initialize chat client
 
 // TODO: Step 2 - Initialize plugins for function calling
 
 // TODO: Step 3 - Create AI Functions from plugins
 
-// Step 2 - Configure system message using Agent Framework pattern
 string systemInstructions = "You are a friendly financial advisor that only emits financial advice in a creative and funny tone";
 
 // Create a simple financial advisor agent using ChatClientAgent

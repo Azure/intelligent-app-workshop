@@ -54,8 +54,8 @@ cd intelligent-app-workshop
 1. Deploy Pre-requisite resource template
 
     1. In your cli, go to the `/workshop/pre-reqs/` directory and run  `az login`
-    1. Run `azd provision -e sk-test-pre-req`. Later, if you choose to deploy the app to ACA, you will deploy to a different resource group (`sk-test`).
-    1. Choose the appropriate subscription and location. `eastus2` or `swedencentral` are recommended.
+    1. Run `azd provision -e ia-maf-prereq`. Later, if you choose to deploy the app to ACA, you will deploy to a different resource group (`ia-maf`).
+    1. Choose the appropriate subscription and location.
     1. When complete, you should be able to log to the portal and see the resources:
         1. Go to the [Azure Portal](https://portal.azure.com).
         1. In the search bar, type in `Resource Groups`, and choose the Resource Groups page.
@@ -70,13 +70,26 @@ cd intelligent-app-workshop
     1. On the **Create a Grounding with Bing Search Resource** page, provide the following information for the fields on the Basics tab:
         * Subscription: The Azure subscription to used for your service.
         * Resource group: Select the resource group created by the prerequisites stack
-        * Name: A descriptive and unique name for your Grounding with Bing Search Service resource, such as `grounding-bing-search-myid`.
+        * Name: A descriptive and unique name for your Grounding with Bing Search Service resource, such as `grounding-bing-search`.
         * Region: Global (default).
         * Pricing Tier: Grounding with Bing Search (default)
         * Terms: Check the box to acknowledge the terms of use.
     1. Click **Next**.
     1. On the **Tags** tab click **Next**
     1. Click **Create**.
+
+1. Assign the `Cognitive Services OpenAI Contributor` role to your user
+    1. In the Azure Search bar, type in Foundry and choose `Microsoft Foundry`
+    1. Click on All Resources on the left
+    1. Click on your newly created resource in the list
+    1. Click on `Access Control (IAM)`
+    1. Click `Add` -> `Add role assignment`
+    1. In the search bar enter `Cognitive Services OpenAI Contributor` and click on it in the list
+    1. Click Next
+    1. Ensure that `User, group or service principal` is selected and click `Select Members`
+    1. Search for your user and select it. You will see your username in the top right corner of the Azure screen, if you need it. Click Select.
+    1. Click `Review + assign`
+    1. Click `Review + assign` (again)
 
 1. Create Agents connection to Grounding with Bing Search resource:
 
@@ -96,28 +109,17 @@ cd intelligent-app-workshop
         ```
         /subscriptions/{subscription-id}/resourceGroups/{resource-group}/providers/Microsoft.CognitiveServices/accounts/{ai-foundry-account}/projects/{project-name}/connections/{connection-name}
         ```
-    1. Paste this full Connection ID as the **groundingWithBingConnectionId** value within the `AIFoundryProject` element in the `appSettings.json` file.
+    1. Back in VSCode, copy ``workshop\dotnet\Lessons\appsettings.json.example` to a new file `appsettings.json`
+    1. Paste the full Connection ID as the **groundingWithBingConnectionId** value within the `AIFoundryProject` element in the `workshop\dotnet\Lessons\appsettings.json` file.
     
     > **Important**: You must use the complete Azure AI Foundry connection path, not just the connection name. The Connection ID includes the subscription ID, resource group, AI Foundry account, project name, and connection name.
 
-1. Upgrade OpenAI Connection
-
-    1. The OpenAI connection needs to be upgraded to allow you to see your deployed model. On the Connections page, click on your Open AI connection.
-    1. Click **Upgrade Connection**
-        ![Upgradeconnection](./images/upgrade-connection.jpg)
-    1. On the left, click **Models + Endpoints** and you should see your `gpt-4o` deployment. If you need to adjust settings on it at a later time, this is where you can find it.
-
 ## appsettings.json Configuration
 
-1. Go to the `workshop/dotnet/Lessons` directory. Copy and rename the file `appsettings.json.example` into each of the lesson directories as follows (example command for Lesson1):
-
-    ```bash
-    cp workshop/dotnet/Lessons/appsettings.json.example workshop/dotnet/Lessons/Lesson1/appsettings.json
-    ```
-
 1. Store AI Foundry settings in `appsettings.json`
-    1. In Azure AI Foundry main project page, copy the connection string and use it as the **connectionString** value in the `AIFoundryProject` element of `appsettings.json`.
-    1. Under **My Assets** choose **Models + Endpoints**. Next to the `gpt-4o` deployment, click `Get Endpoint`. 
+    1. In Azure AI Foundry main project page, copy the project endpoint and use it as the **connectionString** value in the `AIFoundryProject` element of `appsettings.json`.
+    1. Copy the `Azure OpenAI` endpoint and paste into the `endpoint` field.
+    1. Enter `gpt-4.1` as the `deploymentName` field.
     1. Copy the endpoint and store it as **endpoint** value in the `AIFoundryProject` element of `appsettings.json`. 
     1. Copy the api key and store as the **apiKey** value in `appsettings.json`.
             ![OpenAI Deployment settings](./images/open-ai-connection.jpg)

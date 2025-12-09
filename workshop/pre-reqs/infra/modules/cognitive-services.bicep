@@ -9,7 +9,7 @@ param name string
 @description('Name of the AI Foundry Project')
 param aiProjectName string = '${name}-proj'
 @description('Name of the GPT model deployment')
-param gptModelDeploymentName string = 'gpt-4o'
+param gptModelDeploymentName string = 'gpt-4.1'
 @description('Capacity of the GPT model deployment')
 param gptModelCapacity int = 100
 @description('SKU name for the GPT model deployment')

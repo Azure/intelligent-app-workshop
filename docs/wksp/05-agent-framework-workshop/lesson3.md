@@ -2,46 +2,19 @@
 
 This lesson creates a specialized agent focused on stock sentiment analysis using the Agent Framework with specific system instructions and function calling capabilities.
 
-1. Switch to Lesson 3 directory:
-
-    ```bash
-    cd workshop/dotnet/Lessons/Lesson3
-    ```
-
 1. Copy the configuration file from the Solutions directory:
 
-    ```bash
-    cp ../../Solutions/Lesson3/appsettings.json .
+    ```powershell
+    mv ../Lesson1/appsettings.json appSettings.json
     ```
 
-1. Run the application to see it works:
-
     ```bash
-    dotnet run
+    cp ../Lesson1/appsettings.json appSettings.json
     ```
 
 1. Open `Program.cs` and build a specialized stock sentiment agent:
 
-    1. **TODO: Step 1** - Initialize the chat client and plugins:
-
-        ```csharp
-        IChatClient chatClient = AgentFrameworkProvider.CreateChatClientWithApiKey();
-
-        // Initialize plugins
-        TimeInformationPlugin timePlugin = new();
-        HttpClient httpClient = new();
-        StockDataPlugin stockDataPlugin = new(new StocksService(httpClient));
-        ```
-
-    1. **TODO: Step 2** - Create AI Functions from plugins:
-
-        ```csharp
-        var timeTool = AIFunctionFactory.Create(timePlugin.GetCurrentUtcTime);
-        var stockPriceTool = AIFunctionFactory.Create(stockDataPlugin.GetStockPrice);
-        var stockPriceDateTool = AIFunctionFactory.Create(stockDataPlugin.GetStockPriceForDate);
-        ```
-
-    1. **TODO: Step 3** - Define specialized system instructions for stock sentiment analysis:
+    1. **TODO: Step 1** - Define specialized system instructions for stock sentiment analysis:
 
         ```csharp
         string stockSentimentAgentInstructions = """
@@ -56,34 +29,16 @@ This lesson creates a specialized agent focused on stock sentiment analysis usin
             """;
         ```
 
-    1. **TODO: Step 4** - Create the specialized Stock Sentiment Agent:
+    1. **TODO: Step 2** - Create the specialized Stock Sentiment Agent:
 
         ```csharp
-        ChatClientAgent stockSentimentAgent = new(
+        ChatClientAgent agent = new(
             chatClient,
             instructions: stockSentimentAgentInstructions,
             name: "StockSentimentAgent",
             description: "An intelligent agent that analyzes stock sentiment using market data",
-            tools: [
-                timeTool,
-                stockPriceTool, 
-                stockPriceDateTool
-            ]
+            tools: tools
         );
-        ```
-
-    1. **TODO: Step 5** - Create thread and process user requests:
-
-        ```csharp
-        AgentThread thread = stockSentimentAgent.GetNewThread();
-        
-        var response = await stockSentimentAgent.RunAsync(userInput, thread);
-        
-        if (response?.Messages?.Any() == true)
-        {
-            var lastMessage = response.Messages.Last();
-            Console.WriteLine(lastMessage.Text ?? "No response generated.");
-        }
         ```
 
 1. Test the specialized agent with stock sentiment queries:

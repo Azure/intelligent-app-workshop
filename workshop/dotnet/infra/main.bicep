@@ -19,13 +19,11 @@ param tags string = ''
 })
 param openAiResourceGroupLocation string
 
-@description('Name of the chat GPT model. Default: gpt-35-turbo')
-@allowed([ 'gpt-35-turbo', 'gpt-4', 'gpt-4o', 'gpt-4o-mini', 'gpt-35-turbo-16k', 'gpt-4-16k' ])
-param azureOpenAIChatGptModelName string = 'gpt-4o-mini'
+@description('Name of the chat GPT model.')
+@allowed([ 'gpt-4o', 'gpt-4.1' ])
+param azureOpenAIChatGptModelName string = 'gpt-4.1'
 
-@description('Name of the chat GPT model. Default: 0613 for gpt-35-turbo, or choose 2024-07-18 for gpt-4o-mini')
-@allowed([ '0613', '2024-07-18' ])
-param azureOpenAIChatGptModelVersion string ='2024-07-18'
+param azureOpenAIChatGptModelVersion string ='2025-04-14'
 
 @description('Defines if the process will deploy an Azure Application Insights resource')
 param useApplicationInsights bool = true

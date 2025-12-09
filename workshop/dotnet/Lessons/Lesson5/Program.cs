@@ -3,21 +3,53 @@ using Core.Utilities.Plugins;
 using Core.Utilities.Services;
 using Core.Utilities.Extensions;
 using Microsoft.Agents.AI;
+using Microsoft.Agents.AI.Workflows;
 using Microsoft.Extensions.AI;
-// TODO: Step 1 - Add OpenTelemetry imports for distributed tracing
-// using OpenTelemetry;
-// using OpenTelemetry.Trace;
-// TODO: Step 1 - Add workflows import for multi-agent orchestration  
-// using Microsoft.Agents.AI.Workflows;
+using OpenTelemetry;
+using OpenTelemetry.Trace;
+using System.Text;
 
-// TODO: Step 2 - Create TracerProvider for OpenTelemetry observability
-// This will export traces to console and OTLP (for AI Toolkit integration)
-// Hint: Use Sdk.CreateTracerProviderBuilder() with "agent-telemetry-source"
+// Create TracerProvider that exports to console and OTLP
+// Following Python Agent Framework pattern: uses gRPC on port 4317
+using var tracerProvider = Sdk.CreateTracerProviderBuilder()
+    .AddSource("agent-telemetry-source")
+    .AddConsoleExporter()
+    .AddOtlpExporter(options =>
+    {
+        // Primary: gRPC on 4317 (matches Python Agent Framework)
+        options.Endpoint = new Uri("http://localhost:4317");
+        options.Protocol = OpenTelemetry.Exporter.OtlpExportProtocol.Grpc;
+    })
+    .Build();
+
+Console.WriteLine("=== Investment Portfolio Analyzer with Sequential Orchestration & OpenTelemetry ===");
+Console.WriteLine("This demonstrates MAF Sequential Orchestration with comprehensive telemetry:");
+Console.WriteLine("  • Three specialized agents with distributed tracing");
+Console.WriteLine("  • OpenTelemetry traces with console and OTLP export");
+Console.WriteLine("  • Microsoft Agent Framework instrumentation");
+Console.WriteLine("  • AI Toolkit for VS Code integration");
+Console.WriteLine();
+Console.WriteLine("🔍 OpenTelemetry TracerProvider configured with:");
+Console.WriteLine("   • Console Exporter: ✅ Enabled");
+Console.WriteLine("   • OTLP Exporter: ✅ http://localhost:4317 (gRPC)");
+Console.WriteLine("   • Protocol: gRPC (matching Python Agent Framework)");
+Console.WriteLine("   • AI Toolkit: Use tracing view in VS Code");
+Console.WriteLine();
+Console.WriteLine("To view telemetry data:");
+Console.WriteLine("  1. Traces are automatically shown in console output");
+Console.WriteLine("  2. OTLP data exported to localhost:4317 (gRPC)");
+Console.WriteLine("  3. Open AI Toolkit in VS Code for trace visualization");
+Console.WriteLine("  4. Or run an OTEL collector for advanced visualization");
+Console.WriteLine();
+Console.WriteLine("Enter stock symbols separated by commas (e.g., 'MSFT, AAPL, TSLA, NVDA')");
+Console.WriteLine("Type 'quit' to exit.");
+Console.WriteLine("====================================================================");
+Console.WriteLine();
 
 // Initialize the chat client with Agent Framework  
 IChatClient chatClient = AgentFrameworkProvider.CreateChatClientWithApiKey();
 
-// Initialize plugins  
+// Initialize plugins
 TimeInformationPlugin timePlugin = new();
 HttpClient httpClient = new();
 StockDataPlugin stockDataPlugin = new(new StocksService(httpClient));
@@ -28,8 +60,7 @@ var timeTool = AIFunctionFactory.Create(timePlugin.GetCurrentUtcTime);
 var stockPriceTool = AIFunctionFactory.Create(stockDataPlugin.GetStockPrice);
 var stockPriceDateTool = AIFunctionFactory.Create(stockDataPlugin.GetStockPriceForDate);
 
-// TODO: Step 3 - Create Portfolio Research Agent with OpenTelemetry instrumentation
-// This agent will gather market data and news for portfolio stocks
+// Agent 1: Portfolio Research Agent - Gathers data on all stocks
 string researchAgentInstructions = """
     You are a Portfolio Research Agent. Your job is to gather comprehensive market data for stocks.
     
@@ -42,17 +73,18 @@ string researchAgentInstructions = """
     Format your response as a research report with stock symbols as headers.
     """;
 
-// Create research agent (for now, basic ChatClientAgent - will be enhanced with OpenTelemetry)
-ChatClientAgent portfolioResearchAgent = new(
+AIAgent researchAgent = new ChatClientAgent(
     chatClient,
     instructions: researchAgentInstructions,
     name: "PortfolioResearchAgent",
     description: "Gathers market data and news for portfolio stocks",
     tools: [stockPriceTool, webSearchTool, timeTool]
-);
+)
+.AsBuilder()
+.UseOpenTelemetry(sourceName: "agent-telemetry-source")
+.Build();
 
-// TODO: Step 4 - Create Risk Assessment Agent with OpenTelemetry instrumentation
-// This agent will analyze portfolio composition and risk profile
+// Agent 2: Risk Assessment Agent - Analyzes portfolio risk
 string riskAgentInstructions = """
     You are a Risk Assessment Agent. Analyze the portfolio composition and risk profile.
     
@@ -66,16 +98,17 @@ string riskAgentInstructions = """
     Be concise and actionable.
     """;
 
-// Create risk assessment agent (for now, basic ChatClientAgent - will be enhanced with OpenTelemetry)
-ChatClientAgent riskAssessmentAgent = new(
+AIAgent riskAgent = new ChatClientAgent(
     chatClient,
     instructions: riskAgentInstructions,
     name: "RiskAssessmentAgent",
     description: "Analyzes portfolio risk and diversification"
-);
+)
+.AsBuilder()
+.UseOpenTelemetry(sourceName: "agent-telemetry-source")
+.Build();
 
-// TODO: Step 5 - Create Investment Advisor Agent with OpenTelemetry instrumentation
-// This agent will provide final recommendations based on research and risk analysis
+// Agent 3: Investment Advisor Agent - Provides recommendations
 string advisorAgentInstructions = """
     You are an Investment Advisor Agent. Synthesize research and risk analysis into actionable recommendations.
     
@@ -89,96 +122,88 @@ string advisorAgentInstructions = """
     Be clear, concise, and actionable.
     """;
 
-// Create investment advisor agent (for now, basic ChatClientAgent - will be enhanced with OpenTelemetry)
-ChatClientAgent investmentAdvisorAgent = new(
+AIAgent advisorAgent = new ChatClientAgent(
     chatClient,
     instructions: advisorAgentInstructions,
     name: "InvestmentAdvisorAgent",
     description: "Provides investment recommendations based on research and risk analysis"
-);
+)
+.AsBuilder()
+.UseOpenTelemetry(sourceName: "agent-telemetry-source")
+.Build();
 
-Console.WriteLine("=== Investment Portfolio Analyzer with Sequential Orchestration ===");
-Console.WriteLine("This demonstrates multi-agent orchestration for comprehensive portfolio analysis.");
-Console.WriteLine("Enter stock symbols separated by commas (e.g., 'MSFT, AAPL, TSLA, NVDA')");
-Console.WriteLine("Type 'quit' to exit.");
-Console.WriteLine("====================================================================");
-Console.WriteLine();
-
+// Execute program
 const string terminationPhrase = "quit";
 string? userInput;
 
 do
 {
-    Console.Write("🎯 Enter stock symbols (comma-separated): ");
+    Console.Write("Enter portfolio > ");
     userInput = Console.ReadLine();
-    
-    if (string.IsNullOrWhiteSpace(userInput) || userInput.ToLower() == terminationPhrase)
-    {
-        Console.WriteLine("Goodbye! 👋");
-        break;
-    }
 
-    try
+    if (userInput is not null and not terminationPhrase)
     {
-        // Parse stock symbols
-        var symbols = userInput.Split(',', StringSplitOptions.RemoveEmptyEntries)
-                              .Select(s => s.Trim().ToUpperInvariant())
-                              .ToList();
-
-        if (!symbols.Any())
+        try
         {
-            Console.WriteLine("❌ Please enter valid stock symbols.");
-            continue;
+            Console.WriteLine("\n" + new string('=', 70));
+            Console.WriteLine("PORTFOLIO ANALYSIS - SEQUENTIAL ORCHESTRATION WITH TELEMETRY");
+            Console.WriteLine(new string('=', 70) + "\n");
+            
+            // Build the workflow and convert it to an agent with telemetry
+            AIAgent workflowAgent = (await AgentWorkflowBuilder.BuildSequential([
+                researchAgent,
+                riskAgent,
+                advisorAgent
+            ]).AsAgentAsync())
+            .AsBuilder()
+            .UseOpenTelemetry(sourceName: "agent-telemetry-source")
+            .Build();
+            
+            // Run the workflow with streaming output
+            string? lastAgentName = null;
+            var stopwatch = System.Diagnostics.Stopwatch.StartNew();
+            
+            await foreach (var update in workflowAgent.RunStreamingAsync($"Analyze this portfolio of stocks: {userInput}"))
+            {
+                // Print header when we see a new agent starting
+                if (lastAgentName != update.AuthorName)
+                {
+                    if (lastAgentName != null)
+                    {
+                        Console.WriteLine(); // Add spacing between agents
+                        Console.WriteLine(new string('-', 70));
+                        Console.WriteLine();
+                    }
+                    
+                    lastAgentName = update.AuthorName;
+                    Console.WriteLine($"[{update.AuthorName}]");
+                    Console.WriteLine(new string('-', 70));
+                }
+                
+                // Stream the text output in real-time
+                Console.Write(update.Text);
+            }
+            
+            stopwatch.Stop();
+            
+            Console.WriteLine("\n" + new string('=', 70));
+            Console.WriteLine($"✓ ANALYSIS COMPLETE - Duration: {stopwatch.ElapsedMilliseconds}ms");
+            Console.WriteLine("✓ OpenTelemetry traces exported to console and OTLP endpoint");
+            Console.WriteLine(new string('=', 70));
         }
-
-        Console.WriteLine($"\n🚀 Starting analysis for: {string.Join(", ", symbols)}");
+        catch (Exception ex)
+        {
+            Console.WriteLine($"Error analyzing portfolio: {ex.Message}");
+            if (ex.InnerException != null)
+            {
+                Console.WriteLine($"Inner exception: {ex.InnerException.Message}");
+            }
+        }
         
-        // TODO: Step 6 - Create Sequential Workflow with OpenTelemetry
-        // Replace the individual agent calls below with SequentialAgentWorkflow.Create()
-        // This will orchestrate all three agents in sequence with full telemetry
-        
-        // TODO: Step 7 - Add performance monitoring with Stopwatch
-        // Track total execution time for the workflow
-        
-        // For now, manually call each agent in sequence (will be replaced with workflow)
-        var prompt = $"Analyze portfolio for stocks: {string.Join(", ", symbols)}. Provide comprehensive research, risk assessment, and investment recommendations.";
-        
-        Console.WriteLine("\n" + new string('=', 70));
-        Console.WriteLine("PORTFOLIO ANALYSIS - SEQUENTIAL ORCHESTRATION");
-        Console.WriteLine(new string('=', 70) + "\n");
-        
-        // Step 1: Portfolio Research
-        Console.WriteLine("[PortfolioResearchAgent]");
-        Console.WriteLine(new string('-', 70));
-        var researchResponse = await portfolioResearchAgent.RunAsync(prompt);
-        Console.WriteLine(researchResponse);
-        Console.WriteLine(new string('-', 70) + "\n");
-        
-        // Step 2: Risk Assessment  
-        Console.WriteLine("[RiskAssessmentAgent]");
-        Console.WriteLine(new string('-', 70));
-        var riskResponse = await riskAssessmentAgent.RunAsync($"Based on this research: {researchResponse}\n\nAnalyze the portfolio risk.");
-        Console.WriteLine(riskResponse);
-        Console.WriteLine(new string('-', 70) + "\n");
-        
-        // Step 3: Investment Recommendations
-        Console.WriteLine("[InvestmentAdvisorAgent]");
-        Console.WriteLine(new string('-', 70));
-        var advisorResponse = await investmentAdvisorAgent.RunAsync($"Based on this research: {researchResponse}\n\nAnd this risk assessment: {riskResponse}\n\nProvide investment recommendations.");
-        Console.WriteLine(advisorResponse);
-        Console.WriteLine(new string('-', 70) + "\n");
-        
-        Console.WriteLine("✓ ANALYSIS COMPLETE");
-        Console.WriteLine(new string('=', 70));
+        Console.WriteLine();
     }
-    catch (Exception ex)
-    {
-        Console.WriteLine($"❌ Error during analysis: {ex.Message}");
-        Console.WriteLine("Please try again with different stock symbols.");
-    }
-    
-    Console.WriteLine();
 }
 while (userInput != terminationPhrase);
 
 Console.WriteLine("Thank you for using the Portfolio Analyzer!");
+Console.WriteLine("OpenTelemetry traces have been exported. Check AI Toolkit in VS Code or your observability platform for detailed insights.");
