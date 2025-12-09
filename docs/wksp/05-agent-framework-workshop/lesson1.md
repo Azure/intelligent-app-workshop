@@ -6,17 +6,17 @@ In this lesson we will create a basic AI agent using Microsoft Agent Framework w
 
 1. Switch to Lesson 1 directory:
 
-    ```bash
+    ```powershell
     cd workshop/dotnet/Lessons/Lesson1
     ```
 
 1. Copy the configuration file from the Solutions directory:
 
-    ```bash
-    cp ../../Solutions/Lesson1/appsettings.json .
+    ```powershell
+    cp ..\appsettings.json appSettings.json  
     ```
 
-1. Open the project in your favorite IDE or text editor.
+1. Open the project in VS Code
 
 1. Open `Program.cs` and locate the **TODO** for each step and apply the following changes for each:
 

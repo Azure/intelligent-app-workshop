@@ -10,42 +10,38 @@ This lesson adds web search capabilities to our financial agent, allowing it to 
 
 1. Copy the configuration file from the Solutions directory:
 
-    ```bash
-    cp ../../Solutions/Lesson4/appsettings.json .
-    ```
-
-1. Run the application to see it works:
-
-    ```bash
-    dotnet run
+    ```powershell
+    cp ../Lesson1/appsettings.json appSettings.json
     ```
 
 1. Open `Program.cs` and add web search capabilities to the financial agent:
 
-    1. **TODO: Step 1** - Initialize the chat client, plugins, and web search tool:
+    1. **TODO: Step 1** - Add Azure Foundry Environment variables
 
         ```csharp
-        IChatClient chatClient = AgentFrameworkProvider.CreateChatClientWithApiKey();
+        // Set Azure AI and Authentication environment variables (required for Azure AI Foundry agent)
+        Environment.SetEnvironmentVariable("AZURE_FOUNDRY_PROJECT_ENDPOINT", applicationSettings.AIFoundryProject.Endpoint);
+        Environment.SetEnvironmentVariable("AZURE_FOUNDRY_PROJECT_DEPLOYMENT_NAME", applicationSettings.AIFoundryProject.DeploymentName);
 
-        // Initialize plugins
-        TimeInformationPlugin timePlugin = new();
-        HttpClient httpClient = new();
-        StockDataPlugin stockDataPlugin = new(new StocksService(httpClient));
+        // Set Bing Grounding Connection ID (Required for web search functionality)  
+        Environment.SetEnvironmentVariable("BING_CONNECTION_ID", applicationSettings.AIFoundryProject.GroundingWithBingConnectionId);
+        ```
 
-        // Create web search tool for enhanced sentiment analysis
+    1. **TODO** Step2 - Create a persistent client
+    ```csharp
+        // Create PersistentAgentsClient for Azure AI Foundry
+        var persistentAgentsClient = new PersistentAgentsClient(
+            applicationSettings.AIFoundryProject.ConnectionString,
+            new DefaultAzureCredential());
+    ```
+
+    1. **TODO** Step 3 - Create web search tool for Bing grounding (requires BING_CONNECTION_ID environment variable)
+
+        ```csharp
         HostedWebSearchTool webSearchTool = new();
         ```
 
-    1. **TODO: Step 2** - Create AI Functions including web search:
-
-        ```csharp
-        var timeTool = AIFunctionFactory.Create(timePlugin.GetCurrentUtcTime);
-        var stockPriceTool = AIFunctionFactory.Create(stockDataPlugin.GetStockPrice);
-        var stockPriceDateTool = AIFunctionFactory.Create(stockDataPlugin.GetStockPriceForDate);
-        ```
-
-    1. **TODO: Step 3** - Define enhanced system instructions with web search capabilities:
-
+    1. ** TODO ** Step 4 - Stock Sentiment Agent system instructions and initialization - defines the agent's behavior and rules
         ```csharp
         string stockSentimentAgentInstructions = """
             You are a Financial Analysis Agent with web search capabilities. Provide direct, comprehensive financial analysis and insights based on user questions.
@@ -69,37 +65,38 @@ This lesson adds web search capabilities to our financial agent, allowing it to 
             - If a user asks about a specific company without mentioning the stock symbol, try to identify the relevant ticker symbol
             - Answer immediately with your full analysis - do not provide status updates or say you're collecting information
             """;
-        ```
 
-    1. **TODO: Step 4** - Create the Financial Analysis Agent with web search capabilities:
-
-        ```csharp
-        ChatClientAgent financialAnalysisAgent = new(
-            chatClient,
+        // Create Financial Analysis Agent in Azure AI Foundry (following GitHub example pattern)
+        // Create agent with Bing grounding tool, then pass local function tools at runtime via ChatClientAgentRunOptions
+        var agent = await persistentAgentsClient.CreateAIAgentAsync(
+            applicationSettings.AIFoundryProject.DeploymentName,
             instructions: stockSentimentAgentInstructions,
-            name: "FinancialAnalysisAgent",
-            description: "An intelligent agent that provides comprehensive financial analysis using web search and market data",
-            tools: [
-                timeTool,
-                stockPriceTool, 
-                stockPriceDateTool,
-                webSearchTool
+            tools: [ 
+                new BingGroundingToolDefinition(
+                    new BingGroundingSearchToolParameters(
+                        new[] { 
+                            new BingGroundingSearchConfiguration(
+                                applicationSettings.AIFoundryProject.GroundingWithBingConnectionId
+                            ) 
+                        }
+                    )
+                ) 
             ]
         );
-        ```
 
-    1. **TODO: Step 5** - Create thread and process requests with web search:
+        // Create a thread for conversation
+        var thread = agent.GetNewThread();
 
-        ```csharp
-        AgentThread thread = financialAnalysisAgent.GetNewThread();
-        
-        var response = await financialAnalysisAgent.RunAsync(userInput, thread);
-        
-        if (response?.Messages?.Any() == true)
-        {
-            var lastMessage = response.Messages.Last();
-            Console.WriteLine(lastMessage.Text ?? "No response generated.");
-        }
+        // Create run options with local function tools (following GitHub example)
+        var agentOptions = new ChatClientAgentRunOptions(new() { 
+            Tools = [
+                timeTool,
+                stockPriceTool,
+                stockPriceDateTool,
+                webSearchTool  // This will use the BING_CONNECTION_ID for foundry grounding
+            ] 
+        });
+
         ```
 
 1. Test the enhanced agent with various financial queries:

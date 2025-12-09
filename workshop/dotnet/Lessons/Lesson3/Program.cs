@@ -3,7 +3,6 @@ using Core.Utilities.Plugins;
 using Core.Utilities.Services;
 using Microsoft.Extensions.AI;
 using Microsoft.Agents.AI;
-// TODO: Step 1 - Add the Extensions namespace for HostedWebSearchTool
 
 // Initialize the chat client with Agent Framework  
 IChatClient chatClient = AgentFrameworkProvider.CreateChatClientWithApiKey();
@@ -21,24 +20,9 @@ var tools = new AIFunction[]
     AIFunctionFactory.Create(stockDataPlugin.GetStockPriceForDate)
 };
 
-// TODO: Step 2 - Initialize web search tool for sentiment analysis
+// **TODO: Step 1** - Define specialized system instructions for stock sentiment analysis:
 
-// TODO: Step 3 - Create individual AI function variables for clarity
-
-// Create financial advisor agent with function calling capabilities
-string systemInstructions = "You are a friendly financial advisor that only emits financial advice in a creative and funny tone";
-
-// TODO: Step 4 - Transform into a Stock Sentiment Agent with specialized instructions
-
-ChatClientAgent agent = new(
-    chatClient,
-    instructions: systemInstructions,
-    name: "FinancialAdvisor",
-    description: "A friendly financial advisor with access to time and stock data",
-    tools: tools
-);
-
-// TODO: Step 5 - Update agent creation to use new instructions and tools
+// **TODO: Step 2** - Create the specialized Stock Sentiment Agent:
 
 // Create a thread for conversation
 AgentThread thread = agent.GetNewThread();

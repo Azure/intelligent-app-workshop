@@ -13,7 +13,7 @@ This lesson demonstrates sequential orchestration where multiple specialized age
 
 1. **Configure AI Toolkit Tracing**:
     * Open the **AI Toolkit** panel in VS Code
-    * Navigate to the **Tracing** section
+    * Navigate to the **Agent and Workflow Tools** section, then click on **Tracing**
     * Click **Start Collector** to start the local OTLP trace collector
     * The collector will start listening on `http://localhost:4317` (gRPC) and `http://localhost:4318` (HTTP)
 
@@ -25,147 +25,11 @@ This lesson demonstrates sequential orchestration where multiple specialized age
     cd workshop/dotnet/Lessons/Lesson5
     ```
 
-1. Run the application to see the current basic implementation:
+1. Copy the configuration file from the Solutions directory:
 
-    ```bash
-    dotnet run
+    ```powershell
+    cp ../Lesson1/appsettings.json appSettings.json
     ```
-
-    Try entering some stock symbols like "MSFT, AAPL" to see the manual sequential execution.
-
-## Implementation Steps
-
-Open `Program.cs` and enhance it with OpenTelemetry observability and proper workflow orchestration:
-
-### Step 1: Add OpenTelemetry Imports
-
-Add the OpenTelemetry imports at the top of the file:
-
-```csharp
-using Microsoft.Agents.AI.Workflows;
-using OpenTelemetry;
-using OpenTelemetry.Trace;
-```
-
-### Step 2: Configure OpenTelemetry TracerProvider
-
-Replace the comment about TracerProvider with the actual implementation:
-
-```csharp
-// Create TracerProvider that exports to console and OTLP
-// Following Python Agent Framework pattern: uses gRPC on port 4317
-using var tracerProvider = Sdk.CreateTracerProviderBuilder()
-    .AddSource("agent-telemetry-source")
-    .AddConsoleExporter()
-    .AddOtlpExporter(options =>
-    {
-        // Primary: gRPC on 4317 (matches Python Agent Framework and AI Toolkit)
-        options.Endpoint = new Uri("http://localhost:4317");
-        options.Protocol = OpenTelemetry.Exporter.OtlpExportProtocol.Grpc;
-    })
-    .Build();
-```
-
-### Step 3: Add OpenTelemetry Instrumentation to Agents
-
-Replace each agent creation with OpenTelemetry-instrumented versions:
-
-```csharp
-// Portfolio Research Agent with OpenTelemetry
-ChatClientAgent portfolioResearchAgent = chatClient
-    .AsBuilder()
-    .UseOpenTelemetry()
-    .Build();
-
-portfolioResearchAgent = new ChatClientAgent(
-    portfolioResearchAgent,
-    instructions: researchAgentInstructions,
-    name: "PortfolioResearchAgent",
-    description: "Gathers market data and news for portfolio stocks",
-    tools: [stockPriceTool, webSearchTool, timeTool]
-);
-
-// Risk Assessment Agent with OpenTelemetry
-ChatClientAgent riskAssessmentAgent = chatClient
-    .AsBuilder()
-    .UseOpenTelemetry()
-    .Build();
-
-riskAssessmentAgent = new ChatClientAgent(
-    riskAssessmentAgent,
-    instructions: riskAgentInstructions,
-    name: "RiskAssessmentAgent",
-    description: "Analyzes portfolio risk and diversification"
-);
-
-// Investment Advisor Agent with OpenTelemetry
-ChatClientAgent investmentAdvisorAgent = chatClient
-    .AsBuilder()
-    .UseOpenTelemetry()
-    .Build();
-
-investmentAdvisorAgent = new ChatClientAgent(
-    investmentAdvisorAgent,
-    instructions: advisorAgentInstructions,
-    name: "InvestmentAdvisorAgent",
-    description: "Provides investment recommendations based on research and risk analysis"
-);
-```
-
-### Step 4: Create Sequential Workflow
-
-Replace the manual agent calls in the main loop with a proper sequential workflow:
-
-```csharp
-// TODO 6: Create Sequential Workflow with all three agents
-// Replace this comment with:
-var workflow = SequentialAgentWorkflow.Create(
-    portfolioResearchAgent,
-    riskAssessmentAgent,
-    investmentAdvisorAgent
-);
-```
-
-### Step 5: Add Performance Monitoring
-
-Replace the manual execution with workflow execution and performance tracking:
-
-```csharp
-// TODO 7: Add performance monitoring with Stopwatch
-// Replace the manual agent calls with:
-var stopwatch = System.Diagnostics.Stopwatch.StartNew();
-
-var prompt = $"Analyze portfolio for stocks: {string.Join(", ", symbols)}. Provide comprehensive research, risk assessment, and investment recommendations.";
-
-var response = await workflow.InvokeAsync(prompt);
-
-stopwatch.Stop();
-
-Console.WriteLine($"\n✅ Analysis completed in {stopwatch.ElapsedMilliseconds}ms");
-Console.WriteLine($"📊 Final Investment Analysis:\n{response}");
-Console.WriteLine();
-Console.WriteLine("🔍 Check console output above for OpenTelemetry traces");
-Console.WriteLine("💡 Open AI Toolkit in VS Code to visualize traces");
-```
-
-### Step 6: Update Console Output
-
-Add enhanced telemetry information to the console output:
-
-```csharp
-Console.WriteLine("=== Investment Portfolio Analyzer with Sequential Orchestration & OpenTelemetry ===");
-Console.WriteLine("This demonstrates MAF Sequential Orchestration with comprehensive telemetry:");
-Console.WriteLine("  • Three specialized agents with distributed tracing");
-Console.WriteLine("  • OpenTelemetry traces with console and OTLP export");
-Console.WriteLine("  • Microsoft Agent Framework instrumentation");
-Console.WriteLine("  • AI Toolkit for VS Code integration");
-Console.WriteLine();
-Console.WriteLine("🔍 OpenTelemetry TracerProvider configured with:");
-Console.WriteLine("   • Console Exporter: ✅ Enabled");
-Console.WriteLine("   • OTLP Exporter: ✅ http://localhost:4317 (gRPC)");
-Console.WriteLine("   • Protocol: gRPC (matching Python Agent Framework)");
-Console.WriteLine("   • AI Toolkit: Use tracing view in VS Code");
-```
 
 ## Testing with OpenTelemetry
 

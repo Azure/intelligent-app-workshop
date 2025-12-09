@@ -4,20 +4,14 @@ This lesson builds on lesson 1 by adding function calling capabilities to our ag
 
 1. Switch to Lesson 2 directory:
 
-    ```bash
+    ```powershell
     cd workshop/dotnet/Lessons/Lesson2
     ```
 
 1. Copy the configuration file from the Solutions directory:
 
-    ```bash
-    cp ../../Solutions/Lesson2/appsettings.json .
-    ```
-
-1. Run the application to see it works:
-
-    ```bash
-    dotnet run
+    ```powershell
+    cp ../Lesson1/appsettings.json appSettings.json
     ```
 
 1. Observe the plugins in the `Core.Utilities.Plugins` namespace:
@@ -30,6 +24,9 @@ This lesson builds on lesson 1 by adding function calling capabilities to our ag
     1. **TODO: Step 1** - Initialize the chat client and plugins:
 
         ```csharp
+        using Core.Utilities.Plugins;
+        using Core.Utilities.Services;
+
         IChatClient chatClient = AgentFrameworkProvider.CreateChatClientWithApiKey();
 
         // Initialize plugins
