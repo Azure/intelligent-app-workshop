@@ -8,9 +8,17 @@ This lesson adds web search capabilities to our financial agent, allowing it to 
     cd workshop/dotnet/Lessons/Lesson4
     ```
 
+    ```powershell
+    cd workshop/dotnet/Lessons/Lesson4
+    ```
+
 1. Copy the configuration file from the Solutions directory:
 
     ```powershell
+    mv ../Lesson1/appsettings.json appSettings.json
+    ```
+
+    ```bash
     cp ../Lesson1/appsettings.json appSettings.json
     ```
 

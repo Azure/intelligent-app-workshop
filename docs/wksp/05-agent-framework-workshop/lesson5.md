@@ -21,6 +21,10 @@ This lesson demonstrates sequential orchestration where multiple specialized age
 
 1. Switch to Lesson 5 directory:
 
+    ```powershell
+    cd workshop/dotnet/Lessons/Lesson5
+    ```
+
     ```bash
     cd workshop/dotnet/Lessons/Lesson5
     ```
@@ -28,6 +32,10 @@ This lesson demonstrates sequential orchestration where multiple specialized age
 1. Copy the configuration file from the Solutions directory:
 
     ```powershell
+    mv ../Lesson1/appsettings.json appSettings.json
+    ```
+
+    ```bash
     cp ../Lesson1/appsettings.json appSettings.json
     ```
 

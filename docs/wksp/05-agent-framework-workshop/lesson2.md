@@ -8,10 +8,18 @@ This lesson builds on lesson 1 by adding function calling capabilities to our ag
     cd workshop/dotnet/Lessons/Lesson2
     ```
 
+    ```bash
+    cd workshop/dotnet/Lessons/Lesson2
+    ```
+
 1. Copy the configuration file from the Solutions directory:
 
     ```powershell
     cp ../Lesson1/appsettings.json appSettings.json
+    ```
+
+    ```bash
+    mv ../Lesson1/appsettings.json appSettings.json
     ```
 
 1. Observe the plugins in the `Core.Utilities.Plugins` namespace:

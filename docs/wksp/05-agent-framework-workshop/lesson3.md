@@ -5,13 +5,11 @@ This lesson creates a specialized agent focused on stock sentiment analysis usin
 1. Copy the configuration file from the Solutions directory:
 
     ```powershell
-    cp ../Lesson1/appsettings.json appSettings.json
+    mv ../Lesson1/appsettings.json appSettings.json
     ```
 
-1. Run the application to see it works:
-
-    ```powershell
-    dotnet run
+    ```bash
+    cp ../Lesson1/appsettings.json appSettings.json
     ```
 
 1. Open `Program.cs` and build a specialized stock sentiment agent:
