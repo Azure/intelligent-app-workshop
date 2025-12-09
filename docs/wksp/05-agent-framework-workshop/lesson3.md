@@ -34,7 +34,7 @@ This lesson creates a specialized agent focused on stock sentiment analysis usin
     1. **TODO: Step 2** - Create the specialized Stock Sentiment Agent:
 
         ```csharp
-        ChatClientAgent stockSentimentAgent = new(
+        ChatClientAgent agent = new(
             chatClient,
             instructions: stockSentimentAgentInstructions,
             name: "StockSentimentAgent",

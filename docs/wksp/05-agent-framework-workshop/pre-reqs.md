@@ -119,7 +119,7 @@ cd intelligent-app-workshop
 1. Store AI Foundry settings in `appsettings.json`
     1. In Azure AI Foundry main project page, copy the project endpoint and use it as the **connectionString** value in the `AIFoundryProject` element of `appsettings.json`.
     1. Copy the `Azure OpenAI` endpoint and paste into the `endpoint` field.
-    1. Enter `gpt-4o` as the `deploymentName` field.
+    1. Enter `gpt-4.1` as the `deploymentName` field.
     1. Copy the endpoint and store it as **endpoint** value in the `AIFoundryProject` element of `appsettings.json`. 
     1. Copy the api key and store as the **apiKey** value in `appsettings.json`.
             ![OpenAI Deployment settings](./images/open-ai-connection.jpg)

@@ -80,7 +80,7 @@ You can build, provision all resources and deploy by following these steps:
         * Enter a value for the infrastructure parameters:
             * **aiFoundryProjectConnectionString**
             * **openAIApiKey**
-            * **openAiChatGptDeployment**: e.g. gpt-4o
+            * **openAiChatGptDeployment**: e.g. gpt-4.1
             * **openAiEndpoint**
             * **groundingWithBingConnectionId** - **Must be the full AI Foundry connection path** in format: `/subscriptions/{subscription-id}/resourceGroups/{resource-group}/providers/Microsoft.CognitiveServices/accounts/{ai-foundry-account}/projects/{project-name}/connections/{connection-name}`
             * **stockServiceApiKey**

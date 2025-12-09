@@ -21,7 +21,6 @@ HttpClient httpClient = new();
 StockDataPlugin stockDataPlugin = new(new StocksService(httpClient));
 
 // **TODO** Step 3 - Create web search tool for Bing grounding (requires BING_CONNECTION_ID environment variable)
-HostedWebSearchTool webSearchTool = new();
 
 // Create AI Functions from plugins
 var timeTool = AIFunctionFactory.Create(timePlugin.GetCurrentUtcTime);
@@ -29,6 +28,7 @@ var stockPriceTool = AIFunctionFactory.Create(stockDataPlugin.GetStockPrice);
 var stockPriceDateTool = AIFunctionFactory.Create(stockDataPlugin.GetStockPriceForDate);
 
 // ** TODO ** Step 4 - Stock Sentiment Agent system instructions and initialization - defines the agent's behavior and rules
+HostedWebSearchTool webSearchTool = new();
 
 // Execute program
 const string terminationPhrase = "quit";
